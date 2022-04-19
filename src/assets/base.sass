@@ -1,0 +1,49 @@
+@import "layout"
+
+$background: whitesmoke
+
+body
+  margin: 0
+  font-size: 12pt
+  /*line-height: 1pt;*/
+  text-rendering: optimizeLegibility
+  -webkit-font-smoothing: antialiased
+  -moz-osx-font-smoothing: grayscale
+  font-family: Garamond
+  .background
+    background-color: $background
+
+  .item
+    width: 100%
+    .place
+      font-size: 1.2rem
+      font-weight: bold
+      background-color: $background
+
+    .title
+      font-size: 1rem
+      .name
+        font-weight: bold
+        text-transform: capitalize
+      .time
+        text-align: right
+        position: absolute
+        right: -3rem
+        font-size: 0.85rem
+      .location
+        font-size: 0.9rem
+      .separator
+        margin: 0 0.4rem
+        font-size: 0.9rem
+
+    .description
+      white-space: pre-line
+      font-size: 0.80rem
+
+      .item-list
+        padding: 0 0 0 1rem
+        margin: 0
+
+
+
+
