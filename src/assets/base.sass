@@ -15,35 +15,38 @@ body
 
   .item
     width: 100%
-    .place
-      font-size: 1.2rem
-      font-weight: bold
-      background-color: $background
 
-    .title
+    .place
+      font-size: 1.1rem
+      font-weight: bold
+    .details
       font-size: 1rem
+      line-height: 1.2rem
+      //color: #26a0f4
+      color: lighten(black, 40%)
+      font-weight: bold
       .name
-        font-weight: bold
         text-transform: capitalize
-      .time
-        text-align: right
-        position: absolute
-        right: -3rem
-        font-size: 0.85rem
       .location
-        font-size: 0.9rem
-      .separator
-        margin: 0 0.4rem
-        font-size: 0.9rem
+        font-style: italic
+      .time
+        font-style: italic
+      //  text-align: right
+      //  float: right
+    .separator
+      margin: 0 0.4rem
 
     .description
       white-space: pre-line
-      font-size: 0.80rem
 
       .item-list
         padding: 0 0 0 1rem
         margin: 0
 
+.separator
+  margin: 0 0.4rem
 
+.flex
+  display: flex
 
 

@@ -1,16 +1,18 @@
 <template lang="pug">
 .item
-  .company.place(v-if='company')
-    p {{company}}
-  .data
-    .title
+  .header
+    span.company.place(v-if='company')
+      span {{company}}
+      span.separator &#x2f;
+    span.details
       span.role.name {{role}}
       span.separator &#124;
       span.location {{location}}
+      span.separator &#124;
       span.time {{time}}
-    .description(v-if='items')
-      ul.item-list
-        li(v-for='item in items').item {{item}}
+  .description(v-if='items')
+    ul.item-list
+      li(v-for='item in items').item {{item}}
 
 </template>
 <script setup>
@@ -40,5 +42,4 @@ defineProps({
 </script>
 
 <style scoped lang="sass">
-.separator
 </style>

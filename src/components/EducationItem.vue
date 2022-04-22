@@ -1,13 +1,14 @@
 <template lang="pug">
 .item
-  .school.place
-    p {{school}}
-  .data
-    .title
-      span.name {{name}}
-      span.time {{time}}
-    .description(v-if='description')
-      p {{description}}
+  span.school
+    span.place {{school}}
+    span.separator &#x2f;
+  span.details
+    span.name {{name}}
+    span.separator &#124;
+    span.time {{time}}
+  .description(v-if='description')
+    p {{description}}
 
 </template>
 <script setup>

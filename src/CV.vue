@@ -6,7 +6,6 @@ import SideSection from "./components/SideSection.vue";
 .wrapper
   .page.background
     MainSection.main
-    SideSection.side
 
 </template>
 
@@ -32,10 +31,7 @@ import SideSection from "./components/SideSection.vue";
       box-sizing: border-box
     .main
       flex: 1
-      height: 100%
-      position: relative
-    .side
-      width: 29%
+      //width: 80%
       height: 100%
       position: relative
 
