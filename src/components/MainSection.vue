@@ -2,92 +2,69 @@
 import WorkExperienceItem from "./WorkExperienceItem.vue";
 import EducationItem from "./EducationItem.vue";
 import SkillItem from "./SkillItem.vue";
-
-//Missing projects and talks, missing extra skills
+import ConferenceExperienceItem from "./ConferenceExperienceItem.vue";
+import {FontAwesomeIcon} from '@fortawesome/vue-fontawesome'
 
 defineProps({
-      currentTravixItems: {
-        type: Array,
-        default: [
-          'Worked at the London offices until October 2020 and remotely from Spain since then.',
-          'Helped two small Java teams develop and maintain 200+ microservices by designing and building a corporate Java framework, extending Spring Boot capabilities.',
-          'Removed all Java applications dependency vulnerabilities and reduced zero-days MTTR to hours (since the third-party fixes are provided) by designing a workflow to automatically keep dependencies up to date, combining Renovate bot and Snyk.',
-          'Improved Java teams velocity and stack reliability by standardizing the CI/CD process, providing base Docker images to transparently adopt JIB/Buildpacks, providing sensible, easily customizable defaults for JVM flags and allowing graceful shutdown of services, among others.',
-          'Reduced the infrastructure cost in a 5% (~7K€/month) by revisiting logging volume and Kubernetes cluster resource utilization, as a part-time member of the Systems Engineering team.',
-          //Revisit last sentence
-          'Eliminated most Java technical debt, performed over 50 knowledge sharing sessions, took architectural decisions and helped improve the overall company-wide stack as a Backend (Java) Tech lead.',
-        ]
-      },
-      imatiaItems: {
-        type: Array,
-        default: [
-          'Designed and developed Java applications using Java 8, Reflection API and classloaders.',
-        ]
-      },
-      insaItems: {
-        type: Array,
-        default: [
-          'Developed eCommerce backend and parallel projects for the Inditex group, using Java and Spring.'
-        ]
-      },
-      teslaItems: {
-        type: Array,
-        default: [
-          'Developed frontend applications using HTML5, CSS3 and jQuery.',
-        ]
-      },
-      pcarrierDescription: {
-        type: String,
-        default: 'Remote master in Java 8, iOS and Android programming. Finished Java 8 with a 9.8 score over 10, didn\'t finish iOS and Android as I didn\'t enjoy mobile programming.'
-      },
-      uscDescription: {
-        type: String,
-        default: 'I developed and presented my own degree project, a poker bot able to make preflop decisions in a 6-max Sit&Go scenario.'
+      data: {
+        type: Object,
+        required: true
       }
-
     }
 )
 </script>
 <template lang="pug">
 .main
   .title
-    p.name Rubén Pahíno
-    p.role Software Engineer
+    p.name {{data.name}}
+    p.role {{data.title}}
     .contact
-      SkillItem(title="Github", value="github.com/rubasace")
-      SkillItem(title="Linkedin", value="linkedin.com/in/rubenpahino")
-      SkillItem(title="Email", value="ruben.pahino.verdugo@gmail.com")
+      SkillItem(:icon="['fab', 'github-square']", :value="data.contact.github", v-if="data.contact.github" )
+      SkillItem(:icon="['fab', 'linkedin']", :value="data.contact.linkedin", v-if="data.contact.linkedin" )
+      SkillItem(icon="envelope", :value="data.contact.email", v-if="data.contact.email" )
+
   .section
-    p.section-title Professional Experience
+    .section-title
+      font-awesome-icon(icon='briefcase').icon
+      span Professional Experience
     .section-content.timeline
-      WorkExperienceItem(:items='currentTravixItems', company='Travix International', location='London, UK (Remote)', role='Backend tech lead', time='Feb 2017 - Present')
-      WorkExperienceItem(company='Imatia Innovation', :items='imatiaItems', location='Vigo, Spain', role='Backend Developer', time='Aug 2015 - Feb 2017')
-      WorkExperienceItem(company='INSA', :items='insaItems', location='Ourense, Spain', role='Junior backend developer', time='Mar 2015 - Aug 2015')
-      WorkExperienceItem(company='Tesla Technologies', :items='teslaItems', location='Santiago de Compostela, Spain', role='Internship', time='Jun 2013 - Aug 2013')
+      WorkExperienceItem(v-for="entry in data.work", :items="entry.details", :company="entry.company", :location="entry.location", :time="entry.time")
 
   .section
-    p.section-title Education
+    .section-title
+      font-awesome-icon(icon='plane-departure').icon
+      span Conference Presentations
     .section-content.timeline
-      EducationItem(time="2014-2015", name="Master in Java 8 programming", school="PCarrier")
-      EducationItem(time="2009-2014", name="Degree in Computer Engineering", school="USC(Santiago de Compostela)")
+      ConferenceExperienceItem(v-for="entry in data.conferences", :items="entry.details", :conference="entry.conference", :name="entry.name", :location="entry.location", :time="entry.time")
 
   .section
-    p.section-title Skills
-    .section-content
-      SkillItem(title="Programming", value="Java, Spring Boot, Project Reactor, Resilience4J, Hibernate, Maven, Git.")
-      SkillItem(title="Infrastructure", value="Docker, Kubernetes, Helm, Drone I/O, CircleCI, Flux2.")
-    .section
+    .section-title
+      font-awesome-icon(icon='graduation-cap').icon
+      span Education
+    .section-content.timeline
+      EducationItem(v-for="entry in data.education", :time="entry.time", :name="entry.name", :school="entry.school", :description="entry.description")
 
   .section
-    p.section-title Languages
+    .section-title
+      //font-awesome-icon(icon='brain-circuit').icon
+      font-awesome-icon(icon='brain').icon
+      span Skills
     .section-content
-      SkillItem(title="Spanish", value="Native.")
-      SkillItem(title="English", value="Fluent.")
+      SkillItem(v-for="entry in data.skills", :title="entry.title", :value="entry.value")
+
+  .section
+    .section-title
+      //font-awesome-icon(icon='brain-circuit').icon
+      font-awesome-icon(icon='language').icon
+      span Languages
+    .section-content.flex
+      SkillItem(v-for="entry in data.languages", :title="entry.name", :value="entry.level")
 
 </template>
 
 <style scoped lang="sass">
 $rightTraslation: 0
+$highlightColor: darken(#17a095, 0%)
 .main
   width: 100%
   height: 100%
@@ -99,11 +76,15 @@ $rightTraslation: 0
     text-transform: uppercase
     font-size: 2.5em
     margin-bottom: 2rem
+
     .name
       font-weight: bold
+      color: $highlightColor
+
     .role
       font-size: 0.5em
       font-style: italic
+
     .contact
       position: absolute
       right: 0
@@ -119,9 +100,22 @@ $rightTraslation: 0
 
     .section-title
       font-size: 1.2em
-      text-transform: uppercase
-      margin-bottom: 0.5rem
-      font-weight: bold
+
+      .icon
+        position: absolute
+        right: 101%
+      //margin-right: 0.3em
+      //max-width: 1em
+      //max-height: 1em
+      span
+        text-transform: uppercase
+        margin-bottom: 0.5rem
+        font-weight: bold
+        color: $highlightColor
+        border-top: 1px solid
+        border-bottom: 1px solid
+        display: inline-block
+        width: 100%
 
   .timeline
     position: relative
@@ -132,6 +126,7 @@ $rightTraslation: 0
       .place
         position: relative
         line-height: 2.3rem
+
         &::before
           content: " "
           background-color: whitesmoke
@@ -146,6 +141,7 @@ $rightTraslation: 0
           left: -1.42rem
           $pointSpace: 0.35rem
           box-shadow: 0 $pointSpace 0px whitesmoke, 0 calc(#{$pointSpace} * -1) 0px whitesmoke
+
       .title
         .name
           position: relative

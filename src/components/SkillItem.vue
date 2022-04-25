@@ -1,5 +1,6 @@
 <template lang="pug">
 .item
+  font-awesome-icon.icon(:icon="icon", v-if="icon")
   span.title(v-if="title") {{title}}
   span.value {{value}}
 
@@ -7,6 +8,10 @@
 <script setup>
 
 defineProps({
+  icon: {
+    type: Object,
+    required: false
+  },
   title: {
     type: String,
     required: false
@@ -19,8 +24,12 @@ defineProps({
 </script>
 
 <style scoped lang="sass">
-.title
-  font-weight: bold
-  &::after
-    content: ": "
+.item
+  .title
+    font-weight: bold
+    &::after
+      content: ": "
+  .icon
+    margin-right: 0.25em
+    height: 1em
 </style>

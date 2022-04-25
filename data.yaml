@@ -1,0 +1,71 @@
+name: Rubén Pahíno
+title: Software Engineer
+contact:
+  github: github.com/rubasace
+  linkedin: linkedin.com/in/rubenpahino
+  email: ruben.pahino.verdugo@gmail.com
+work:
+  - company: Travix International
+    role: Backend Tech Lead
+    location: London, UK (Remote)
+    time: Feb 2017 - Present
+    details:
+      - Worked at the London offices until October 2020 and remotely from Spain since then.
+      - Helped two small Java teams develop and maintain 200+ microservices by designing and building a corporate Java framework, extending Spring Boot capabilities and providing many cross-cutting concerns out-of-the-box.
+      - Removed all Java applications dependency vulnerabilities and reduced zero-days MTTR to hours (since the third-party fixes are provided) by designing a workflow to automatically keep dependencies up to date, combining Renovate bot and Snyk.
+      - Improved Java teams velocity and stack reliability by standardizing the CI/CD process, providing base Docker images to transparently adopt JIB/Buildpacks, providing sensible, easily customizable defaults for JVM flags and allowing graceful shutdown of services, among others.
+      - Reduced the infrastructure cost in a 5% (~7K€/month) by revisiting logging volume and Kubernetes cluster resource utilization, as a part-time member of the Systems Engineering team.
+      #          Revisit last sentence
+      - Eliminated most Java technical debt, performed over 50 knowledge sharing sessions, took architectural decisions and helped improve the overall company-wide stack as a Backend (Java) Tech lead.
+  - company: Imatia Innovation
+    role: Backend Developer
+    location: Vigo, Spain
+    time: Aug 2015 - Feb 2017
+    details:
+      - Designed and developed Java applications using Java 8, Reflection API and classloaders.
+  - company: INSA
+    role: Junior backend developer
+    location: Ourense, Spain
+    time: Mar 2015 - Aug 2015
+    details:
+      - Developed eCommerce backend and parallel projects for the Inditex group, using Java and Spring.
+  - company: Tesla Technologies
+    role: Internship
+    location: Santiago de Compostela, Spain
+    time: Jun 2013 - Aug 2013
+    details: { }
+conferences:
+  - conference: Spring I/O 2022
+    name: Building a Framework on top of Spring Boot
+    location: Barcelona, Spain
+    time: 2022
+  - conference: Various Meetups
+    location: Europe
+    time: 2022
+    details:
+      - Presented at various meetups in Galicia (Spain) as well as Amsterdam (Netherlands), focusing on Spring, RSocket and other JVM related technologies.
+education:
+  - school: PCarrier
+    name: Master in Java 8 programming
+    time: 2014 - 2015
+  - school: USC (Santiago de Compostela)
+    name: Degree in Computer Engineering
+    time: 2009 - 2014
+
+skills:
+  - title: Programming
+    value: Java, Spring Boot, Project Reactor, Resilience4J, Hibernate, Maven, Git.
+  - title: Monitoring
+    value: Prometheus, Grafana, AlertManager, ELK stack, Micrometer.
+  - title: Infrastructure
+    value: Docker, Kubernetes, Helm, Drone I/O, CircleCI, Flux2.
+  - title: Soft Skills
+    value: Leadership, effective communication, teamwork, critical thinking, attention to detail.
+
+languages:
+  - name: Spanish
+    level: Native
+  - name: Galician
+    level: Native
+  - name: English
+    level: Fluent

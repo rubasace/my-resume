@@ -4,7 +4,8 @@ $background: whitesmoke
 
 body
   margin: 0
-  font-size: 12pt
+  padding: 0
+  font-size: 11pt
   /*line-height: 1pt;*/
   text-rendering: optimizeLegibility
   -webkit-font-smoothing: antialiased
@@ -49,4 +50,9 @@ body
 .flex
   display: flex
 
-
+@media print
+  .page
+    margin: 0 auto !important
+    border-radius: 0 !important
+    &:last-of-type
+      margin-bottom: -2px !important
