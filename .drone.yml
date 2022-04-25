@@ -6,6 +6,7 @@ steps:
   - name: build
     image: node:14.18.3-alpine3.15
     commands:
+      - npm ci
       - npm run build
 
   - name: bake
