@@ -1,5 +1,5 @@
 import {createApp} from 'vue'
-import CV from "./CV.vue";
+import App from "./App.vue";
 import './assets/base.sass'
 
 
@@ -21,6 +21,6 @@ library.add(faLanguage);
 library.add(faJs, faVuejs);
 
 
-createApp(CV)
+createApp(App)
     .component("font-awesome-icon", FontAwesomeIcon)
     .mount("#app");

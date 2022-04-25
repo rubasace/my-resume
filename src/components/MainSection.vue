@@ -18,8 +18,8 @@ export default {
   data() {
     return {
       networkIcons: {
-        "GitHub": ['fab', 'github-square'],
-        "Linkedin": ['fab', 'linkedin']
+        GitHub: ["fab", "github-square"],
+        Linkedin: ["fab", "linkedin"],
       }
     }
   }
@@ -31,9 +31,7 @@ export default {
     p.name {{data.basics.name}}
     p.role {{data.basics.label}}
     .contact
-      SkillItem(v-for="profile in data.basics.profiles" :icon="this.networkIcons[profile.network]", :value="profile.url")
-      //SkillItem(:icon="['fab', 'github-square']", :value="data.contact.github", v-if="data.contact.github" )
-      //SkillItem(:icon="['fab', 'linkedin']", :value="data.contact.linkedin", v-if="data.contact.linkedin" )
+      SkillItem(v-for="profile in data.basics.profiles" :icon="networkIcons[profile.network]", :value="profile.url")
       SkillItem(icon="envelope", :value="data.basics.email", v-if="data.basics.email" )
 
   .section(v-if="data.work")
@@ -59,7 +57,6 @@ export default {
 
   .section(v-if="data.skills")
     .section-title
-      //font-awesome-icon(icon='brain-circuit').icon
       font-awesome-icon(icon='brain').icon
       span Skills
     .section-content
@@ -67,7 +64,6 @@ export default {
 
   .section(v-if="data.languages")
     .section-title
-      //font-awesome-icon(icon='brain-circuit').icon
       font-awesome-icon(icon='language').icon
       span Languages
     .section-content.flex
