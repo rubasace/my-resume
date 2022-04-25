@@ -13,52 +13,65 @@ defineProps({
     }
 )
 </script>
+<script>
+export default {
+  data() {
+    return {
+      networkIcons: {
+        "GitHub": ['fab', 'github-square'],
+        "Linkedin": ['fab', 'linkedin']
+      }
+    }
+  }
+}
+</script>
 <template lang="pug">
 .main
   .title
-    p.name {{data.name}}
-    p.role {{data.title}}
+    p.name {{data.basics.name}}
+    p.role {{data.basics.label}}
     .contact
-      SkillItem(:icon="['fab', 'github-square']", :value="data.contact.github", v-if="data.contact.github" )
-      SkillItem(:icon="['fab', 'linkedin']", :value="data.contact.linkedin", v-if="data.contact.linkedin" )
-      SkillItem(icon="envelope", :value="data.contact.email", v-if="data.contact.email" )
+      SkillItem(v-for="profile in data.basics.profiles" :icon="this.networkIcons[profile.network]", :value="profile.url")
+      //SkillItem(:icon="['fab', 'github-square']", :value="data.contact.github", v-if="data.contact.github" )
+      //SkillItem(:icon="['fab', 'linkedin']", :value="data.contact.linkedin", v-if="data.contact.linkedin" )
+      SkillItem(icon="envelope", :value="data.basics.email", v-if="data.basics.email" )
 
-  .section
+  .section(v-if="data.work")
     .section-title
       font-awesome-icon(icon='briefcase').icon
       span Professional Experience
     .section-content.timeline
-      WorkExperienceItem(v-for="entry in data.work", :items="entry.details", :company="entry.company", :location="entry.location", :time="entry.time")
+      WorkExperienceItem(v-for="entry in data.work", :items="entry.highlights", :company="entry.name", :location="entry.location", :role="entry.position", :startDate="entry.startDate", :endDate="entry.endDate")
 
-  .section
+  .section(v-if="data.conferences")
     .section-title
       font-awesome-icon(icon='plane-departure').icon
       span Conference Presentations
     .section-content.timeline
-      ConferenceExperienceItem(v-for="entry in data.conferences", :items="entry.details", :conference="entry.conference", :name="entry.name", :location="entry.location", :time="entry.time")
+      ConferenceExperienceItem(v-for="entry in data.conferences", :items="entry.highlights", :conference="entry.conference", :name="entry.name", :location="entry.location", :time="entry.time")
 
-  .section
+  .section(v-if="data.education")
     .section-title
       font-awesome-icon(icon='graduation-cap').icon
       span Education
     .section-content.timeline
-      EducationItem(v-for="entry in data.education", :time="entry.time", :name="entry.name", :school="entry.school", :description="entry.description")
+      EducationItem(v-for="entry in data.education", :startDate="entry.startDate", :endDate="entry.endDate", :name="entry.studyType", :school="entry.institution", :description="entry.description")
 
-  .section
+  .section(v-if="data.skills")
     .section-title
       //font-awesome-icon(icon='brain-circuit').icon
       font-awesome-icon(icon='brain').icon
       span Skills
     .section-content
-      SkillItem(v-for="entry in data.skills", :title="entry.title", :value="entry.value")
+      SkillItem(v-for="entry in data.skills", :title="entry.name", :value="entry.keywords")
 
-  .section
+  .section(v-if="data.languages")
     .section-title
       //font-awesome-icon(icon='brain-circuit').icon
       font-awesome-icon(icon='language').icon
       span Languages
     .section-content.flex
-      SkillItem(v-for="entry in data.languages", :title="entry.name", :value="entry.level")
+      SkillItem(v-for="entry in data.languages", :title="entry.language", :value="entry.fluency")
 
 </template>
 

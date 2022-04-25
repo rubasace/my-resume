@@ -2,7 +2,7 @@
 .item
   font-awesome-icon.icon(:icon="icon", v-if="icon")
   span.title(v-if="title") {{title}}
-  span.value {{value}}
+  span.value {{items}}
 
 </template>
 <script setup>
@@ -17,10 +17,19 @@ defineProps({
     required: false
   },
   value: {
-    type: String,
+    type: Object,
     required: true
   }
 })
+</script>
+<script>
+export default {
+  computed: {
+    items() {
+      return Array.isArray(this.value) ? this.value.join(", ")+"." : this.value;
+    }
+  }
+}
 </script>
 
 <style scoped lang="sass">
@@ -32,4 +41,6 @@ defineProps({
   .icon
     margin-right: 0.25em
     height: 1em
+  .value
+    margin-right: 1em
 </style>

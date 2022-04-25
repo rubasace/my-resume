@@ -9,7 +9,7 @@
       span.separator &#124;
       span.location {{location}}
       span.separator &#124;
-      span.time {{time}}
+      span.time {{startDate}} - {{endDate}}
   .description(v-if='items')
     ul.item-list
       li(v-for='item in items').item {{item}}
@@ -30,7 +30,11 @@ defineProps({
     type: String,
     required: true
   },
-  time: {
+  startDate: {
+    type: String,
+    required: true
+  },
+  endDate: {
     type: String,
     required: true
   },

@@ -1,15 +1,25 @@
-name: Rubén Pahíno
-title: Software Engineer
-contact:
+$schema: https://raw.githubusercontent.com/jsonresume/resume-schema/master/schema.json
+
+basics:
+  name: Rubén Pahíno
+  label: Software Engineer
   github: github.com/rubasace
   linkedin: linkedin.com/in/rubenpahino
   email: ruben.pahino.verdugo@gmail.com
+  profiles:
+    - network: GitHub
+      username: rubasace
+      url: github.com/rubasace
+    - network: Linkedin
+      username: rubenpahino
+      url: linkedin.com/in/rubenpahino
 work:
-  - company: Travix International
-    role: Backend Tech Lead
+  - name: Travix International
+    position: Backend Tech Lead
     location: London, UK (Remote)
-    time: Feb 2017 - Present
-    details:
+    startDate: Feb 2017
+    endDate: Present
+    highlights:
       - Worked at the London offices until October 2020 and remotely from Spain since then.
       - Helped two small Java teams develop and maintain 200+ microservices by designing and building a corporate Java framework, extending Spring Boot capabilities and providing many cross-cutting concerns out-of-the-box.
       - Removed all Java applications dependency vulnerabilities and reduced zero-days MTTR to hours (since the third-party fixes are provided) by designing a workflow to automatically keep dependencies up to date, combining Renovate bot and Snyk.
@@ -17,23 +27,79 @@ work:
       - Reduced the infrastructure cost in a 5% (~7K€/month) by revisiting logging volume and Kubernetes cluster resource utilization, as a part-time member of the Systems Engineering team.
       #          Revisit last sentence
       - Eliminated most Java technical debt, performed over 50 knowledge sharing sessions, took architectural decisions and helped improve the overall company-wide stack as a Backend (Java) Tech lead.
-  - company: Imatia Innovation
-    role: Backend Developer
+  - name: Imatia Innovation
+    position: Backend Developer
     location: Vigo, Spain
-    time: Aug 2015 - Feb 2017
-    details:
+    startDate: Aug 2015
+    endDate: Feb 2017
+    highlights:
       - Designed and developed Java applications using Java 8, Reflection API and classloaders.
-  - company: INSA
-    role: Junior backend developer
+  - name: INSA
+    position: Junior backend developer
     location: Ourense, Spain
-    time: Mar 2015 - Aug 2015
-    details:
+    startDate: Mar 2015
+    endDate: Aug 2015
+    highlights:
       - Developed eCommerce backend and parallel projects for the Inditex group, using Java and Spring.
-  - company: Tesla Technologies
-    role: Internship
+  - name: Tesla Technologies
+    position: Internship
     location: Santiago de Compostela, Spain
-    time: Jun 2013 - Aug 2013
-    details: { }
+    startDate: Jun 2013
+    endDate: Aug 2013
+    highlights: { }
+
+education:
+  - institution: PCarrier
+    studyType: Master in Java 8 programming
+    startDate: 2014
+    endDate: 2015
+  - institution: USC (Santiago de Compostela)
+    studyType: Degree in Computer Engineering
+    startDate: 2009
+    endDate: 2014
+
+skills:
+  - name: Programming
+    keywords:
+    - Java
+    - Spring Boot
+    - Project Reactor
+    - Resilience4J
+    - Hibernate
+    - Maven
+    - Git
+  - name: Monitoring
+    keywords:
+    - Prometheus
+    - Grafana
+    - AlertManager
+    - ELK stack
+    - Micrometer
+  - name: Infrastructure
+    keywords:
+    - Docker
+    - Kubernetes
+    - Helm
+    - Drone I/O
+    - CircleCI
+    - Flux2
+  - name: Soft Skills
+    keywords:
+    - Leadership
+    - effective communication
+    - teamwork
+    - critical thinking
+    - attention to detail
+
+languages:
+  - language: Spanish
+    fluency: Native
+  - language: Galician
+    fluency: Native
+  - language: English
+    fluency: Fluent
+
+#    TODO standardize??
 conferences:
   - conference: Spring I/O 2022
     name: Building a Framework on top of Spring Boot
@@ -41,31 +107,6 @@ conferences:
     time: 2022
   - conference: Various Meetups
     location: Europe
-    time: 2022
-    details:
+    time: 2020 - Present
+    highlights:
       - Presented at various meetups in Galicia (Spain) as well as Amsterdam (Netherlands), focusing on Spring, RSocket and other JVM related technologies.
-education:
-  - school: PCarrier
-    name: Master in Java 8 programming
-    time: 2014 - 2015
-  - school: USC (Santiago de Compostela)
-    name: Degree in Computer Engineering
-    time: 2009 - 2014
-
-skills:
-  - title: Programming
-    value: Java, Spring Boot, Project Reactor, Resilience4J, Hibernate, Maven, Git.
-  - title: Monitoring
-    value: Prometheus, Grafana, AlertManager, ELK stack, Micrometer.
-  - title: Infrastructure
-    value: Docker, Kubernetes, Helm, Drone I/O, CircleCI, Flux2.
-  - title: Soft Skills
-    value: Leadership, effective communication, teamwork, critical thinking, attention to detail.
-
-languages:
-  - name: Spanish
-    level: Native
-  - name: Galician
-    level: Native
-  - name: English
-    level: Fluent
