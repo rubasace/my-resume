@@ -6,7 +6,9 @@
   span.details
     span.name {{name}}
     span.separator &#124;
-    span.time {{startDate}} - {{endDate}}
+    span.time
+      span {{startDate}}
+      span(v-if="endDate")  - {{endDate}}
   .description(v-if='description')
     p {{description}}
 

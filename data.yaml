@@ -3,8 +3,6 @@ language: en
 basics:
   name: Rubén Pahíno
   label: Software Engineer
-  github: github.com/rubasace
-  linkedin: linkedin.com/in/rubenpahino
   email: ruben.pahino.verdugo@gmail.com
   profiles:
     - network: GitHub

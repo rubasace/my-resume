@@ -34,7 +34,14 @@ export default {
     .contact
       SkillItem(v-for="profile in data.basics.profiles" :icon="networkIcons[profile.network]", :value="profile.url")
       SkillItem(icon="envelope", :value="data.basics.email", v-if="data.basics.email" )
+      SkillItem(icon="phone", :value="data.basics.phone", v-if="data.basics.phone" )
 
+  .section(v-if="data.basics.summary")
+    .section-title
+      font-awesome-icon(icon='user').icon
+      span {{ $t("section.about") }}
+    .section-content
+      p {{data.basics.summary}}
   .section(v-if="data.work")
     .section-title
       font-awesome-icon(icon='briefcase').icon
@@ -56,6 +63,13 @@ export default {
     .section-content.timeline
       EducationItem(v-for="entry in data.education", :startDate="entry.startDate", :endDate="entry.endDate", :name="entry.studyType", :school="entry.institution", :description="entry.description")
 
+  .section(v-if="data.certificates")
+    .section-title
+      font-awesome-icon(icon='award').icon
+      span {{ $t("section.certificates") }}
+    .section-content
+      EducationItem(v-for="entry in data.certificates", :startDate="entry.date", :name="entry.name", :school="entry.issuer")
+
   .section(v-if="data.skills")
     .section-title
       font-awesome-icon(icon='brain').icon
@@ -76,6 +90,13 @@ export default {
       span {{ $t("section.languages") }}
     .section-content.flex
       SkillItem(v-for="entry in data.languages", :title="entry.language", :value="entry.fluency")
+
+  .section(v-if="data.extras")
+    .section-title
+      font-awesome-icon(icon='square-plus').icon
+      span {{ $t("section.extras") }}
+    .section-content.flex
+      SkillItem(:value="data.extras")
 
 </template>
 
@@ -121,6 +142,7 @@ $highlightColor: darken(#17a095, 0%)
       .icon
         position: absolute
         right: 101%
+        top: 0.1em
       //margin-right: 0.3em
       //max-width: 1em
       //max-height: 1em
