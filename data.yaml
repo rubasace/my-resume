@@ -1,5 +1,5 @@
 $schema: https://raw.githubusercontent.com/jsonresume/resume-schema/master/schema.json
-
+language: en
 basics:
   name: Rubén Pahíno
   label: Software Engineer

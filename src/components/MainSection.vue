@@ -26,6 +26,7 @@ export default {
 }
 </script>
 <template lang="pug">
+
 .main
   .title
     p.name {{data.basics.name}}
@@ -37,35 +38,42 @@ export default {
   .section(v-if="data.work")
     .section-title
       font-awesome-icon(icon='briefcase').icon
-      span Professional Experience
+      span {{ $t("section.experience") }}
     .section-content.timeline
       WorkExperienceItem(v-for="entry in data.work", :items="entry.highlights", :company="entry.name", :location="entry.location", :role="entry.position", :startDate="entry.startDate", :endDate="entry.endDate")
 
   .section(v-if="data.conferences")
     .section-title
       font-awesome-icon(icon='plane-departure').icon
-      span Conference Presentations
+      span {{ $t("section.conference") }}
     .section-content.timeline
       ConferenceExperienceItem(v-for="entry in data.conferences", :items="entry.highlights", :conference="entry.conference", :name="entry.name", :location="entry.location", :time="entry.time")
 
   .section(v-if="data.education")
     .section-title
       font-awesome-icon(icon='graduation-cap').icon
-      span Education
+      span {{ $t("section.education") }}
     .section-content.timeline
       EducationItem(v-for="entry in data.education", :startDate="entry.startDate", :endDate="entry.endDate", :name="entry.studyType", :school="entry.institution", :description="entry.description")
 
   .section(v-if="data.skills")
     .section-title
       font-awesome-icon(icon='brain').icon
-      span Skills
+      span {{ $t("section.skills") }}
     .section-content
       SkillItem(v-for="entry in data.skills", :title="entry.name", :value="entry.keywords")
+
+  .section(v-if="data.awards")
+    .section-title
+      font-awesome-icon(icon='trophy').icon
+      span {{ $t("section.awards") }}
+    .section-content
+      SkillItem(v-for="entry in data.awards", :title="entry.title", :value="entry.summary")
 
   .section(v-if="data.languages")
     .section-title
       font-awesome-icon(icon='language').icon
-      span Languages
+      span {{ $t("section.languages") }}
     .section-content.flex
       SkillItem(v-for="entry in data.languages", :title="entry.language", :value="entry.fluency")
 
@@ -164,5 +172,4 @@ $highlightColor: darken(#17a095, 0%)
       top: 0.5rem
       width: 0.06cm
       border-right: 3em
-
 </style>

@@ -12,8 +12,7 @@ export default {
     return { data: yaml.load(content) };
   },
   created() {
-    console.log(this.a) // 1
-    console.log(this.$data) // { a: 1 }
+    this.$i18n.locale = this.data.language
   }
 }
 </script>
