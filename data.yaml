@@ -16,11 +16,12 @@ basics:
 work:
   - name: Travix International
     position: Backend Tech Lead
+#    TODO standardize
     location: London, UK (Remote)
     startDate: Feb 2017
     endDate: Present
     highlights:
-      - Worked at the London offices until October 2020 and remotely from Spain since then.
+      - Worked at the London office until October 2020 and remotely from Spain since then.
       - Helped two small Java teams develop and maintain 200+ microservices by designing and building a corporate Java framework, extending Spring Boot capabilities and providing many cross-cutting concerns out-of-the-box.
       - Removed all Java applications dependency vulnerabilities and reduced zero-days MTTR to hours (since the third-party fixes are provided) by designing a workflow to automatically keep dependencies up to date, combining Renovate bot and Snyk.
       - Improved Java teams velocity and stack reliability by standardizing the CI/CD process, providing base Docker images to transparently adopt JIB/Buildpacks, providing sensible, easily customizable defaults for JVM flags and allowing graceful shutdown of services, among others.
@@ -75,6 +76,11 @@ skills:
     - AlertManager
     - ELK stack
     - Micrometer
+  - name: Architecture
+    keywords:
+    - REST API
+    - Microservices
+    - Event Driven
   - name: Infrastructure
     keywords:
     - Docker
