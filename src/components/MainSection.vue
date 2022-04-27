@@ -22,6 +22,11 @@ export default {
         Linkedin: ["fab", "linkedin"],
       }
     }
+  },
+  methods: {
+    showTimeline(items){
+      return Array.isArray(items) & items.length > 1;
+    }
   }
 }
 </script>
@@ -42,25 +47,26 @@ export default {
       span {{ $t("section.about") }}
     .section-content
       p {{data.basics.summary}}
+
   .section(v-if="data.work")
     .section-title
       font-awesome-icon(icon='briefcase').icon
       span {{ $t("section.experience") }}
-    .section-content.timeline
+    .section-content(:class="{'timeline' : showTimeline(data.work)}")
       WorkExperienceItem(v-for="entry in data.work", :items="entry.highlights", :company="entry.name", :location="entry.location", :role="entry.position", :startDate="entry.startDate", :endDate="entry.endDate")
 
   .section(v-if="data.conferences")
     .section-title
       font-awesome-icon(icon='plane-departure').icon
       span {{ $t("section.conference") }}
-    .section-content.timeline
+    .section-content(:class="{'timeline' : showTimeline(data.conferences)}")
       ConferenceExperienceItem(v-for="entry in data.conferences", :items="entry.highlights", :conference="entry.conference", :name="entry.name", :location="entry.location", :time="entry.time")
 
   .section(v-if="data.education")
     .section-title
       font-awesome-icon(icon='graduation-cap').icon
       span {{ $t("section.education") }}
-    .section-content.timeline
+    .section-content(:class="{'timeline' : showTimeline(data.education)}")
       EducationItem(v-for="entry in data.education", :startDate="entry.startDate", :endDate="entry.endDate", :name="entry.studyType", :school="entry.institution", :description="entry.description")
 
   .section(v-if="data.certificates")
@@ -68,7 +74,7 @@ export default {
       font-awesome-icon(icon='award').icon
       span {{ $t("section.certificates") }}
     .section-content
-      EducationItem(v-for="entry in data.certificates", :startDate="entry.date", :name="entry.name", :school="entry.issuer")
+      EducationItem(v-for="entry in data.certificates", :startDate="entry.date", :name="entry.issuer", :school="entry.name")
 
   .section(v-if="data.skills")
     .section-title
@@ -141,8 +147,13 @@ $highlightColor: darken(#17a095, 0%)
 
       .icon
         position: absolute
-        right: 101%
+        right: 100%
+        margin-right: 0.2em
         top: 0.1em
+        min-width: 1em
+        width: 1.18em
+        //min-height: 1em
+        //width: 1.2em
       //margin-right: 0.3em
       //max-width: 1em
       //max-height: 1em
