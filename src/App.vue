@@ -24,31 +24,12 @@ export default {
 </template>
 
 <style scoped lang="sass">
-
 .wrapper
-  position: relative
-  top: 0
-  bottom: 0
-  overflow: hidden
-  background-color: slategray
   .page
-    //size: A4 portrait
-    height: 297mm
-    width: 210mm
-    margin: 10mm auto
-    border-radius: 2mm
-    position: relative
-    display: flex
-    box-sizing: border-box
-    overflow: hidden
     *
       padding: 0.75in 0.75in
       box-sizing: border-box
-    .main
-      flex: 1
-      //width: 80%
-      height: 100%
-      position: relative
+
 
 
 </style>

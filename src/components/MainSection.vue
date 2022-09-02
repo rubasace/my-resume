@@ -190,7 +190,7 @@ $highlightColor: darken(#17a095, 0%)
           top: 0.16rem
           left: -1.42rem
           $pointSpace: 0.35rem
-          box-shadow: 0 $pointSpace 0px whitesmoke, 0 calc(#{$pointSpace} * -1) 0px whitesmoke
+          box-shadow: 0 $pointSpace 0 whitesmoke, 0 calc(#{$pointSpace} * -1) 0 whitesmoke
 
       .title
         .name
