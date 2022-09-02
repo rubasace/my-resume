@@ -1,0 +1,21 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:base",
+    "docker:enableMajor",
+    "docker:pinDigests",
+    "default:automergeDigest",
+    "default:automergeMinor",
+  ],
+  "prHourlyLimit": 60,
+  "reviewers": [
+    "rubasace"
+  ],
+  "assignAutomerge": "true",
+  "separateMinorPatch": "true",
+  "dependencyDashboard": "true",
+  "respectLatest": "false",
+  "labels": [
+    "dependency-update"
+  ],
+}
