@@ -16,16 +16,24 @@ work:
     endDate: May 2022
     highlights:
       - Data analysis, action plan management and ensuring compliance with the standards.
-      - Test planning for validations, drafting of SOP and SWI, building and upedating KPI.
+      - Test planning for validation of new projects and daily production issues.
+      - Drafting, review and audit of production standard methods such as SOP and SWI.
+      - Building and follow-up of Key Performance Indicators
   - name: Plastic Omnium I.E.S.
-    position: Quality Resident at Stellantis
+    position: Quality Resident at Stellantis Vigo 
     location: Vigo, Spain
     startDate: Dec 2019
     endDate: Oct 2021
     highlights:
       - Represent the Quality Control and Logistics department at the costumer’s plant
-      - Guarantee compliance with the required specifications and thecnical support to the costumer.
-      - Assesment of non-complient parts returned by the costumer or to the supplier.
+      - Guarantee compliance with the required regulations and specifications
+      - Ensure the supply of parts to the costumer and provide immediate reactivity.
+      - Perform technical support and customer returns testing
+      - Management of assay planning and staff training,
+      - Incident reporting to the main plant and decision making on action plans.
+      - Contact with suppliers, stock control and inventory.
+      - Evaluation and negotiation of returns with costumer and suppliers.
+      - Management of assay planning and staff training.
   - name: Plastic Omnium I.E.S.
     position: Assembly Line Operator 
     location: Redondela, Spain
@@ -33,33 +41,39 @@ work:
     endDate: Dec 2019
     highlights:
       - Assembly, visual control and quality validation of car bumpers and other exterior parts.
+      - Staff training along the entire manufacturing line
   - name: Plastic Omnium I.E.S.
     position: Laboratory and Metrology Technician
     location: Redondela, Spain
     startDate: Sep 201
     endDate: Oct 2018
     highlights: 
-      - Carrying out tests and SOP drafting for painted materials and validation of paint batches.
+      - Carrying out tests with paints on plastic material.
+      - Colorimetry study, validation of new paint batches and acceptance of parts from suppliers.
+      - OPL/SWI drafting.
       - Calibration of equipment and obtaining accreditation certificates.
+      - Dimensional control of parts for the manufacturing process, capabilities for new projects and data
+        analysis.
   - name: CZ Veterinaria
     position: Manufacturing Process Operator
     location: Porriño, Spain
     startDate: Sep 2015
     endDate: Mar 2017
     highlights: 
-      - Work under GMP regulation. Cleaning, sterilization and preparation of material for the manufacture of drugs.
-      - Sterilize manufacturing rooms and laboratories.
-      - Work in sterile clean rooms for vaccine production.
+      - Work under GMP regulation. Cleaning, sterilization and preparation of material for the manufacture of drugs
+      - Sterilize manufacturing rooms and laboratories
+      - Work in sterile clean rooms for vaccine production
+      - Environmental control for sterile and clean rooms
   - name: CZ Veterinaria
     position: Laboratory Analyst
     location: Porriño, Spain
     startDate: Mar 2015
     endDate: Aug 2017
     highlights: 
-      - Work under GMP regulation. Analysis of properties and components on water samples.
-      - Growth of bacteria for environment control by CFU.
-      - Chemical and biological control of vaccines by techniques such as UV-VIS/IR, HPLC, ELISA or MPN.
-      - Quality control study on injectable drugs based on Official European Standards.
+      - Work under GMP regulation. Analysis of properties and components on water samples
+      - Growth of bacteria for environment control using the plating method.
+      - Chemical and biological control of vaccines by techniques such as spectroscopy, chemical analysis, ELISA or MPN.
+      - Quality control study on injectable drugs based on Official European Standards
 
 education:
   - institution: CIFP Manuel Antonio 
