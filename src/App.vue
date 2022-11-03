@@ -1,6 +1,5 @@
 <script setup>
 import MainSection from "./components/MainSection.vue";
-import SideSection from "./components/SideSection.vue";
 
 </script>
 <script>

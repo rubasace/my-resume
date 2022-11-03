@@ -17,7 +17,6 @@ work:
     location: London, UK (Remote)
     startDate: Feb 2017
     endDate: Present
-    summary: Worked at the London office until October 2020 and remotely from Spain since then.
     highlights:
       - Helped two small Java teams develop and maintain 200+ microservices by designing and building a corporate Java framework, extending Spring Boot capabilities and providing many cross-cutting concerns out-of-the-box.
       - Removed all Java applications dependency vulnerabilities and reduced zero-days MTTR to hours (since the third-party fixes are provided) by designing a workflow to automatically keep dependencies up to date, combining Renovate bot and Snyk.
@@ -25,20 +24,19 @@ work:
       - Reduced the infrastructure cost in a 5% (~7K€/month) by revisiting logging volume and Kubernetes cluster resource utilization, as a part-time member of the Systems Engineering team.
       #          Revisit last sentence
       - Eliminated most Java technical debt, performed over 50 knowledge sharing sessions, took architectural decisions and helped improve the overall company-wide stack as a Backend (Java) Tech lead.
+      - Worked at the London office until October 2020 and remotely from Spain since then.
   - name: Imatia Innovation
     position: Backend Developer
     location: Vigo, Spain
     startDate: Aug 2015
     endDate: Feb 2017
-    highlights:
-      - Designed and developed Java applications using Java 8, Reflection API and classloaders.
+    summary: Designed and developed Java applications using Java 8, Reflection API and classloaders.
   - name: INSA
     position: Junior backend developer
     location: Ourense, Spain
     startDate: Mar 2015
     endDate: Aug 2015
-    highlights:
-      - Developed eCommerce backend and parallel projects for the Inditex group, using Java and Spring.
+    summary: Developed eCommerce backend and parallel projects for the Inditex group, using Java and Spring.
   - name: Tesla Technologies
     position: Internship
     location: Santiago de Compostela, Spain
@@ -103,10 +101,10 @@ languages:
 
 #    TODO standardize??
 conferences:
-  - conference: Spring I/O 2022
+  - conference: Spring I/O
     name: Building a Framework on top of Spring Boot
     location: Barcelona, Spain
-    time: 2022
+    time:  May 2022
   - conference: Various Meetups
     location: Europe
     time: 2020 - Present

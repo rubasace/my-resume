@@ -1,20 +1,17 @@
 <template lang="pug">
 .item
   .header
-    span.company.place(v-if='company')
-      span {{company}}
-      span.separator &#x2f;
-    span.details
-      span.role.name {{role}}
-      span.separator(v-if='location') &#124;
-      span.location {{location}}
-      span.separator &#124;
-      span.time
+    span.place.company(v-if='company') {{company}}
+    span.separator.details &#x2f;
+    span.role.name.details {{role}}
+    span.separator.details(v-if='location') &#124;
+    span.location.details {{location}}
+    span.time.details
         span {{startDate}}
         span(v-if="endDate")  - {{endDate}}
-  .description(v-if='items')
+  .description
     p.summary(v-if='summary') {{summary}}
-    ul.item-list
+    ul.item-list(v-if='items')
       li(v-for='item in items').item {{item}}
 
 </template>
@@ -51,6 +48,3 @@ defineProps({
   }
 })
 </script>
-
-<style scoped lang="sass">
-</style>

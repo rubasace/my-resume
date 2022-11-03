@@ -1,12 +1,10 @@
 <template lang="pug">
 .item
-  span.school
-    span.place {{school}}
+  .header
+    span.place.school {{school}}
     span.separator &#x2f;
-  span.details
-    span.name {{name}}
-    span.separator &#124;
-    span.time
+    span.name.details {{name}}
+    span.time.details
       span {{startDate}}
       span(v-if="endDate")  - {{endDate}}
   .description(v-if='description')

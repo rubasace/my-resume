@@ -116,7 +116,8 @@ export default {
 
 <style scoped lang="sass">
 $rightTraslation: 0
-$highlightColor: darken(#17a095, 0%)
+$highlightColor: #17a095 !default
+//$highlightColor: #1b73e8 !default
 .main
   width: 100%
   height: 100%
@@ -126,7 +127,7 @@ $highlightColor: darken(#17a095, 0%)
   .header
     display: flex
     width: 100%
-    margin-bottom: 1cm
+    margin-bottom: 2.5rem
     position: relative
     .profilePic
       width: 1.5in
@@ -163,11 +164,12 @@ $highlightColor: darken(#17a095, 0%)
   .section
     width: 100%
     position: relative
-    margin-top: 0.25cm
+    margin-top: 0.4rem
     margin-bottom: 0
 
     .section-title
-      font-size: 1.2em
+      font-size: 1.05em
+      margin-bottom: 0.25rem
 
       .icon
         position: absolute
@@ -176,14 +178,8 @@ $highlightColor: darken(#17a095, 0%)
         top: 0.1em
         min-width: 1em
         width: 1.18em
-        //min-height: 1em
-        //width: 1.2em
-      //margin-right: 0.3em
-      //max-width: 1em
-      //max-height: 1em
       span
         text-transform: uppercase
-        margin-bottom: 0.5rem
         font-weight: bold
         color: $highlightColor
         border-top: 1px solid
@@ -196,22 +192,21 @@ $highlightColor: darken(#17a095, 0%)
     margin-right: $rightTraslation
     //left: 0.375in
     &:deep(.item)
-      //padding-left: 1rem
       .place
         position: relative
-        line-height: 2.3rem
 
         &::before
           content: " "
           background-color: whitesmoke
           position: absolute
           display: inline-block
-          width: 0.3cm
-          height: 0.3cm
-          border-radius: 1cm
+          $circle-size: 0.7rem
+          width: $circle-size
+          height: $circle-size
+          border-radius: 999999px
           z-index: 1
           border: 0.065cm solid black
-          top: 0.16rem
+          top: 0.44rem
           left: -1.42rem
           $pointSpace: 0.35rem
           box-shadow: 0 $pointSpace 0 whitesmoke, 0 calc(#{$pointSpace} * -1) 0 whitesmoke
