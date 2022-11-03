@@ -27,7 +27,10 @@ export default {
 .wrapper
   .page
     *
-      padding: 0.75in 0.75in
+      padding-top: 0.75in
+      padding-bottom: 0.75in
+      padding-left: 0.75in
+      padding-right: 0.6in
       box-sizing: border-box
 
 

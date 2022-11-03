@@ -10,8 +10,9 @@
       span.location(v-if='location') {{location}}
       span.separator(v-if='location') &#124;
       span.time {{time}}
-  .description(v-if='items')
-    ul.item-list
+  .description
+    p.summary(v-if='summary') {{summary}}
+    ul.item-list(v-if='items')
       li(v-for='item in items').item {{item}}
 
 </template>
@@ -33,6 +34,10 @@ defineProps({
   time: {
     type: String,
     required: true
+  },
+  summary: {
+    type: String,
+    required: false
   },
   items: {
     type: Array,

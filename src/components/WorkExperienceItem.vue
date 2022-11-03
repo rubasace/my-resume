@@ -13,6 +13,7 @@
         span {{startDate}}
         span(v-if="endDate")  - {{endDate}}
   .description(v-if='items')
+    p.summary(v-if='summary') {{summary}}
     ul.item-list
       li(v-for='item in items').item {{item}}
 
@@ -39,6 +40,10 @@ defineProps({
   endDate: {
     type: String,
     required: true
+  },
+  summary: {
+    type: String,
+    required: false
   },
   items: {
     type: Array,
