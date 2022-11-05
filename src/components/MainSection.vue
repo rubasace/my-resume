@@ -1,17 +1,22 @@
 <script setup>
+import {ref, watchEffect} from 'vue'
 import WorkExperienceItem from "./WorkExperienceItem.vue";
 import EducationItem from "./EducationItem.vue";
 import SkillItem from "./SkillItem.vue";
 import ConferenceExperienceItem from "./ConferenceExperienceItem.vue";
 import {FontAwesomeIcon} from '@fortawesome/vue-fontawesome'
 
-defineProps({
+const props = defineProps({
       data: {
         type: Object,
         required: true
       }
     }
 )
+const profilePic = ref()
+watchEffect(async () => {
+  profilePic.value = (await import(/* @vite-ignore */ `../assets/images/${props.data.basics.picture}`)).default
+})
 </script>
 <script>
 export default {
@@ -20,22 +25,25 @@ export default {
       networkIcons: {
         GitHub: ["fab", "github-square"],
         Linkedin: ["fab", "linkedin"],
-      }
+      },
+      // profilePic: this.data.basics.picture ? new URL(`/src/assets/images/photo-placeholder.png`, import.meta.url) : undefined
     }
   },
   methods: {
-    showTimeline(items){
+    showTimeline(items) {
       return Array.isArray(items) & items.length > 1;
     }
   }
 }
 </script>
 <template lang="pug">
-
 .main
-  .title
-    p.name {{data.basics.name}}
-    p.role {{data.basics.label}}
+  .header
+    .profilePic(v-if='profilePic')
+      img(:src='profilePic')
+    .title
+      p.name {{data.basics.name}}
+      p.role {{data.basics.label}}
     .contact
       SkillItem(v-for="profile in data.basics.profiles" :icon="networkIcons[profile.network]", :value="profile.url")
       SkillItem(icon="envelope", :value="data.basics.email", v-if="data.basics.email" )
@@ -53,14 +61,14 @@ export default {
       font-awesome-icon(icon='briefcase').icon
       span {{ $t("section.experience") }}
     .section-content(:class="{'timeline' : showTimeline(data.work)}")
-      WorkExperienceItem(v-for="entry in data.work", :items="entry.highlights", :company="entry.name", :location="entry.location", :role="entry.position", :startDate="entry.startDate", :endDate="entry.endDate")
+      WorkExperienceItem(v-for="entry in data.work", :items="entry.highlights", :company="entry.name", :location="entry.location", :role="entry.position", :startDate="entry.startDate", :endDate="entry.endDate", :summary="entry.summary")
 
   .section(v-if="data.conferences")
     .section-title
       font-awesome-icon(icon='plane-departure').icon
       span {{ $t("section.conference") }}
     .section-content(:class="{'timeline' : showTimeline(data.conferences)}")
-      ConferenceExperienceItem(v-for="entry in data.conferences", :items="entry.highlights", :conference="entry.conference", :name="entry.name", :location="entry.location", :time="entry.time")
+      ConferenceExperienceItem(v-for="entry in data.conferences", :items="entry.highlights", :conference="entry.conference", :name="entry.name", :location="entry.location", :summary="entry.summary", :time="entry.time")
 
   .section(v-if="data.education")
     .section-title
@@ -108,31 +116,47 @@ export default {
 
 <style scoped lang="sass">
 $rightTraslation: 0
-$highlightColor: darken(#17a095, 0%)
+$highlightColor: #17a095 !default
+//$highlightColor: #1b73e8 !default
 .main
   width: 100%
   height: 100%
   position: relative
   left: $rightTraslation
 
-  .title
+  .header
+    display: flex
+    width: 100%
+    margin-bottom: 2.5rem
     position: relative
-    text-transform: uppercase
-    font-size: 2.5em
-    margin-bottom: 2rem
+    .profilePic
+      width: 1.5in
+      overflow: visible
+      img
+        width: 1.2in
+        height: 1.2in
+        object-fit: contain
+        margin-right: 0.6rem
+        position: absolute
+        top: -2rem
 
-    .name
-      font-weight: bold
-      color: $highlightColor
+    .title
+      position: relative
+      text-transform: uppercase
+      font-size: 2.2em
+      padding: 0
 
-    .role
-      font-size: 0.5em
-      font-style: italic
+      .name
+        font-weight: bold
+        color: $highlightColor
+
+      .role
+        font-size: 0.55em
+        font-style: italic
 
     .contact
-      position: absolute
-      right: 0
-      top: 0
+      align-self: start
+      margin-left: auto
       text-align: left
       text-transform: none
       font-size: 1rem
@@ -140,10 +164,12 @@ $highlightColor: darken(#17a095, 0%)
   .section
     width: 100%
     position: relative
-    margin-top: 1rem
+    margin-top: 0.4rem
+    margin-bottom: 0
 
     .section-title
-      font-size: 1.2em
+      font-size: 1.05em
+      margin-bottom: 0.25rem
 
       .icon
         position: absolute
@@ -152,14 +178,8 @@ $highlightColor: darken(#17a095, 0%)
         top: 0.1em
         min-width: 1em
         width: 1.18em
-        //min-height: 1em
-        //width: 1.2em
-      //margin-right: 0.3em
-      //max-width: 1em
-      //max-height: 1em
       span
         text-transform: uppercase
-        margin-bottom: 0.5rem
         font-weight: bold
         color: $highlightColor
         border-top: 1px solid
@@ -172,22 +192,21 @@ $highlightColor: darken(#17a095, 0%)
     margin-right: $rightTraslation
     //left: 0.375in
     &:deep(.item)
-      //padding-left: 1rem
       .place
         position: relative
-        line-height: 2.3rem
 
         &::before
           content: " "
           background-color: whitesmoke
           position: absolute
           display: inline-block
-          width: 0.3cm
-          height: 0.3cm
-          border-radius: 1cm
+          $circle-size: 0.7rem
+          width: $circle-size
+          height: $circle-size
+          border-radius: 999999px
           z-index: 1
           border: 0.065cm solid black
-          top: 0.16rem
+          top: 0.44rem
           left: -1.42rem
           $pointSpace: 0.35rem
           box-shadow: 0 $pointSpace 0 whitesmoke, 0 calc(#{$pointSpace} * -1) 0 whitesmoke

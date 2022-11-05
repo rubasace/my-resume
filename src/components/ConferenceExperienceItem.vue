@@ -4,14 +4,13 @@
     span.conference.place(v-if='conference')
       span {{conference}}
       span.separator &#x2f;
-    span.details
-      span.conference.name(v-if='name') {{name}}
-      span.separator(v-if='name') &#124;
-      span.location(v-if='location') {{location}}
-      span.separator(v-if='location') &#124;
-      span.time {{time}}
-  .description(v-if='items')
-    ul.item-list
+    span.conference.name.details(v-if='name') {{name}}
+    span.separator.details(v-if='name') &#124;
+    span.location.details(v-if='location') {{location}}
+    span.time.details {{time}}
+  .description
+    p.summary(v-if='summary') {{summary}}
+    ul.item-list(v-if='items')
       li(v-for='item in items').item {{item}}
 
 </template>
@@ -33,6 +32,10 @@ defineProps({
   time: {
     type: String,
     required: true
+  },
+  summary: {
+    type: String,
+    required: false
   },
   items: {
     type: Array,

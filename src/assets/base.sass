@@ -1,7 +1,9 @@
 @import "layout"
 
-$background: whitesmoke
-
+$background: whitesmoke !default
+$header-line-height: 1.9rem !default
+html
+  font-size: 12pt
 body
   margin: 0
   padding: 0
@@ -15,29 +17,42 @@ body
 
   .item
     width: 100%
-
-    .place
-      font-size: 1.1rem
-      font-weight: bold
-    .details
-      font-size: 1rem
-      line-height: 1.2rem
-      //color: #26a0f4
-      color: lighten(black, 40%)
-      font-weight: bold
-      .name
-        text-transform: capitalize
-      .location
-        font-style: italic
-      .time
-        font-style: italic
-      //  text-align: right
-      //  float: right
-    .separator
-      margin: 0 0.4rem
+    .header
+      //height: $header-line-height
+      line-height: $header-line-height
+      vertical-align: middle
+      align-items: baseline
+      display: flex
+      .place
+        font-size: 1.1rem
+        font-weight: bold
+      .details
+        font-size: 1.05rem
+        //color: #26a0f4
+        color: lighten(black, 40%)
+        font-weight: bold
+        &.name
+          //font-size: 1em
+          text-transform: capitalize
+        &.location
+          font-style: italic
+          font-size: 0.9em
+        &.time
+          font-style: normal
+          font-size: 0.95em
+          margin-left: auto
+          color: lighten(black, 30%)
+        //  text-align: right
+        //  float: right
+      .separator
+        margin: 0 0.4rem
 
     .description
       white-space: pre-line
+
+      .summary
+        padding-bottom: 0.5rem
+        font-size: 1rem
 
       .item-list
         padding: 0 0 0 1rem
@@ -50,7 +65,7 @@ body
   display: flex
 
 @media print
-  .page
+  .wrapper
     margin: 0 auto !important
     border-radius: 0 !important
     &:last-of-type

@@ -41,6 +41,4 @@ export default {
   .icon
     margin-right: 0.25em
     height: 1em
-  .value
-    margin-right: 1em
 </style>
