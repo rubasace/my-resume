@@ -1,14 +1,19 @@
 @import "layout"
 
-$font-size: 12pt !default
 $background: whitesmoke !default
+$default-font-size: 12pt !default
+$default-font-color: black !default
+$details-font-size: 0.9em !default
+$details-color: lighten($default-font-color, 40%) !default
+$time-color: lighten($default-font-color, 30%)
+$contact-font-size: 0.95em !default
+$title-font-size: 1.9em !default
 $header-line-height: 1.9rem !default
 $highlightColor: #17a095 !default
-$title-size: 2em !default
-$contact-size: 0.95em !default
 
 html
-  font-size: $font-size
+  font-size: $default-font-size
+  color: $default-font-color
 body
   margin: 0
   padding: 0
@@ -43,7 +48,7 @@ body
       .title
         position: relative
         text-transform: uppercase
-        font-size: $title-size
+        font-size: $title-font-size
         padding: 0
 
         .name
@@ -59,7 +64,7 @@ body
         margin-left: auto
         text-align: left
         text-transform: none
-        font-size: $contact-size
+        font-size: $contact-font-size
     .section
       width: 100%
       position: relative
@@ -132,9 +137,8 @@ body
       .place
         font-weight: bold
       .details
-        font-size: 0.9em
-        //color: #26a0f4
-        color: lighten(black, 40%)
+        font-size: $details-font-size
+        color: $details-color
         font-weight: bold
         &.name
           text-transform: capitalize
@@ -143,7 +147,7 @@ body
         &.time
           font-style: normal
           margin-left: auto
-          color: lighten(black, 30%)
+          color: $time-color
         //  text-align: right
         //  float: right
       .separator
