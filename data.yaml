@@ -19,12 +19,11 @@ work:
     endDate: Present
     highlights:
       - Helped two small Java teams develop and maintain 200+ microservices by designing and building a corporate Java framework, extending Spring Boot capabilities and providing many cross-cutting concerns out-of-the-box.
-      - Removed all Java applications dependency vulnerabilities and reduced zero-days MTTR to hours (since the third-party fixes are provided) by designing a workflow to automatically keep dependencies up to date, combining Renovate bot and Snyk.
-      - Improved Java teams velocity and stack reliability by standardizing the CI/CD process, providing base Docker images to transparently adopt JIB/Buildpacks, offering sensible, easily customizable defaults for JVM flags and allowing graceful shutdown of services, among others.
+      - Removed all Java applications dependency vulnerabilities and reduced zero-day vulnerabilities MTTR to hours by designing a workflow to automatically keep dependencies up to date, combining Renovatebot and Snyk.
+      - Improved Java teams velocity and stack reliability by standardizing the CI/CD process, crafting extensions to transparently adopt JIB/Buildpacks, offering sensible, easily customizable defaults for JVM flags and enabling graceful shutdown of services, among others.
       - Reduced the infrastructure cost in a 5% (~7K€/month) by revisiting logging volume and Kubernetes cluster resource utilization, as a part-time member of the Systems Engineering team.
-      #          Revisit last sentence
       - Eliminated most Java technical debt, performed over 50 knowledge sharing sessions, took architectural decisions and helped improve the overall company-wide stack as a Backend (Java) Tech lead.
-      - Worked at the London office until October 2020 and remotely from Spain since then.
+      - Worked at the London offices until October 2020 and remotely from Spain since then.
   - name: Imatia Innovation
     position: Backend Developer
     location: Vigo, Spain
