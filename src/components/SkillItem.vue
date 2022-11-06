@@ -1,5 +1,5 @@
 <template lang="pug">
-.item
+.item.skills
   font-awesome-icon.icon(:icon="icon", v-if="icon")
   span.title(v-if="title") {{title}}
   span.value {{items}}
@@ -31,14 +31,3 @@ export default {
   }
 }
 </script>
-
-<style scoped lang="sass">
-.item
-  .title
-    font-weight: bold
-    &::after
-      content: ": "
-  .icon
-    margin-right: 0.25em
-    height: 1em
-</style>

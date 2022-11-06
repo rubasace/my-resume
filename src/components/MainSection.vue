@@ -38,8 +38,8 @@ export default {
 </script>
 <template lang="pug">
 .main
-  .header
-    .profilePic(v-if='profilePic')
+  .profile
+    .picture(v-if='profilePic')
       img(:src='profilePic')
     .title
       p.name {{data.basics.name}}
@@ -113,115 +113,3 @@ export default {
       SkillItem(:value="data.extras")
 
 </template>
-
-<style scoped lang="sass">
-$rightTraslation: 0
-$highlightColor: #17a095 !default
-//$highlightColor: #1b73e8 !default
-.main
-  width: 100%
-  height: 100%
-  position: relative
-  left: $rightTraslation
-
-  .header
-    display: flex
-    width: 100%
-    margin-bottom: 2.5rem
-    position: relative
-    .profilePic
-      width: 1.5in
-      overflow: visible
-      img
-        width: 1.2in
-        height: 1.2in
-        object-fit: contain
-        margin-right: 0.6rem
-        position: absolute
-        top: -2rem
-
-    .title
-      position: relative
-      text-transform: uppercase
-      font-size: 2.2em
-      padding: 0
-
-      .name
-        font-weight: bold
-        color: $highlightColor
-
-      .role
-        font-size: 0.55em
-        font-style: italic
-
-    .contact
-      align-self: start
-      margin-left: auto
-      text-align: left
-      text-transform: none
-      font-size: 1rem
-
-  .section
-    width: 100%
-    position: relative
-    margin-top: 0.4rem
-    margin-bottom: 0
-
-    .section-title
-      font-size: 1.05em
-      margin-bottom: 0.25rem
-
-      .icon
-        position: absolute
-        right: 100%
-        margin-right: 0.2em
-        top: 0.1em
-        min-width: 1em
-        width: 1.18em
-      span
-        text-transform: uppercase
-        font-weight: bold
-        color: $highlightColor
-        border-top: 1px solid
-        border-bottom: 1px solid
-        display: inline-block
-        width: 100%
-
-  .timeline
-    position: relative
-    margin-right: $rightTraslation
-    //left: 0.375in
-    &:deep(.item)
-      .place
-        position: relative
-
-        &::before
-          content: " "
-          background-color: whitesmoke
-          position: absolute
-          display: inline-block
-          $circle-size: 0.7rem
-          width: $circle-size
-          height: $circle-size
-          border-radius: 999999px
-          z-index: 1
-          border: 0.065cm solid black
-          top: 0.44rem
-          left: -1.42rem
-          $pointSpace: 0.35rem
-          box-shadow: 0 $pointSpace 0 whitesmoke, 0 calc(#{$pointSpace} * -1) 0 whitesmoke
-
-      .title
-        .name
-          position: relative
-
-    &::after
-      content: ""
-      background-color: slategray
-      position: absolute
-      bottom: 0.29rem
-      left: -1rem
-      top: 0.5rem
-      width: 0.06cm
-      border-right: 3em
-</style>
