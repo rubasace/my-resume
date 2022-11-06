@@ -31,7 +31,7 @@ export default {
   },
   methods: {
     showTimeline(items) {
-      return Array.isArray(items) & items.length > 1;
+      return Array.isArray(items) & items.length >= 1;
     }
   }
 }
