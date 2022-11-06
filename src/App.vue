@@ -23,14 +23,7 @@ export default {
 </template>
 
 <style scoped lang="sass">
-.wrapper
-  .page
-    *
-      padding-top: 0.75in
-      padding-bottom: 0.75in
-      padding-left: 0.75in
-      padding-right: 0.6in
-      box-sizing: border-box
+
 
 
 
