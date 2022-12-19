@@ -9,10 +9,10 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^6.1.1",
-    "@fortawesome/free-brands-svg-icons": "^6.1.1",
-    "@fortawesome/free-solid-svg-icons": "^6.1.1",
-    "@fortawesome/vue-fontawesome": "^3.0.0-5",
+    "@fortawesome/fontawesome-svg-core": "6.1.1",
+    "@fortawesome/free-brands-svg-icons": "6.1.1",
+    "@fortawesome/free-solid-svg-icons": "6.1.1",
+    "@fortawesome/vue-fontawesome": "3.0.0-5",
     "js-yaml": "^4.1.0",
     "pug": "^3.0.2",
     "sass": "^1.49.9",
