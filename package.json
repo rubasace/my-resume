@@ -26,7 +26,7 @@
     "@vue/eslint-config-prettier": "^7.0.0",
     "eslint": "8.31.0",
     "eslint-plugin-vue": "8.7.1",
-    "prettier": "2.8.1",
+    "prettier": "2.8.3",
     "puppeteer": "13.7.0",
     "vite": "^2.8.4"
   }
