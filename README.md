@@ -1,35 +1,13 @@
 # vue-cv
 
-This template should help get you started developing with Vue 3 in Vite.
+This project generates a CV following the [json resume schema](https://jsonresume.org/schema/) with some added extra data.
 
-## Recommended IDE Setup
+## Requirements
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.vscode-typescript-vue-plugin).
+Node 8+ is required.
 
-## Customize configuration
+## How to use
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+First run `npm install` to compile the project. After that, run `npm run dev` to serve the content on `http://localhost:3000` and check the result using the browser.
 
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
+The content can be changed by modifying the [data.yaml file](/data.yaml).
