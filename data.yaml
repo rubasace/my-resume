@@ -9,14 +9,40 @@ basics:
       url: linkedin.com/in/soniaalvarezlijo
   summary: I am a meticulous, active and hard-working Quality Control Analyst with two years of experience in the pharmaceutical industry and biotechnology and five years in the automotive sector
 work:
-  - name: Plastic Omnium I.E.S.
-    position: Paint Line Process Technician
-    location: Redondela, Spain
-    startDate: Oct 2021
-    endDate: May 2022
+  - name: CZ Veterinaria
+    position: Laboratory Analyst
+    location: Porriño, Spain
+    startDate: Mar 2015
+    endDate: Aug 2015
     highlights:
-      - Data analysis, action plan management and ensuring compliance with the standards.
-      - Test planning for validations, drafting of SOP and SWI, building and upedating KPI.
+      - Work under GMP regulation. Analysis of properties and components on water samples.
+      - Growth of bacteria for environment control by CFU.
+      - Chemical and biological control of vaccines by techniques such as UV-VIS/IR, HPLC, ELISA or MPN.
+      - Quality control study on injectable drugs based on Official European Standards.
+  - name: CZ Veterinaria
+    position: Manufacturing Process Operator
+    location: Porriño, Spain
+    startDate: Sep 2015
+    endDate: Mar 2017
+    highlights:
+      - Work under GMP regulation. Cleaning, sterilization and preparation of material for the manufacture of drugs.
+      - Sterilize manufacturing rooms and laboratories.
+      - Work in sterile clean rooms for vaccine production.
+  - name: Plastic Omnium I.E.S.
+    position: Laboratory & Metrology Technician
+    location: Redondela, Spain
+    startDate: Mar 2017
+    endDate: Oct 2018
+    highlights:
+      - Carrying out tests and SOP drafting for painted materials and validation of paint batches.
+      - Calibration of equipment and obtaining accreditation certificates.
+  - name: Plastic Omnium I.E.S.
+    position: Assembly Line Operator
+    location: Redondela, Spain
+    startDate: Oct 2018
+    endDate: Dec 2019
+    highlights:
+      - Assembly, visual control and quality validation of car bumpers and other exterior parts.
   - name: Plastic Omnium I.E.S.
     position: Quality Resident at Stellantis
     location: Vigo, Spain
@@ -24,42 +50,16 @@ work:
     endDate: Oct 2021
     highlights:
       - Represent the Quality Control and Logistics department at the costumer’s plant
-      - Guarantee compliance with the required specifications and thecnical support to the costumer.
-      - Assesment of non-complient parts returned by the costumer or to the supplier.
+      - Guarantee compliance with the required specifications and technical support to the costumer.
+      - Assessment of non-compliant parts returned by the costumer or to the supplier.
   - name: Plastic Omnium I.E.S.
-    position: Assembly Line Operator 
+    position: Paint Line Process Technician
     location: Redondela, Spain
-    startDate: Oct 2018
-    endDate: Dec 2019
+    startDate: Oct 2021
+    endDate: May 2022
     highlights:
-      - Assembly, visual control and quality validation of car bumpers and other exterior parts.
-  - name: Plastic Omnium I.E.S.
-    position: Laboratory and Metrology Technician
-    location: Redondela, Spain
-    startDate: Sep 2017
-    endDate: Oct 2018
-    highlights: 
-      - Carrying out tests and SOP drafting for painted materials and validation of paint batches.
-      - Calibration of equipment and obtaining accreditation certificates.
-  - name: CZ Veterinaria
-    position: Manufacturing Process Operator
-    location: Porriño, Spain
-    startDate: Sep 2015
-    endDate: Mar 2017
-    highlights: 
-      - Work under GMP regulation. Cleaning, sterilization and preparation of material for the manufacture of drugs.
-      - Sterilize manufacturing rooms and laboratories.
-      - Work in sterile clean rooms for vaccine production.
-  - name: CZ Veterinaria
-    position: Laboratory Analyst
-    location: Porriño, Spain
-    startDate: Mar 2015
-    endDate: Aug 2017
-    highlights: 
-      - Work under GMP regulation. Analysis of properties and components on water samples.
-      - Growth of bacteria for environment control by CFU.
-      - Chemical and biological control of vaccines by techniques such as UV-VIS/IR, HPLC, ELISA or MPN.
-      - Quality control study on injectable drugs based on Official European Standards.
+      - Data analysis, action plan management and ensuring compliance with the standards.
+      - Test planning for validations, drafting of SOP and SWI, building and updating KPI.
 
 education:
   - institution: CIFP Manuel Antonio 
@@ -73,6 +73,11 @@ certificates:
     issuer: P&A Group
 
 skills:
+  - name: Techniques
+    keywords:
+    - HPLC
+    - gas chromatography
+    - spectroscopy techniques (IR, UV/Vis, AES and AFS)
   - name: Tools
     keywords:
     - Microsoft Office
@@ -80,8 +85,8 @@ skills:
     - Power BI
   - name: Soft Skills
     keywords:
-    - Methodic work
-    - teamwork 
+    - Teamwork
+    - effective communication
     - attention to detail
 
 languages:
