@@ -8,6 +8,26 @@ Node 8+ is required.
 
 ## How to use
 
-First run `npm install` to compile the project. After that, run `npm run dev` to serve the content on `http://localhost:3000` and check the result using the browser.
+### Serve the cv
+
+First to compile the project:
+
+```shell
+npm install
+```
+
+After that, you can serve the content on `http://localhost:3000` and check the result using the browser:
+
+```shell
+npm run dev
+```
 
 The content can be changed by modifying the [data.yaml file](/data.yaml).
+
+### Export the PDF
+
+A file called `resume.pdf` will be generated can be generated with the data by running:
+
+```shell
+npm run pdf
+```
