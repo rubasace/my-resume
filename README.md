@@ -26,7 +26,7 @@ The content can be changed by modifying the [data.yaml file](/data.yaml).
 
 ### Export the PDF
 
-A file called `resume.pdf` will be generated can be generated with the data by running:
+A file called `resume.pdf` can be generated with the data by running:
 
 ```shell
 npm run pdf
