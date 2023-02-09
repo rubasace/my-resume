@@ -7,8 +7,7 @@ const puppeteer = require('puppeteer');
             '--disable-setuid-sandbox',
             '--disable-gpu',
             '--hide-scrollbars',
-            '--disable-web-security'],
-        executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
+            '--disable-web-security']
     });
     const page = await browser.newPage();
     await page.goto('http://localhost:3000', {
