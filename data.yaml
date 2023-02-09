@@ -1,70 +1,72 @@
 $schema: https://raw.githubusercontent.com/jsonresume/resume-schema/master/schema.json
-language: en
+language: es
 basics:
   name: Sonia Álvarez Lijó
-  label: Higher Technician in Analysis and Quality Control
+  label: Técnico Superior de Laboratorio de Análisis y Control de Calidad
   email: alvarezlijo@gmail.com
   picture: profile.png
   profiles:
     - network: Linkedin
       url: linkedin.com/in/soniaalvarezlijo
-  summary: I am a meticulous, active and hard-working Quality Control Analyst with two years of experience in the pharmaceutical industry and biotechnology and five years in the automotive sector
+  summary: Analista de laboratorio con cinco años de experiencia en el sector de automoción y dos en el sector farmacéutico.
 work:
-  - name: CZ Veterinaria
-    position: Laboratory Analyst
-    location: Porriño, Spain
-    startDate: Mar 2015
-    endDate: Aug 2015
-    highlights:
-      - Work under GMP regulation. Analysis of properties and components on water samples.
-      - Growth of bacteria for environment control by CFU.
-      - Chemical and biological control of vaccines by techniques such as UV-VIS/IR, HPLC, ELISA or MPN.
-      - Quality control study on injectable drugs based on Official European Standards.
-  - name: CZ Veterinaria
-    position: Manufacturing Process Operator
-    location: Porriño, Spain
-    startDate: Sep 2015
-    endDate: Mar 2017
-    highlights:
-      - Work under GMP regulation. Cleaning, sterilization and preparation of material for the manufacture of drugs.
-      - Sterilize manufacturing rooms and laboratories.
-      - Work in sterile clean rooms for vaccine production.
   - name: Plastic Omnium I.E.S.
-    position: Laboratory & Metrology Technician
+    position: Técnico de control de procesos
+    location: Redondela
+    startDate: Oct 2021
+    endDate: May 2022
+    highlights:
+      - Análisis de datos, planes de acción y logro de objetivos mediante la realización y seguimiento de indicadores de proceso.
+      - Registro de documentación, auditorías de puesto y revisión de métodos.
+      - Planificación y seguimiento de pruebas para validación de proyectos y modificaciones del proceso.
+  - name: Plastic Omnium I.E.S.
+    position: Residente de Calidad en Stellantis
+    location: Vigo
+    startDate: Dic 2019
+    endDate: Oct 2021
+    highlights:
+      - Asegurar la calidad y el suministro de piezas a cliente mediante control de stock y muros de calidad.
+      - Reactividad inmediata ante cliente para la solución de problemas y negociación de incidentes.
+      - Informar a fábrica sobre la situación, incidencias o peticiones diarias del cliente y toma de decisiónes.
+      - Coordinación ensayos con el cliente para validaciones, modificaciones o incidencias puntuales.
+      - Contacto con proveedores y aprovisionamiento logístico así como tratamiento de mercancía en SAP.
+  - name: Plastic Omnium I.E.S.
+    position: Operario de montaje
+    location: Redondela
+    startDate: Dic 2019
+    endDate: Oct 2018
+    highlights:
+      - Montaje, control final y validación en serie de parachoques y otras piezas exteriores.
+  - name: Plastic Omnium I.E.S.
+    position: Técnico de laboratorio y metrología
     location: Redondela, Spain
     startDate: Mar 2017
     endDate: Oct 2018
     highlights:
-      - Carrying out tests and SOP drafting for painted materials and validation of paint batches.
-      - Calibration of equipment and obtaining accreditation certificates.
-  - name: Plastic Omnium I.E.S.
-    position: Assembly Line Operator
-    location: Redondela, Spain
-    startDate: Oct 2018
-    endDate: Dec 2019
+      - Realización de ensayos físicos, colorimetría en vida serie y validación de nuevos lotes de materiales.
+      - Redacción documental de OPL/SWI.
+      - Calibración de equipos y obtención de certificados de acreditación.
+      - Control dimensional para la vida serie y estudios de capabilidad de nuevos proyectos.
+      - Análisis de datos, seguimiento y actualización de indicadores de calidad.
+  - name: CZ Veterinaria
+    position: Operario de producción
+    location: Porriño
+    startDate: Sep 2015
+    endDate: Mar 2017
     highlights:
-      - Assembly, visual control and quality validation of car bumpers and other exterior parts.
-  - name: Plastic Omnium I.E.S.
-    position: Quality Resident at Stellantis
-    location: Vigo, Spain
-    startDate: Dec 2019
-    endDate: Oct 2021
+      - Operaciones bajo normativa GMP. Trabajo en sala estéril en envasado de fármacos inyectables.
+      - Limpieza, esterilización y control de salas y materiales para fabricación de fármacos.
+  - name: CZ Veterinaria
+    position: Técnico de laboratorio
+    location: Porriño
+    startDate: Mar 2015
+    endDate: Ago 2015
     highlights:
-      - Represent the Quality Control and Logistics department at the costumer’s plant
-      - Guarantee compliance with the required specifications and technical support to the costumer.
-      - Assessment of non-compliant parts returned by the costumer or to the supplier.
-  - name: Plastic Omnium I.E.S.
-    position: Paint Line Process Technician
-    location: Redondela, Spain
-    startDate: Oct 2021
-    endDate: May 2022
-    highlights:
-      - Data analysis, action plan management and ensuring compliance with the standards.
-      - Test planning for validations, drafting of SOP and SWI, building and updating KPI.
+      - Operaciones bajo normativa GMP. Análisis de aguas, control biológico y recuento de microorganismos en salas limpias/estériles, control químico y biológico en fármacos, realización de test ELISA, NMP, etc
 
 education:
   - institution: CIFP Manuel Antonio 
-    studyType: HNC in Analysis and Quality Control Laboratory
+    studyType: Ciclo Superior de Laboratorio de Análisis y Control de Calidad
     startDate: 2013
     endDate: 2015
   
@@ -74,21 +76,12 @@ certificates:
     issuer: P&A Group
 
 skills:
-  - name: Techniques
-    keywords:
-    - HPLC
-    - gas chromatography
-    - spectroscopy techniques (IR, UV/Vis, AES and AFS)
   - name: Tools
     keywords:
-    - Microsoft Office
-    - SAP
-    - Power BI
+    - Microsoft Office, SAP, Power BI
   - name: Soft Skills
     keywords:
-    - Teamwork
-    - effective communication
-    - attention to detail
+    - Trabajo en equipo, carácter activo, capacidad de aprendizaje.
 
 languages:
   - language: Spanish
