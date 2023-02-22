@@ -11,56 +11,53 @@ basics:
   summary: I am a meticulous, active and hard-working Quality Control Analyst with two years of experience in the pharmaceutical industry and biotechnology and five years in the automotive sector
 work:
   - name: CZ Veterinaria
-    position: Laboratory Analyst
+    position: Trainee Laboratory Analyst
     location: Porriño, Spain
     startDate: Mar 2015
     endDate: Aug 2015
     highlights:
-      - Work under GMP regulation. Analysis of properties and components on water samples.
-      - Growth of bacteria for environment control by CFU.
-      - Chemical and biological control of vaccines by techniques such as UV-VIS/IR, HPLC, ELISA or MPN.
-      - Quality control study on injectable drugs based on Official European Standards.
+      - Work under GMP regulation.
+      - Analysis of properties and components on water samples, such as pH, conductivity, turbidity, heavy metals, COD & BOD
+      - Growth and count of bacteria for environment control by CFU.
+      - Identification of the components of raw materials for vaccine manufacturing by IR spectroscopy.
+      - Medium preparation for growth of different microorganisms on Petri dish.
+      - Sample preparation of bacteria for indentification, isolating them by pour and streak methods.
+      - Study of the quality control process for the manufacturing of injectable drugs, based on Official European Standards.
   - name: CZ Veterinaria
     position: Manufacturing Process Operator
     location: Porriño, Spain
     startDate: Sep 2015
     endDate: Mar 2017
     highlights:
-      - Work under GMP regulation. Cleaning, sterilization and preparation of material for the manufacture of drugs.
-      - Sterilize manufacturing rooms and laboratories.
+      - Work under GMP regulation.
+      - Cleaning, sterilization and preparation of material for the manufacture of drugs.
+      - Sterilization of manufacturing rooms and laboratories.
       - Work in sterile clean rooms for vaccine production.
   - name: Plastic Omnium I.E.S.
     position: Laboratory & Metrology Technician
     location: Redondela, Spain
     startDate: Mar 2017
-    endDate: Oct 2018
-    highlights:
-      - Carrying out tests and SOP drafting for painted materials and validation of paint batches.
-      - Calibration of equipment and obtaining accreditation certificates.
-  - name: Plastic Omnium I.E.S.
-    position: Assembly Line Operator
-    location: Redondela, Spain
-    startDate: Oct 2018
     endDate: Dec 2019
     highlights:
-      - Assembly, visual control and quality validation of car bumpers and other exterior parts.
+      - Execution of tests and SOP drafting for painted materials and validation of paint batches
+      - Dimensional control of parts, calibration of equipment and obtention of accreditation certificates
   - name: Plastic Omnium I.E.S.
     position: Quality Resident at Stellantis
     location: Vigo, Spain
     startDate: Dec 2019
     endDate: Oct 2021
     highlights:
-      - Represent the Quality Control and Logistics department at the costumer’s plant
-      - Guarantee compliance with the required specifications and technical support to the costumer.
-      - Assessment of non-compliant parts returned by the costumer or to the supplier.
+      - Representation of the Quality Control and Logistics department at the costumer’s plant, guaranteeing compliance with the required specifications
+      - Incident reduction (cost and impact on indicators) from 6 per month to between 0 and 1, by negotiating with costumers, immediately reacting to problems and providing solutions
   - name: Plastic Omnium I.E.S.
     position: Paint Line Process Technician
     location: Redondela, Spain
     startDate: Oct 2021
     endDate: May 2022
     highlights:
-      - Data analysis, action plan management and ensuring compliance with the standards.
-      - Test planning for validations, drafting of SOP and SWI, building and updating KPI.
+      - Data analysis, action plan management and ensure of compliance with the standards
+      - Test planning for validations, drafting of SOP and SWI, building and updating KPIs
+      - Reduction of 66% work time (from 6 to 2 hours) of data analysis using Excel macros and Power BI to follow up KPIs
 
 education:
   - institution: CIFP Manuel Antonio 
@@ -68,17 +65,30 @@ education:
     startDate: 2013
     endDate: 2015
   
-certificates: 
-  - name: Lean Manufacturing 
-    date: 2018
-    issuer: P&A Group
+# certificates: 
+#   - name: Lean Manufacturing 
+#     date: 2018
+#     issuer: P&A Group
 
 skills:
-  - name: Techniques
+  - name: Analytical Techniques
     keywords:
     - HPLC
-    - gas chromatography
-    - spectroscopy techniques (IR, UV/Vis, AES and AFS)
+    - gas cromatography
+    - spectroscopy (IR, UV/Vis, AES and AFS)
+  - name: Biochemical Techniques
+    keywords:
+    - ELISA
+    - PCR
+    - electrophoresis
+    - column and thin layer cromatography 
+  - name: Microbiology Techniques
+    keywords:
+    - Streaking Petri dish
+    - MPN
+    - Gram stain
+    - IMViC
+    - API
   - name: Tools
     keywords:
     - Microsoft Office
