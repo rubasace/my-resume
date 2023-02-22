@@ -8,7 +8,7 @@ basics:
   profiles:
     - network: Linkedin
       url: linkedin.com/in/soniaalvarezlijo
-  summary: Analista de laboratorio con cinco años de experiencia en el sector de automoción y dos en el sector farmacéutico.
+  summary: Analista de laboratorio con cinco años de experiencia en el sector de la automoción y dos en el sector farmacéutico.
 work:
   - name: Plastic Omnium I.E.S.
     position: Técnico de control de procesos
@@ -16,8 +16,8 @@ work:
     startDate: Oct 2021
     endDate: May 2022
     highlights:
-      - Análisis de datos, planes de acción y logro de objetivos mediante la realización y seguimiento de indicadores de proceso.
-      - Registro de documentación, auditorías de puesto y revisión de métodos.
+      - Reducción del tiempo de análisis de datos en un 66% (de 6 a 2 horas) mediante el uso de fórmulas y macros en Excel, y el uso de Power BI para el seguimiento de indicadores.
+      - Registro de documentación, auditorías de puesto y revisión de métodos de operación.
       - Planificación y seguimiento de pruebas para validación de proyectos y modificaciones del proceso.
   - name: Plastic Omnium I.E.S.
     position: Residente de Calidad en Stellantis
@@ -25,18 +25,17 @@ work:
     startDate: Dic 2019
     endDate: Oct 2021
     highlights:
-      - Asegurar la calidad y el suministro de piezas a cliente mediante control de stock y muros de calidad.
-      - Reactividad inmediata ante cliente para la solución de problemas y negociación de incidentes.
-      - Informar a fábrica sobre la situación, incidencias o peticiones diarias del cliente y toma de decisiónes.
-      - Coordinación ensayos con el cliente para validaciones, modificaciones o incidencias puntuales.
+      - Aseguramiento de la calidad y del suministro de piezas a cliente mediante control de stock y muros de calidad.
+      - Reducción de incidentes (coste e impacto en indicadores) de 6 mensuales a 0 ó 1 mediante negociación con el cliente, prestando reactividad inmediata ante problemas y aportando soluciones.
+      - Coordinación de ensayos con el cliente para validaciones, modificaciones o incidencias puntuales.
       - Contacto con proveedores y aprovisionamiento logístico así como tratamiento de mercancía en SAP.
   - name: Plastic Omnium I.E.S.
     position: Operario de montaje
     location: Redondela
-    startDate: Dic 2019
-    endDate: Oct 2018
+    startDate: Dic 2018
+    endDate: Oct 2019
     highlights:
-      - Montaje, control final y validación en serie de parachoques y otras piezas exteriores.
+      - Montaje, control final y validación en serie de parachoques, puertas y otras piezas exteriores.
   - name: Plastic Omnium I.E.S.
     position: Técnico de laboratorio y metrología
     location: Redondela, Spain
@@ -45,7 +44,7 @@ work:
     highlights:
       - Realización de ensayos físicos, colorimetría en vida serie y validación de nuevos lotes de materiales.
       - Redacción documental de OPL/SWI.
-      - Calibración de equipos y obtención de certificados de acreditación.
+      - Calibración de equipos y obtención de sus certificados de acreditación.
       - Control dimensional para la vida serie y estudios de capabilidad de nuevos proyectos.
       - Análisis de datos, seguimiento y actualización de indicadores de calidad.
   - name: CZ Veterinaria
@@ -55,14 +54,15 @@ work:
     endDate: Mar 2017
     highlights:
       - Operaciones bajo normativa GMP. Trabajo en sala estéril en envasado de fármacos inyectables.
-      - Limpieza, esterilización y control de salas y materiales para fabricación de fármacos.
+      - Limpieza, esterilización y control microbiológico de salas y materiales para fabricación de fármacos.
   - name: CZ Veterinaria
     position: Técnico de laboratorio
     location: Porriño
     startDate: Mar 2015
     endDate: Ago 2015
     highlights:
-      - Operaciones bajo normativa GMP. Análisis de aguas, control biológico y recuento de microorganismos en salas limpias/estériles, control químico y biológico en fármacos, realización de test ELISA, NMP, etc
+      - Operaciones bajo normativa GMP. Análisis de aguas, control microbiológico y recuento de microorganismos en salas limpias/estériles.
+      - Control químico y biológico en fármacos, realización de test ELISA, NMP, etc
 
 education:
   - institution: CIFP Manuel Antonio 
@@ -78,10 +78,10 @@ certificates:
 skills:
   - name: Tools
     keywords:
-    - Microsoft Office, SAP, Power BI
+    - Word, Excel, Visio, SAP, Power BI
   - name: Soft Skills
     keywords:
-    - Trabajo en equipo, carácter activo, capacidad de aprendizaje.
+    - Trabajo en equipo, carácter activo, capacidad de aprendizaje
 
 languages:
   - language: Español
