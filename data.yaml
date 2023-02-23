@@ -1,67 +1,67 @@
 $schema: https://raw.githubusercontent.com/jsonresume/resume-schema/master/schema.json
-language: en
+language: es
 basics:
   name: Sonia Álvarez Lijó
-  label: Higher Technician in Analysis and Quality Control
+  label: Técnico Superior de Laboratorio de Análisis y Control de Calidad
   email: alvarezlijo@gmail.com
   picture: profile.png
   profiles:
     - network: Linkedin
       url: linkedin.com/in/soniaalvarezlijo
-  summary: I am a meticulous, active and hard-working Quality Control Analyst with two years of experience in the pharmaceutical industry and biotechnology and five years in the automotive sector
+  summary: Analista de laboratorio con carácter activo, metódica y trabajadora, con dos años de experiencia en el sector farmacéutico y cinco en el sector de automoción.
 work:
   - name: CZ Veterinaria
-    position: Trainee Laboratory Analyst
-    location: Porriño, Spain
+    position: Técnico de laboratorio en prácticas
+    location: Porriño
     startDate: Mar 2015
-    endDate: Aug 2015
+    endDate: Ago 2015
     highlights:
-      - Work under GMP regulation.
-      - Analysis of properties and components on water samples, such as pH, conductivity, turbidity, heavy metals, COD & BOD
-      - Growth and count of bacteria for environment control by CFU.
-      - Identification of the components of raw materials for vaccine manufacturing by IR spectroscopy.
-      - Medium preparation for growth of different microorganisms on Petri dish.
-      - Sample preparation of bacteria for indentification, isolating them by pour and streak methods.
-      - Study of the quality control process for the manufacturing of injectable drugs, based on Official European Standards.
+      - Trabajo bajo normativa GMP.
+      - Análisis de propiedades y componentes en muestras de agua, como pH, conductividad, turbidez, metales pesados, DQO y DBO. 
+      - Cultivo de bacterias para control ambiental y recuento de UFC.
+      - Identificación de los componentes de materias primas utilizadas en la fabricación de fármacos mediante espectroscopía IR.
+      - Preparación de medios de cultivo para diferentes microorganismos e incubación en placa Petri.
+      - Preparación de muestras bacterianas para identificación, aislándolas mediante siembra con dilución o en estría.
+      - Estudio del proceso de control de calidad en fármacos inyectables, según los estándares europeos oficiales.
   - name: CZ Veterinaria
-    position: Manufacturing Process Operator
-    location: Porriño, Spain
+    position: Operario de producción
+    location: Porriño
     startDate: Sep 2015
     endDate: Mar 2017
     highlights:
-      - Work under GMP regulation.
-      - Cleaning, sterilization and preparation of material for the manufacture of drugs.
-      - Sterilization of manufacturing rooms and laboratories.
-      - Work in sterile clean rooms for vaccine production.
+      - Trabajo bajo normativa GMP.
+      - Limpieza, esterilización y preparación del material para la fabricación de fármacos inyectables.
+      - Esterilización de las diferentes salas de producción y laboratorios.
+      - Trabajo en sala estéril en línea de producción y envasado de vacunas.
   - name: Plastic Omnium I.E.S.
-    position: Laboratory & Metrology Technician
-    location: Redondela, Spain
+    position: Técnico de Laboratorio y Metrología
+    location: Redondela
     startDate: Mar 2017
-    endDate: Dec 2019
+    endDate: Dic 2019
     highlights:
-      - Execution of tests and SOP drafting for painted materials and validation of paint batches
-      - Dimensional control of parts, calibration of equipment and obtention of accreditation certificates
+      - Realización de ensayos y redacción de SOP para controlar las especificaciones de piezas pintadas y validar lotes de pintura.
+      - Control dimensional de piezas, calibración de equipos y obtención de sus certificados de acreditación.
   - name: Plastic Omnium I.E.S.
-    position: Quality Resident at Stellantis
-    location: Vigo, Spain
-    startDate: Dec 2019
+    position: Residente de calidad en Stellantis
+    location: Vigo
+    startDate: Dic 2019
     endDate: Oct 2021
     highlights:
-      - Representation of the Quality Control and Logistics department at the costumer’s plant, guaranteeing compliance with the required specifications
-      - Incident reduction (cost and impact on indicators) from 6 per month to between 0 and 1, by negotiating with costumers, immediately reacting to problems and providing solutions
+      - Representación de los departamentos de calidad y logística en la planta del cliente, asegurando el cumplimiento de las especificaciones requeridas.
+      - Reducción de incidentes (coste e impacto en indicadores) de 6 ó 7 al mes, a 0 ó 1, negociando con el cliente, dando reactividad inmediata a problemas y aportando soluciones.
   - name: Plastic Omnium I.E.S.
-    position: Paint Line Process Technician
-    location: Redondela, Spain
+    position: Técnico de Control del proceso de pintura
+    location: Redondela
     startDate: Oct 2021
     endDate: May 2022
     highlights:
-      - Data analysis, action plan management and ensure of compliance with the standards
-      - Test planning for validations, drafting of SOP and SWI, building and updating KPIs
-      - Reduction of 66% work time (from 6 to 2 hours) of data analysis using Excel macros and Power BI to follow up KPIs
+      - Análisis de datos, creación de planes de acción y comprobación del cumplimiento de los estándares.
+      - Planificación de ensayos para validaciones y nuevos proyectos.
+      - Reducción del tiempo de análisis de datos en un 66% (de 6 a 2 horas) mediante el uso de fórmulas y macros en Excel, y el uso de Power BI para crear y actualizar los KPIs.
 
 education:
   - institution: CIFP Manuel Antonio 
-    studyType: HNC in Analysis and Quality Control Laboratory
+    studyType: Ciclo Superior de Laboratorio de Análisis y Control de Calidad
     startDate: 2013
     endDate: 2015
   
@@ -71,39 +71,39 @@ education:
 #     issuer: P&A Group
 
 skills:
-  - name: Analytical Techniques
+  - name: Técnicas analíticas
     keywords:
     - HPLC
-    - gas cromatography
-    - spectroscopy (IR, UV/Vis, AES and AFS)
-  - name: Biochemical Techniques
+    - cromatografía de gases
+    - Espectroscopía (IR, UV/Vis, EAA y EEA)
+  - name: Técnicas bioquímicas
     keywords:
     - ELISA
     - PCR
-    - electrophoresis
-    - column and thin layer cromatography 
-  - name: Microbiology Techniques
+    - electroforesis
+    - Cromatografía en columna y en capa fina
+  - name: Técnicas microbiológicas
     keywords:
-    - Streaking Petri dish
-    - MPN
-    - Gram stain
+    - Siembra en estría
+    - NMP
+    - Tinción de Gram
     - IMViC
-    - API
-  - name: Tools
+    - Tiras API
+  - name: Herramientas
     keywords:
     - Microsoft Office
     - SAP
     - Power BI
-  - name: Soft Skills
+  - name: Habilidades
     keywords:
-    - Teamwork
-    - effective communication
-    - attention to detail
+    - Trabajo en equipo
+    - comunicación efectiva
+    - atención al detalle
 
 languages:
-  - language: Spanish
-    fluency: Native
-  - language: Galician
-    fluency: Native
-  - language: English
-    fluency: Fluent
+  - language: Español
+    fluency: Nativo
+  - language: Gallego
+    fluency: Nativo
+  - language: Inglés
+    fluency: Fluido
