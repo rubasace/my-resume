@@ -4,7 +4,7 @@ name: default
 
 steps:
   - name: build
-    image: node:18.16.0-alpine3.16@sha256:418340baef60cf1c142e15d8378dcb0e7dd5145956c3a4ebbb0eba551c18a6f7
+    image: node:19.9.0-alpine3.16@sha256:d0b456784d40354f567844fbebfbbd93b6501c7e76c9ea9f3082aefbbb13be22
     commands:
       - npm ci
       - npm run build
