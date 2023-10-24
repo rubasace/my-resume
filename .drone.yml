@@ -10,7 +10,7 @@ steps:
       - npm run build
 
   - name: bake
-    image: plugins/docker
+    image: plugins/docker@sha256:e18e6f848cbeb88f83699e7a1f4e500e0b60930c9c400237b1e7371ef6d70963
     settings:
       username:
         from_secret: docker_user
