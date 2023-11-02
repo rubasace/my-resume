@@ -16,7 +16,6 @@
 
 </template>
 <script setup>
-
 defineProps({
   company: {
     type: String,

@@ -1,7 +1,7 @@
 $schema: https://raw.githubusercontent.com/jsonresume/resume-schema/master/schema.json
 language: en
 basics:
-  name: Rubén Pahíno Verdugo
+  name: Rubén Pahíno
   label: Software Engineer
   email: ruben.pahino.verdugo@gmail.com
 #  picture: photo-placeholder.png
@@ -98,7 +98,7 @@ languages:
   - language: English
     fluency: Fluent
 
-#    TODO standardize??
+# TODO standardize??
 conferences:
   - conference: Spring I/O
     name: Building a Framework on top of Spring Boot

@@ -1,6 +1,9 @@
 import {createApp} from 'vue'
 import App from "./App.vue";
 import './assets/base.sass'
+import WebFont from 'webfontloader';
+
+WebFont.load({ google: { families: ["Cormorant+Garamond:300,400,700"] } });
 
 
 import {library} from "@fortawesome/fontawesome-svg-core";
