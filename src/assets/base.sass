@@ -1,10 +1,11 @@
 @import "layout"
 
 $background: whitesmoke !default
-$default-titles-font: Georgia, serif !default
-$default-font-size: 10.8pt !default
+$default-font-family: Cambria, sans-serif
+$default-titles-font-family: Georgia, serif !default
+$default-font-size: 10.5pt !default
 $default-font-color: black !default
-$details-font-size: 0.82em !default
+$details-font-size: 0.9em !default
 $details-color: lighten($default-font-color, 40%) !default
 $time-color: lighten($default-font-color, 30%) !default
 $time-font-size: 0.95rem !default
@@ -12,10 +13,13 @@ $contact-font-size: 0.95em !default
 $title-font-size: 2.3em !default
 $header-line-height: 2.2rem !default
 $highlightColor: #17a095 !default
-$padding-top: 0.75in
-$padding-bottom: 0.75in
-$padding-right: 0.75in
-$padding-left: 0.75in
+$default-margin: 1in !default
+$padding-top: $default-margin !default
+$padding-bottom: $default-margin !default
+$padding-right: $default-margin !default
+$padding-left: $default-margin !default
+$section-separation: 0.75rem !default
+$item-separation: 0.25rem !default
 
 .wrapper
   .page
@@ -35,7 +39,7 @@ body
   text-rendering: optimizeLegibility
   -webkit-font-smoothing: antialiased
   -moz-osx-font-smoothing: grayscale
-  font-family: 'Avenir Next',serif
+  font-family: $default-font-family
   .background
     background-color: $background
   .main
@@ -64,7 +68,7 @@ body
         text-transform: uppercase
         font-size: $title-font-size
         padding: 0
-        font-family: $default-titles-font
+        font-family: $default-titles-font-family
 
         .name
           font-weight: bold
@@ -84,11 +88,11 @@ body
     .section
       width: 100%
       position: relative
-      margin-top: 0.4rem
+      margin-top: $section-separation
       margin-bottom: 0
 
       .section-title
-        font-family: $default-titles-font
+        font-family: $default-titles-font-family
         font-size: 1.15em
         margin-bottom: 0.25rem
 
@@ -183,6 +187,10 @@ body
       .item-list
         padding: 0 0 0 1rem
         margin: 0
+        .item
+          margin-top: $item-separation
+          &:first-of-type
+            margin-top: 0
     &.skills
       .title
         font-weight: bold
