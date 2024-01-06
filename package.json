@@ -17,7 +17,7 @@
     "pug": "^3.0.2",
     "sass": "1.69.7",
     "vue": "^3.2.47",
-    "vue-i18n": "9.8.0",
+    "vue-i18n": "9.9.0",
     "webfontloader": "^1.6.28"
   },
   "devDependencies": {
