@@ -12,7 +12,7 @@
     "@fortawesome/fontawesome-svg-core": "6.5.2",
     "@fortawesome/free-brands-svg-icons": "6.5.2",
     "@fortawesome/free-solid-svg-icons": "6.5.2",
-    "@fortawesome/vue-fontawesome": "3.0.7",
+    "@fortawesome/vue-fontawesome": "3.0.8",
     "js-yaml": "^4.1.0",
     "pug": "^3.0.2",
     "sass": "1.77.2",
