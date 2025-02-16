@@ -29,6 +29,6 @@
     "eslint-plugin-vue": "9.32.0",
     "prettier": "2.8.8",
     "puppeteer": "24.2.1",
-    "vite": "4.5.5"
+    "vite": "4.5.9"
   }
 }
