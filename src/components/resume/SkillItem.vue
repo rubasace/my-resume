@@ -26,7 +26,7 @@ defineProps({
 export default {
   computed: {
     items() {
-      return Array.isArray(this.value) ? this.value.join(", ")+"." : this.value;
+      return Array.isArray(this.value) ? this.value.join(", ") + "." : this.value;
     }
   }
 }

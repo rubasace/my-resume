@@ -1,30 +1,18 @@
 <script setup>
-import MainSection from "./components/MainSection.vue";
-
+import MainPage from "@/components/MainPage.vue";
 </script>
-<script>
-import yaml from "js-yaml";
-import content from '../data.yaml?raw';
-
-export default {
-  data() {
-    return { data: yaml.load(content) };
-  },
-  created() {
-    this.$i18n.locale = this.data.language
-  }
-}
-</script>
-<template lang="pug">
-.wrapper
-  .page.background
-    MainSection(:data="data").main
-
+<template>
+  <MainPage/>
 </template>
 
 <style scoped lang="sass">
+.editor
+  width: 50%
 
+.view
+  width: 50%
 
-
-
+  ::v-deep(.page)
+    transform: scale(0.75)
+    transform-origin: top left
 </style>

@@ -1,4 +1,4 @@
-@import "layout"
+@import "../layout"
 
 $background: whitesmoke !default
 $default-font-family: Cambria, sans-serif
@@ -13,7 +13,7 @@ $contact-font-size: 0.95em !default
 $title-font-size: 2.3em !default
 $header-line-height: 2.2rem !default
 $highlightColor: #17a095 !default
-$default-margin: 0.8in !default
+$default-margin: 0.75in !default
 $padding-top: $default-margin !default
 $padding-bottom: $default-margin !default
 $padding-right: $default-margin !default
@@ -21,17 +21,19 @@ $padding-left: $default-margin !default
 $section-separation: 0.7rem !default
 $item-separation: 0.2rem !default
 
-.wrapper
-  .page
-    padding-top: $padding-top
-    padding-bottom: $padding-bottom
-    padding-left: $padding-right
-    padding-right: $padding-left
-    box-sizing: border-box
+//Move margins to style editor
+.page
+  padding-top: $padding-top
+  padding-bottom: $padding-bottom
+  padding-left: $padding-right
+  padding-right: $padding-left
+  box-sizing: border-box
+  background-color: $background
 
 html
   font-size: $default-font-size
   color: $default-font-color
+
 body
   margin: 0
   padding: 0
@@ -40,21 +42,23 @@ body
   -webkit-font-smoothing: antialiased
   -moz-osx-font-smoothing: grayscale
   font-family: $default-font-family
-  .background
-    background-color: $background
-  .main
+
+  .resume
     width: 100%
     height: 100%
     position: relative
+
     .profile
       display: flex
       width: 100%
       margin-bottom: 2.5rem
       position: relative
+
       .picture
         width: 1.5in
         overflow: visible
         margin-right: 0.5em
+
         img
           width: 1.1in
           height: 1.2in
@@ -85,6 +89,7 @@ body
         text-transform: none
         white-space: nowrap
         font-size: $contact-font-size
+
     .section
       width: 100%
       position: relative
@@ -103,6 +108,7 @@ body
           top: 0.1em
           min-width: 1em
           width: 1.18em
+
         span
           text-transform: uppercase
           font-weight: bold
@@ -111,6 +117,7 @@ body
           border-bottom: 1px solid
           display: inline-block
           width: 100%
+
     .timeline
       position: relative
       //left: 0.375in
@@ -132,7 +139,7 @@ body
             top: 0
             bottom: 0
             margin: auto 0
-            left: -1.42rem
+            left: -1.25rem
             $pointSpace: 0.35rem
             box-shadow: 0 $pointSpace 0 whitesmoke, 0 calc(#{$pointSpace} * -1) 0 whitesmoke
 
@@ -149,24 +156,31 @@ body
         top: 0.5rem
         width: 0.06cm
         border-right: 3em
+
   .item
     width: 100%
+
     .header
       line-height: $header-line-height
       vertical-align: middle
       align-items: baseline
       display: flex
       font-size: 1.1rem
+
       .place
         font-weight: bold
+
       .details
         font-size: $details-font-size
         color: $details-color
         font-weight: bold
+
         &.name
           text-transform: capitalize
+
         &.location
           font-style: italic
+
         &.time
           font-style: normal
           margin-left: auto
@@ -187,20 +201,23 @@ body
       .item-list
         padding: 0 0 0 1rem
         margin: 0
+
         .item
           margin-top: $item-separation
+
           &:first-of-type
             margin-top: 0
+
     &.skills
       .title
         font-weight: bold
+
         &::after
           content: ": "
 
   .icon
     margin-right: 0.25em
     height: 1em
-
 
 
 .separator
@@ -213,5 +230,6 @@ body
   .wrapper
     margin: 0 auto !important
     border-radius: 0 !important
+
     &:last-of-type
       margin-bottom: -2px !important
