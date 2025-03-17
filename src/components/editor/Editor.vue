@@ -7,7 +7,7 @@ import TabList from 'primevue/tablist';
 import Tab from 'primevue/tab';
 import TabPanels from 'primevue/tabpanels';
 import TabPanel from 'primevue/tabpanel';
-import DataEditor from "@/components/DataEditor.vue";
+import DataEditor from "./DataEditor.vue";
 
 
 const dataStore = useDataStore()
@@ -29,7 +29,6 @@ const dataStore = useDataStore()
         </TabPanel>
         <TabPanel value="1">
           <div class="tab-content">
-BBB
           </div>
         </TabPanel>
       </TabPanels>

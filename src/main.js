@@ -7,6 +7,7 @@ import WebFont from "webfontloader";
 
 
 import Lara from '@primeuix/themes/lara';
+import "/node_modules/primeflex/primeflex.css"
 
 WebFont.load({google: {families: ["Cormorant+Garamond:300,400,700"]}});
 

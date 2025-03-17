@@ -1,6 +1,6 @@
 <script setup>
 import Resume from "./resume/Resume.vue";
-import Editor from "@/components/Editor.vue";
+import Editor from "@/components/editor/Editor.vue";
 import Visor from "@/components/Visor.vue";
 
 
@@ -28,7 +28,7 @@ import Visor from "@/components/Visor.vue";
 
   .view, .editor
     flex: 1
-    overflow: hidden
+    overflow: scroll
     box-sizing: border-box
     border: 1px solid black
 </style>
