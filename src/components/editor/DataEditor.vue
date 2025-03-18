@@ -1,6 +1,6 @@
 <script setup>
 import {useDataStore} from "@/stores/dataStore";
-import {InputText, Textarea} from "primevue";
+import {InputText, Textarea, InputChips} from "primevue";
 import TextInput from "@/components/editor/TextInput.vue";
 import InputItem from "@/components/editor/InputItem.vue";
 
@@ -222,27 +222,27 @@ const moveDown = (array, index) => {
       <div class="grid-2">
         <TextInput v-model="skill.name" label="Name"/>
       </div>
-<!--      TODO move to something like chips or whatever from PV for space improvement-->
-      <label for="'keyword-' + index + '-0'" class="font-bold block mb-2 mt-2"> Keywords </label>
-      <InputItem
-          v-for="(keyword, keywordIndex) in skill.keywords"
-          :key="keywordIndex"
-          @move-up="moveUp(skill.keywords, keywordIndex)"
-          @move-down="moveDown(skill.keywords, keywordIndex)"
-          @delete="skill.keywords.splice(keywordIndex, 1)"
-      >
+      <label :for="'keywords-'+index" class="font-bold block mb-2 mt-2"> Keywords </label>
+      <InputChips placeholder="Add a keyword" v-model="skill.keywords" :input-id="'keywords-'+index"/>
+<!--      <Chips-->
+<!--      <Chip-->
+<!--          v-for="(keyword, keywordIndex) in skill.keywords"-->
+<!--          :key="keywordIndex"-->
+<!--          @move-up="moveUp(skill.keywords, keywordIndex)"-->
+<!--          @move-down="moveDown(skill.keywords, keywordIndex)"-->
+<!--          @delete="skill.keywords.splice(keywordIndex, 1)"-->
+<!--      >-->
 
 <!--        TODO revisit id so it is unique (index and keywordIndex could collide in reverse-->
-        <InputText
-            :id="'keyword-' + index + '-' + keywordIndex"
-            v-model="skill.keywords[keywordIndex]"
-            style="width:100%"
-            auto-resize
-        />
-      </InputItem>
-      <button @click="addKeyword(skill)" class="button-add">
-        <i class="fas fa-plus mr-2"></i> Add Keyword
-      </button>
+<!--        <InputText-->
+<!--            :id="'keyword-' + index + '-' + keywordIndex"-->
+<!--            v-model="skill.keywords[keywordIndex]"-->
+<!--            style="width:100%"-->
+<!--            auto-resize-->
+<!--        />-->
+<!--      <button @click="addKeyword(skill)" class="button-add">-->
+<!--        <i class="fas fa-plus mr-2"></i> Add Keyword-->
+<!--      </button>-->
     </InputItem>
     <button @click="addSkill" class="button-add">
       <i class="fas fa-plus mr-2"></i> Add Skill
