@@ -32,7 +32,6 @@ const emit = defineEmits(['moveUp', 'moveDown', 'delete', 'hide'])
   border-radius: 10px
   display: flex
   align-items: center
-  padding: 1em
 
   .content
     flex-grow: 1
@@ -40,8 +39,9 @@ const emit = defineEmits(['moveUp', 'moveDown', 'delete', 'hide'])
 
   .actions
     display: flex
-    gap: 1em
+    gap: 0.6em
     align-items: center
+    margin: 0 1em
 
     i
       cursor: pointer
