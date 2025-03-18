@@ -1,6 +1,6 @@
 <template lang="pug">
 .item.skills
-  font-awesome-icon.icon(:icon="icon", v-if="icon")
+  i.icon(v-if="icon", :class="`${icon}`")
   span.title(v-if="title") {{title}}
   span.value {{items}}
 

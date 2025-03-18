@@ -1,513 +1,284 @@
 <script setup>
 import {useDataStore} from "@/stores/dataStore";
-import {InputText} from "primevue";
+import {InputText, Textarea} from "primevue";
+import TextInput from "@/components/editor/TextInput.vue";
+import InputItem from "@/components/editor/InputItem.vue";
+
 
 const dataStore = useDataStore();
+
+const addProfile = () => {
+  dataStore.data.basics.profiles.push({network: '', url: '', placeholder: ''});
+};
+
+
+const addExperience = () => {
+  dataStore.data.work.push({
+    name: "",
+    position: "",
+    location: "",
+    startDate: "",
+    endDate: "",
+    summary: "",
+    highlights: [""]
+  });
+};
+
+const addConference = () => {
+  dataStore.data.conferences.push({
+    conference: "",
+    name: "",
+    location: "",
+    time: "",
+    summary: ""
+  });
+};
+
+const addEducation = () => {
+  dataStore.data.education.push({
+    institution: "",
+    studyType: "",
+    startDate: "",
+    endDate: "",
+    summary: ""
+  });
+};
+
+const addSkill = () => {
+  dataStore.data.skills.push({
+    name: "",
+    keywords: [],
+  });
+};
+
+const addLanguage = () => {
+  dataStore.data.languages.push({
+    language: "",
+    fluency: "",
+  });
+};
+
+
+const addHighlight = (work) => {
+  if (!work.highlights) {
+    work.highlights = [];
+  }
+  work.highlights.push("");
+};
+
+const addKeyword = (skill) => {
+  if(!skill.keywords) {
+    skill.keywords = []
+  }
+  skill.keywords.push("");
+};
+
+
+const removeElement = (array, index) => {
+  array.splice(index, 1);
+};
+
+
+const moveUp = (array, index) => {
+  if (index > 0) {
+    [array[index], array[index - 1]] = [array[index - 1], array[index]];
+  }
+};
+
+const moveDown = (array, index) => {
+  if (index < array.length - 1) {
+    [array[index], array[index + 1]] = [array[index + 1], array[index]];
+  }
+};
 
 </script>
 
 <template>
 
   <!--  TODO add translations-->
-  <!--  TODO add filepicket for picture-->
+  <!--  TODO add filepicker for picture-->
+  <!--  TODO Implement reorder with draggable instead (look for alternative given it's not actively developed) -->
+  <!--  TODO show elements compacted with option to click and expand to see details-->
 
   <div class="card">
     <div class="section-title">Basic Data</div>
-    <div class="flex flex-wrap gap-3 mb-4">
-      <div class="flex-auto">
-        <label for="name" class="font-bold block mb-2"> Name </label>
-        <InputText id="name" v-model="dataStore.data.basics.name" fluid/>
-      </div>
-      <div class="flex-auto">
-        <label for="title" class="font-bold block mb-2"> Title </label>
-        <InputText id="title" v-model="dataStore.data.basics.label" fluid/>
-      </div>
-    </div>
-    <div class="flex flex-wrap gap-3 mb-4">
-      <div class="flex-auto">
-        <label for="picture" class="font-bold block mb-2"> Picture </label>
-        <InputText id="picture" v-model="dataStore.data.basics.picture" fluid/>
-      </div>
-      <div class="flex-auto">
-        <label for="email" class="font-bold block mb-2"> Email </label>
-        <InputText id="email" v-model="dataStore.data.basics.email" fluid/>
-      </div>
-    </div>
-  </div>
-  <div class="card">
-    <div class="section-title">Experience</div>
-    <div class="flex flex-wrap gap-3 mb-4">
-      <div class="flex-auto">
-        <label for="integer" class="font-bold block mb-2"> Integer </label>
-        <InputText id="integer" v-model="integer" v-keyfilter.int fluid/>
-      </div>
-      <div class="flex-auto">
-        <label for="number" class="font-bold block mb-2"> Number </label>
-        <InputText id="number" v-model="number" v-keyfilter.num fluid/>
-      </div>
-      <div class="flex-auto">
-        <label for="money" class="font-bold block mb-2"> Money </label>
-        <InputText id="money" v-model="money" v-keyfilter.money fluid/>
-      </div>
-    </div>
-    <div class="flex flex-wrap gap-3">
-      <div class="flex-auto">
-        <label for="hex" class="font-bold block mb-2"> Hex </label>
-        <InputText id="hex" v-model="hex" v-keyfilter.hex fluid/>
-      </div>
-      <div class="flex-auto">
-        <label for="alphabetic" class="font-bold block mb-2"> Alphabetic </label>
-        <InputText id="alphabetic" v-model="alphabetic" v-keyfilter.alpha fluid/>
-      </div>
-      <div class="flex-auto">
-        <label for="alphanumeric" class="font-bold block mb-2"> Alphanumeric </label>
-        <InputText id="alphanumeric" v-model="alphanumeric" v-keyfilter.alphanum fluid/>
-      </div>
+    <div class="grid-2">
+      <TextInput v-model="dataStore.data.basics.name" label="Name"/>
+      <TextInput v-model="dataStore.data.basics.label" label="Label"/>
+      <TextInput v-model="dataStore.data.basics.picture" label="Picture"/>
+      <TextInput v-model="dataStore.data.basics.email" label="Email"/>
     </div>
   </div>
 
   <div class="card">
-    <div class="section-title">Volunteer</div>
-    <div class="flex flex-wrap gap-3 mb-4">
-      <div class="flex-auto">
-        <label for="integer" class="font-bold block mb-2"> Integer </label>
-        <InputText id="integer" v-model="integer" v-keyfilter.int fluid/>
+    <div class="section-title">Profiles</div>
+    <InputItem v-for="(profile, index) in dataStore.data.basics.profiles"
+               :key="index"
+               @move-up="moveUp(dataStore.data.basics.profiles, index)"
+               @move-down="moveDown(dataStore.data.basics.profiles, index)"
+               @delete="removeElement(dataStore.data.basics.profiles, index)">
+      <div class="grid-3">
+        <TextInput v-model="profile.network" label="Network"/>
+        <TextInput v-model="profile.url" label="URL"/>
+        <TextInput v-model="profile.text" label="Text"/>
       </div>
-      <div class="flex-auto">
-        <label for="number" class="font-bold block mb-2"> Number </label>
-        <InputText id="number" v-model="number" v-keyfilter.num fluid/>
+    </InputItem>
+    <button @click="addProfile" class="button-add">
+      <i class="fas fa-plus mr-2"></i> Add Profile
+    </button>
+  </div>
+
+  <div class="card">
+    <div class="section-title">Experience</div>
+    <InputItem v-for="(work, index) in dataStore.data.work"
+               :key="index"
+               @move-up="moveUp(dataStore.data.work, index)"
+               @move-down="moveDown(dataStore.data.work, index)"
+               @delete="removeElement(dataStore.data.work,index)">
+      <div class="grid-3">
+        <TextInput v-model="work.name" label="Company"/>
+        <TextInput v-model="work.position" label="Position"/>
+        <TextInput v-model="work.location" label="Location"/>
+        <TextInput v-model="work.startDate" label="Start Date"/>
+        <TextInput v-model="work.endDate" label="End Date"/>
       </div>
-      <div class="flex-auto">
-        <label for="money" class="font-bold block mb-2"> Money </label>
-        <InputText id="money" v-model="money" v-keyfilter.money fluid/>
+      <label :for="'summary-' + index" class="font-bold block mb-3 mt-3">Summary</label>
+      <Textarea auto-resize :id="'summary-' + index" v-model="work.summary" placeholder="Description of the job (optional)" style="width:100%;height:20em;resize:none"/>
+      <label :for="'highlight-' + index + '-' + 0" class="font-bold block mb-3 mt-3">Highlights</label>
+      <InputItem
+          v-for="(highlight, highlightIndex) in work.highlights"
+          :key="highlightIndex"
+          @move-up="moveUp(work.highlights, highlightIndex)"
+          @move-down="moveDown(work.highlights, highlightIndex)"
+          @delete="work.highlights.splice(highlightIndex, 1)"
+      >
+        <Textarea
+            :id="'highlight-' + index + '-' + highlightIndex"
+            v-model="work.highlights[highlightIndex]"
+            style="width:100%"
+            auto-resize
+        />
+      </InputItem>
+      <button @click="addHighlight(work)" class="button-add">
+        <i class="fas fa-plus mr-2"></i> Add Highlight
+      </button>
+    </InputItem>
+    <button @click="addExperience" class="button-add">
+      <i class="fas fa-plus mr-2"></i> Add Experience
+    </button>
+  </div>
+
+  <div class="card">
+    <div class="section-title">Conferences</div>
+    <InputItem v-for="(conference, index) in dataStore.data.conferences"
+               :key="index"
+               @move-up="moveUp(dataStore.data.conferences, index)"
+               @move-down="moveDown(dataStore.data.conferences, index)"
+               @delete="removeElement(dataStore.data.conferences, index)">
+      <div class="grid-2">
+        <TextInput v-model="conference.conference" label="Conference"/>
+        <TextInput v-model="conference.name" label="Name"/>
+        <TextInput v-model="conference.location" label="Location"/>
+        <TextInput v-model="conference.time" label="Time"/>
       </div>
-    </div>
-    <div class="flex flex-wrap gap-3">
-      <div class="flex-auto">
-        <label for="hex" class="font-bold block mb-2"> Hex </label>
-        <InputText id="hex" v-model="hex" v-keyfilter.hex fluid/>
-      </div>
-      <div class="flex-auto">
-        <label for="alphabetic" class="font-bold block mb-2"> Alphabetic </label>
-        <InputText id="alphabetic" v-model="alphabetic" v-keyfilter.alpha fluid/>
-      </div>
-      <div class="flex-auto">
-        <label for="alphanumeric" class="font-bold block mb-2"> Alphanumeric </label>
-        <InputText id="alphanumeric" v-model="alphanumeric" v-keyfilter.alphanum fluid/>
-      </div>
-    </div>
+      <label :for="'conference-summary-' + index" class="font-bold block mb-3 mt-3">Summary</label>
+      <Textarea auto-resize :id="'conference-summary-' + index" v-model="conference.summary" placeholder="Description of the job (optional)"
+                style="width:100%;height:20em;resize:none"/>
+    </InputItem>
+    <button @click="addConference" class="button-add">
+      <i class="fas fa-plus mr-2"></i> Add Conference
+    </button>
   </div>
 
   <div class="card">
     <div class="section-title">Education</div>
-    <div class="flex flex-wrap gap-3 mb-4">
-      <div class="flex-auto">
-        <label for="integer" class="font-bold block mb-2"> Integer </label>
-        <InputText id="integer" v-model="integer" v-keyfilter.int fluid/>
+    <InputItem v-for="(education, index) in dataStore.data.education"
+               :key="index"
+               @move-up="moveUp(dataStore.data.education, index)"
+               @move-down="moveDown(dataStore.data.education, index)"
+               @delete="removeElement(dataStore.data.education,index)">
+      <div class="grid-2">
+        <TextInput v-model="education.institution" label="Institution"/>
+        <TextInput v-model="education.studyType" label="Study Type"/>
+        <TextInput v-model="education.startDate" label="Start Date"/>
+        <TextInput v-model="education.endDate" label="End Date"/>
       </div>
-      <div class="flex-auto">
-        <label for="number" class="font-bold block mb-2"> Number </label>
-        <InputText id="number" v-model="number" v-keyfilter.num fluid/>
-      </div>
-      <div class="flex-auto">
-        <label for="money" class="font-bold block mb-2"> Money </label>
-        <InputText id="money" v-model="money" v-keyfilter.money fluid/>
-      </div>
-    </div>
-    <div class="flex flex-wrap gap-3">
-      <div class="flex-auto">
-        <label for="hex" class="font-bold block mb-2"> Hex </label>
-        <InputText id="hex" v-model="hex" v-keyfilter.hex fluid/>
-      </div>
-      <div class="flex-auto">
-        <label for="alphabetic" class="font-bold block mb-2"> Alphabetic </label>
-        <InputText id="alphabetic" v-model="alphabetic" v-keyfilter.alpha fluid/>
-      </div>
-      <div class="flex-auto">
-        <label for="alphanumeric" class="font-bold block mb-2"> Alphanumeric </label>
-        <InputText id="alphanumeric" v-model="alphanumeric" v-keyfilter.alphanum fluid/>
-      </div>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="section-title">Awards</div>
-    <div class="flex flex-wrap gap-3 mb-4">
-      <div class="flex-auto">
-        <label for="integer" class="font-bold block mb-2"> Integer </label>
-        <InputText id="integer" v-model="integer" v-keyfilter.int fluid/>
-      </div>
-      <div class="flex-auto">
-        <label for="number" class="font-bold block mb-2"> Number </label>
-        <InputText id="number" v-model="number" v-keyfilter.num fluid/>
-      </div>
-      <div class="flex-auto">
-        <label for="money" class="font-bold block mb-2"> Money </label>
-        <InputText id="money" v-model="money" v-keyfilter.money fluid/>
-      </div>
-    </div>
-    <div class="flex flex-wrap gap-3">
-      <div class="flex-auto">
-        <label for="hex" class="font-bold block mb-2"> Hex </label>
-        <InputText id="hex" v-model="hex" v-keyfilter.hex fluid/>
-      </div>
-      <div class="flex-auto">
-        <label for="alphabetic" class="font-bold block mb-2"> Alphabetic </label>
-        <InputText id="alphabetic" v-model="alphabetic" v-keyfilter.alpha fluid/>
-      </div>
-      <div class="flex-auto">
-        <label for="alphanumeric" class="font-bold block mb-2"> Alphanumeric </label>
-        <InputText id="alphanumeric" v-model="alphanumeric" v-keyfilter.alphanum fluid/>
-      </div>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="section-title">Certificates</div>
-    <div class="flex flex-wrap gap-3 mb-4">
-      <div class="flex-auto">
-        <label for="integer" class="font-bold block mb-2"> Integer </label>
-        <InputText id="integer" v-model="integer" v-keyfilter.int fluid/>
-      </div>
-      <div class="flex-auto">
-        <label for="number" class="font-bold block mb-2"> Number </label>
-        <InputText id="number" v-model="number" v-keyfilter.num fluid/>
-      </div>
-      <div class="flex-auto">
-        <label for="money" class="font-bold block mb-2"> Money </label>
-        <InputText id="money" v-model="money" v-keyfilter.money fluid/>
-      </div>
-    </div>
-    <div class="flex flex-wrap gap-3">
-      <div class="flex-auto">
-        <label for="hex" class="font-bold block mb-2"> Hex </label>
-        <InputText id="hex" v-model="hex" v-keyfilter.hex fluid/>
-      </div>
-      <div class="flex-auto">
-        <label for="alphabetic" class="font-bold block mb-2"> Alphabetic </label>
-        <InputText id="alphabetic" v-model="alphabetic" v-keyfilter.alpha fluid/>
-      </div>
-      <div class="flex-auto">
-        <label for="alphanumeric" class="font-bold block mb-2"> Alphanumeric </label>
-        <InputText id="alphanumeric" v-model="alphanumeric" v-keyfilter.alphanum fluid/>
-      </div>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="section-title">Publications</div>
-    <div class="flex flex-wrap gap-3 mb-4">
-      <div class="flex-auto">
-        <label for="integer" class="font-bold block mb-2"> Integer </label>
-        <InputText id="integer" v-model="integer" v-keyfilter.int fluid/>
-      </div>
-      <div class="flex-auto">
-        <label for="number" class="font-bold block mb-2"> Number </label>
-        <InputText id="number" v-model="number" v-keyfilter.num fluid/>
-      </div>
-      <div class="flex-auto">
-        <label for="money" class="font-bold block mb-2"> Money </label>
-        <InputText id="money" v-model="money" v-keyfilter.money fluid/>
-      </div>
-    </div>
-    <div class="flex flex-wrap gap-3">
-      <div class="flex-auto">
-        <label for="hex" class="font-bold block mb-2"> Hex </label>
-        <InputText id="hex" v-model="hex" v-keyfilter.hex fluid/>
-      </div>
-      <div class="flex-auto">
-        <label for="alphabetic" class="font-bold block mb-2"> Alphabetic </label>
-        <InputText id="alphabetic" v-model="alphabetic" v-keyfilter.alpha fluid/>
-      </div>
-      <div class="flex-auto">
-        <label for="alphanumeric" class="font-bold block mb-2"> Alphanumeric </label>
-        <InputText id="alphanumeric" v-model="alphanumeric" v-keyfilter.alphanum fluid/>
-      </div>
-    </div>
+<!--      <label :for="'conference-summary-' + index" class="font-bold block mb-3 mt-3">Summary</label>-->
+<!--      <Textarea auto-resize :id="'conference-summary-' + index" v-model="education.summary" placeholder="Description of the job (optional)"-->
+<!--                style="width:100%;height:20em;resize:none"/>-->
+    </InputItem>
+    <button @click="addEducation" class="button-add">
+      <i class="fas fa-plus mr-2"></i> Add Education
+    </button>
   </div>
 
   <div class="card">
     <div class="section-title">Skills</div>
-    <div class="flex flex-wrap gap-3 mb-4">
-      <div class="flex-auto">
-        <label for="integer" class="font-bold block mb-2"> Integer </label>
-        <InputText id="integer" v-model="integer" v-keyfilter.int fluid/>
+    <InputItem v-for="(skill, index) in dataStore.data.skills"
+               :key="index"
+               @move-up="moveUp(dataStore.data.skills, index)"
+               @move-down="moveDown(dataStore.data.skills, index)"
+               @delete="removeElement(dataStore.data.skills,index)">
+      <div class="grid-2">
+        <TextInput v-model="skill.name" label="Name"/>
       </div>
-      <div class="flex-auto">
-        <label for="number" class="font-bold block mb-2"> Number </label>
-        <InputText id="number" v-model="number" v-keyfilter.num fluid/>
-      </div>
-      <div class="flex-auto">
-        <label for="money" class="font-bold block mb-2"> Money </label>
-        <InputText id="money" v-model="money" v-keyfilter.money fluid/>
-      </div>
-    </div>
-    <div class="flex flex-wrap gap-3">
-      <div class="flex-auto">
-        <label for="hex" class="font-bold block mb-2"> Hex </label>
-        <InputText id="hex" v-model="hex" v-keyfilter.hex fluid/>
-      </div>
-      <div class="flex-auto">
-        <label for="alphabetic" class="font-bold block mb-2"> Alphabetic </label>
-        <InputText id="alphabetic" v-model="alphabetic" v-keyfilter.alpha fluid/>
-      </div>
-      <div class="flex-auto">
-        <label for="alphanumeric" class="font-bold block mb-2"> Alphanumeric </label>
-        <InputText id="alphanumeric" v-model="alphanumeric" v-keyfilter.alphanum fluid/>
-      </div>
-    </div>
+<!--      TODO move to something like chips or whatever from PV for space improvement-->
+      <label for="'keyword-' + index + '-0'" class="font-bold block mb-2 mt-2"> Keywords </label>
+      <InputItem
+          v-for="(keyword, keywordIndex) in skill.keywords"
+          :key="keywordIndex"
+          @move-up="moveUp(skill.keywords, keywordIndex)"
+          @move-down="moveDown(skill.keywords, keywordIndex)"
+          @delete="skill.keywords.splice(keywordIndex, 1)"
+      >
+
+<!--        TODO revisit id so it is unique (index and keywordIndex could collide in reverse-->
+        <InputText
+            :id="'keyword-' + index + '-' + keywordIndex"
+            v-model="skill.keywords[keywordIndex]"
+            style="width:100%"
+            auto-resize
+        />
+      </InputItem>
+      <button @click="addKeyword(skill)" class="button-add">
+        <i class="fas fa-plus mr-2"></i> Add Keyword
+      </button>
+    </InputItem>
+    <button @click="addSkill" class="button-add">
+      <i class="fas fa-plus mr-2"></i> Add Skill
+    </button>
   </div>
 
   <div class="card">
     <div class="section-title">Languages</div>
-    <div class="flex flex-wrap gap-3 mb-4">
-      <div class="flex-auto">
-        <label for="integer" class="font-bold block mb-2"> Integer </label>
-        <InputText id="integer" v-model="integer" v-keyfilter.int fluid/>
+    <InputItem v-for="(language, index) in dataStore.data.languages"
+               :key="index"
+               @move-up="moveUp(dataStore.data.languages, index)"
+               @move-down="moveDown(dataStore.data.languages, index)"
+               @delete="removeElement(dataStore.data.languages,index)">
+      <div class="grid-2">
+        <TextInput v-model="language.language" label="Language"/>
+        <TextInput v-model="language.fluency" label="Fluency"/>
       </div>
-      <div class="flex-auto">
-        <label for="number" class="font-bold block mb-2"> Number </label>
-        <InputText id="number" v-model="number" v-keyfilter.num fluid/>
-      </div>
-      <div class="flex-auto">
-        <label for="money" class="font-bold block mb-2"> Money </label>
-        <InputText id="money" v-model="money" v-keyfilter.money fluid/>
-      </div>
-    </div>
-    <div class="flex flex-wrap gap-3">
-      <div class="flex-auto">
-        <label for="hex" class="font-bold block mb-2"> Hex </label>
-        <InputText id="hex" v-model="hex" v-keyfilter.hex fluid/>
-      </div>
-      <div class="flex-auto">
-        <label for="alphabetic" class="font-bold block mb-2"> Alphabetic </label>
-        <InputText id="alphabetic" v-model="alphabetic" v-keyfilter.alpha fluid/>
-      </div>
-      <div class="flex-auto">
-        <label for="alphanumeric" class="font-bold block mb-2"> Alphanumeric </label>
-        <InputText id="alphanumeric" v-model="alphanumeric" v-keyfilter.alphanum fluid/>
-      </div>
-    </div>
+    </InputItem>
+    <button @click="addLanguage" class="button-add">
+      <i class="fas fa-plus mr-2"></i> Add Language
+    </button>
   </div>
-
-  <div class="card">
-    <div class="section-title">Interests</div>
-    <div class="flex flex-wrap gap-3 mb-4">
-      <div class="flex-auto">
-        <label for="integer" class="font-bold block mb-2"> Integer </label>
-        <InputText id="integer" v-model="integer" v-keyfilter.int fluid/>
-      </div>
-      <div class="flex-auto">
-        <label for="number" class="font-bold block mb-2"> Number </label>
-        <InputText id="number" v-model="number" v-keyfilter.num fluid/>
-      </div>
-      <div class="flex-auto">
-        <label for="money" class="font-bold block mb-2"> Money </label>
-        <InputText id="money" v-model="money" v-keyfilter.money fluid/>
-      </div>
-    </div>
-    <div class="flex flex-wrap gap-3">
-      <div class="flex-auto">
-        <label for="hex" class="font-bold block mb-2"> Hex </label>
-        <InputText id="hex" v-model="hex" v-keyfilter.hex fluid/>
-      </div>
-      <div class="flex-auto">
-        <label for="alphabetic" class="font-bold block mb-2"> Alphabetic </label>
-        <InputText id="alphabetic" v-model="alphabetic" v-keyfilter.alpha fluid/>
-      </div>
-      <div class="flex-auto">
-        <label for="alphanumeric" class="font-bold block mb-2"> Alphanumeric </label>
-        <InputText id="alphanumeric" v-model="alphanumeric" v-keyfilter.alphanum fluid/>
-      </div>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="section-title">References</div>
-    <div class="flex flex-wrap gap-3 mb-4">
-      <div class="flex-auto">
-        <label for="integer" class="font-bold block mb-2"> Integer </label>
-        <InputText id="integer" v-model="integer" v-keyfilter.int fluid/>
-      </div>
-      <div class="flex-auto">
-        <label for="number" class="font-bold block mb-2"> Number </label>
-        <InputText id="number" v-model="number" v-keyfilter.num fluid/>
-      </div>
-      <div class="flex-auto">
-        <label for="money" class="font-bold block mb-2"> Money </label>
-        <InputText id="money" v-model="money" v-keyfilter.money fluid/>
-      </div>
-    </div>
-    <div class="flex flex-wrap gap-3">
-      <div class="flex-auto">
-        <label for="hex" class="font-bold block mb-2"> Hex </label>
-        <InputText id="hex" v-model="hex" v-keyfilter.hex fluid/>
-      </div>
-      <div class="flex-auto">
-        <label for="alphabetic" class="font-bold block mb-2"> Alphabetic </label>
-        <InputText id="alphabetic" v-model="alphabetic" v-keyfilter.alpha fluid/>
-      </div>
-      <div class="flex-auto">
-        <label for="alphanumeric" class="font-bold block mb-2"> Alphanumeric </label>
-        <InputText id="alphanumeric" v-model="alphanumeric" v-keyfilter.alphanum fluid/>
-      </div>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="section-title">Projects</div>
-    <div class="flex flex-wrap gap-3 mb-4">
-      <div class="flex-auto">
-        <label for="integer" class="font-bold block mb-2"> Integer </label>
-        <InputText id="integer" v-model="integer" v-keyfilter.int fluid/>
-      </div>
-      <div class="flex-auto">
-        <label for="number" class="font-bold block mb-2"> Number </label>
-        <InputText id="number" v-model="number" v-keyfilter.num fluid/>
-      </div>
-      <div class="flex-auto">
-        <label for="money" class="font-bold block mb-2"> Money </label>
-        <InputText id="money" v-model="money" v-keyfilter.money fluid/>
-      </div>
-    </div>
-    <div class="flex flex-wrap gap-3">
-      <div class="flex-auto">
-        <label for="hex" class="font-bold block mb-2"> Hex </label>
-        <InputText id="hex" v-model="hex" v-keyfilter.hex fluid/>
-      </div>
-      <div class="flex-auto">
-        <label for="alphabetic" class="font-bold block mb-2"> Alphabetic </label>
-        <InputText id="alphabetic" v-model="alphabetic" v-keyfilter.alpha fluid/>
-      </div>
-      <div class="flex-auto">
-        <label for="alphanumeric" class="font-bold block mb-2"> Alphanumeric </label>
-        <InputText id="alphanumeric" v-model="alphanumeric" v-keyfilter.alphanum fluid/>
-      </div>
-    </div>
-  </div>
-
-  <!--    <div class="p-field">-->
-  <!--      <label for="tournamentName">Tournament Name</label>-->
-  <!--      <InputText v-model="tournamentInfoStore.tournamentName" id="tournamentName"/>-->
-  <!--    </div>-->
-
-  <!--    <div class="p-field">-->
-  <!--      <label for="currency">Currency*</label>-->
-  <!--      <Select-->
-  <!--          filter-->
-  <!--          v-model="tournamentInfoStore.currency"-->
-  <!--          id="currency"-->
-  <!--          :options="currencies"-->
-  <!--          option-label="name"-->
-  <!--          placeholder="Select a currency"-->
-  <!--      />-->
-  <!--    </div>-->
-
-  <!--    <div class="p-field">-->
-  <!--      <label for="tournamentName">Estimated Duration (h)</label>-->
-  <!--      <InputText v-model="tournamentInfoStore.estimatedDurationHours" id="estimatedDurationHours"/>-->
-  <!--    </div>-->
-
-  <!--    <div class="section-title">Prizes</div>-->
-
-  <!--    <div class="p-field">-->
-  <!--      <label for="guaranteedPrize">Guaranteed Prize</label>-->
-  <!--      <InputNumber v-model="tournamentInfoStore.guaranteedPrize" id="guaranteedPrize" :min="0" :currency="tournamentInfoStore.currency?.code" mode="currency"/>-->
-  <!--    </div>-->
-
-  <!--    <div class="p-field">-->
-  <!--      <label for="addedPrize">Added Prize</label>-->
-  <!--      <InputNumber v-model="tournamentInfoStore.addedPrize" id="addedPrize" :min="0" :currency="tournamentInfoStore.currency?.code" mode="currency"/>-->
-  <!--    </div>-->
-
-  <!--    <div class="section-title">Buy-In Info</div>-->
-
-  <!--    <div class="p-field">-->
-  <!--      <label for="entryFee">Entry Fee*</label>-->
-  <!--      <InputNumber v-model="tournamentInfoStore.entryFee" id="entryFee" :min="0" :currency="tournamentInfoStore.currency?.code" mode="currency"/>-->
-  <!--    </div>-->
-
-  <!--    <div class="p-field">-->
-  <!--      <label for="entryFee">Entry Rake*</label>-->
-  <!--      <InputNumber v-model="tournamentInfoStore.entryRake" id="entryRake" :min="0" :currency="tournamentInfoStore.currency?.code" mode="currency"/>-->
-  <!--    </div>-->
-
-  <!--    <div class="p-field">-->
-  <!--      <label for="initialStack">Initial Stack*</label>-->
-  <!--      <InputNumber v-model="tournamentInfoStore.initialStack" id="initialStack" :min="0"/>-->
-  <!--    </div>-->
-
-  <!--    <div class="section-title">Reentry</div>-->
-  <!--    <div class="p-field">-->
-  <!--      <label for="reentryEnabled">Enable Reentry</label>-->
-  <!--      <Checkbox v-model="tournamentInfoStore.reentryEnabled" id="reentryEnabled" binary/>-->
-  <!--    </div>-->
-  <!--    <div/>-->
-
-  <!--    <div class="p-field">-->
-  <!--      <label for="reentryFee">Reentry Fee</label>-->
-  <!--      <InputNumber v-model="tournamentInfoStore.reentryFee" id="reentryFee" :min="0" :currency="tournamentInfoStore.currency?.code" mode="currency"-->
-  <!--                   :disabled="!tournamentInfoStore.reentryEnabled"/>-->
-  <!--    </div>-->
-
-  <!--    <div class="p-field">-->
-  <!--      <label for="reentryFee">Reentry Rake</label>-->
-  <!--      <InputNumber v-model="tournamentInfoStore.reentryRake" id="reentryRake" :min="0" :currency="tournamentInfoStore.currency?.code" mode="currency"-->
-  <!--                   :disabled="!tournamentInfoStore.reentryEnabled"/>-->
-  <!--    </div>-->
-
-  <!--    <div class="p-field">-->
-  <!--      <label for="maxReentries">Max Reentries</label>-->
-  <!--      <InputNumber v-model="tournamentInfoStore.maxReentries" id="maxReentries" :min="0" :disabled="!tournamentInfoStore.reentryEnabled"/>-->
-  <!--    </div>-->
-
-  <!--    <div class="section-title">Addon</div>-->
-  <!--    <div class="p-field">-->
-  <!--      <label for="addonEnabled">Enable Addon</label>-->
-  <!--      <Checkbox v-model="tournamentInfoStore.addonEnabled" id="addonEnabled" binary/>-->
-  <!--    </div>-->
-
-  <!--    <div class="p-field">-->
-  <!--      <label for="addonEnabled">Enable Double Addon</label>-->
-  <!--      <Checkbox v-model="tournamentInfoStore.doubleAddonEnabled" id="doubleAddonEnabled" :disabled="!tournamentInfoStore.addonEnabled" binary/>-->
-  <!--    </div>-->
-
-  <!--    <div class="p-field">-->
-  <!--      <label for="addonFee">Addon Fee</label>-->
-  <!--      <InputNumber v-model="tournamentInfoStore.addonFee" id="addonFee" :min="0" :currency="tournamentInfoStore.currency?.code" mode="currency"-->
-  <!--                   :disabled="!tournamentInfoStore.addonEnabled"/>-->
-  <!--    </div>-->
-
-  <!--    <div class="p-field">-->
-  <!--      <label for="addonFee">Addon Rake</label>-->
-  <!--      <InputNumber v-model="tournamentInfoStore.addonRake" id="addonRake" :min="0" :currency="tournamentInfoStore.currency?.code" mode="currency"-->
-  <!--                   :disabled="!tournamentInfoStore.addonEnabled"/>-->
-  <!--    </div>-->
-
-  <!--    <div class="p-field">-->
-  <!--      <label for="addonStack">Addon Stack</label>-->
-  <!--      <InputNumber v-model="tournamentInfoStore.addonStack" id="addonStack" :min="0" :disabled="!tournamentInfoStore.addonEnabled"/>-->
-  <!--    </div>-->
-
-  <!--  </div>-->
 </template>
 
 <style scoped lang="sass">
-.p-field
-  width: 100%
-  min-width: 200px
-  display: flex
-  flex-direction: column
-  margin-top: 1em
-
 .section-title
   width: 100%
   margin: 1em 0
   font-weight: bold
   font-size: 1.6em
 
-
-@media (max-width: 680px)
-  .p-field
+@for $i from 2 through 4
+  .grid-#{$i}
+    display: grid
     width: 100%
+    gap: 1rem
+    grid-template-columns: repeat(#{$i}, 1fr)
+
 </style>

@@ -24,11 +24,11 @@ const calculateScale = () => {
 };
 
 const zoomIn = () => {
-  scale.value = Math.min(scale.value + 0.1, 2);
+  scale.value = Math.min(scale.value + 0.1, 4);
 };
 
 const zoomOut = () => {
-  scale.value = Math.max(scale.value - 0.1, 0.5);
+  scale.value = Math.max(scale.value - 0.1, 0.25);
 };
 
 const resetZoom = () => {
@@ -63,6 +63,7 @@ onMounted(() => {
 });
 </script>
 
+<!--TODO allow to move around the page-->
 <template>
   <div ref="visorRef" class="visor">
     <div class="content-wrapper">
@@ -78,10 +79,11 @@ onMounted(() => {
       </div>
     </div>
     <div class="menu">
-      <button @click="zoomIn">+</button>
-      <button @click="zoomOut">-</button>
-      <button @click="resetZoom">Reset</button>
-      <button @click="downloadPDF">Download PDF</button>
+<!--      TODO translate titles -->
+      <button @click="zoomIn" title="Zoom in"><i class="fas fa-magnifying-glass-plus"/></button>
+      <button @click="zoomOut" title="Zoom out"><i class="fas fa-magnifying-glass-minus"/></button>
+      <button @click="resetZoom" title="Fit to screen"><i class="fas fa-expand"/></button>
+      <button @click="downloadPDF" title="Download PDF"><i class="fas fa-file-pdf"/></button>
     </div>
   </div>
 </template>
@@ -109,6 +111,7 @@ onMounted(() => {
       justify-content: center
       align-items: center
       transition: transform 0.3s ease
+      box-shadow: 10px 10px 10px rgba(#333, 1)
 
     .originalContent
       position: absolute
@@ -121,19 +124,23 @@ onMounted(() => {
     transform: translateX(-50%)
     display: flex
     gap: 1rem
-    padding: 1rem 2rem
+    padding: 0.3rem 1rem
     background: rgba(0, 0, 0, 0.7)
     border-radius: 50px
     backdrop-filter: blur(5px)
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2)
+    box-shadow: 6px 6px 10px rgba(#333, 1)
     color: white
     width: max-content
+    opacity: 0.4
+
+    &:hover
+      opacity: 1
 
     button
       background: transparent
       border: none
       color: white
-      font-size: 1rem
+      font-size: 1.3rem
       cursor: pointer
       padding: 0.5rem 1rem
       border-radius: 5px

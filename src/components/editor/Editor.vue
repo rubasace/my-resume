@@ -20,6 +20,7 @@ const dataStore = useDataStore()
       <TabList>
         <Tab value="0">{{ $t("editor.data") }}</Tab>
         <Tab value="1">{{ $t("editor.style") }}</Tab>
+        <Tab value="2">Raw Data</Tab>
       </TabList>
       <TabPanels>
         <TabPanel value="0">
@@ -30,6 +31,9 @@ const dataStore = useDataStore()
         <TabPanel value="1">
           <div class="tab-content">
           </div>
+        </TabPanel>
+        <TabPanel value="2">
+          <pre>{{JSON.stringify(dataStore.data, null, 2)}}</pre>
         </TabPanel>
       </TabPanels>
     </Tabs>

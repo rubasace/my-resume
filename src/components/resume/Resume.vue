@@ -4,7 +4,6 @@ import WorkExperienceItem from "./WorkExperienceItem.vue";
 import EducationItem from "./EducationItem.vue";
 import SkillItem from "./SkillItem.vue";
 import ConferenceExperienceItem from "./ConferenceExperienceItem.vue";
-import {FontAwesomeIcon} from '@fortawesome/vue-fontawesome'
 import {useDataStore} from "@/stores/dataStore";
 
 const dataStore = useDataStore()
@@ -22,8 +21,8 @@ export default {
   data() {
     return {
       networkIcons: {
-        GitHub: ["fab", "github-square"],
-        Linkedin: ["fab", "linkedin"],
+        GitHub: "fab square-github",
+        Linkedin: "fab linkedin",
       },
       // profilePic: this.data.basics.picture ? new URL(`/src/assets/images/photo-placeholder.png`, import.meta.url) : undefined
     }
