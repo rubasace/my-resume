@@ -1,5 +1,5 @@
 <template lang="pug">
-.item.skills
+.item.profiles
   i.icon(:class="`${icon}`")
   span.title(v-if="title") {{title}}
   span.value {{items}}
@@ -31,3 +31,7 @@ export default {
   }
 }
 </script>
+<style scoped lang="sass">
+.icon
+  width: 1em
+</style>

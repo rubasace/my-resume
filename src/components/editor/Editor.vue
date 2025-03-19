@@ -8,6 +8,7 @@ import Tab from 'primevue/tab';
 import TabPanels from 'primevue/tabpanels';
 import TabPanel from 'primevue/tabpanel';
 import DataEditor from "./DataEditor.vue";
+import ImportExport from "@/components/editor/ImportExport.vue";
 
 
 const dataStore = useDataStore()
@@ -21,6 +22,7 @@ const dataStore = useDataStore()
         <Tab value="0">{{ $t("editor.data") }}</Tab>
         <Tab value="1">{{ $t("editor.style") }}</Tab>
         <Tab value="2">Raw Data</Tab>
+        <Tab value="3">{{ $t("editor.importExport") }}</Tab>
       </TabList>
       <TabPanels>
         <TabPanel value="0">
@@ -34,6 +36,9 @@ const dataStore = useDataStore()
         </TabPanel>
         <TabPanel value="2">
           <pre>{{JSON.stringify(dataStore.data, null, 2)}}</pre>
+        </TabPanel>
+        <TabPanel value="3">
+          <ImportExport/>
         </TabPanel>
       </TabPanels>
     </Tabs>

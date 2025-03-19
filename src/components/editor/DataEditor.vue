@@ -66,14 +66,6 @@ const addHighlight = (work) => {
   work.highlights.push("");
 };
 
-const addKeyword = (skill) => {
-  if(!skill.keywords) {
-    skill.keywords = []
-  }
-  skill.keywords.push("");
-};
-
-
 const removeElement = (array, index) => {
   array.splice(index, 1);
 };
@@ -108,6 +100,7 @@ const moveDown = (array, index) => {
       <TextInput v-model="dataStore.data.basics.picture" label="Picture"/>
       <TextInput v-model="dataStore.data.basics.email" label="Email"/>
     </div>
+    <Textarea auto-resize id="summary" v-model="dataStore.data.basics.summary" placeholder="Information about yourself (optional)" style="width:100%;height:20em;resize:none" class="mb-2 mt-2"/>
   </div>
 
   <div class="card">
@@ -223,16 +216,7 @@ const moveDown = (array, index) => {
         <TextInput v-model="skill.name" label="Name"/>
       </div>
       <label :for="'keywords-'+index" class="font-bold block mb-2 mt-2"> Keywords </label>
-      <InputChips placeholder="Add a keyword" v-model="skill.keywords" :input-id="'keywords-'+index"/>
-<!--      <Chips-->
-<!--      <Chip-->
-<!--          v-for="(keyword, keywordIndex) in skill.keywords"-->
-<!--          :key="keywordIndex"-->
-<!--          @move-up="moveUp(skill.keywords, keywordIndex)"-->
-<!--          @move-down="moveDown(skill.keywords, keywordIndex)"-->
-<!--          @delete="skill.keywords.splice(keywordIndex, 1)"-->
-<!--      >-->
-
+      <InputChips placeholder="Add a keyword"  v-model="skill.keywords" :input-id="'keywords-'+index" />
 <!--        TODO revisit id so it is unique (index and keywordIndex could collide in reverse-->
 <!--        <InputText-->
 <!--            :id="'keyword-' + index + '-' + keywordIndex"-->
@@ -274,11 +258,15 @@ const moveDown = (array, index) => {
   font-weight: bold
   font-size: 1.6em
 
-@for $i from 2 through 4
-  .grid-#{$i}
-    display: grid
-    width: 100%
-    gap: 1rem
-    grid-template-columns: repeat(#{$i}, 1fr)
+.button-add
+  width: 100%
+  padding: 1em
+  background: transparent
+  border-radius: 10px
+  border: 1px solid #555
+  &:hover
+    border-color: #34d399
+    color: #34d399
+
 
 </style>

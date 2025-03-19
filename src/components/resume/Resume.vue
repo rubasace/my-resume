@@ -3,8 +3,10 @@ import {computed, ref, watchEffect} from 'vue'
 import WorkExperienceItem from "./WorkExperienceItem.vue";
 import EducationItem from "./EducationItem.vue";
 import SkillItem from "./SkillItem.vue";
+import ProfileItem from "./ProfileItem.vue";
 import ConferenceExperienceItem from "./ConferenceExperienceItem.vue";
 import {useDataStore} from "@/stores/dataStore";
+import { faUser, faBriefcase, faGraduationCap, faEnvelope, faPhone,  } from '@fortawesome/free-solid-svg-icons';
 
 const dataStore = useDataStore()
 
@@ -21,8 +23,8 @@ export default {
   data() {
     return {
       networkIcons: {
-        GitHub: "fab square-github",
-        Linkedin: "fab linkedin",
+        GitHub: "fa-brands fa-square-github",
+        Linkedin: "fa-brands fa-linkedin",
       },
       // profilePic: this.data.basics.picture ? new URL(`/src/assets/images/photo-placeholder.png`, import.meta.url) : undefined
     }
@@ -44,9 +46,9 @@ export default {
         p.name {{data.basics.name}}
         p.role {{data.basics.label}}
       .contact
-        SkillItem(v-for="profile in data.basics.profiles" :icon="networkIcons[profile.network]", :value="profile.url")
-        SkillItem(icon="envelope", :value="data.basics.email", v-if="data.basics.email" )
-        SkillItem(icon="phone", :value="data.basics.phone", v-if="data.basics.phone" )
+        ProfileItem(v-for="profile in data.basics.profiles" :icon="networkIcons[profile.network]", :value="profile.url")
+        ProfileItem(icon="fa fa-envelope", :value="data.basics.email", v-if="data.basics.email" )
+        ProfileItem(icon="fa fa-phone", :value="data.basics.phone", v-if="data.basics.phone" )
 
     .section(v-if="data.basics.summary")
       .section-title
@@ -57,7 +59,7 @@ export default {
 
     .section(v-if="data.work")
       .section-title
-        font-awesome-icon(icon='briefcase').icon
+        font-awesome-icon(:icon='faBriefcase').icon
         span {{ $t("section.experience") }}
       .section-content(:class="{'timeline' : showTimeline(data.work)}")
         WorkExperienceItem(v-for="entry in data.work", :items="entry.highlights", :company="entry.name", :location="entry.location", :role="entry.position", :startDate="entry.startDate", :endDate="entry.endDate", :summary="entry.summary")

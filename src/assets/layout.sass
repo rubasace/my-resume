@@ -13,6 +13,13 @@ body
   p
     margin: 0
 
+@for $i from 2 through 4
+  .grid-#{$i}
+    display: grid
+    width: 100%
+    gap: 1rem
+    grid-template-columns: repeat(#{$i}, 1fr)
+
 @media only screen and (max-width: 297mm)
   html
     zoom: 45%

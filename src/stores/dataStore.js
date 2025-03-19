@@ -1,11 +1,18 @@
 import {defineStore} from 'pinia'
 import yaml from "js-yaml";
 import content from '../../data.yaml?raw';
-import {reactive} from "vue";
+import {useLocalStorage} from "@vueuse/core";
 
 export const useDataStore = defineStore('dataStore', () => {
 
-    const data = reactive(yaml.load(content));
+    const data = useLocalStorage('json-resume-data', yaml.load(content));
 
-    return { data };
+    function importData(newData) {
+        data.value = newData
+    }
+
+    return {
+        data,
+        importData
+    };
 })

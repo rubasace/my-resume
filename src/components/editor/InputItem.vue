@@ -19,7 +19,7 @@ const emit = defineEmits(['moveUp', 'moveDown', 'delete', 'hide'])
     <div class="actions">
       <i class="fa fa-trash" @click="emit('delete')"></i>
       <!-- TODO handle show/hide state -->
-      <i class="fa fa-eye" @click="emit('hide')"></i>
+<!--      <i class="fa fa-eye" @click="emit('hide')"></i>-->
     </div>
   </div>
 </template>
