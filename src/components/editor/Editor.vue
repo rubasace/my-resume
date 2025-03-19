@@ -9,6 +9,7 @@ import TabPanels from 'primevue/tabpanels';
 import TabPanel from 'primevue/tabpanel';
 import DataEditor from "./DataEditor.vue";
 import ImportExport from "@/components/editor/ImportExport.vue";
+import StyleConfiguration from "@/components/editor/StyleConfiguration.vue";
 
 
 const dataStore = useDataStore()
@@ -32,13 +33,18 @@ const dataStore = useDataStore()
         </TabPanel>
         <TabPanel value="1">
           <div class="tab-content">
+            <StyleConfiguration/>
           </div>
         </TabPanel>
         <TabPanel value="2">
-          <pre>{{JSON.stringify(dataStore.data, null, 2)}}</pre>
+          <div class="tab-content">
+            <pre>{{ JSON.stringify(dataStore.data, null, 2) }}</pre>
+          </div>
         </TabPanel>
         <TabPanel value="3">
-          <ImportExport/>
+          <div class="tab-content">
+            <ImportExport/>
+          </div>
         </TabPanel>
       </TabPanels>
     </Tabs>
@@ -48,6 +54,7 @@ const dataStore = useDataStore()
 <style scoped lang="sass">
 .editor
   height: 100vh
+
   .tab-content
     //background-color: white
     display: block

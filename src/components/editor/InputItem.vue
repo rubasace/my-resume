@@ -49,6 +49,5 @@ const emit = defineEmits(['moveUp', 'moveDown', 'delete', 'hide'])
       transition: color 0.2s
 
       &:hover
-        //TODO take from theme being applied
-        color: #34d399
+        color: var(--p-secondary-color)
 </style>

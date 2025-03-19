@@ -100,7 +100,7 @@ const moveDown = (array, index) => {
       <TextInput v-model="dataStore.data.basics.picture" label="Picture"/>
       <TextInput v-model="dataStore.data.basics.email" label="Email"/>
     </div>
-    <Textarea auto-resize id="summary" v-model="dataStore.data.basics.summary" placeholder="Information about yourself (optional)" style="width:100%;height:20em;resize:none" class="mb-2 mt-2"/>
+    <Textarea auto-resize id="summary" v-model="dataStore.data.basics.summary" placeholder="Information about yourself (optional)" style="width:100%" class="mb-2 mt-2"/>
   </div>
 
   <div class="card">
@@ -136,7 +136,7 @@ const moveDown = (array, index) => {
         <TextInput v-model="work.endDate" label="End Date"/>
       </div>
       <label :for="'summary-' + index" class="font-bold block mb-3 mt-3">Summary</label>
-      <Textarea auto-resize :id="'summary-' + index" v-model="work.summary" placeholder="Description of the job (optional)" style="width:100%;height:20em;resize:none"/>
+      <Textarea auto-resize :id="'summary-' + index" v-model="work.summary" placeholder="Description of the job (optional)" style="width:100%"/>
       <label :for="'highlight-' + index + '-' + 0" class="font-bold block mb-3 mt-3">Highlights</label>
       <InputItem
           v-for="(highlight, highlightIndex) in work.highlights"
@@ -176,7 +176,7 @@ const moveDown = (array, index) => {
       </div>
       <label :for="'conference-summary-' + index" class="font-bold block mb-3 mt-3">Summary</label>
       <Textarea auto-resize :id="'conference-summary-' + index" v-model="conference.summary" placeholder="Description of the job (optional)"
-                style="width:100%;height:20em;resize:none"/>
+                style="width:100%"/>
     </InputItem>
     <button @click="addConference" class="button-add">
       <i class="fas fa-plus"></i> Add Conference
@@ -198,7 +198,7 @@ const moveDown = (array, index) => {
       </div>
 <!--      <label :for="'conference-summary-' + index" class="font-bold block mb-3 mt-3">Summary</label>-->
 <!--      <Textarea auto-resize :id="'conference-summary-' + index" v-model="education.summary" placeholder="Description of the job (optional)"-->
-<!--                style="width:100%;height:20em;resize:none"/>-->
+<!--                style="width:100%"/>-->
     </InputItem>
     <button @click="addEducation" class="button-add">
       <i class="fas fa-plus"></i> Add Education
@@ -259,13 +259,13 @@ const moveDown = (array, index) => {
 
   &:hover
     cursor: pointer
-    border-color: #34d399
-    color: #34d399
+    border-color: var(--p-primary-color)
+    color: var(--p-primary-color)
   i
     margin-right: 0.5em
 
 ::v-deep(.p-icon):hover
-  border-color: #34d399
-  color: #34d399
+  border-color: var(--p-primary-color)
+  color: var(--p-primary-color)
 
 </style>

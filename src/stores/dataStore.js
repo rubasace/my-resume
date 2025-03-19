@@ -5,6 +5,7 @@ import {useLocalStorage} from "@vueuse/core";
 
 export const useDataStore = defineStore('dataStore', () => {
 
+    // TODO change file to provide default anonymized values
     const data = useLocalStorage('json-resume-data', yaml.load(content));
 
     function importData(newData) {

@@ -1,11 +1,15 @@
 <script setup>
 import {computed, useId} from 'vue'; // VueUse for unique ID generation
-import InputText from 'primevue/inputtext';
+import InputNumber from 'primevue/inputnumber';
 import FloatLabel from 'primevue/floatlabel';
 
 const props = defineProps({
-  modelValue: String|Number,
-  label: String
+  modelValue: Number,
+  label: String,
+  maxFractionDigits: {
+    type: Number,
+    default: 2
+  }
 });
 
 const emit = defineEmits(['update:modelValue']);
@@ -21,12 +25,14 @@ const model = computed({
 
 <template>
   <FloatLabel variant="on">
-    <label :for="inputId" class="font-bold block mb-2">{{ props.label }}</label>
-    <InputText
+    <InputNumber
         :id="inputId"
         v-model="model"
-        @input="emit('update:modelValue', $event.target.value)"
-        fluid
+        @input:modelValue="emit('update:modelValue', $event.target?.value??modelValue)"
+        show-buttons
+        v-bind="$attrs"
+        :maxFractionDigits="maxFractionDigits"
     />
+    <label :for="inputId">{{ props.label }}</label>
   </FloatLabel>
 </template>

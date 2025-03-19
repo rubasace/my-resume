@@ -3,8 +3,6 @@
 $background: whitesmoke !default
 $default-font-family: Cambria, sans-serif
 $default-titles-font-family: Georgia, serif !default
-$default-font-size: 11pt !default
-$default-font-color: black !default
 $details-font-size: 0.9em !default
 $details-color: lighten($default-font-color, 40%) !default
 $time-color: lighten($default-font-color, 30%) !default
@@ -12,27 +10,12 @@ $time-font-size: 0.95rem !default
 $contact-font-size: 0.95em !default
 $title-font-size: 2.3em !default
 $header-line-height: 2.2rem !default
-$highlightColor: #17a095 !default
-$default-margin: 0.75in !default
-$padding-top: $default-margin !default
-$padding-bottom: $default-margin !default
-$padding-right: $default-margin !default
-$padding-left: $default-margin !default
 $section-separation: 0.7rem !default
 $item-separation: 0.2rem !default
 
-//Move margins to style editor
 .page
-  padding-top: $padding-top
-  padding-bottom: $padding-bottom
-  padding-left: $padding-right
-  padding-right: $padding-left
   box-sizing: border-box
   background-color: $background
-
-html
-  font-size: $default-font-size
-  color: $default-font-color
 
 body
   margin: 0
@@ -76,7 +59,7 @@ body
 
         .name
           font-weight: bold
-          color: $highlightColor
+          color: var(--c-resume-highlight-color)
 
         .role
           font-size: 0.55em
@@ -142,7 +125,7 @@ body
         span
           text-transform: uppercase
           font-weight: bold
-          color: $highlightColor
+          color: var(--c-resume-highlight-color)
           border-top: 1px solid
           border-bottom: 1px solid
           display: inline-block
