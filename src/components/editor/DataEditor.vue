@@ -117,7 +117,7 @@ const moveDown = (array, index) => {
       </div>
     </InputItem>
     <button @click="addProfile" class="button-add">
-      <i class="fas fa-plus mr-2"></i> Add Profile
+      <i class="fas fa-plus"></i> Add Profile
     </button>
   </div>
 
@@ -153,11 +153,11 @@ const moveDown = (array, index) => {
         />
       </InputItem>
       <button @click="addHighlight(work)" class="button-add">
-        <i class="fas fa-plus mr-2"></i> Add Highlight
+        <i class="fas fa-plus"></i> Add Highlight
       </button>
     </InputItem>
     <button @click="addExperience" class="button-add">
-      <i class="fas fa-plus mr-2"></i> Add Experience
+      <i class="fas fa-plus"></i> Add Experience
     </button>
   </div>
 
@@ -179,7 +179,7 @@ const moveDown = (array, index) => {
                 style="width:100%;height:20em;resize:none"/>
     </InputItem>
     <button @click="addConference" class="button-add">
-      <i class="fas fa-plus mr-2"></i> Add Conference
+      <i class="fas fa-plus"></i> Add Conference
     </button>
   </div>
 
@@ -201,7 +201,7 @@ const moveDown = (array, index) => {
 <!--                style="width:100%;height:20em;resize:none"/>-->
     </InputItem>
     <button @click="addEducation" class="button-add">
-      <i class="fas fa-plus mr-2"></i> Add Education
+      <i class="fas fa-plus"></i> Add Education
     </button>
   </div>
 
@@ -217,19 +217,9 @@ const moveDown = (array, index) => {
       </div>
       <label :for="'keywords-'+index" class="font-bold block mb-2 mt-2"> Keywords </label>
       <InputChips placeholder="Add a keyword"  v-model="skill.keywords" :input-id="'keywords-'+index" />
-<!--        TODO revisit id so it is unique (index and keywordIndex could collide in reverse-->
-<!--        <InputText-->
-<!--            :id="'keyword-' + index + '-' + keywordIndex"-->
-<!--            v-model="skill.keywords[keywordIndex]"-->
-<!--            style="width:100%"-->
-<!--            auto-resize-->
-<!--        />-->
-<!--      <button @click="addKeyword(skill)" class="button-add">-->
-<!--        <i class="fas fa-plus mr-2"></i> Add Keyword-->
-<!--      </button>-->
     </InputItem>
     <button @click="addSkill" class="button-add">
-      <i class="fas fa-plus mr-2"></i> Add Skill
+      <i class="fas fa-plus"></i> Add Skill
     </button>
   </div>
 
@@ -246,7 +236,7 @@ const moveDown = (array, index) => {
       </div>
     </InputItem>
     <button @click="addLanguage" class="button-add">
-      <i class="fas fa-plus mr-2"></i> Add Language
+      <i class="fas fa-plus"></i> Add Language
     </button>
   </div>
 </template>
@@ -261,12 +251,21 @@ const moveDown = (array, index) => {
 .button-add
   width: 100%
   padding: 1em
-  background: transparent
+  //background: transparent
   border-radius: 10px
   border: 1px solid #555
+  box-shadow: 4px 4px 4px #111
+  background-color: rgba(#666, 0.1)
+
   &:hover
+    cursor: pointer
     border-color: #34d399
     color: #34d399
+  i
+    margin-right: 0.5em
 
+::v-deep(.p-icon):hover
+  border-color: #34d399
+  color: #34d399
 
 </style>
