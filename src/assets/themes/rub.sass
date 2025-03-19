@@ -96,18 +96,48 @@ body
       margin-top: $section-separation
       margin-bottom: 0
 
+      &#summary-section
+        .section-title::before
+          content: "\f007"
+      &#work-section
+        .section-title::before
+          content: "\f0b1"
+      &#conference-section
+        .section-title::before
+          content: "\f5af"
+      &#education-section
+        .section-title::before
+          content: "\f19d"
+      &#certificates-section
+        .section-title::before
+          content: "\f559"
+      &#skills-section
+        .section-title::before
+          content: "\f5dc"
+      &#awards-section
+        .section-title::before
+          content: "\f091"
+      &#languages-section
+        .section-title::before
+          content: "\f1ab"
+      &#extras-section
+        .section-title::before
+          content: "\f196"
+
       .section-title
         font-family: $default-titles-font-family
         font-size: 1.15em
         margin-bottom: 0.25rem
 
-        .icon
+        &::before
           position: absolute
           right: 100%
           margin-right: 0.2em
           top: 0.1em
           min-width: 1em
           width: 1.18em
+          font-family: "Font Awesome 6 Free"
+          font-weight: 900
 
         span
           text-transform: uppercase

@@ -6,7 +6,6 @@ import App from "./App.vue";
 import "./assets/themes/rub.sass";
 import WebFont from "webfontloader";
 
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 
 import Lara from '@primeuix/themes/lara';
@@ -14,24 +13,6 @@ import 'primeflex/primeflex.min.css'
 
 WebFont.load({google: {families: ["Cormorant+Garamond:300,400,700"]}});
 
-import {library} from "@fortawesome/fontawesome-svg-core";
-import {faBrain, faBriefcase, faEnvelope, faGraduationCap, faLanguage, faPlaneDeparture, faTrophy, faPhone, faUser, faAward, faSquarePlus} from "@fortawesome/free-solid-svg-icons";
-import {faGithubSquare, faJs, faLinkedin, faVuejs} from "@fortawesome/free-brands-svg-icons";
-
-library.add(faPhone);
-library.add(faEnvelope);
-library.add(faUser);
-library.add(faSquarePlus);
-library.add(faTrophy);
-library.add(faAward);
-library.add(faGithubSquare);
-library.add(faLinkedin);
-library.add(faBriefcase);
-library.add(faPlaneDeparture);
-library.add(faGraduationCap);
-library.add(faBrain);
-library.add(faLanguage);
-library.add(faJs, faVuejs);
 
 import {createI18n} from "vue-i18n";
 
@@ -91,5 +72,4 @@ app.use(PrimeVue, {
 })
 app.use(pinia)
 app.use(i18n);
-app.component('font-awesome-icon', FontAwesomeIcon);
 app.mount("#app");
