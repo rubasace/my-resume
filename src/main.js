@@ -21,7 +21,7 @@ const messages = {
     en: {
         section: {
             about: "about",
-            experience: "professional experience",
+            experience: "experience",
             conference: "conference presentations",
             education: "education",
             certificates: "certificates",
@@ -39,7 +39,7 @@ const messages = {
     es: {
         section: {
             about: "descripción",
-            experience: "experiencia profesional",
+            experience: "experiencia",
             conference: "presentaciones en conferencias",
             education: "estudios",
             certificates: "certificados",

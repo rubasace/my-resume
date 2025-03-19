@@ -4,7 +4,7 @@ import FilePicker from "@/components/editor/FilePicker.vue";
 import {useDataStore} from "@/stores/dataStore";
 import {Button, useToast} from "primevue";
 import yaml from "js-yaml";
-import {useStyleStore} from "@/stores/customizationStore";
+import {useStyleStore} from "@/stores/styleStore";
 
 const dataStore = useDataStore();
 let styleStore = useStyleStore();
@@ -30,12 +30,13 @@ function importData(event) {
         const {_builderData, ...data} = parseFileContent(fileContent, fileName);
 
         dataStore.data = data
-        styleStore.style = _builderData.style
-        styleStore.customCSS = _builderData.customCss
+        styleStore.style = styleStore.importStyle(_builderData?.style)
+        styleStore.customCSS = _builderData?.customCss??''
 
         toast.add({severity: 'success', summary: 'Data file imported successfully', detail: `Loaded content from ${file.name}`, life: 5000});
       } catch (error) {
         toast.add({severity: 'error', summary: 'Error loading file', detail: `Data file ${file.name} was not loaded successfully. Error received: ${error.message}`, life: 5000});
+        console.error(error)
       }
     }
 

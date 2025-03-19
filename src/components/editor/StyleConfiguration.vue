@@ -1,7 +1,7 @@
 <script setup>
 
 import {Textarea} from "primevue";
-import {useStyleStore} from "@/stores/customizationStore";
+import {useStyleStore} from "@/stores/styleStore";
 import ColorPicker from '@/components/editor/ColorPicker.vue'
 import NumberInput from "@/components/editor/NumberInput.vue";
 

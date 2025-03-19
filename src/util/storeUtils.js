@@ -8,7 +8,6 @@ export function bindStateToCssVariables(state) {
     Object.keys(state.value).forEach((key) => {
         watch(() => state.value[key], (newValue) => {
             const cssVariable = `--c-resume-${key.replace(/([A-Z])/g, '-$1').toLowerCase()}`;
-            console.log("Creating CSS variable", cssVariable, newValue);
             document.documentElement.style.setProperty(cssVariable, newValue??'');
         }, { immediate: true });
     });

@@ -90,7 +90,10 @@ const moveDown = (array, index) => {
   <!--  TODO add translations-->
   <!--  TODO add filepicker for picture-->
   <!--  TODO Implement reorder with draggable instead (look for alternative given it's not actively developed) -->
+  <!--  TODO allow to show/hide elements-->
+  <!--  TODO think of adding other themes-->
   <!--  TODO show elements compacted with option to click and expand to see details-->
+  <!--  TODO add support for text on profiles and allow to indicate icon-->
 
   <div class="card">
     <div class="section-title">Basic Data</div>
