@@ -5,8 +5,8 @@
     span.separator &#x2f;
     span.name.details {{name}}
     span.time.details
-      span {{startDate}}
-      span(v-if="endDate")  - {{endDate}}
+      span {{ String(startDate) }}
+      span(v-if="endDate")  - {{ String(endDate) }}
   .description(v-if='description')
     p {{description}}
 
@@ -23,11 +23,11 @@ defineProps({
     required: true
   },
   startDate: {
-    type: String,
+    type: [String, Number],
     required: true
   },
   endDate: {
-    type: String,
+    type: [String, Number],
     required: true
   },
   description: {

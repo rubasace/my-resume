@@ -30,7 +30,7 @@ function importData(event) {
         const {_builderData, ...data} = parseFileContent(fileContent, fileName);
 
         dataStore.data = data
-        styleStore.style = styleStore.importStyle(_builderData?.style)
+        styleStore.importStyle(_builderData?.style??{})
         styleStore.customCSS = _builderData?.customCss??''
 
         toast.add({severity: 'success', summary: 'Data file imported successfully', detail: `Loaded content from ${file.name}`, life: 5000});

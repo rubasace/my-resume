@@ -6,7 +6,9 @@ import ColorPicker from '@/components/editor/ColorPicker.vue'
 import NumberInput from "@/components/editor/NumberInput.vue";
 
 let styleStore = useStyleStore();
-
+console.log(styleStore.style.deleteme)
+styleStore.style.deleteme=41
+console.log(styleStore.style.deleteme)
 </script>
 
 <template>

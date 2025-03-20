@@ -9,7 +9,7 @@
 
 defineProps({
   icon: {
-    type: Object,
+    type: String,
     required: false
   },
   title: {
@@ -17,7 +17,7 @@ defineProps({
     required: false
   },
   value: {
-    type: Object,
+    type: String,
     required: true
   }
 })

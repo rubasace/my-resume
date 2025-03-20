@@ -6,11 +6,12 @@ import SkillItem from "./SkillItem.vue";
 import ProfileItem from "./ProfileItem.vue";
 import ConferenceExperienceItem from "./ConferenceExperienceItem.vue";
 import { useDataStore } from "@/stores/dataStore";
+import LanguageItem from "@/components/resume/LanguageItem.vue";
 
 const dataStore = useDataStore();
 const data = computed(() => dataStore.data);
 
-// const profilePic = ref()
+const profilePic = null
 // watchEffect(async () => {
 //   profilePic.value = (await import(/* @vite-ignore */ `../assets/images/${data.value.basics.picture}`)).default
 // })
@@ -22,6 +23,7 @@ export default {
       networkIcons: {
         GitHub: "fa-brands fa-square-github",
         Linkedin: "fa-brands fa-linkedin",
+        Twitter: "fa-brands fa-square-twitter",
       },
       // profilePic: this.data.basics.picture ? new URL(`/src/assets/images/photo-placeholder.png`, import.meta.url) : undefined
     };
@@ -120,7 +122,7 @@ export default {
           <span>{{ $t("section.languages") }}</span>
         </div>
         <div class="section-content flex">
-          <SkillItem v-for="entry in data.languages" :title="entry.language" :value="entry.fluency" />
+          <LanguageItem v-for="entry in data.languages" :name="entry.language" :level="entry.fluency" />
         </div>
       </div>
 
