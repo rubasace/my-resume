@@ -1,6 +1,6 @@
 <script setup>
 import {useDataStore} from "@/stores/dataStore";
-import {InputText, Textarea, InputChips} from "primevue";
+import {InputChips, Textarea} from "primevue";
 import TextInput from "@/components/editor/TextInput.vue";
 import InputItem from "@/components/editor/InputItem.vue";
 import {VueDraggable} from "vue-draggable-plus";
@@ -71,31 +71,20 @@ const removeElement = (array, index) => {
   array.splice(index, 1);
 };
 
-
-const moveUp = (array, index) => {
-  if (index > 0) {
-    [array[index], array[index - 1]] = [array[index - 1], array[index]];
-  }
-};
-
-const moveDown = (array, index) => {
-  if (index < array.length - 1) {
-    [array[index], array[index + 1]] = [array[index + 1], array[index]];
-  }
-};
-
 </script>
 
 <template>
 
   <!--  TODO add translations-->
+  <!--  TODO allow to add experience from the top-->
   <!--  TODO add filepicker for picture-->
   <!--  TODO allow to drag CV to see when zooming -->
-  <!--  TODO allow to show/hide elements-->
   <!--  TODO think of adding other themes-->
   <!--  TODO show elements compacted with option to click and expand to see details-->
   <!--  TODO add support for text on profiles and allow to indicate icon-->
   <!--  TODO allow to modify order of sections at will-->
+  <!--  TODO add autocomplete for known networks on profiles-->
+  <!--  TODO add confirmation for deletions -->
 
   <div class="card">
     <div class="section-title">Basic Data</div>
@@ -113,8 +102,7 @@ const moveDown = (array, index) => {
     <VueDraggable v-model="dataStore.data.basics.profiles" handle=".handle">
       <InputItem v-for="(profile, index) in dataStore.data.basics.profiles"
                  :key="index"
-                 @move-up="moveUp(dataStore.data.basics.profiles, index)"
-                 @move-down="moveDown(dataStore.data.basics.profiles, index)"
+                 v-model="dataStore.data.basics.profiles[index]"
                  @delete="removeElement(dataStore.data.basics.profiles, index)">
         <div class="grid-3">
           <TextInput v-model="profile.network" label="Network"/>
@@ -133,8 +121,7 @@ const moveDown = (array, index) => {
     <VueDraggable v-model="dataStore.data.work" handle=".handle">
       <InputItem v-for="(work, index) in dataStore.data.work"
                  :key="index"
-                 @move-up="moveUp(dataStore.data.work, index)"
-                 @move-down="moveDown(dataStore.data.work, index)"
+                 v-model="dataStore.data.work[index]"
                  @delete="removeElement(dataStore.data.work,index)">
         <div class="grid-3">
           <TextInput v-model="work.name" label="Company"/>
@@ -150,8 +137,6 @@ const moveDown = (array, index) => {
           <InputItem
               v-for="(highlight, highlightIndex) in work.highlights"
               :key="highlightIndex"
-              @move-up="moveUp(work.highlights, highlightIndex)"
-              @move-down="moveDown(work.highlights, highlightIndex)"
               @delete="work.highlights.splice(highlightIndex, 1)"
           >
         <Textarea
@@ -177,8 +162,7 @@ const moveDown = (array, index) => {
     <VueDraggable v-model="dataStore.data.conferences" handle=".handle">
       <InputItem v-for="(conference, index) in dataStore.data.conferences"
                  :key="index"
-                 @move-up="moveUp(dataStore.data.conferences, index)"
-                 @move-down="moveDown(dataStore.data.conferences, index)"
+                 v-model="dataStore.data.conferences[index]"
                  @delete="removeElement(dataStore.data.conferences, index)">
         <div class="grid-2">
           <TextInput v-model="conference.conference" label="Conference"/>
@@ -201,8 +185,7 @@ const moveDown = (array, index) => {
     <VueDraggable v-model="dataStore.data.education" handle=".handle">
       <InputItem v-for="(education, index) in dataStore.data.education"
                  :key="index"
-                 @move-up="moveUp(dataStore.data.education, index)"
-                 @move-down="moveDown(dataStore.data.education, index)"
+                 v-model="dataStore.data.education[index]"
                  @delete="removeElement(dataStore.data.education,index)">
         <div class="grid-2">
           <TextInput v-model="education.institution" label="Institution"/>
@@ -225,8 +208,7 @@ const moveDown = (array, index) => {
     <VueDraggable v-model="dataStore.data.skills" handle=".handle">
       <InputItem v-for="(skill, index) in dataStore.data.skills"
                  :key="index"
-                 @move-up="moveUp(dataStore.data.skills, index)"
-                 @move-down="moveDown(dataStore.data.skills, index)"
+                 v-model="dataStore.data.skills[index]"
                  @delete="removeElement(dataStore.data.skills,index)">
         <div class="grid-2">
           <TextInput v-model="skill.name" label="Name"/>
@@ -245,8 +227,7 @@ const moveDown = (array, index) => {
     <VueDraggable v-model="dataStore.data.languages" handle=".handle">
       <InputItem v-for="(language, index) in dataStore.data.languages"
                  :key="index"
-                 @move-up="moveUp(dataStore.data.languages, index)"
-                 @move-down="moveDown(dataStore.data.languages, index)"
+                 v-model="dataStore.data.languages[index]"
                  @delete="removeElement(dataStore.data.languages,index)">
         <div class="grid-2">
           <TextInput v-model="language.language" label="Language"/>

@@ -1,23 +1,22 @@
 <script setup>
-import {defineEmits} from 'vue'
 
-const emit = defineEmits(['moveUp', 'moveDown', 'delete', 'hide'])
+const model = defineModel({
+  required: false
+})
+
 </script>
 
 <template>
-  <div class="input-item">
-    <div class="actions">
-      <i class="fas fa-bars handle"></i>
-    </div>
-
+  <div class="input-item" :class="model?.hidden ? 'hidden-input' : ''">
     <div class="content">
       <slot/>
     </div>
 
     <div class="actions">
-      <i class="fa fa-trash" @click="emit('delete')"></i>
+      <i class="fas fa-trash" @click="emit('delete')"></i>
       <!-- TODO handle show/hide state -->
-<!--      <i class="fa fa-eye" @click="emit('hide')"></i>-->
+      <i :class="model?.hidden ? 'fas fa-eye-slash' : 'fas fa-eye'" @click="() => model.hidden = !model?.hidden" v-if="model"></i>
+      <i class="fas fa-bars handle"></i>
     </div>
   </div>
 </template>
@@ -31,15 +30,23 @@ const emit = defineEmits(['moveUp', 'moveDown', 'delete', 'hide'])
   display: flex
   align-items: center
 
+  &:hover
+    .actions
+      opacity: 1
+
+  &.hidden-input
+    opacity: 30%
+
   .content
     flex-grow: 1
     padding: 1em 2em
 
   .actions
     display: flex
-    gap: 0.6em
+    gap: 1em
     align-items: center
     margin: 0 1em
+    opacity: 0.1
 
     i
       cursor: pointer
@@ -47,5 +54,5 @@ const emit = defineEmits(['moveUp', 'moveDown', 'delete', 'hide'])
       transition: color 0.2s
 
       &:hover
-        color: var(--p-secondary-color)
+        color: var(--p-primary-color)
 </style>
