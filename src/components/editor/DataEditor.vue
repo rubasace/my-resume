@@ -3,6 +3,7 @@ import {useDataStore} from "@/stores/dataStore";
 import {InputText, Textarea, InputChips} from "primevue";
 import TextInput from "@/components/editor/TextInput.vue";
 import InputItem from "@/components/editor/InputItem.vue";
+import {VueDraggable} from "vue-draggable-plus";
 
 
 const dataStore = useDataStore();
@@ -89,7 +90,6 @@ const moveDown = (array, index) => {
 
   <!--  TODO add translations-->
   <!--  TODO add filepicker for picture-->
-  <!--  TODO Implement reorder with draggable instead (look for alternative given it's not actively developed) -->
   <!--  TODO allow to drag CV to see when zooming -->
   <!--  TODO allow to show/hide elements-->
   <!--  TODO think of adding other themes-->
@@ -110,17 +110,19 @@ const moveDown = (array, index) => {
 
   <div class="card">
     <div class="section-title">Profiles</div>
-    <InputItem v-for="(profile, index) in dataStore.data.basics.profiles"
-               :key="index"
-               @move-up="moveUp(dataStore.data.basics.profiles, index)"
-               @move-down="moveDown(dataStore.data.basics.profiles, index)"
-               @delete="removeElement(dataStore.data.basics.profiles, index)">
-      <div class="grid-3">
-        <TextInput v-model="profile.network" label="Network"/>
-        <TextInput v-model="profile.url" label="URL"/>
-        <TextInput v-model="profile.text" label="Text"/>
-      </div>
-    </InputItem>
+    <VueDraggable v-model="dataStore.data.basics.profiles" handle=".handle">
+      <InputItem v-for="(profile, index) in dataStore.data.basics.profiles"
+                 :key="index"
+                 @move-up="moveUp(dataStore.data.basics.profiles, index)"
+                 @move-down="moveDown(dataStore.data.basics.profiles, index)"
+                 @delete="removeElement(dataStore.data.basics.profiles, index)">
+        <div class="grid-3">
+          <TextInput v-model="profile.network" label="Network"/>
+          <TextInput v-model="profile.url" label="URL"/>
+          <TextInput v-model="profile.text" label="Text"/>
+        </div>
+      </InputItem>
+    </VueDraggable>
     <button @click="addProfile" class="button-add">
       <i class="fas fa-plus"></i> Add Profile
     </button>
@@ -128,39 +130,43 @@ const moveDown = (array, index) => {
 
   <div class="card">
     <div class="section-title">Experience</div>
-    <InputItem v-for="(work, index) in dataStore.data.work"
-               :key="index"
-               @move-up="moveUp(dataStore.data.work, index)"
-               @move-down="moveDown(dataStore.data.work, index)"
-               @delete="removeElement(dataStore.data.work,index)">
-      <div class="grid-3">
-        <TextInput v-model="work.name" label="Company"/>
-        <TextInput v-model="work.position" label="Position"/>
-        <TextInput v-model="work.location" label="Location"/>
-        <TextInput v-model="work.startDate" label="Start Date"/>
-        <TextInput v-model="work.endDate" label="End Date"/>
-      </div>
-      <label :for="'summary-' + index" class="font-bold block mb-3 mt-3">Summary</label>
-      <Textarea auto-resize :id="'summary-' + index" v-model="work.summary" placeholder="Description of the job (optional)" style="width:100%"/>
-      <label :for="'highlight-' + index + '-' + 0" class="font-bold block mb-3 mt-3">Highlights</label>
-      <InputItem
-          v-for="(highlight, highlightIndex) in work.highlights"
-          :key="highlightIndex"
-          @move-up="moveUp(work.highlights, highlightIndex)"
-          @move-down="moveDown(work.highlights, highlightIndex)"
-          @delete="work.highlights.splice(highlightIndex, 1)"
-      >
+    <VueDraggable v-model="dataStore.data.work" handle=".handle">
+      <InputItem v-for="(work, index) in dataStore.data.work"
+                 :key="index"
+                 @move-up="moveUp(dataStore.data.work, index)"
+                 @move-down="moveDown(dataStore.data.work, index)"
+                 @delete="removeElement(dataStore.data.work,index)">
+        <div class="grid-3">
+          <TextInput v-model="work.name" label="Company"/>
+          <TextInput v-model="work.position" label="Position"/>
+          <TextInput v-model="work.location" label="Location"/>
+          <TextInput v-model="work.startDate" label="Start Date"/>
+          <TextInput v-model="work.endDate" label="End Date"/>
+        </div>
+        <label :for="'summary-' + index" class="font-bold block mb-3 mt-3">Summary</label>
+        <Textarea auto-resize :id="'summary-' + index" v-model="work.summary" placeholder="Description of the job (optional)" style="width:100%"/>
+        <label :for="'highlight-' + index + '-' + 0" class="font-bold block mb-3 mt-3">Highlights</label>
+        <VueDraggable v-model="work.highlights" handle=".handle">
+          <InputItem
+              v-for="(highlight, highlightIndex) in work.highlights"
+              :key="highlightIndex"
+              @move-up="moveUp(work.highlights, highlightIndex)"
+              @move-down="moveDown(work.highlights, highlightIndex)"
+              @delete="work.highlights.splice(highlightIndex, 1)"
+          >
         <Textarea
             :id="'highlight-' + index + '-' + highlightIndex"
             v-model="work.highlights[highlightIndex]"
             style="width:100%"
             auto-resize
         />
+          </InputItem>
+        </VueDraggable>
+        <button @click="addHighlight(work)" class="button-add">
+          <i class="fas fa-plus"></i> Add Highlight
+        </button>
       </InputItem>
-      <button @click="addHighlight(work)" class="button-add">
-        <i class="fas fa-plus"></i> Add Highlight
-      </button>
-    </InputItem>
+    </VueDraggable>
     <button @click="addExperience" class="button-add">
       <i class="fas fa-plus"></i> Add Experience
     </button>
@@ -168,21 +174,23 @@ const moveDown = (array, index) => {
 
   <div class="card">
     <div class="section-title">Conferences</div>
-    <InputItem v-for="(conference, index) in dataStore.data.conferences"
-               :key="index"
-               @move-up="moveUp(dataStore.data.conferences, index)"
-               @move-down="moveDown(dataStore.data.conferences, index)"
-               @delete="removeElement(dataStore.data.conferences, index)">
-      <div class="grid-2">
-        <TextInput v-model="conference.conference" label="Conference"/>
-        <TextInput v-model="conference.name" label="Name"/>
-        <TextInput v-model="conference.location" label="Location"/>
-        <TextInput v-model="conference.time" label="Time"/>
-      </div>
-      <label :for="'conference-summary-' + index" class="font-bold block mb-3 mt-3">Summary</label>
-      <Textarea auto-resize :id="'conference-summary-' + index" v-model="conference.summary" placeholder="Description of the job (optional)"
-                style="width:100%"/>
-    </InputItem>
+    <VueDraggable v-model="dataStore.data.conferences" handle=".handle">
+      <InputItem v-for="(conference, index) in dataStore.data.conferences"
+                 :key="index"
+                 @move-up="moveUp(dataStore.data.conferences, index)"
+                 @move-down="moveDown(dataStore.data.conferences, index)"
+                 @delete="removeElement(dataStore.data.conferences, index)">
+        <div class="grid-2">
+          <TextInput v-model="conference.conference" label="Conference"/>
+          <TextInput v-model="conference.name" label="Name"/>
+          <TextInput v-model="conference.location" label="Location"/>
+          <TextInput v-model="conference.time" label="Time"/>
+        </div>
+        <label :for="'conference-summary-' + index" class="font-bold block mb-3 mt-3">Summary</label>
+        <Textarea auto-resize :id="'conference-summary-' + index" v-model="conference.summary" placeholder="Description of the job (optional)"
+                  style="width:100%"/>
+      </InputItem>
+    </VueDraggable>
     <button @click="addConference" class="button-add">
       <i class="fas fa-plus"></i> Add Conference
     </button>
@@ -190,21 +198,23 @@ const moveDown = (array, index) => {
 
   <div class="card">
     <div class="section-title">Education</div>
-    <InputItem v-for="(education, index) in dataStore.data.education"
-               :key="index"
-               @move-up="moveUp(dataStore.data.education, index)"
-               @move-down="moveDown(dataStore.data.education, index)"
-               @delete="removeElement(dataStore.data.education,index)">
-      <div class="grid-2">
-        <TextInput v-model="education.institution" label="Institution"/>
-        <TextInput v-model="education.studyType" label="Study Type"/>
-        <TextInput v-model="education.startDate" label="Start Date"/>
-        <TextInput v-model="education.endDate" label="End Date"/>
-      </div>
-<!--      <label :for="'conference-summary-' + index" class="font-bold block mb-3 mt-3">Summary</label>-->
-<!--      <Textarea auto-resize :id="'conference-summary-' + index" v-model="education.summary" placeholder="Description of the job (optional)"-->
-<!--                style="width:100%"/>-->
-    </InputItem>
+    <VueDraggable v-model="dataStore.data.education" handle=".handle">
+      <InputItem v-for="(education, index) in dataStore.data.education"
+                 :key="index"
+                 @move-up="moveUp(dataStore.data.education, index)"
+                 @move-down="moveDown(dataStore.data.education, index)"
+                 @delete="removeElement(dataStore.data.education,index)">
+        <div class="grid-2">
+          <TextInput v-model="education.institution" label="Institution"/>
+          <TextInput v-model="education.studyType" label="Study Type"/>
+          <TextInput v-model="education.startDate" label="Start Date"/>
+          <TextInput v-model="education.endDate" label="End Date"/>
+        </div>
+        <!--      <label :for="'conference-summary-' + index" class="font-bold block mb-3 mt-3">Summary</label>-->
+        <!--      <Textarea auto-resize :id="'conference-summary-' + index" v-model="education.summary" placeholder="Description of the job (optional)"-->
+        <!--                style="width:100%"/>-->
+      </InputItem>
+    </VueDraggable>
     <button @click="addEducation" class="button-add">
       <i class="fas fa-plus"></i> Add Education
     </button>
@@ -212,17 +222,19 @@ const moveDown = (array, index) => {
 
   <div class="card">
     <div class="section-title">Skills</div>
-    <InputItem v-for="(skill, index) in dataStore.data.skills"
-               :key="index"
-               @move-up="moveUp(dataStore.data.skills, index)"
-               @move-down="moveDown(dataStore.data.skills, index)"
-               @delete="removeElement(dataStore.data.skills,index)">
-      <div class="grid-2">
-        <TextInput v-model="skill.name" label="Name"/>
-      </div>
-      <label :for="'keywords-'+index" class="font-bold block mb-2 mt-2"> Keywords </label>
-      <InputChips placeholder="Add a keyword"  v-model="skill.keywords" :input-id="'keywords-'+index" />
-    </InputItem>
+    <VueDraggable v-model="dataStore.data.skills" handle=".handle">
+      <InputItem v-for="(skill, index) in dataStore.data.skills"
+                 :key="index"
+                 @move-up="moveUp(dataStore.data.skills, index)"
+                 @move-down="moveDown(dataStore.data.skills, index)"
+                 @delete="removeElement(dataStore.data.skills,index)">
+        <div class="grid-2">
+          <TextInput v-model="skill.name" label="Name"/>
+        </div>
+        <label :for="'keywords-'+index" class="font-bold block mb-2 mt-2"> Keywords </label>
+        <InputChips placeholder="Add a keyword" v-model="skill.keywords" :input-id="'keywords-'+index"/>
+      </InputItem>
+    </VueDraggable>
     <button @click="addSkill" class="button-add">
       <i class="fas fa-plus"></i> Add Skill
     </button>
@@ -230,16 +242,18 @@ const moveDown = (array, index) => {
 
   <div class="card">
     <div class="section-title">Languages</div>
-    <InputItem v-for="(language, index) in dataStore.data.languages"
-               :key="index"
-               @move-up="moveUp(dataStore.data.languages, index)"
-               @move-down="moveDown(dataStore.data.languages, index)"
-               @delete="removeElement(dataStore.data.languages,index)">
-      <div class="grid-2">
-        <TextInput v-model="language.language" label="Language"/>
-        <TextInput v-model="language.fluency" label="Fluency"/>
-      </div>
-    </InputItem>
+    <VueDraggable v-model="dataStore.data.languages" handle=".handle">
+      <InputItem v-for="(language, index) in dataStore.data.languages"
+                 :key="index"
+                 @move-up="moveUp(dataStore.data.languages, index)"
+                 @move-down="moveDown(dataStore.data.languages, index)"
+                 @delete="removeElement(dataStore.data.languages,index)">
+        <div class="grid-2">
+          <TextInput v-model="language.language" label="Language"/>
+          <TextInput v-model="language.fluency" label="Fluency"/>
+        </div>
+      </InputItem>
+    </VueDraggable>
     <button @click="addLanguage" class="button-add">
       <i class="fas fa-plus"></i> Add Language
     </button>
@@ -266,6 +280,7 @@ const moveDown = (array, index) => {
     cursor: pointer
     border-color: var(--p-primary-color)
     color: var(--p-primary-color)
+
   i
     margin-right: 0.5em
 

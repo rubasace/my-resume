@@ -7,9 +7,7 @@ const emit = defineEmits(['moveUp', 'moveDown', 'delete', 'hide'])
 <template>
   <div class="input-item">
     <div class="actions">
-      <!-- TODO replace by draggable-->
-      <i class="fa fa-arrow-up" @click="emit('moveUp')"></i>
-      <i class="fa fa-arrow-down" @click="emit('moveDown')"></i>
+      <i class="fas fa-bars handle"></i>
     </div>
 
     <div class="content">
