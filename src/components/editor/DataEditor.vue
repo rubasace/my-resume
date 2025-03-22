@@ -75,6 +75,8 @@ const removeElement = (array, index) => {
 
 <template>
 
+  <!--  TODO allow to show margins-->
+  <!--  Add alert on overflow and/or allow multi-page-->
   <!--  TODO add translations-->
   <!--  TODO allow to add experience from the top-->
   <!--  TODO add filepicker for picture-->
@@ -85,6 +87,7 @@ const removeElement = (array, index) => {
   <!--  TODO allow to modify order of sections at will-->
   <!--  TODO add autocomplete for known networks on profiles-->
   <!--  TODO add confirmation for deletions -->
+  <!--  Add support for all sections on John Doe resume-->
 
   <div class="card">
     <div class="section-title">Basic Data</div>

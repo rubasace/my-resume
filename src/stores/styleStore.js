@@ -6,7 +6,6 @@ import {reactive, toRefs, watch} from "vue";
 export const useStyleStore = defineStore('styleStore', () => {
 
             const defaultHighlightColor = '#17a095';
-            // TODO Fix fontSize implementation as it affects the rest of the page and not only the CV
             const defaultFontSize = 11
             const defaultMargin = 0.75;
             const defaultStyle = {
