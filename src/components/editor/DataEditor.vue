@@ -1,6 +1,6 @@
 <script setup>
 import {useDataStore} from "@/stores/dataStore";
-import {InputChips, Textarea, Fieldset} from "primevue";
+import {InputChips, Textarea} from "primevue";
 import TextInput from "@/components/editor/TextInput.vue";
 import InputItem from "@/components/editor/InputItem.vue";
 import {VueDraggable} from "vue-draggable-plus";
@@ -77,17 +77,19 @@ const removeElement = (array, index) => {
 <template>
 
   <!--  TODO allow to show margins-->
+  <!--  TODO improve dragging of visor -->
   <!--  TODO Add alert on overflow and/or allow multi-page-->
   <!--  TODO add filepicker for picture-->
   <!--  TODO add confirmation for deletions -->
   <!--  TODO add autocomplete for known networks on profiles-->
   <!--  TODO allow to add experience from the top-->
-  <!--  TODO allow to drag CV to see when zooming -->
   <!--  TODO think of adding other themes-->
   <!--  TODO add support for text on profiles and allow to indicate icon-->
   <!--  TODO allow to modify order of sections at will-->
   <!--  TODO add translations-->
   <!--  TODO Revisit sizes of the entire resume as margins don't look the same on all resolutions -->
+  <!--  TODO allow to configure font-->
+  <!--  TODO add validations?-->
   <!--  TODO Add support for all sections on John Doe resume-->
 
   <Section legend="Basic Data" icon="fas fa-address-card">

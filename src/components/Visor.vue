@@ -1,12 +1,24 @@
 <script setup>
-import { onMounted, ref } from "vue";
+import {onMounted, ref, useTemplateRef} from "vue";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
+import {useDraggable} from "@vueuse/core";
+
+
+const MAX_ZOOM_IN = 4;
+const MIN_ZOOM_OUT = 0.25;
+
+const content = useTemplateRef('contentRef')
+const {x, y} = useDraggable(content, {})
+
 
 const visorRef = ref(null);
 const contentRef = ref(null);
 const originalContentRef = ref(null);
 const scale = ref(1);
+
+let offsetX = 0
+let offsetY = 0
 
 const calculateScale = () => {
   if (visorRef.value && contentRef.value) {
@@ -24,15 +36,19 @@ const calculateScale = () => {
 };
 
 const zoomIn = () => {
-  scale.value = Math.min(scale.value + 0.1, 4);
+  scale.value = Math.min(scale.value + 0.1, MAX_ZOOM_IN);
 };
 
 const zoomOut = () => {
-  scale.value = Math.max(scale.value - 0.1, 0.25);
+  scale.value = Math.max(scale.value - 0.1, MIN_ZOOM_OUT);
 };
 
 const resetZoom = () => {
   calculateScale();
+  x.value = 0;
+  y.value = 0;
+  offsetX = 0
+  offsetY = 0
 };
 
 const downloadPDF = async () => {
@@ -43,7 +59,7 @@ const downloadPDF = async () => {
   const pageElement = originalContentRef.value.querySelector(".page");
   if (!pageElement) return;
 
-  const canvas = await html2canvas(pageElement, { scale: 2 });
+  const canvas = await html2canvas(pageElement, {scale: 2});
   const imgData = canvas.toDataURL("image/png");
   const pdf = new jsPDF({
     orientation: "portrait",
@@ -58,6 +74,19 @@ const downloadPDF = async () => {
   pdf.save("resume.pdf");
 };
 
+
+
+function startDrag(e) {
+  if (!contentRef.value) return
+
+  const rect = contentRef.value.getBoundingClientRect()
+  offsetX = e.clientX - rect.left
+  offsetY = e.clientY - rect.top
+  console.log(offsetX)
+  console.log(offsetY)
+
+}
+
 onMounted(() => {
   calculateScale();
 });
@@ -70,16 +99,17 @@ onMounted(() => {
       <div
           ref="contentRef"
           class="content"
-          :style="{ transform: `scale(${scale})`, transformOrigin: 'center' }"
+          @mousedown="startDrag"
+          :style="{ transform: `scale(${scale})`, transformOrigin: 'center', position: 'relative', top: `${y-offsetY}px`, left: `${x-offsetX}px` }"
       >
-        <slot />
+        <slot/>
       </div>
       <div ref="originalContentRef" class="originalContent">
-        <slot />
+        <slot/>
       </div>
     </div>
     <div class="menu">
-<!--      TODO translate titles -->
+      <!--      TODO translate titles -->
       <button @click="zoomIn" title="Zoom in"><i class="fas fa-magnifying-glass-plus"/></button>
       <button @click="zoomOut" title="Zoom out"><i class="fas fa-magnifying-glass-minus"/></button>
       <button @click="resetZoom" title="Fit to screen"><i class="fas fa-expand"/></button>
@@ -104,7 +134,6 @@ onMounted(() => {
     justify-content: center
     align-items: center
     flex-grow: 1
-    overflow: hidden
 
     .content
       display: flex
@@ -112,6 +141,9 @@ onMounted(() => {
       align-items: center
       transition: transform 0.3s ease
       box-shadow: 10px 10px 10px rgba(#333, 1)
+      z-index: 10
+      user-select: none
+      cursor: grab
 
     .originalContent
       position: absolute
@@ -132,6 +164,7 @@ onMounted(() => {
     color: white
     width: max-content
     opacity: 0.4
+    z-index: 50
 
     &:hover
       opacity: 1
