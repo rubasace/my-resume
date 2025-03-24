@@ -7,18 +7,26 @@ import ProfileItem from "./ProfileItem.vue"
 import ConferenceExperienceItem from "./ConferenceExperienceItem.vue"
 import LanguageItem from "@/components/resume/LanguageItem.vue"
 import { useDataStore } from "@/stores/dataStore"
+import {useStyleStore} from "@/stores/styleStore";
 
 const dataStore = useDataStore()
+let styleStore = useStyleStore();
 const data = computed(() => dataStore.data)
-const profiles = computed(() => dataStore.data.basics?.profiles?.filter(e=>!e.hidden))
-const work = computed(() => dataStore.data.work?.filter(e=>!e.hidden))
-const conferences = computed(() => dataStore.data.conferences?.filter(e=>!e.hidden))
-const education = computed(() => dataStore.data.education?.filter(e=>!e.hidden))
-const skills = computed(() => dataStore.data.skills?.filter(e=>!e.hidden))
-const certificates = computed(() => dataStore.data.certificates?.filter(e=>!e.hidden))
-const awards = computed(() => dataStore.data.awards?.filter(e=>!e.hidden))
-const languages = computed(() => dataStore.data.languages?.filter(e=>!e.hidden))
-const extras = computed(() => dataStore.data.extras?.filter(e=>!e.hidden))
+
+
+const profiles = visibleEntries(() => dataStore.data.basics?.profiles, 'Profiles')
+const work = visibleEntries(() => dataStore.data.work, 'Experience')
+const conferences = visibleEntries(() => dataStore.data.conferences, 'Conferences')
+const education = visibleEntries(() => dataStore.data.education, 'Education')
+const skills = visibleEntries(() => dataStore.data.skills, 'Skills')
+const certificates = visibleEntries(() => dataStore.data.certificates, 'Certificates')
+const awards = visibleEntries(() => dataStore.data.awards, 'Awards')
+const languages = visibleEntries(() => dataStore.data.languages, 'Languages')
+const extras = visibleEntries(() => dataStore.data.extras, 'Extras')
+
+function visibleEntries(getter, section) {
+  return computed(() => styleStore.style.hiddenSections?.includes(section) ? [] : getter()?.filter(e => !e.hidden))
+}
 
 const profilePic = null // Uncomment below if dynamic import needed
 // watchEffect(async () => {

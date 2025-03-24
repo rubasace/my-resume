@@ -88,6 +88,7 @@ const expanded = ref(summaryTitle.value === "")
 
   &.hidden-input
     opacity: 30%
+    user-select: none
 
   .content
     flex-grow: 1

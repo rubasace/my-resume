@@ -76,10 +76,8 @@ const removeElement = (array, index) => {
 
 <template>
 
-  <!--  TODO show elements compacted with option to click and expand to see details-->
-  <!--  Allow to control visibility of entire sections-->
   <!--  TODO allow to show margins-->
-  <!--  Add alert on overflow and/or allow multi-page-->
+  <!--  TODO Add alert on overflow and/or allow multi-page-->
   <!--  TODO add filepicker for picture-->
   <!--  TODO add confirmation for deletions -->
   <!--  TODO add autocomplete for known networks on profiles-->
@@ -89,8 +87,8 @@ const removeElement = (array, index) => {
   <!--  TODO add support for text on profiles and allow to indicate icon-->
   <!--  TODO allow to modify order of sections at will-->
   <!--  TODO add translations-->
-  <!--  Revisit sizes of the entire resume as margins don't look the same on all resolutions -->
-  <!--  Add support for all sections on John Doe resume-->
+  <!--  TODO Revisit sizes of the entire resume as margins don't look the same on all resolutions -->
+  <!--  TODO Add support for all sections on John Doe resume-->
 
   <Section legend="Basic Data" icon="fas fa-address-card">
     <div class="grid-2">
@@ -101,22 +99,22 @@ const removeElement = (array, index) => {
     </div>
     <Textarea auto-resize id="summary" v-model="dataStore.data.basics.summary" placeholder="Information about yourself (optional)" style="width:100%" class="mb-2 mt-2"/>
   </Section>
-  <Section legend="Profiles" icon="fas fa-link">
-      <VueDraggable v-model="dataStore.data.basics.profiles" handle=".handle">
-        <InputItem v-for="(profile, index) in dataStore.data.basics.profiles"
-                   :key="index"
-                   v-model="dataStore.data.basics.profiles[index]"
-                   @delete="removeElement(dataStore.data.basics.profiles, index)">
-          <div class="grid-3">
-            <TextInput v-model="profile.network" label="Network"/>
-            <TextInput v-model="profile.url" label="URL"/>
-            <TextInput v-model="profile.text" label="Text"/>
-          </div>
-        </InputItem>
-      </VueDraggable>
-      <button @click="addProfile" class="button-add">
-        <i class="fas fa-plus"></i> Add Profile
-      </button>
+  <Section legend="Profiles" icon="fas fa-link" v-model="dataStore.data.basics.profiles">
+    <VueDraggable v-model="dataStore.data.basics.profiles" handle=".handle">
+      <InputItem v-for="(profile, index) in dataStore.data.basics.profiles"
+                 :key="index"
+                 v-model="dataStore.data.basics.profiles[index]"
+                 @delete="removeElement(dataStore.data.basics.profiles, index)">
+        <div class="grid-3">
+          <TextInput v-model="profile.network" label="Network"/>
+          <TextInput v-model="profile.url" label="URL"/>
+          <TextInput v-model="profile.text" label="Text"/>
+        </div>
+      </InputItem>
+    </VueDraggable>
+    <button @click="addProfile" class="button-add">
+      <i class="fas fa-plus"></i> Add Profile
+    </button>
   </Section>
   <Section legend="Experience" icon="fas fa-briefcase">
     <VueDraggable v-model="dataStore.data.work" handle=".handle">
@@ -140,7 +138,7 @@ const removeElement = (array, index) => {
               :key="highlightIndex"
               skip-summary
               @delete="work.highlights.splice(highlightIndex, 1)"
-         >
+          >
         <Textarea
             :id="'highlight-' + index + '-' + highlightIndex"
             v-model="work.highlights[highlightIndex]"
