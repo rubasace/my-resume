@@ -22,7 +22,7 @@ const addExperience = () => {
     startDate: "",
     endDate: "",
     summary: "",
-    highlights: [""]
+    highlights: []
   });
 };
 
