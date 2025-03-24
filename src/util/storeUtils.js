@@ -5,10 +5,8 @@ import {watch} from "vue";
  * @param state the state object from the store
  */
 export function bindStateToCssVariables(state) {
-    console.log("Watching state of object ",state.value)
     return Object.keys(state.value).map((key) => {
         return watch(() => state.value[key], (newValue) => {
-            console.log("watching key " + key + " with current value " + state?.value[key] + " and new value " + newValue)
             const cssVariable = `--c-resume-builder-${key.replace(/([A-Z])/g, '-$1').toLowerCase()}`;
             document.documentElement.style.setProperty(cssVariable, newValue ?? '');
         }, {immediate: true, deep: true});

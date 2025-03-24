@@ -8,7 +8,7 @@ import WebFont from "webfontloader";
 
 import '@fortawesome/fontawesome-free/css/all.min.css';
 
-import Lara from '@primeuix/themes/lara';
+import Lara from '@primeuix/themes/aura';
 import 'primeflex/primeflex.min.css'
 
 WebFont.load({google: {families: ["Cormorant+Garamond:300,400,700"]}});

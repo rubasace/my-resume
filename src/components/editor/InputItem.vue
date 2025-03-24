@@ -1,21 +1,73 @@
 <script setup>
 
+import {computed, ref} from "vue";
+
 const model = defineModel({
   required: false
 })
+
+const props = defineProps({
+  skipSummary: {
+    type: Boolean,
+    default: false
+  }
+});
+
+
+let emit = defineEmits(['delete']);
+
+const summaryTitle = computed(() => {
+  if(!model.value || props.skipSummary){
+    return ""
+  }
+  const modelValue = model.value
+  let title = ""
+      if(modelValue.conference) {
+        title += modelValue.conference
+        if (modelValue.name) {
+          title += " - " + modelValue.name
+        }
+      } else if (modelValue.institution) {
+        title += modelValue.institution + " - " + modelValue.studyType
+      } else {
+        title += modelValue.conference ?? modelValue.language ?? modelValue.name ?? modelValue.network
+      }
+  return title
+})
+
+const summaryTime = computed(() => {
+  if(!model.value || props.skipSummary){
+    return ""
+  }
+  return model.value.startDate ? model.value.startDate + " - " + model.value.endDate : model.value.time ?? ""
+})
+
+// When there's no title it's either cause we are skipping the summary (so it doesn't matter as it will already be expaned)
+// or we are creating a new element that still doesn't have any value, so expanding makes sense
+const expanded = ref(summaryTitle.value === "")
 
 </script>
 
 <template>
   <div class="input-item" :class="model?.hidden ? 'hidden-input' : ''">
     <div class="content">
-      <slot/>
+      <div class="input" v-if="expanded || skipSummary">
+        <slot/>
+      </div>
+      <div class="summary" v-else>
+        <div class="title">
+          {{ summaryTitle }}
+        </div>
+        <div class="time">
+          {{ summaryTime }}
+        </div>
+      </div>
     </div>
 
     <div class="actions">
-      <i class="fas fa-trash" @click="emit('delete')"></i>
-      <!-- TODO handle show/hide state -->
+      <i class="fas fa-pencil" v-if="!skipSummary" @click="() => expanded=!expanded"/>
       <i :class="model?.hidden ? 'fas fa-eye-slash' : 'fas fa-eye'" @click="() => model.hidden = !model?.hidden" v-if="model"></i>
+      <i class="fas fa-trash" @click="() => emit('delete')"></i>
       <i class="fas fa-bars handle"></i>
     </div>
   </div>
@@ -55,4 +107,8 @@ const model = defineModel({
 
       &:hover
         color: var(--p-primary-color)
+  .summary
+    display: flex
+    flex-wrap: wrap
+    justify-content: space-between
 </style>
