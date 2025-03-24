@@ -92,7 +92,7 @@ const removeElement = (array, index) => {
   <!--  TODO add validations?-->
   <!--  TODO Add support for all sections on John Doe resume-->
 
-  <Section legend="Basic Data" icon="fas fa-address-card">
+  <Section legend="Basic Data" icon="fas fa-address-card" :hideable="false">
     <div class="grid-2">
       <TextInput v-model="dataStore.data.basics.name" label="Name"/>
       <TextInput v-model="dataStore.data.basics.label" label="Label"/>
