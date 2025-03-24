@@ -81,6 +81,7 @@ const removeElement = (array, index) => {
   <!--  TODO Add alert on overflow and/or allow multi-page-->
   <!--  TODO add filepicker for picture-->
   <!--  TODO add confirmation for deletions -->
+  <!--  TODO move About to separate section?-->
   <!--  TODO add autocomplete for known networks on profiles-->
   <!--  TODO allow to add experience from the top-->
   <!--  TODO think of adding other themes-->
