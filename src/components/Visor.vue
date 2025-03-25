@@ -85,7 +85,9 @@ onMounted(() => {
 <style scoped lang="sass">
 .originalContent
   position: absolute
-  opacity: 0
+  top: 0
+  left: 0
+  visibility: hidden
 
 .visor
   display: flex
