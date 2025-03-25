@@ -1,27 +1,23 @@
 <script setup>
 import {onMounted, ref, useTemplateRef} from "vue";
-import html2canvas from "html2canvas";
-import jsPDF from "jspdf";
 import {useDraggable} from "@vueuse/core";
-import html2pdf from 'html2pdf.js';
 
 
 const MAX_ZOOM_IN = 4;
 const MIN_ZOOM_OUT = 0.25;
 
-const content = useTemplateRef('contentRef')
-const {x, y} = useDraggable(content, {})
-
-
 const visorRef = ref(null);
 const contentRef = ref(null);
 const originalContentRef = ref(null);
+
+console.log(originalContentRef)
+
+const content = useTemplateRef('contentRef')
+const {x, y} = useDraggable(content, {})
+
 const scale = ref(1);
 
-let offsetX = 0
-let offsetY = 0
-
-const calculateScale = () => {
+function calculateScale() {
   if (visorRef.value && contentRef.value) {
     const visorRect = visorRef.value.getBoundingClientRect();
     const contentRect = originalContentRef.value.getBoundingClientRect();
@@ -34,66 +30,27 @@ const calculateScale = () => {
 
     scale.value = Math.min(scaleX, scaleY, 1);
   }
-};
+}
 
-const zoomIn = () => {
+
+function zoomIn() {
   scale.value = Math.min(scale.value + 0.1, MAX_ZOOM_IN);
-};
+}
 
-const zoomOut = () => {
+function zoomOut() {
   scale.value = Math.max(scale.value - 0.1, MIN_ZOOM_OUT);
-};
+}
 
-const resetZoom = () => {
+function resetZoom() {
   calculateScale();
   x.value = 0;
   y.value = 0;
-  offsetX = 0
-  offsetY = 0
-};
-
-const downloadPDF = async () => {
-  if (!originalContentRef.value) return;
-
-  const pageElement = originalContentRef.value.querySelector(".page");
-  if (!pageElement) return;
-
-  const rect = pageElement.getBoundingClientRect();
-  const width = rect.width;
-  const height = rect.height;
-
-  // Create PDF with the same size as the element
-  const pdf = new jsPDF({
-    unit: 'px',
-    format: [width, height],
-    orientation: width > height ? 'landscape' : 'portrait',
-  });
-
-  await pdf.html(pageElement, {
-    x: 0,
-    y: 0,
-    html2canvas: {
-      scale: 1,
-      useCORS: true,
-    },
-    callback: function (doc) {
-      doc.save('resume.pdf');
-    }
-  });
-};
-
-
-
-function startDrag(e) {
-  if (!contentRef.value) return
-
-  const rect = contentRef.value.getBoundingClientRect()
-  offsetX = e.clientX - rect.left
-  offsetY = e.clientY - rect.top
-  console.log(offsetX)
-  console.log(offsetY)
-
 }
+
+function downloadPDF(){
+  window.print();
+}
+
 
 onMounted(() => {
   calculateScale();
@@ -107,12 +64,8 @@ onMounted(() => {
       <div
           ref="contentRef"
           class="content"
-          @mousedown="startDrag"
           :style="{ transform: `scale(${scale})`, transformOrigin: 'center', position: 'relative', top: `${y}px`, left: `${x}px` }"
       >
-        <slot/>
-      </div>
-      <div ref="originalContentRef" class="originalContent">
         <slot/>
       </div>
     </div>
@@ -124,9 +77,16 @@ onMounted(() => {
       <button @click="downloadPDF" title="Download PDF"><i class="fas fa-file-pdf"/></button>
     </div>
   </div>
+  <div ref="originalContentRef" class="originalContent">
+    <slot/>
+  </div>
 </template>
 
 <style scoped lang="sass">
+.originalContent
+  position: absolute
+  opacity: 0
+
 .visor
   display: flex
   flex-direction: column
@@ -152,10 +112,6 @@ onMounted(() => {
       z-index: 10
       user-select: none
       cursor: grab
-
-    .originalContent
-      position: absolute
-      opacity: 0
 
   .menu
     position: absolute

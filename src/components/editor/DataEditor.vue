@@ -5,9 +5,21 @@ import TextInput from "@/components/editor/TextInput.vue";
 import InputItem from "@/components/editor/InputItem.vue";
 import {VueDraggable} from "vue-draggable-plus";
 import Section from "@/components/editor/Section.vue";
+import {computed, watch} from "vue";
 
 
 const dataStore = useDataStore();
+
+const pageTitle = computed(() => {
+  const name = dataStore.data.basics?.name || ''
+  const label = dataStore.data.basics?.label || ''
+  return `${name}${label ? ' – ' + label + ' Resume' : ''}`
+})
+
+// Watch for changes and update the page title
+watch(pageTitle, (newTitle) => {
+  document.title = newTitle
+}, { immediate: true })
 
 const addProfile = () => {
   dataStore.data.basics.profiles.push({network: '', url: '', placeholder: ''});
