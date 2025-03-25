@@ -3,6 +3,7 @@ import {onMounted, ref, useTemplateRef} from "vue";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 import {useDraggable} from "@vueuse/core";
+import html2pdf from 'html2pdf.js';
 
 
 const MAX_ZOOM_IN = 4;
@@ -52,26 +53,33 @@ const resetZoom = () => {
 };
 
 const downloadPDF = async () => {
-  //TODO improve -> download as pdf with text instead of image
   if (!originalContentRef.value) return;
 
-  // Select only the `.page` inside the `originalContentRef`
   const pageElement = originalContentRef.value.querySelector(".page");
   if (!pageElement) return;
 
-  const canvas = await html2canvas(pageElement, {scale: 2});
-  const imgData = canvas.toDataURL("image/png");
+  const rect = pageElement.getBoundingClientRect();
+  const width = rect.width;
+  const height = rect.height;
+
+  // Create PDF with the same size as the element
   const pdf = new jsPDF({
-    orientation: "portrait",
-    unit: "mm",
-    format: "a4",
+    unit: 'px',
+    format: [width, height],
+    orientation: width > height ? 'landscape' : 'portrait',
   });
 
-  const imgWidth = 210;
-  const imgHeight = (canvas.height * imgWidth) / canvas.width;
-
-  pdf.addImage(imgData, "PNG", 0, 0, imgWidth, imgHeight);
-  pdf.save("resume.pdf");
+  await pdf.html(pageElement, {
+    x: 0,
+    y: 0,
+    html2canvas: {
+      scale: 1,
+      useCORS: true,
+    },
+    callback: function (doc) {
+      doc.save('resume.pdf');
+    }
+  });
 };
 
 
@@ -100,7 +108,7 @@ onMounted(() => {
           ref="contentRef"
           class="content"
           @mousedown="startDrag"
-          :style="{ transform: `scale(${scale})`, transformOrigin: 'center', position: 'relative', top: `${y-offsetY}px`, left: `${x-offsetX}px` }"
+          :style="{ transform: `scale(${scale})`, transformOrigin: 'center', position: 'relative', top: `${y}px`, left: `${x}px` }"
       >
         <slot/>
       </div>

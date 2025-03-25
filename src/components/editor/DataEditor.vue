@@ -76,9 +76,11 @@ const removeElement = (array, index) => {
 
 <template>
 
+  <!--  TODO add translations-->
   <!--  TODO allow to show margins-->
   <!--  TODO improve dragging of visor -->
   <!--  TODO Add alert on overflow and/or allow multi-page-->
+  <!--  TODO fix mobile UI -->
   <!--  TODO add filepicker for picture-->
   <!--  TODO add confirmation for deletions -->
   <!--  TODO move About to separate section?-->
@@ -87,7 +89,6 @@ const removeElement = (array, index) => {
   <!--  TODO think of adding other themes-->
   <!--  TODO add support for text on profiles and allow to indicate icon-->
   <!--  TODO allow to modify order of sections at will-->
-  <!--  TODO add translations-->
   <!--  TODO Revisit sizes of the entire resume as margins don't look the same on all resolutions -->
   <!--  TODO allow to configure font-->
   <!--  TODO add validations?-->
