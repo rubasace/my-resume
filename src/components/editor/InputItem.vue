@@ -72,7 +72,7 @@ const expanded = ref(!summaryTitle.value || summaryTitle.value === "")
     </div>
 
     <div class="actions">
-      <i class="fas fa-pencil" v-if="!skipSummary" @click="() => expanded=!expanded"/>
+      <i :class="expanded ? 'fas fa-check' : 'fas fa-pencil'" v-if="!skipSummary" @click="() => expanded=!expanded"/>
       <i :class="model?.hidden ? 'fas fa-eye-slash' : 'fas fa-eye'" @click="() => model.hidden = !model?.hidden" v-if="model"></i>
       <i class="fas fa-trash" @click="() => emit('delete')"></i>
       <i class="fas fa-bars handle"></i>

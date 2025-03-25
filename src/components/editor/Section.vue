@@ -24,16 +24,15 @@ function toggleVisibility(){
   }
 }
 
-const collapsed = ref(false)
 </script>
 
 <template>
   <div class="section" :class="hidden ? 'hidden-section' : ''">
-    <Fieldset :collapsed="collapsed">
+    <Fieldset>
       <template #legend>
         <div class="legend">
           <div class="section-title">
-            <i class="icon" :class="icon" @click="collapsed = !collapsed"></i>
+            <i class="icon" :class="icon"></i>
             <span class="title">{{ legend }}</span>
           </div>
           <div class="actions">
@@ -68,10 +67,6 @@ const collapsed = ref(false)
 
       .icon
         color: var(--p-primary-color)
-
-        &:hover
-          cursor: pointer
-          color: var(--p-text-color)
 
       .title
         font-weight: bold
