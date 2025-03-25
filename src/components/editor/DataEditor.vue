@@ -5,7 +5,7 @@ import TextInput from "@/components/editor/TextInput.vue";
 import InputItem from "@/components/editor/InputItem.vue";
 import {VueDraggable} from "vue-draggable-plus";
 import Section from "@/components/editor/Section.vue";
-import {computed, watch} from "vue";
+import {computed, reactive, watch} from "vue";
 
 
 const dataStore = useDataStore();
@@ -27,7 +27,7 @@ const addProfile = () => {
 
 
 const addExperience = () => {
-  dataStore.data.work.push({
+  dataStore.data.work.push(reactive({
     name: "",
     position: "",
     location: "",
@@ -35,7 +35,7 @@ const addExperience = () => {
     endDate: "",
     summary: "",
     highlights: []
-  });
+  }));
 };
 
 const addConference = () => {
@@ -88,9 +88,10 @@ const removeElement = (array, index) => {
 
 <template>
 
+  <!--  TODO Add phone-->
   <!--  TODO add translations-->
   <!--  TODO allow to show margins-->
-  <!--  TODO improve dragging of visor -->
+  <!--  TODO improve dragging of visor (looks like offset is always same???) -->
   <!--  TODO Add alert on overflow and/or allow multi-page-->
   <!--  TODO fix mobile UI -->
   <!--  TODO add filepicker for picture-->
