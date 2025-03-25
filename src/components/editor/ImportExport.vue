@@ -33,15 +33,15 @@ function importData(event) {
         styleStore.importStyle(_builderData?.style??{})
         styleStore.customCSS = _builderData?.customCss??''
 
-        toast.add({severity: 'success', summary: 'Data file imported successfully', detail: `Loaded content from ${file.name}`, life: 5000});
+        toast.add({severity: 'success', description: 'Data file imported successfully', detail: `Loaded content from ${file.name}`, life: 5000});
       } catch (error) {
-        toast.add({severity: 'error', summary: 'Error loading file', detail: `Data file ${file.name} was not loaded successfully. Error received: ${error.message}`, life: 5000});
+        toast.add({severity: 'error', description: 'Error loading file', detail: `Data file ${file.name} was not loaded successfully. Error received: ${error.message}`, life: 5000});
         console.error(error)
       }
     }
 
     reader.onerror = (error) => {
-      toast.add({severity: 'error', summary: 'Error loading file', detail: `Data file ${file.name} was not loaded successfully. Error received: ${error.message}`, life: 5000});
+      toast.add({severity: 'error', description: 'Error loading file', detail: `Data file ${file.name} was not loaded successfully. Error received: ${error.message}`, life: 5000});
     };
 
     reader.readAsText(file);
@@ -67,7 +67,7 @@ function exportFile(format) {
 
   URL.revokeObjectURL(url)
 
-  toast.add({severity: 'success', summary: 'Configuration exported successfully', detail: `Downloaded file ${a.download}`, life: 5000});
+  toast.add({severity: 'success', description: 'Configuration exported successfully', detail: `Downloaded file ${a.download}`, life: 5000});
 }
 </script>
 

@@ -9,7 +9,6 @@ export const useStyleStore = defineStore('styleStore', () => {
             const defaultFontSize = 11
             const defaultMargin = 0.75;
             const defaultStyle = {
-                deleteme: "23",
                 highlightColor: defaultHighlightColor,
                 fontSize: defaultFontSize,
                 marginTop: defaultMargin,

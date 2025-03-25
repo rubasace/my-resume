@@ -85,6 +85,12 @@ body
       &#work-section
         .section-title::before
           content: "\f0b1"
+      &#projects-section
+        .section-title::before
+          content: "\f542"
+      &#publications-section
+        .section-title::before
+          content: "\f02d"
       &#conference-section
         .section-title::before
           content: "\f130"
@@ -103,6 +109,9 @@ body
       &#languages-section
         .section-title::before
           content: "\f1ab"
+      &#interests-section
+        .section-title::before
+          content: "\f005"
       &#extras-section
         .section-title::before
           content: "\f196"
@@ -135,31 +144,30 @@ body
 
     .timeline
       position: relative
-      .item
-        .place
-          position: relative
-
-          &::before
-            content: " "
-            background-color: whitesmoke
-            position: absolute
-            display: inline-block
-            $circle-size: 0.7em
-            width: $circle-size
-            height: $circle-size
-            border-radius: 999999px
-            z-index: 1
-            border: 0.065cm solid black
-            top: 0
-            bottom: 0
-            margin: auto 0
-            left: -1.18em
-            $pointSpace: 0.35em
-            box-shadow: 0 $pointSpace 0 whitesmoke, 0 calc(#{$pointSpace} * -1) 0 whitesmoke
-
       .title
+        position: relative
         .name
           position: relative
+
+        &::before
+          content: " "
+          background-color: whitesmoke
+          position: absolute
+          display: inline-block
+          $circle-size: 0.75em
+          width: $circle-size
+          height: $circle-size
+          border-radius: 999999px
+          z-index: 1
+          border: 0.065cm solid black
+          top: 0
+          bottom: 0
+          margin: auto 0
+          left: -1.18em
+          $pointSpace: 0.35em
+          box-shadow: 0 $pointSpace 0 whitesmoke, 0 calc(#{$pointSpace} * -1) 0 whitesmoke
+
+
 
       &::after
         content: ""
@@ -173,7 +181,8 @@ body
 
   .item
     width: 100%
-
+    &.skill
+      margin-bottom: 0.3em
     .header
       line-height: $header-line-height
       vertical-align: middle
@@ -181,7 +190,7 @@ body
       display: flex
       font-size: 1.1em
 
-      .place
+      .title
         font-weight: bold
 
       .details
@@ -213,8 +222,8 @@ body
         font-size: 1em
 
       .item-list
-        padding: 0 0 0 1em
         margin: 0
+        padding: 0 0 0 2em
 
         .item
           margin-top: $item-separation
@@ -222,12 +231,9 @@ body
           &:first-of-type
             margin-top: 0
 
-    &.skills
+    &.item
       .title
         font-weight: bold
-
-        &::after
-          content: ": "
 
   .icon
     margin-right: 0.25em

@@ -1,13 +1,8 @@
-<template lang="pug">
-.item.profiles
-  i.icon(:class="`${icon}`")
-  span.title(v-if="title") {{title}}
-  span.value {{items}}
-
-</template>
 <script setup>
 
-defineProps({
+import {computed} from "vue";
+
+const props = defineProps({
   icon: {
     type: String,
     required: false
@@ -21,16 +16,21 @@ defineProps({
     required: true
   }
 })
+
+const items = computed(() => {
+  return Array.isArray(props.value) ? props.value.join(", ") + "." : props.value
+})
+
 </script>
-<script>
-export default {
-  computed: {
-    items() {
-      return Array.isArray(this.value) ? this.value.join(", ") + "." : this.value;
-    }
-  }
-}
-</script>
+
+<template>
+  <div class="item profiles">
+    <i class="icon" :class="icon"></i>
+    <span class="title" v-if="title">{{ title }}</span>
+    <span class="value">{{ items }}</span>
+  </div>
+</template>
+
 <style scoped lang="sass">
 .icon
   width: 1em

@@ -38,6 +38,16 @@ const addExperience = () => {
   }));
 };
 
+const addProject = () => {
+  dataStore.data.projects.push(reactive({
+    name: "",
+    startDate: "",
+    endDate: "",
+    description: "",
+    highlights: []
+  }));
+};
+
 const addConference = () => {
   dataStore.data.conferences.push({
     conference: "",
@@ -48,12 +58,38 @@ const addConference = () => {
   });
 };
 
+const addPublication = () => {
+  dataStore.data.publications.push({
+    name: "",
+    publisher: "",
+    releaseDate: "",
+    summary: ""
+  });
+};
+
 const addEducation = () => {
   dataStore.data.education.push({
     institution: "",
     studyType: "",
     startDate: "",
     endDate: "",
+    summary: ""
+  });
+};
+
+const addCertificate = () => {
+  dataStore.data.certificates.push({
+    name: "",
+    issuer: "",
+    date: ""
+  });
+};
+
+const addAward = () => {
+  dataStore.data.awards.push({
+    title: "",
+    awarder: "",
+    date: "",
     summary: ""
   });
 };
@@ -69,6 +105,13 @@ const addLanguage = () => {
   dataStore.data.languages.push({
     language: "",
     fluency: "",
+  });
+};
+
+const addInterest = () => {
+  dataStore.data.interests.push({
+    name: "",
+    keywords: [],
   });
 };
 
@@ -88,6 +131,9 @@ const removeElement = (array, index) => {
 
 <template>
 
+  <!--  TODO Add support for all sections on John Doe resume that make sense -->
+  <!--  TODO add location info-->
+  <!--  TODO Revisit items with URL so we can add them as links keeping text visible-->
   <!--  TODO add translations-->
   <!--  TODO allow to show margins-->
   <!--  TODO improve dragging of visor (looks like offset is always same???) -->
@@ -103,8 +149,9 @@ const removeElement = (array, index) => {
   <!--  TODO allow to modify order of sections at will-->
   <!--  TODO Revisit sizes of the entire resume as margins don't look the same on all resolutions -->
   <!--  TODO allow to configure font-->
+  <!--  Make timeline customizable -->
+  <!--  TODO allow tos how/hide icons-->
   <!--  TODO add validations?-->
-  <!--  TODO Add support for all sections on John Doe resume-->
 
   <Section legend="Basic Data" icon="fas fa-address-card" :hideable="false">
     <div class="grid-2">
@@ -177,6 +224,66 @@ const removeElement = (array, index) => {
     </button>
   </Section>
 
+  <Section legend="Projects" icon="fas fa-diagram-project">
+    <VueDraggable v-model="dataStore.data.projects" handle=".handle">
+      <InputItem v-for="(project, index) in dataStore.data.projects"
+                 :key="index"
+                 v-model="dataStore.data.projects[index]"
+                 @delete="removeElement(dataStore.data.projects,index)">
+        <div class="grid-3">
+          <TextInput v-model="project.name" label="Name"/>
+          <TextInput v-model="project.startDate" label="Start Date"/>
+          <TextInput v-model="project.endDate" label="End Date"/>
+        </div>
+        <label :for="'project-summary-' + index" class="font-bold block mb-3 mt-3">Description</label>
+        <Textarea auto-resize :id="'project-summary-' + index" v-model="project.description" placeholder="Description of the project (optional)" style="width:100%"/>
+        <label :for="'project-highlight-' + index + '-' + 0" class="font-bold block mb-3 mt-3">Highlights</label>
+        <VueDraggable v-model="project.highlights" handle=".handle">
+          <InputItem
+              v-for="(highlight, highlightIndex) in project.highlights"
+              :key="highlightIndex"
+              skip-summary
+              @delete="project.highlights.splice(highlightIndex, 1)"
+          >
+        <Textarea
+            :id="'project-highlight-' + index + '-' + highlightIndex"
+            v-model="project.highlights[highlightIndex]"
+            style="width:100%"
+            auto-resize
+        />
+          </InputItem>
+        </VueDraggable>
+        <button @click="addHighlight(project)" class="button-add">
+          <i class="fas fa-plus"></i> Add Highlight
+        </button>
+      </InputItem>
+    </VueDraggable>
+    <button @click="addProject" class="button-add">
+      <i class="fas fa-plus"></i> Add Project
+    </button>
+  </Section>
+
+  <Section legend="Publications" icon="fas fa-book">
+    <VueDraggable v-model="dataStore.data.publications" handle=".handle">
+      <InputItem v-for="(publication, index) in dataStore.data.publications"
+                 :key="index"
+                 v-model="dataStore.data.publications[index]"
+                 @delete="removeElement(dataStore.data.publications, index)">
+        <div class="grid-2">
+          <TextInput v-model="publication.name" label="Name"/>
+          <TextInput v-model="publication.publisher" label="Publisher"/>
+          <TextInput v-model="publication.releaseDate" label="Release Date"/>
+        </div>
+        <label :for="'publication-summary-' + index" class="font-bold block mb-3 mt-3">Summary</label>
+        <Textarea auto-resize :id="'publication-summary-' + index" v-model="publication.summary" placeholder="Description of the publication (optional)"
+                  style="width:100%"/>
+      </InputItem>
+    </VueDraggable>
+    <button @click="addPublication" class="button-add">
+      <i class="fas fa-plus"></i> Add Publication
+    </button>
+  </Section>
+
   <Section legend="Conferences" icon="fas fa-microphone">
     <VueDraggable v-model="dataStore.data.conferences" handle=".handle">
       <InputItem v-for="(conference, index) in dataStore.data.conferences"
@@ -221,6 +328,44 @@ const removeElement = (array, index) => {
     </button>
   </Section>
 
+  <Section legend="Certificates" icon="fas fa-award">
+    <VueDraggable v-model="dataStore.data.certificates" handle=".handle">
+      <InputItem v-for="(certificate, index) in dataStore.data.certificates"
+                 :key="index"
+                 v-model="dataStore.data.certificates[index]"
+                 @delete="removeElement(dataStore.data.certificates,index)">
+        <div class="grid-3">
+          <TextInput v-model="certificate.name" label="Name"/>
+          <TextInput v-model="certificate.issuer" label="Issuer"/>
+          <TextInput v-model="certificate.date" label="Date"/>
+        </div>
+      </InputItem>
+    </VueDraggable>
+    <button @click="addCertificate" class="button-add">
+      <i class="fas fa-plus"></i> Add Certificate
+    </button>
+  </Section>
+
+  <Section legend="Awards" icon="fas fa-trophy">
+    <VueDraggable v-model="dataStore.data.awards" handle=".handle">
+      <InputItem v-for="(award, index) in dataStore.data.awards"
+                 :key="index"z
+                 v-model="dataStore.data.awards[index]"
+                 @delete="removeElement(dataStore.data.awards,index)">
+        <div class="grid-3">
+          <TextInput v-model="award.title" label="Title"/>
+          <TextInput v-model="award.awarder" label="Awarder"/>
+          <TextInput v-model="award.date" label="Date"/>
+        </div>
+<!--        <label :for="'award-summary-' + index" class="font-bold block mb-3 mt-3">Summary</label>-->
+<!--        <Textarea auto-resize :id="'award-summary-' + index" v-model="award.summary" placeholder="Description of award (optional)" style="width:100%"/>-->
+      </InputItem>
+    </VueDraggable>
+    <button @click="addAward" class="button-add">
+      <i class="fas fa-plus"></i> Add Award
+    </button>
+  </Section>
+
   <Section legend="Skills" icon="fas fa-brain">
     <VueDraggable v-model="dataStore.data.skills" handle=".handle">
       <InputItem v-for="(skill, index) in dataStore.data.skills"
@@ -255,6 +400,25 @@ const removeElement = (array, index) => {
       <i class="fas fa-plus"></i> Add Language
     </button>
   </Section>
+
+  <Section legend="Interests" icon="fas fa-star">
+    <VueDraggable v-model="dataStore.data.interests" handle=".handle">
+      <InputItem v-for="(interest, index) in dataStore.data.interests"
+                 :key="index"
+                 v-model="dataStore.data.interests[index]"
+                 @delete="removeElement(dataStore.data.interests,index)">
+        <div class="grid-2">
+          <TextInput v-model="interest.name" label="Name"/>
+        </div>
+        <label :for="'keywords-'+index" class="font-bold block mb-2 mt-2"> Keywords </label>
+        <InputChips placeholder="Add a keyword" v-model="interest.keywords" :input-id="'keywords-'+index"/>
+      </InputItem>
+    </VueDraggable>
+    <button @click="addInterest" class="button-add">
+      <i class="fas fa-plus"></i> Add Interest
+    </button>
+  </Section>
+
 </template>
 
 <style scoped lang="sass">

@@ -22,12 +22,15 @@ const messages = {
         section: {
             about: "about",
             experience: "experience",
+            publications: "Publications",
+            projects: "Projects",
             conference: "conference presentations",
             education: "education",
             certificates: "certificates",
             skills: "skills",
             languages: "languages",
-            awards: "achievements and awards",
+            awards: "Awards",
+            interests: "Interests",
             extras: "extras",
         },
         editor:{
@@ -40,12 +43,15 @@ const messages = {
         section: {
             about: "descripción",
             experience: "experiencia",
+            publications: "Publicaciones",
+            projects: "Proyectos",
             conference: "presentaciones en conferencias",
             education: "estudios",
             certificates: "certificados",
             skills: "habilidades",
             languages: "idiomas",
-            awards: "logros y reconocimientos",
+            awards: "reconocimientos",
+            interests: "Intereses",
             extras: "extras",
         },
         editor:{

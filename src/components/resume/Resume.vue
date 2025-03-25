@@ -4,10 +4,14 @@ import WorkExperienceItem from "./WorkExperienceItem.vue"
 import EducationItem from "./EducationItem.vue"
 import SkillItem from "./SkillItem.vue"
 import ProfileItem from "./ProfileItem.vue"
-import ConferenceExperienceItem from "./ConferenceExperienceItem.vue"
+import ConferenceItem from "./ConferenceItem.vue"
 import LanguageItem from "@/components/resume/LanguageItem.vue"
 import { useDataStore } from "@/stores/dataStore"
 import {useStyleStore} from "@/stores/styleStore";
+import AwardItem from "@/components/resume/AwardItem.vue";
+import InterestItem from "@/components/resume/InterestItem.vue";
+import ProjectItem from "@/components/resume/ProjectItem.vue";
+import PublicationItem from "@/components/resume/PublicationItem.vue";
 
 const dataStore = useDataStore()
 let styleStore = useStyleStore();
@@ -16,12 +20,15 @@ const data = computed(() => dataStore.data)
 
 const profiles = visibleEntries(() => dataStore.data.basics?.profiles, 'Profiles')
 const work = visibleEntries(() => dataStore.data.work, 'Experience')
+const projects = visibleEntries(() => dataStore.data.projects, 'Projects')
+const publications = visibleEntries(() => dataStore.data.publications, 'Publications')
 const conferences = visibleEntries(() => dataStore.data.conferences, 'Conferences')
 const education = visibleEntries(() => dataStore.data.education, 'Education')
 const skills = visibleEntries(() => dataStore.data.skills, 'Skills')
 const certificates = visibleEntries(() => dataStore.data.certificates, 'Certificates')
 const awards = visibleEntries(() => dataStore.data.awards, 'Awards')
 const languages = visibleEntries(() => dataStore.data.languages, 'Languages')
+const interests = visibleEntries(() => dataStore.data.interests, 'Interests')
 const extras = visibleEntries(() => dataStore.data.extras, 'Extras')
 
 function visibleEntries(getter, section) {
@@ -63,7 +70,7 @@ function showTimeline(items) {
         </div>
       </div>
 
-      <div class="section" v-if="data.basics.summary" id="summary-section">
+      <div class="section" v-if="data.basics.summary && !styleStore.style.hiddenSections?.includes('About')" id="summary-section">
         <div class="section-title">
           <span>{{ $t("section.about") }}</span>
         </div>
@@ -76,8 +83,26 @@ function showTimeline(items) {
         <div class="section-title">
           <span>{{ $t("section.experience") }}</span>
         </div>
-        <div class="section-content" :class="{ timeline: showTimeline(work) }">
+        <div class="section-content"  :class="{ timeline: showTimeline(work) }">
           <WorkExperienceItem v-for="entry in work" :items="entry.highlights" :company="entry.name" :location="entry.location" :role="entry.position" :startDate="entry.startDate" :endDate="entry.endDate" :summary="entry.summary" />
+        </div>
+      </div>
+
+      <div class="section" v-if="projects?.length" id="projects-section">
+        <div class="section-title">
+          <span>{{ $t("section.projects") }}</span>
+        </div>
+        <div class="section-content" >
+          <ProjectItem v-for="entry in projects" :highlights="entry.highlights" :name="entry.name" :startDate="entry.startDate" :endDate="entry.endDate" :description="entry.description" />
+        </div>
+      </div>
+
+      <div class="section" v-if="publications?.length" id="publications-section">
+        <div class="section-title">
+          <span>{{ $t("section.publications") }}</span>
+        </div>
+        <div class="section-content" >
+          <PublicationItem v-for="entry in publications" :name="entry.name" :publisher="entry.publisher" :releaseDate="entry.releaseDate" :summary="entry.summary" />
         </div>
       </div>
 
@@ -85,8 +110,8 @@ function showTimeline(items) {
         <div class="section-title">
           <span>{{ $t("section.conference") }}</span>
         </div>
-        <div class="section-content" :class="{ timeline: showTimeline(conferences) }">
-          <ConferenceExperienceItem v-for="entry in conferences" :items="entry.highlights" :conference="entry.conference" :name="entry.name" :location="entry.location" :summary="entry.summary" :time="entry.time" />
+        <div class="section-content" >
+          <ConferenceItem v-for="entry in conferences" :items="entry.highlights" :conference="entry.conference" :name="entry.name" :location="entry.location" :summary="entry.summary" :time="entry.time" />
         </div>
       </div>
 
@@ -94,7 +119,7 @@ function showTimeline(items) {
         <div class="section-title">
           <span>{{ $t("section.education") }}</span>
         </div>
-        <div class="section-content" :class="{ timeline: showTimeline(education) }">
+        <div class="section-content" >
           <EducationItem v-for="entry in education" :startDate="entry.startDate" :endDate="entry.endDate" :name="entry.studyType" :school="entry.institution" :description="entry.description" />
         </div>
       </div>
@@ -122,7 +147,7 @@ function showTimeline(items) {
           <span>{{ $t("section.awards") }}</span>
         </div>
         <div class="section-content">
-          <SkillItem v-for="entry in awards" :title="entry.title" :value="entry.summary" />
+          <AwardItem :title="entry.title" :awarder="entry.awarder" :date="entry.date" :summary="entry.summary" v-for="entry in awards" />
         </div>
       </div>
 
@@ -132,6 +157,15 @@ function showTimeline(items) {
         </div>
         <div class="section-content flex">
           <LanguageItem v-for="entry in languages" :name="entry.language" :level="entry.fluency" />
+        </div>
+      </div>
+
+      <div class="section" v-if="interests?.length" id="interests-section">
+        <div class="section-title">
+          <span>{{ $t("section.interests") }}</span>
+        </div>
+        <div class="section-content flex">
+          <InterestItem v-for="entry in interests" :name="entry.name" :keywords="entry.keywords" />
         </div>
       </div>
 

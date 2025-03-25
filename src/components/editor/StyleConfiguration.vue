@@ -11,7 +11,7 @@ let styleStore = useStyleStore();
 <template>
 
   <div class="section-title">Fonts</div>
-  <NumberInput v-model="styleStore.style.fontSize" label="Font Size" suffix=" pt" :step="0.01" :maxFractionDigits="2"/>
+  <NumberInput v-model="styleStore.style.fontSize" label="Font Size" suffix=" pt" :step="0.1" :maxFractionDigits="2"/>
 
   <div class="section-title">Margins</div>
   <div class="grid-2">

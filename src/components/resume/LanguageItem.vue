@@ -15,10 +15,11 @@ defineProps({
   }
 })
 </script>
-<template lang="pug">
-  .item.skills
-    i.icon(:class="`${icon}`")
-    span.title(v-if="name") {{name}}
-    span.value {{level}}
-
+<template>
+  <div class="item skills">
+    <i class="icon" :class="icon"></i>
+    <span class="title" v-if="name">{{ name }}</span>
+    <span class="title" v-if="name&&level">: </span>
+    <span class="value">{{ level }}</span>
+  </div>
 </template>

@@ -1,10 +1,11 @@
 <script setup>
+
 defineProps({
-  company: {
+  name: {
     type: String,
     required: false
   },
-  role: {
+  conference: {
     type: String,
     required: true
   },
@@ -12,11 +13,7 @@ defineProps({
     type: String,
     required: true
   },
-  startDate: {
-    type: String,
-    required: true
-  },
-  endDate: {
+  time: {
     type: String,
     required: true
   },
@@ -34,15 +31,14 @@ defineProps({
 <template>
   <div class="item">
     <div class="header">
-      <span class="title company" v-if="company">{{ company }}</span>
-      <span class="separator details">/</span>
-      <span class="role name details">{{ role }}</span>
-      <span class="separator details" v-if="location">|</span>
-      <span class="location details">{{ location }}</span>
-      <span class="time details">
-        <span>{{ startDate }}</span>
-        <span v-if="endDate"> - {{ endDate }}</span>
+      <span class="conference title" v-if="conference">
+        <span>{{ conference }}</span>
+        <span class="separator">/</span>
       </span>
+      <span class="conference name details" v-if="name">{{ name }}</span>
+      <span class="separator details" v-if="name">|</span>
+      <span class="location details" v-if="location">{{ location }}</span>
+      <span class="time details">{{ time }}</span>
     </div>
     <div class="description">
       <p class="summary" v-if="summary">{{ summary }}</p>
@@ -52,3 +48,8 @@ defineProps({
     </div>
   </div>
 </template>
+
+<style scoped lang="sass">
+.name
+  text-transform: unset !important
+</style>

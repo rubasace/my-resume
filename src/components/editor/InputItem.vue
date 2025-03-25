@@ -29,8 +29,15 @@ const summaryTitle = computed(() => {
         }
       } else if (modelValue.institution) {
         title += modelValue.institution + " - " + modelValue.studyType
+      } else if (modelValue.title) {
+        title += modelValue.title
       } else {
-        title += modelValue.conference ?? modelValue.language ?? modelValue.name ?? modelValue.network
+        title += modelValue.conference ?? modelValue.language ?? modelValue.name ?? modelValue.network ?? ''
+      }
+      if(modelValue.publisher) {
+        title += " - " + modelValue.publisher
+      } else if(modelValue.awarder) {
+        title += " - " + modelValue.awarder
       }
   return title
 })
@@ -39,12 +46,12 @@ const summaryTime = computed(() => {
   if(!model.value || props.skipSummary){
     return ""
   }
-  return model.value.startDate ? model.value.startDate + " - " + model.value.endDate : model.value.time ?? ""
+  return model.value.startDate ? model.value.startDate + " - " + model.value.endDate : model.value.time ?? model.value.date ?? model.value.releaseDate ?? ""
 })
 
 // When there's no title it's either cause we are skipping the summary (so it doesn't matter as it will already be expaned)
 // or we are creating a new element that still doesn't have any value, so expanding makes sense
-const expanded = ref(summaryTitle.value === "")
+const expanded = ref(!summaryTitle.value || summaryTitle.value === "")
 
 </script>
 

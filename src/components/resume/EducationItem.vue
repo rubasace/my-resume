@@ -1,16 +1,3 @@
-<template lang="pug">
-.item
-  .header
-    span.place.school {{school}}
-    span.separator &#x2f;
-    span.name.details {{name}}
-    span.time.details
-      span {{ String(startDate) }}
-      span(v-if="endDate")  - {{ String(endDate) }}
-  .description(v-if='description')
-    p {{description}}
-
-</template>
 <script setup>
 
 defineProps({
@@ -36,3 +23,20 @@ defineProps({
   }
 })
 </script>
+
+<template>
+  <div class="item">
+    <div class="header">
+      <span class="title school">{{ school }}</span>
+      <span class="separator">/</span>
+      <span class="name details">{{ name }}</span>
+      <span class="time details">
+        <span>{{ String(startDate) }}</span>
+        <span v-if="endDate"> - {{ String(endDate) }}</span>
+      </span>
+    </div>
+    <div class="description" v-if="description">
+      <p>{{ description }}</p>
+    </div>
+  </div>
+</template>
