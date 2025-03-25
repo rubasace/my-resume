@@ -88,7 +88,6 @@ const removeElement = (array, index) => {
 
 <template>
 
-  <!--  TODO Add phone-->
   <!--  TODO add translations-->
   <!--  TODO allow to show margins-->
   <!--  TODO improve dragging of visor (looks like offset is always same???) -->
@@ -111,9 +110,13 @@ const removeElement = (array, index) => {
     <div class="grid-2">
       <TextInput v-model="dataStore.data.basics.name" label="Name"/>
       <TextInput v-model="dataStore.data.basics.label" label="Label"/>
-      <TextInput v-model="dataStore.data.basics.picture" label="Picture"/>
+      <TextInput v-model="dataStore.data.basics.phone" label="Phone"/>
       <TextInput v-model="dataStore.data.basics.email" label="Email"/>
+      <TextInput v-model="dataStore.data.basics.picture" label="Picture"/>
     </div>
+
+  </Section>
+  <Section legend="About" icon="fas fa-user" v-model="dataStore.data.basics.profiles">
     <Textarea auto-resize id="summary" v-model="dataStore.data.basics.summary" placeholder="Information about yourself (optional)" style="width:100%" class="mb-2 mt-2"/>
   </Section>
   <Section legend="Profiles" icon="fas fa-link" v-model="dataStore.data.basics.profiles">
