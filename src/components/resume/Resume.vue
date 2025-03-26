@@ -71,8 +71,8 @@ function showTimeline(items) {
       </div>
       <div class="section" id="contact-section">
         <ProfileItem v-for="profile in profiles" :icon="networkIcons[profile.network]" :url="profile.url" :text="profile.text" :network="profile.network" />
-        <ProfileItem icon="fa fa-envelope" :url="data.basics.email" v-if="data.basics.email" />
-        <ProfileItem icon="fa fa-phone" :url="data.basics.phone" v-if="data.basics.phone" />
+        <ProfileItem icon="fa fa-envelope" :url="data.basics.email" v-if="data.basics.email" network="Email" />
+        <ProfileItem icon="fa fa-phone" :url="data.basics.phone" v-if="data.basics.phone" network="Phone"/>
       </div>
 
       <div class="section" v-if="data.basics.summary && !styleStore.style.hiddenSections?.includes('About')" id="summary-section">

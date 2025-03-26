@@ -38,19 +38,24 @@ body
       position: relative
 
       .picture
-        //width: 1.5in
-        overflow: hidden
         position: absolute
-        right: 0
         top: -2em
-        width: 1.1in
+        right: 0
+        width: 1.2in
         height: 1.2in
+        overflow: hidden
+        border-radius: 50% // or 50% for circular
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1)
+        border: 1px solid #ccc
+        background-color: white
+        display: flex
+        align-items: center
+        justify-content: center
 
         img
-          width: 1.1in
-          height: 1.2in
-          object-fit: contain
-          transform: scale(1.2)
+          width: 100%
+          height: 100%
+          object-fit: cover
 
       .title
         position: relative
@@ -83,9 +88,9 @@ body
         display: flex
         flex-direction: row
         flex-wrap: wrap
-        justify-content: space-between
+        //justify-content: space-between
         align-items: center
-        gap: 1em
+        gap: 2em
         font-size: $contact-font-size
         width: 80%
         margin-bottom: 2.5em

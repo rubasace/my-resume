@@ -3,12 +3,15 @@ import {useDataStore} from "@/stores/dataStore";
 import {InputChips, Textarea, Select} from "primevue";
 import TextInput from "@/components/editor/TextInput.vue";
 import InputItem from "@/components/editor/InputItem.vue";
+import NumberInput from "@/components/editor/NumberInput.vue";
 import {VueDraggable} from "vue-draggable-plus";
 import Section from "@/components/editor/Section.vue";
 import {computed, reactive, ref, watch} from "vue";
+import {useStyleStore} from "@/stores/styleStore";
 
 
 const dataStore = useDataStore();
+const styleStore = useStyleStore();
 
 const pageTitle = computed(() => {
   const name = dataStore.data.basics?.name || ''
@@ -27,7 +30,7 @@ const addProfile = () => {
 
 const sourceType = ref('url')
 const sourceOptions = [
-  { label: 'URL', value: 'url' },
+  {label: 'URL', value: 'url'},
   // { label: 'File', value: 'file' },
 ]
 
@@ -138,7 +141,7 @@ const removeElement = (array, index) => {
 <template>
 
   <!--  TODO add filepicker for picture-->
-  <!--  TODO allow to control image zoom and translation-->
+  <!--  TODO integrate email, phone, and location into networks so they can be reordered-->
   <!--  TODO add location info-->
   <!--  TODO Revisit items with URL so we can add them as links keeping text visible-->
   <!--  TODO add translations-->
@@ -186,15 +189,19 @@ const removeElement = (array, index) => {
       />
 
       <div v-else-if="sourceType === 'file'" class="flex flex-col gap-1">
-        <input type="file" @change="handleFileUpload" accept="image/*" />
+        <input type="file" @change="handleFileUpload" accept="image/*"/>
         <small class="text-sm text-gray-500">Max 4MB</small>
         <div v-if="uploadError" class="text-red-500 text-sm">{{ uploadError }}</div>
       </div>
 
-      <div v-if="dataStore.data.basics.picture" class="mt-4">
-        <label class="font-semibold">Preview</label>
-        <img :src="dataStore.data.basics.picture" alt="Preview" class="max-w-xs rounded shadow" />
-      </div>
+<!--      <div v-if="dataStore.data.basics.picture" class="mt-4">-->
+<!--        <label class="font-semibold">Preview</label>-->
+<!--        <img :src="dataStore.data.basics.picture" alt="Preview" class="max-w-xs rounded shadow"/>-->
+<!--      </div>-->
+
+      <NumberInput v-model="styleStore.style.pictureTranslateX" label="TranslateX" :step="1" :max-fraction-digits="0" suffix="px"/>
+      <NumberInput v-model="styleStore.style.pictureTranslateY" label="TranslateY" :step="1" :max-fraction-digits="0"  suffix="px"/>
+      <NumberInput v-model="styleStore.style.pictureScale" label="Scale" :min="0.1" :step="0.1" />
     </div>
   </Section>
   <Section legend="About" icon="fas fa-user" v-model="dataStore.data.basics.profiles">

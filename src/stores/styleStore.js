@@ -15,6 +15,9 @@ export const useStyleStore = defineStore('styleStore', () => {
                 marginBottom: defaultMargin,
                 marginLeft: defaultMargin,
                 marginRight: defaultMargin,
+                pictureScale: 1,
+                pictureTranslateX: 0,
+                pictureTranslateY: 0,
                 hiddenSections: []
             }
 
