@@ -43,19 +43,21 @@ body
         right: 0
         width: 1.2in
         height: 1.2in
-        overflow: hidden
-        border-radius: 50% // or 50% for circular
+        border-radius: 50%
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1)
         border: 1px solid #ccc
         background-color: white
+        overflow: hidden
         display: flex
         align-items: center
         justify-content: center
 
+
         img
-          width: 100%
-          height: 100%
-          object-fit: cover
+          object-fit: contain
+          width: 150%
+          height: 150%
+          transform-origin: center
 
       .title
         position: relative
