@@ -1,11 +1,11 @@
 <script setup>
 import {useDataStore} from "@/stores/dataStore";
-import {InputChips, Textarea} from "primevue";
+import {InputChips, Textarea, Select} from "primevue";
 import TextInput from "@/components/editor/TextInput.vue";
 import InputItem from "@/components/editor/InputItem.vue";
 import {VueDraggable} from "vue-draggable-plus";
 import Section from "@/components/editor/Section.vue";
-import {computed, reactive, watch} from "vue";
+import {computed, reactive, ref, watch} from "vue";
 
 
 const dataStore = useDataStore();
@@ -19,11 +19,17 @@ const pageTitle = computed(() => {
 // Watch for changes and update the page title
 watch(pageTitle, (newTitle) => {
   document.title = newTitle
-}, { immediate: true })
+}, {immediate: true})
 
 const addProfile = () => {
   dataStore.data.basics.profiles.push({network: '', url: '', placeholder: ''});
 };
+
+const sourceType = ref('url')
+const sourceOptions = [
+  { label: 'URL', value: 'url' },
+  // { label: 'File', value: 'file' },
+]
 
 
 const addExperience = () => {
@@ -131,7 +137,8 @@ const removeElement = (array, index) => {
 
 <template>
 
-  <!--  TODO Add support for all sections on John Doe resume that make sense -->
+  <!--  TODO add filepicker for picture-->
+  <!--  TODO allow to control image zoom and translation-->
   <!--  TODO add location info-->
   <!--  TODO Revisit items with URL so we can add them as links keeping text visible-->
   <!--  TODO add translations-->
@@ -139,9 +146,7 @@ const removeElement = (array, index) => {
   <!--  TODO improve dragging of visor (looks like offset is always same???) -->
   <!--  TODO Add alert on overflow and/or allow multi-page-->
   <!--  TODO fix mobile UI -->
-  <!--  TODO add filepicker for picture-->
   <!--  TODO add confirmation for deletions -->
-  <!--  TODO move About to separate section?-->
   <!--  TODO add autocomplete for known networks on profiles-->
   <!--  TODO allow to add experience from the top-->
   <!--  TODO think of adding other themes-->
@@ -149,8 +154,8 @@ const removeElement = (array, index) => {
   <!--  TODO allow to modify order of sections at will-->
   <!--  TODO Revisit sizes of the entire resume as margins don't look the same on all resolutions -->
   <!--  TODO allow to configure font-->
-  <!--  Make timeline customizable -->
-  <!--  TODO allow tos how/hide icons-->
+  <!--  TODO Make timeline customizable -->
+  <!--  TODO allow to show/hide icons-->
   <!--  TODO add validations?-->
 
   <Section legend="Basic Data" icon="fas fa-address-card" :hideable="false">
@@ -159,9 +164,38 @@ const removeElement = (array, index) => {
       <TextInput v-model="dataStore.data.basics.label" label="Label"/>
       <TextInput v-model="dataStore.data.basics.phone" label="Phone"/>
       <TextInput v-model="dataStore.data.basics.email" label="Email"/>
-      <TextInput v-model="dataStore.data.basics.picture" label="Picture"/>
     </div>
+  </Section>
 
+  <Section legend="Picture" icon="fas fa-image">
+    <div class="grid-2">
+      <Select
+          v-model="sourceType"
+          :options="sourceOptions"
+          optionLabel="label"
+          optionValue="value"
+          class="w-full md:w-40"
+          placeholder="Select source"
+      />
+
+      <TextInput
+          v-if="sourceType === 'url'"
+          v-model="dataStore.data.basics.picture"
+          label="Picture URL"
+          placeholder="https://example.com/image.jpg"
+      />
+
+      <div v-else-if="sourceType === 'file'" class="flex flex-col gap-1">
+        <input type="file" @change="handleFileUpload" accept="image/*" />
+        <small class="text-sm text-gray-500">Max 4MB</small>
+        <div v-if="uploadError" class="text-red-500 text-sm">{{ uploadError }}</div>
+      </div>
+
+      <div v-if="dataStore.data.basics.picture" class="mt-4">
+        <label class="font-semibold">Preview</label>
+        <img :src="dataStore.data.basics.picture" alt="Preview" class="max-w-xs rounded shadow" />
+      </div>
+    </div>
   </Section>
   <Section legend="About" icon="fas fa-user" v-model="dataStore.data.basics.profiles">
     <Textarea auto-resize id="summary" v-model="dataStore.data.basics.summary" placeholder="Information about yourself (optional)" style="width:100%" class="mb-2 mt-2"/>
@@ -349,7 +383,7 @@ const removeElement = (array, index) => {
   <Section legend="Awards" icon="fas fa-trophy">
     <VueDraggable v-model="dataStore.data.awards" handle=".handle">
       <InputItem v-for="(award, index) in dataStore.data.awards"
-                 :key="index"z
+                 :key="index" z
                  v-model="dataStore.data.awards[index]"
                  @delete="removeElement(dataStore.data.awards,index)">
         <div class="grid-3">
@@ -357,8 +391,8 @@ const removeElement = (array, index) => {
           <TextInput v-model="award.awarder" label="Awarder"/>
           <TextInput v-model="award.date" label="Date"/>
         </div>
-<!--        <label :for="'award-summary-' + index" class="font-bold block mb-3 mt-3">Summary</label>-->
-<!--        <Textarea auto-resize :id="'award-summary-' + index" v-model="award.summary" placeholder="Description of award (optional)" style="width:100%"/>-->
+        <!--        <label :for="'award-summary-' + index" class="font-bold block mb-3 mt-3">Summary</label>-->
+        <!--        <Textarea auto-resize :id="'award-summary-' + index" v-model="award.summary" placeholder="Description of award (optional)" style="width:100%"/>-->
       </InputItem>
     </VueDraggable>
     <button @click="addAward" class="button-add">

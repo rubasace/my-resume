@@ -1,37 +1,31 @@
 <script setup>
 
-import {computed} from "vue";
-
 const props = defineProps({
   icon: {
     type: String,
     required: false
   },
-  title: {
+  url: {
     type: String,
     required: false
   },
-  value: {
+  text: {
     type: String,
     required: true
+  },
+  network: {
+    type: String,
+    required: false
   }
 })
 
-const items = computed(() => {
-  return Array.isArray(props.value) ? props.value.join(", ") + "." : props.value
-})
 
 </script>
 
 <template>
-  <div class="item profiles">
+  <div class="profile">
     <i class="icon" :class="icon"></i>
-    <span class="title" v-if="title">{{ title }}</span>
-    <span class="value">{{ items }}</span>
+    <a :href="url" target="_blank" :alt="network" class="title" v-if="url&&text">{{ text }}</a>
+    <span class="title" v-else>{{ text?.length? text : url }}</span>
   </div>
 </template>
-
-<style scoped lang="sass">
-.icon
-  width: 1em
-</style>

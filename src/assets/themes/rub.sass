@@ -1,5 +1,6 @@
 @import "../layout"
 
+//TODO move all this to configurable variables
 $background: whitesmoke !default
 $default-font-family: Cambria, sans-serif
 $default-titles-font-family: Georgia, serif !default
@@ -7,7 +8,7 @@ $details-font-size: 0.9em !default
 $details-color: lighten($default-font-color, 40%) !default
 $time-color: lighten($default-font-color, 30%) !default
 $time-font-size: 0.95em !default
-$contact-font-size: 0.95em !default
+$contact-font-size: 0.89em !default
 $title-font-size: 2.3em !default
 $header-line-height: 2em !default
 $section-separation: 0.7em !default
@@ -31,24 +32,25 @@ body
     height: 100%
     position: relative
 
-    .profile
+    #profile-section
       display: flex
       width: 100%
-      margin-bottom: 2.5em
       position: relative
 
       .picture
-        width: 1.5in
-        overflow: visible
-        margin-right: 0.5em
+        //width: 1.5in
+        overflow: hidden
+        position: absolute
+        right: 0
+        top: -2em
+        width: 1.1in
+        height: 1.2in
 
         img
           width: 1.1in
           height: 1.2in
           object-fit: contain
-          margin-right: 0.6em
-          position: absolute
-          top: -1.5em
+          transform: scale(1.2)
 
       .title
         position: relative
@@ -65,19 +67,33 @@ body
           font-size: 0.55em
           font-style: italic
 
-      .contact
-        align-self: start
-        margin-left: auto
-        text-align: left
-        text-transform: none
-        white-space: nowrap
-        font-size: $contact-font-size
+
 
     .section
       width: 100%
       position: relative
       margin-top: $section-separation
       margin-bottom: 0
+
+      &#profile-section
+        margin-top: 0
+        margin-bottom: 0
+
+      &#contact-section
+        display: flex
+        flex-direction: row
+        flex-wrap: wrap
+        justify-content: space-between
+        align-items: center
+        gap: 1em
+        font-size: $contact-font-size
+        width: 80%
+        margin-bottom: 2.5em
+        .icon
+          width: 1em
+        > *
+          flex: 0 1 auto
+          white-space: nowrap
 
       &#summary-section
         .section-title::before

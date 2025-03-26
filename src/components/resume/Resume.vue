@@ -35,10 +35,15 @@ function visibleEntries(getter, section) {
   return computed(() => styleStore.style.hiddenSections?.includes(section) ? [] : getter()?.filter(e => !e.hidden))
 }
 
-const profilePic = null // Uncomment below if dynamic import needed
-// watchEffect(async () => {
-//   profilePic.value = (await import(/* @vite-ignore */ `../assets/images/${data.value.basics.picture}`)).default
-// })
+const profilePic = computed(() => {
+  if(styleStore.style.hiddenSections?.includes('Picture')) {
+    return null
+  }
+  if(data.value.basics.picture?.startsWith("http")) {
+    return data.value.basics.picture
+  }
+  return null;
+})
 
 const networkIcons = {
   GitHub: "fa-brands fa-github",
@@ -55,7 +60,7 @@ function showTimeline(items) {
 <template>
   <div class="page">
     <div class="resume">
-      <div class="profile">
+      <div class="section" id="profile-section">
         <div class="picture" v-if="profilePic">
           <img :src="profilePic" />
         </div>
@@ -63,11 +68,11 @@ function showTimeline(items) {
           <p class="name">{{ data.basics.name }}</p>
           <p class="role">{{ data.basics.label }}</p>
         </div>
-        <div class="contact">
-          <ProfileItem v-for="profile in profiles" :icon="networkIcons[profile.network]" :value="profile.url" />
-          <ProfileItem icon="fa fa-envelope" :value="data.basics.email" v-if="data.basics.email" />
-          <ProfileItem icon="fa fa-phone" :value="data.basics.phone" v-if="data.basics.phone" />
-        </div>
+      </div>
+      <div class="section" id="contact-section">
+        <ProfileItem v-for="profile in profiles" :icon="networkIcons[profile.network]" :url="profile.url" :text="profile.text" :network="profile.network" />
+        <ProfileItem icon="fa fa-envelope" :url="data.basics.email" v-if="data.basics.email" />
+        <ProfileItem icon="fa fa-phone" :url="data.basics.phone" v-if="data.basics.phone" />
       </div>
 
       <div class="section" v-if="data.basics.summary && !styleStore.style.hiddenSections?.includes('About')" id="summary-section">
