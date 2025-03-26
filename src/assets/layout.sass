@@ -39,6 +39,9 @@ html
 
 
 @media print
+  .picture
+    -webkit-print-color-adjust: exact
+    -webkit-filter: opacity(1)
   .menu, .editor, .visor, .p-toast
     all: unset !important
     display: none !important
