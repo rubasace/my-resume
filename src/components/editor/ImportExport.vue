@@ -29,7 +29,7 @@ function importData(event) {
         const fileName = file.name;
         const {_builderData, ...data} = parseFileContent(fileContent, fileName);
 
-        dataStore.data = data
+        dataStore.importData(data)
         styleStore.importStyle(_builderData?.style??{})
         styleStore.customCSS = _builderData?.customCss??''
 

@@ -10,8 +10,6 @@ const visorRef = ref(null);
 const contentRef = ref(null);
 const originalContentRef = ref(null);
 
-console.log(originalContentRef)
-
 const content = useTemplateRef('contentRef')
 const {x, y} = useDraggable(content, {})
 

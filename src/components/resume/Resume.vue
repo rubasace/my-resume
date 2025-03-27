@@ -72,7 +72,8 @@ function showTimeline(items) {
       <div class="section" id="contact-section">
         <ProfileItem v-for="profile in profiles" :icon="networkIcons[profile.network]" :url="profile.url" :text="profile.text" :network="profile.network" />
         <ProfileItem icon="fa fa-envelope" :url="data.basics.email" v-if="data.basics.email" network="Email" />
-        <ProfileItem icon="fa fa-phone" :url="data.basics.phone" v-if="data.basics.phone" network="Phone"/>
+        <ProfileItem icon="fa fa-phone" :text="data.basics.phone" v-if="data.basics.phone" network="Phone"/>
+        <ProfileItem icon="fa fa-location-dot" :text="data.basics.location.summary" v-if="data.basics.location.summary" network="Location"/>
       </div>
 
       <div class="section" v-if="data.basics.summary && !styleStore.style.hiddenSections?.includes('About')" id="summary-section">
@@ -156,21 +157,21 @@ function showTimeline(items) {
         </div>
       </div>
 
-      <div class="section" v-if="languages?.length" id="languages-section">
-        <div class="section-title">
-          <span>{{ $t("section.languages") }}</span>
-        </div>
-        <div class="section-content flex">
-          <LanguageItem v-for="entry in languages" :name="entry.language" :level="entry.fluency" />
-        </div>
-      </div>
-
       <div class="section" v-if="interests?.length" id="interests-section">
         <div class="section-title">
           <span>{{ $t("section.interests") }}</span>
         </div>
         <div class="section-content flex">
           <InterestItem v-for="entry in interests" :name="entry.name" :keywords="entry.keywords" />
+        </div>
+      </div>
+
+      <div class="section" v-if="languages?.length" id="languages-section">
+        <div class="section-title">
+          <span>{{ $t("section.languages") }}</span>
+        </div>
+        <div class="section-content flex">
+          <LanguageItem v-for="entry in languages" :name="entry.language" :level="entry.fluency" />
         </div>
       </div>
 

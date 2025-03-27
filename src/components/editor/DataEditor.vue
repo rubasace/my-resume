@@ -142,7 +142,6 @@ const removeElement = (array, index) => {
 
   <!--  TODO add filepicker for picture-->
   <!--  TODO integrate email, phone, and location into networks so they can be reordered-->
-  <!--  TODO add location info-->
   <!--  TODO Revisit items with URL so we can add them as links keeping text visible-->
   <!--  TODO add translations-->
   <!--  TODO allow to show margins-->
@@ -150,7 +149,6 @@ const removeElement = (array, index) => {
   <!--  TODO Add alert on overflow and/or allow multi-page-->
   <!--  TODO fix mobile UI -->
   <!--  TODO add confirmation for deletions -->
-  <!--  TODO add autocomplete for known networks on profiles-->
   <!--  TODO allow to add experience from the top-->
   <!--  TODO think of adding other themes-->
   <!--  TODO add support for text on profiles and allow to indicate icon-->
@@ -167,6 +165,7 @@ const removeElement = (array, index) => {
       <TextInput v-model="dataStore.data.basics.label" label="Label"/>
       <TextInput v-model="dataStore.data.basics.phone" label="Phone"/>
       <TextInput v-model="dataStore.data.basics.email" label="Email"/>
+      <TextInput v-model="dataStore.data.basics.location.summary" label="Location"/>
     </div>
   </Section>
 
@@ -207,21 +206,22 @@ const removeElement = (array, index) => {
   <Section legend="About" icon="fas fa-user" v-model="dataStore.data.basics.profiles">
     <Textarea auto-resize id="summary" v-model="dataStore.data.basics.summary" placeholder="Information about yourself (optional)" style="width:100%" class="mb-2 mt-2"/>
   </Section>
-  <Section legend="Profiles" icon="fas fa-link" v-model="dataStore.data.basics.profiles">
+  <Section legend="Contact" icon="fas fa-link" v-model="dataStore.data.basics.profiles">
     <VueDraggable v-model="dataStore.data.basics.profiles" handle=".handle">
       <InputItem v-for="(profile, index) in dataStore.data.basics.profiles"
                  :key="index"
                  v-model="dataStore.data.basics.profiles[index]"
                  @delete="removeElement(dataStore.data.basics.profiles, index)">
         <div class="grid-3">
-          <TextInput v-model="profile.network" label="Network"/>
+            <!--   TODO Integrate with predefined set of networks-->
+          <TextInput v-model="profile.network" label="Network" :options="['Linkedin', 'Twitter', 'GitHub']"/>
           <TextInput v-model="profile.url" label="URL"/>
           <TextInput v-model="profile.text" label="Text"/>
         </div>
       </InputItem>
     </VueDraggable>
     <button @click="addProfile" class="button-add">
-      <i class="fas fa-plus"></i> Add Profile
+      <i class="fas fa-plus"></i> Add Contact
     </button>
   </Section>
   <Section legend="Experience" icon="fas fa-briefcase">

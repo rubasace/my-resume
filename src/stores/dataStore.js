@@ -10,16 +10,22 @@ export const useDataStore = defineStore('dataStore', () => {
 
     sanitizeData()
     function sanitizeData(){
-        data.value.work = data.value.work ?? []
-        data.value.projects = data.value.projects ?? []
-        data.value.publications = data.value.publications ?? []
-        data.value.education = data.value.education ?? []
-        data.value.certificates = data.value.certificates ?? []
-        data.value.skills = data.value.skills ?? []
-        data.value.languages = data.value.languages ?? []
-        data.value.awards = data.value.awards ?? []
-        data.value.extras = data.value.extras ?? []
-        data.value.interests = data.value.interests ?? []
+        initializeIfMissing('work')
+        initializeIfMissing('projects')
+        initializeIfMissing('publications')
+        initializeIfMissing('education')
+        initializeIfMissing('certificates')
+        initializeIfMissing('skills')
+        initializeIfMissing('languages')
+        initializeIfMissing('awards')
+        initializeIfMissing('extras')
+        initializeIfMissing('interests')
+        initializeIfMissing('basics', {})
+        data.value.basics.location = data.value.basics.location ?? {}
+    }
+
+    function initializeIfMissing(field, defaultValue =[]) {
+        data.value[field] = data.value[field] ?? defaultValue
     }
 
     function importData(newData) {
