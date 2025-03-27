@@ -140,10 +140,9 @@ const removeElement = (array, index) => {
 
 <template>
 
-  <!--  TODO add confirmation for deletions -->
-  <!--  TODO add filepicker for picture-->
   <!--  TODO allow to configure font-->
   <!--  TODO allow to modify order of sections at will-->
+  <!--  TODO add filepicker for picture-->
   <!--  TODO allow to show/hide icons-->
   <!--  TODO Make timeline customizable -->
   <!--  TODO integrate email, phone, and location into networks so they can be reordered> They should be special input items, reorderable but not removable?? maybe not worth it -->
