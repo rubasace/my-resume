@@ -1,6 +1,7 @@
 import {createApp} from "vue";
 import PrimeVue from 'primevue/config';
 import ToastService from 'primevue/toastservice';
+import ConfirmationService from 'primevue/confirmationservice';
 import {createPinia} from "pinia";
 import App from "./App.vue";
 import "./assets/themes/rub.sass";
@@ -72,6 +73,7 @@ const i18n = createI18n({
 const pinia = createPinia()
 const app = createApp(App)
 app.use(ToastService);
+app.use(ConfirmationService);
 app.use(PrimeVue, {
     theme: {
         preset: Lara

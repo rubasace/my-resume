@@ -1,8 +1,9 @@
 <script setup>
 import MainPage from "@/components/MainPage.vue";
-import {Toast} from "primevue";
+import {Toast, ConfirmDialog} from "primevue";
 </script>
 <template>
   <MainPage/>
   <Toast position="bottom-right"/>
+  <ConfirmDialog/>
 </template>

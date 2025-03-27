@@ -140,23 +140,23 @@ const removeElement = (array, index) => {
 
 <template>
 
+  <!--  TODO add confirmation for deletions -->
   <!--  TODO add filepicker for picture-->
-  <!--  TODO integrate email, phone, and location into networks so they can be reordered-->
+  <!--  TODO allow to configure font-->
+  <!--  TODO allow to modify order of sections at will-->
+  <!--  TODO allow to show/hide icons-->
+  <!--  TODO Make timeline customizable -->
+  <!--  TODO integrate email, phone, and location into networks so they can be reordered> They should be special input items, reorderable but not removable?? maybe not worth it -->
   <!--  TODO Revisit items with URL so we can add them as links keeping text visible-->
   <!--  TODO add translations-->
   <!--  TODO allow to show margins-->
   <!--  TODO improve dragging of visor (looks like offset is always same???) -->
   <!--  TODO Add alert on overflow and/or allow multi-page-->
   <!--  TODO fix mobile UI -->
-  <!--  TODO add confirmation for deletions -->
   <!--  TODO allow to add experience from the top-->
   <!--  TODO think of adding other themes-->
   <!--  TODO add support for text on profiles and allow to indicate icon-->
-  <!--  TODO allow to modify order of sections at will-->
   <!--  TODO Revisit sizes of the entire resume as margins don't look the same on all resolutions -->
-  <!--  TODO allow to configure font-->
-  <!--  TODO Make timeline customizable -->
-  <!--  TODO allow to show/hide icons-->
   <!--  TODO add validations?-->
 
   <Section legend="Basic Data" icon="fas fa-address-card" :hideable="false">

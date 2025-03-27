@@ -1,6 +1,9 @@
 <script setup>
 
 import {computed, ref} from "vue";
+import { useConfirm } from "primevue/useconfirm";
+
+const confirm = useConfirm();
 
 const model = defineModel({
   required: false
@@ -53,6 +56,19 @@ const summaryTime = computed(() => {
 // or we are creating a new element that still doesn't have any value, so expanding makes sense
 const expanded = ref(!summaryTitle.value || summaryTitle.value === "")
 
+function deleteItem() {
+  confirm.require({
+    message: 'Are you sure you want to delete this item?',
+    header: 'Confirm Deletion',
+    icon: 'fas fa-exclamation-triangle',
+    acceptLabel: 'Yes',
+    rejectLabel: 'No',
+    acceptClass: 'p-button-danger',
+    rejectClass: 'p-button-secondary',
+    accept: () => emit('delete'),
+  });
+}
+
 </script>
 
 <template>
@@ -74,7 +90,7 @@ const expanded = ref(!summaryTitle.value || summaryTitle.value === "")
     <div class="actions">
       <i :class="expanded ? 'fas fa-check' : 'fas fa-pencil'" v-if="!skipSummary" @click="() => expanded=!expanded"/>
       <i :class="model?.hidden ? 'fas fa-eye-slash' : 'fas fa-eye'" @click="() => model.hidden = !model?.hidden" v-if="model"></i>
-      <i class="fas fa-trash" @click="() => emit('delete')"></i>
+      <i class="fas fa-trash" @click="deleteItem"></i>
       <i class="fas fa-bars handle"></i>
     </div>
   </div>
