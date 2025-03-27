@@ -18,8 +18,7 @@ basics:
       placeholder: ''
       hidden: true
       text: rubenpahino
-  summary: >-
-    I built this tool
+  summary: I built this tool
   picture: https://avatars.githubusercontent.com/u/9888880?v=4
   phone: ''
   location:
@@ -193,10 +192,10 @@ _builderData:
   style:
     highlightColor: '#17a095'
     fontSize: 10
-    marginTop: 0.75
+    marginTop: 0.7
     marginBottom: 0.75
-    marginLeft: 0.6
-    marginRight: 0.6
+    marginLeft: 0.75
+    marginRight: 0.75
     pictureScale: 0.72
     pictureTranslateX: 3
     pictureTranslateY: 3
@@ -204,4 +203,5 @@ _builderData:
       - Awards
       - Publications
       - About
+      - Interests
   customCss: ''
