@@ -18,6 +18,45 @@ $item-separation: 0.2em !default
   box-sizing: border-box
   background-color: $background
 
+  &.show-icons
+    .section
+      &#summary-section
+        .section-title::before
+          content: "\f007"
+      &#work-section
+        .section-title::before
+          content: "\f0b1"
+      &#projects-section
+        .section-title::before
+          content: "\f542"
+      &#publications-section
+        .section-title::before
+          content: "\f02d"
+      &#conference-section
+        .section-title::before
+          content: "\f130"
+      &#education-section
+        .section-title::before
+          content: "\f19d"
+      &#certificates-section
+        .section-title::before
+          content: "\f559"
+      &#skills-section
+        .section-title::before
+          content: "\f5dc"
+      &#awards-section
+        .section-title::before
+          content: "\f091"
+      &#languages-section
+        .section-title::before
+          content: "\f1ab"
+      &#interests-section
+        .section-title::before
+          content: "\f005"
+      &#extras-section
+        .section-title::before
+          content: "\f196"
+
 body
   margin: 0
   padding: 0
@@ -101,43 +140,6 @@ body
         > *
           flex: 0 1 auto
           white-space: nowrap
-
-      &#summary-section
-        .section-title::before
-          content: "\f007"
-      &#work-section
-        .section-title::before
-          content: "\f0b1"
-      &#projects-section
-        .section-title::before
-          content: "\f542"
-      &#publications-section
-        .section-title::before
-          content: "\f02d"
-      &#conference-section
-        .section-title::before
-          content: "\f130"
-      &#education-section
-        .section-title::before
-          content: "\f19d"
-      &#certificates-section
-        .section-title::before
-          content: "\f559"
-      &#skills-section
-        .section-title::before
-          content: "\f5dc"
-      &#awards-section
-        .section-title::before
-          content: "\f091"
-      &#languages-section
-        .section-title::before
-          content: "\f1ab"
-      &#interests-section
-        .section-title::before
-          content: "\f005"
-      &#extras-section
-        .section-title::before
-          content: "\f196"
 
       .section-title
         font-family: $default-titles-font-family

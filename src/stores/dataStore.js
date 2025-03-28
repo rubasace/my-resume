@@ -2,6 +2,7 @@ import {defineStore} from 'pinia'
 import yaml from "js-yaml";
 import content from '../../data.yaml?raw';
 import {useLocalStorage} from "@vueuse/core";
+import {reactive} from "vue";
 
 export const useDataStore = defineStore('dataStore', () => {
 
@@ -33,8 +34,121 @@ export const useDataStore = defineStore('dataStore', () => {
         sanitizeData()
     }
 
+    const addProfile = () => {
+        data.value.basics.profiles.push({network: '', url: '', placeholder: ''});
+    };
+
+    const addExperience = () => {
+        data.value.work.push(reactive({
+            name: "",
+            position: "",
+            location: "",
+            startDate: "",
+            endDate: "",
+            summary: "",
+            highlights: []
+        }));
+    };
+
+    const addProject = () => {
+        data.value.projects.push(reactive({
+            name: "",
+            startDate: "",
+            endDate: "",
+            description: "",
+            highlights: []
+        }));
+    };
+
+    const addConference = () => {
+        data.value.conferences.push({
+            conference: "",
+            name: "",
+            location: "",
+            time: "",
+            summary: ""
+        });
+    };
+
+    const addPublication = () => {
+        data.value.publications.push({
+            name: "",
+            publisher: "",
+            releaseDate: "",
+            summary: ""
+        });
+    };
+
+    const addEducation = () => {
+        data.value.education.push({
+            institution: "",
+            studyType: "",
+            startDate: "",
+            endDate: "",
+            summary: ""
+        });
+    };
+
+    const addCertificate = () => {
+        data.value.certificates.push({
+            name: "",
+            issuer: "",
+            date: ""
+        });
+    };
+
+    const addAward = () => {
+        data.value.awards.push({
+            title: "",
+            awarder: "",
+            date: "",
+            summary: ""
+        });
+    };
+
+    const addSkill = () => {
+        data.value.skills.push({
+            name: "",
+            keywords: [],
+        });
+    };
+
+    const addLanguage = () => {
+        data.value.languages.push({
+            language: "",
+            fluency: "",
+        });
+    };
+
+    const addInterest = () => {
+        data.value.interests.push({
+            name: "",
+            keywords: [],
+        });
+    };
+
+
+    const addHighlight = (work) => {
+        if (!work.highlights) {
+            work.highlights = [];
+        }
+        work.highlights.push("");
+    };
+
     return {
         data,
+        addProfile,
+        addExperience,
+        addProject,
+        addConference,
+        addPublication,
+        addEducation,
+        addCertificate,
+        addAward,
+        addSkill,
+        addLanguage,
+        addInterest,
+        addHighlight,
         importData
     };
 })

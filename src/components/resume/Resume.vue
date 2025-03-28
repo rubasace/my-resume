@@ -53,12 +53,15 @@ const networkIcons = {
 }
 
 function showTimeline(items) {
+  if(!styleStore.style.showTimeline){
+    return false
+  }
   return Array.isArray(items) && items.length >= 1
 }
 </script>
 
 <template>
-  <div class="page">
+  <div class="page" :class="styleStore.style.showIcons ? 'show-icons' : ''">
     <div class="resume">
       <div class="section" id="profile-section">
         <div class="picture" v-if="profilePic">

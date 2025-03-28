@@ -53,7 +53,9 @@ export const useStyleStore = defineStore('styleStore', () => {
                 pictureScale: 1,
                 pictureTranslateX: 0,
                 pictureTranslateY: 0,
-                hiddenSections: []
+                hiddenSections: [],
+                showIcons: true,
+                showTimeline: true
             }
 
             const customCSS = useLocalStorage('json-resume-custom-css', '');

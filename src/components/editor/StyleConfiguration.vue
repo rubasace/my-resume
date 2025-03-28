@@ -30,6 +30,18 @@ let styleStore = useStyleStore();
     <NumberInput v-model="styleStore.style.marginRight" label="Margin Right" suffix=" in" :step="0.01"/>
   </div>
 
+  <div class="section-title">Misc</div>
+  <div class="grid-2">
+    <label class="flex items-center gap-2">
+      <input type="checkbox" v-model="styleStore.style.showIcons" />
+      Show Icons
+    </label>
+    <label class="flex items-center gap-2">
+      <input type="checkbox" v-model="styleStore.style.showTimeline" />
+      Show Timeline
+    </label>
+  </div>
+
   <div class="section-title">Colors</div>
   <ColorPicker v-model="styleStore.style.highlightColor" label="Highlight Color" @reset="styleStore.resetHighlightColor"/>
 

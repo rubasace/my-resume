@@ -24,113 +24,11 @@ watch(pageTitle, (newTitle) => {
   document.title = newTitle
 }, {immediate: true})
 
-const addProfile = () => {
-  dataStore.data.basics.profiles.push({network: '', url: '', placeholder: ''});
-};
-
 const sourceType = ref('url')
 const sourceOptions = [
   {label: 'URL', value: 'url'},
   // { label: 'File', value: 'file' },
 ]
-
-
-const addExperience = () => {
-  dataStore.data.work.push(reactive({
-    name: "",
-    position: "",
-    location: "",
-    startDate: "",
-    endDate: "",
-    summary: "",
-    highlights: []
-  }));
-};
-
-const addProject = () => {
-  dataStore.data.projects.push(reactive({
-    name: "",
-    startDate: "",
-    endDate: "",
-    description: "",
-    highlights: []
-  }));
-};
-
-const addConference = () => {
-  dataStore.data.conferences.push({
-    conference: "",
-    name: "",
-    location: "",
-    time: "",
-    summary: ""
-  });
-};
-
-const addPublication = () => {
-  dataStore.data.publications.push({
-    name: "",
-    publisher: "",
-    releaseDate: "",
-    summary: ""
-  });
-};
-
-const addEducation = () => {
-  dataStore.data.education.push({
-    institution: "",
-    studyType: "",
-    startDate: "",
-    endDate: "",
-    summary: ""
-  });
-};
-
-const addCertificate = () => {
-  dataStore.data.certificates.push({
-    name: "",
-    issuer: "",
-    date: ""
-  });
-};
-
-const addAward = () => {
-  dataStore.data.awards.push({
-    title: "",
-    awarder: "",
-    date: "",
-    summary: ""
-  });
-};
-
-const addSkill = () => {
-  dataStore.data.skills.push({
-    name: "",
-    keywords: [],
-  });
-};
-
-const addLanguage = () => {
-  dataStore.data.languages.push({
-    language: "",
-    fluency: "",
-  });
-};
-
-const addInterest = () => {
-  dataStore.data.interests.push({
-    name: "",
-    keywords: [],
-  });
-};
-
-
-const addHighlight = (work) => {
-  if (!work.highlights) {
-    work.highlights = [];
-  }
-  work.highlights.push("");
-};
 
 const removeElement = (array, index) => {
   array.splice(index, 1);
@@ -139,20 +37,18 @@ const removeElement = (array, index) => {
 </script>
 
 <template>
-  <!--  TODO move all creations of new elements to the store-->
   <!--  TODO allow to modify order of sections at will-->
   <!--  TODO add filepicker for picture-->
-  <!--  TODO allow to show/hide icons-->
-  <!--  TODO Make timeline customizable -->
   <!--  TODO integrate email, phone, and location into networks so they can be reordered> They should be special input items, reorderable but not removable?? maybe not worth it -->
+  <!--  TODO allow to show margins-->
   <!--  TODO Revisit items with URL so we can add them as links keeping text visible-->
   <!--  TODO add translations-->
-  <!--  TODO allow to show margins-->
   <!--  TODO improve dragging of visor (looks like offset is always same???) -->
   <!--  TODO Add alert on overflow and/or allow multi-page-->
   <!--  TODO fix mobile UI -->
   <!--  TODO allow to add experience from the top-->
   <!--  TODO think of adding other themes-->
+  <!--  TODO Generalize theme options (show icons,  shot timeline...) -->
   <!--  TODO add support for text on profiles and allow to indicate icon-->
   <!--  TODO Revisit sizes of the entire resume as margins don't look the same on all resolutions -->
   <!--  TODO add validations?-->
@@ -218,7 +114,7 @@ const removeElement = (array, index) => {
         </div>
       </InputItem>
     </VueDraggable>
-    <button @click="addProfile" class="button-add">
+    <button @click="dataStore.addProfile" class="button-add">
       <i class="fas fa-plus"></i> Add Contact
     </button>
   </Section>
@@ -253,12 +149,12 @@ const removeElement = (array, index) => {
         />
           </InputItem>
         </VueDraggable>
-        <button @click="addHighlight(work)" class="button-add">
+        <button @click="dataStore.addHighlight(work)" class="button-add">
           <i class="fas fa-plus"></i> Add Highlight
         </button>
       </InputItem>
     </VueDraggable>
-    <button @click="addExperience" class="button-add">
+    <button @click="dataStore.addExperience" class="button-add">
       <i class="fas fa-plus"></i> Add Experience
     </button>
   </Section>
@@ -292,12 +188,12 @@ const removeElement = (array, index) => {
         />
           </InputItem>
         </VueDraggable>
-        <button @click="addHighlight(project)" class="button-add">
+        <button @click="dataStore.addHighlight(project)" class="button-add">
           <i class="fas fa-plus"></i> Add Highlight
         </button>
       </InputItem>
     </VueDraggable>
-    <button @click="addProject" class="button-add">
+    <button @click="dataStore.addProject" class="button-add">
       <i class="fas fa-plus"></i> Add Project
     </button>
   </Section>
@@ -318,7 +214,7 @@ const removeElement = (array, index) => {
                   style="width:100%"/>
       </InputItem>
     </VueDraggable>
-    <button @click="addPublication" class="button-add">
+    <button @click="dataStore.addPublication" class="button-add">
       <i class="fas fa-plus"></i> Add Publication
     </button>
   </Section>
@@ -340,7 +236,7 @@ const removeElement = (array, index) => {
                   style="width:100%"/>
       </InputItem>
     </VueDraggable>
-    <button @click="addConference" class="button-add">
+    <button @click="dataStore.addConference" class="button-add">
       <i class="fas fa-plus"></i> Add Conference
     </button>
   </Section>
@@ -362,7 +258,7 @@ const removeElement = (array, index) => {
         <!--                style="width:100%"/>-->
       </InputItem>
     </VueDraggable>
-    <button @click="addEducation" class="button-add">
+    <button @click="dataStore.addEducation" class="button-add">
       <i class="fas fa-plus"></i> Add Education
     </button>
   </Section>
@@ -380,7 +276,7 @@ const removeElement = (array, index) => {
         </div>
       </InputItem>
     </VueDraggable>
-    <button @click="addCertificate" class="button-add">
+    <button @click="dataStore.addCertificate" class="button-add">
       <i class="fas fa-plus"></i> Add Certificate
     </button>
   </Section>
@@ -400,7 +296,7 @@ const removeElement = (array, index) => {
         <!--        <Textarea auto-resize :id="'award-summary-' + index" v-model="award.summary" placeholder="Description of award (optional)" style="width:100%"/>-->
       </InputItem>
     </VueDraggable>
-    <button @click="addAward" class="button-add">
+    <button @click="dataStore.addAward" class="button-add">
       <i class="fas fa-plus"></i> Add Award
     </button>
   </Section>
@@ -418,7 +314,7 @@ const removeElement = (array, index) => {
         <InputChips placeholder="Add a keyword" v-model="skill.keywords" :input-id="'keywords-'+index"/>
       </InputItem>
     </VueDraggable>
-    <button @click="addSkill" class="button-add">
+    <button @click="dataStore.addSkill" class="button-add">
       <i class="fas fa-plus"></i> Add Skill
     </button>
   </Section>
@@ -435,7 +331,7 @@ const removeElement = (array, index) => {
         </div>
       </InputItem>
     </VueDraggable>
-    <button @click="addLanguage" class="button-add">
+    <button @click="dataStore.addLanguage" class="button-add">
       <i class="fas fa-plus"></i> Add Language
     </button>
   </Section>
@@ -453,7 +349,7 @@ const removeElement = (array, index) => {
         <InputChips placeholder="Add a keyword" v-model="interest.keywords" :input-id="'keywords-'+index"/>
       </InputItem>
     </VueDraggable>
-    <button @click="addInterest" class="button-add">
+    <button @click="dataStore.addInterest" class="button-add">
       <i class="fas fa-plus"></i> Add Interest
     </button>
   </Section>
