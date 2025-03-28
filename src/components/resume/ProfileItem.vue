@@ -1,5 +1,7 @@
 <script setup>
 
+import {getProfileIcon} from "@/util/profileUtils";
+
 const props = defineProps({
   icon: {
     type: String,
@@ -24,7 +26,7 @@ const props = defineProps({
 
 <template>
   <div class="profile">
-    <i class="icon" :class="icon"></i>
+    <i class="icon" :class="icon??getProfileIcon(network)??`fab fa${network?.replace(/([A-Z])/g, '-$1').toLowerCase()}`"></i>
     <a :href="url" target="_blank" :title="network" class="title" v-if="url&&text">{{ text }}</a>
     <span class="title" v-else>{{ text?.length? text : url }}</span>
   </div>

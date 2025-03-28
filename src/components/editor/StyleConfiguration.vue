@@ -15,7 +15,6 @@ let styleStore = useStyleStore();
   <div class="section-title">Fonts</div>
   <NumberInput v-model="styleStore.style.fontSize" label="Font Size" suffix=" pt" :step="0.1" :maxFractionDigits="2"/>
 
-  <!--  TODO improve performance by applying virtual scroll/pagination-->
 <!--  <Select v-model="styleStore.style.fontFamily"-->
 <!--          :options="styleStore.availableFonts"-->
 <!--          optionLabel="label"-->

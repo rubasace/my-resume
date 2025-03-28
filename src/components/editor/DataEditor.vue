@@ -8,6 +8,7 @@ import {VueDraggable} from "vue-draggable-plus";
 import Section from "@/components/editor/Section.vue";
 import {computed, reactive, ref, watch} from "vue";
 import {useStyleStore} from "@/stores/styleStore";
+import {getProfileNames} from "@/util/profileUtils";
 
 
 const dataStore = useDataStore();
@@ -37,20 +38,18 @@ const removeElement = (array, index) => {
 </script>
 
 <template>
+  <!--  TODO add support for text on profiles and allow to indicate icon-->
   <!--  TODO allow to modify order of sections at will-->
   <!--  TODO add filepicker for picture-->
-  <!--  TODO integrate email, phone, and location into networks so they can be reordered> They should be special input items, reorderable but not removable?? maybe not worth it -->
-  <!--  TODO allow to show margins-->
-  <!--  TODO Revisit items with URL so we can add them as links keeping text visible-->
+  <!--  TODO allow to change resume language -->
   <!--  TODO add translations-->
+  <!--  TODO Revisit items with URL so we can add them as links keeping text visible-->
   <!--  TODO improve dragging of visor (looks like offset is always same???) -->
   <!--  TODO Add alert on overflow and/or allow multi-page-->
   <!--  TODO fix mobile UI -->
   <!--  TODO allow to add experience from the top-->
   <!--  TODO think of adding other themes-->
   <!--  TODO Generalize theme options (show icons,  shot timeline...) -->
-  <!--  TODO add support for text on profiles and allow to indicate icon-->
-  <!--  TODO Revisit sizes of the entire resume as margins don't look the same on all resolutions -->
   <!--  TODO add validations?-->
 
   <Section legend="Basic Data" icon="fas fa-address-card" :hideable="false">
@@ -108,7 +107,7 @@ const removeElement = (array, index) => {
                  @delete="removeElement(dataStore.data.basics.profiles, index)">
         <div class="grid-3">
           <!--   TODO Integrate with predefined set of networks-->
-          <TextInput v-model="profile.network" label="Network" :options="['Linkedin', 'Twitter', 'GitHub']"/>
+          <TextInput v-model="profile.network" label="Network" :options="getProfileNames()"/>
           <TextInput v-model="profile.url" label="URL"/>
           <TextInput v-model="profile.text" label="Text"/>
         </div>

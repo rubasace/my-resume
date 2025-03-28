@@ -17,6 +17,15 @@ body
   padding-bottom: calc(var(--c-resume-builder-margin-bottom) * 1in)
   padding-right: calc(var(--c-resume-builder-margin-right) * 1in)
   padding-left: calc(var(--c-resume-builder-margin-left) * 1in)
+  &.show-margins::before
+    content: ""
+    position: absolute
+    top: calc(var(--c-resume-builder-margin-top) * 1in)
+    bottom: calc(var(--c-resume-builder-margin-bottom) * 1in)
+    left: calc(var(--c-resume-builder-margin-left) * 1in)
+    right: calc(var(--c-resume-builder-margin-right) * 1in)
+    border: 6px dashed rgba(#333, 0.5)
+    pointer-events: none
   p
     margin: 0
   a
