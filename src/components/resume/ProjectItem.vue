@@ -1,6 +1,12 @@
 <script setup>
+import Title from "@/components/resume/Title.vue";
+
 defineProps({
   name: {
+    type: String,
+    required: true
+  },
+  url: {
     type: String,
     required: false
   },
@@ -25,7 +31,7 @@ defineProps({
 <template>
   <div class="item">
     <div class="header">
-      <span class="title" v-if="name">{{ name }}</span>
+      <Title :text="name" :url="url"/>
       <span class="time details">
         <span>{{ startDate }}</span>
         <span v-if="endDate"> - {{ endDate }}</span>

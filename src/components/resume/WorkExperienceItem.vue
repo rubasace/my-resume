@@ -1,4 +1,6 @@
 <script setup>
+import Title from "@/components/resume/Title.vue";
+
 defineProps({
   company: {
     type: String,
@@ -20,6 +22,10 @@ defineProps({
     type: String,
     required: true
   },
+  url: {
+    type: String,
+    required: false
+  },
   summary: {
     type: String,
     required: false
@@ -34,7 +40,7 @@ defineProps({
 <template>
   <div class="item">
     <div class="header">
-      <span class="title company" v-if="company">{{ company }}</span>
+      <Title :text="company" :url="url" />
       <span class="separator details">/</span>
       <span class="role name details">{{ role }}</span>
       <span class="separator details" v-if="location">|</span>

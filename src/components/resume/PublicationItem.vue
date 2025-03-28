@@ -1,7 +1,13 @@
 <script setup>
 
+import Title from "@/components/resume/Title.vue";
+
 defineProps({
   name: {
+    type: String,
+    required: true
+  },
+  url: {
     type: String,
     required: false
   },
@@ -23,9 +29,7 @@ defineProps({
 <template>
   <div class="item">
     <div class="header">
-      <span class="publication title" v-if="name">
-        <span>{{ name }}</span>
-      </span>
+      <Title :text="name" :url="url" />
       <span class="separator" v-if="name && publisher">/</span>
       <span class="location details" v-if="publisher">{{ publisher }}</span>
       <span class="time details">{{ releaseDate }}</span>

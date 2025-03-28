@@ -1,147 +1,112 @@
-$schema: https://raw.githubusercontent.com/jsonresume/resume-schema/master/schema.json
-language: en
 basics:
   name: Jane Doe
-  label: Software Engineer
+  label: Full Stack Developer
+  image: https://example.com/avatar.jpg
   email: jane.doe@example.com
+  phone: ''
+  url: https://janedoe.dev
+  summary: >-
+    Experienced full stack developer with a passion for clean code, scalable
+    systems, and elegant UI/UX. 8+ years building web apps across the stack.
+  location:
+    address: 123 Main Street
+    postalCode: '94105'
+    city: San Francisco
+    region: CA
+    countryCode: US
+    summary: San Francisco, CA
   profiles:
     - network: GitHub
+      username: janedoe
       url: https://github.com/janedoe
-      hidden: false
       text: janedoe
     - network: LinkedIn
+      username: janedoe
       url: https://linkedin.com/in/janedoe
-      hidden: false
       text: janedoe
-    - network: Instagram
-      url: https://instagram.com/janedoe
-      placeholder: ''
-      hidden: true
-      text: janedoe
-  summary: I built this tool
-  picture: https://img.freepik.com/free-photo/fair-haired-woman-looking-with-pleased-calm-expression_176420-15145.jpg?t=st=1743123554~exp=1743127154~hmac=97db0baf0b7bfc5c96345d96708a52186d4a7ee7819806570b79b3e0147ed3ac&w=1380
-  phone: ''
-  location:
-    summary: ''
+  picture: >-
+    https://img.freepik.com/free-photo/fair-haired-woman-looking-with-pleased-calm-expression_176420-15145.jpg?t=st=1743123554~exp=1743127154~hmac=97db0baf0b7bfc5c96345d96708a52186d4a7ee7819806570b79b3e0147ed3ac&w=1380
 work:
-  - name: TechCorp Inc.
-    position: Backend Tech Lead
-    location: Remote
-    startDate: Feb 2017
+  - name: Acme Corp
+    position: Senior Software Engineer
+    url: https://acme.com
+    startDate: Jun 2021
     endDate: Present
+    summary: Leading frontend architecture and mentoring junior developers.
     highlights:
-      - Designed and built a corporate Java framework, extending Spring Boot with cross-cutting concerns.
-      - Created a workflow with Renovatebot and Snyk to eliminate dependency vulnerabilities.
-      - Standardized CI/CD pipeline with JIB/Buildpacks, JVM optimizations, and graceful shutdown.
-      - Reduced infrastructure costs by analyzing logging and Kubernetes resource usage.
-    hidden: false
-    summary: ''
-  - name: DevSolutions
-    position: Backend Developer
-    location: Anytown, Country
-    startDate: Aug 2015
-    endDate: Feb 2017
-    summary: Developed Java 8 applications using Reflection API and classloaders.
-    hidden: false
-  - name: CodeWorks
-    position: Junior Backend Developer
-    location: Anytown, Country
-    startDate: Mar 2015
-    endDate: Aug 2015
-    summary: Developed eCommerce backend using Java and Spring.
-    highlights: []
-    hidden: false
-  - name: TechStart
-    position: Internship
-    location: Anytown, Country
-    startDate: Jun 2013
-    endDate: Aug 2013
-    hidden: false
+      - Redesigned company dashboard, reducing load time by 60%
+      - Introduced design system used across 5 teams
+      - Built real-time collaboration features using WebSockets
+  - name: Tech Solutions Inc.
+    position: Software Engineer
+    url: https://techsolutions.com
+    startDate: Jan 2017
+    endDate: May 2021
+    summary: Full-stack development of B2B SaaS platform.
+    highlights:
+      - Developed REST APIs in Node.js and PostgreSQL
+      - Led migration to React and TypeScript
+      - Improved test coverage to 95% with Jest and Cypress
 education:
-  - institution: TechAcademy
-    studyType: Master in Java Programming
-    startDate: 2014
-    endDate: 2015
-    hidden: false
-  - institution: University of Somewhere
-    studyType: Degree in Computer Engineering
-    startDate: 2009
-    endDate: 2014
-    hidden: false
+  - institution: University of Oxford
+    url: https://www.ox.ac.uk/
+    area: Computer Science
+    studyType: Degree in Software Engineering
+    startDate: '2012'
+    endDate: '2016'
+    gpa: '3.8'
 skills:
-  - name: Programming
+  - name: Frontend
+    level: Advanced
     keywords:
-      - Java
-      - Spring Boot
-      - Project Reactor
-      - Resilience4J
-      - Hibernate
-      - Maven
-      - Git
-    hidden: false
-  - name: Monitoring
+      - React
+      - Vue
+      - TypeScript
+      - Tailwind CSS
+  - name: Backend
+    level: Advanced
     keywords:
-      - Prometheus
-      - Grafana
-      - AlertManager
-      - ELK stack
-      - Micrometer
-  - name: Architecture
-    keywords:
-      - REST API
-      - Microservices
-      - Event Driven
-  - name: Infrastructure
+      - Node.js
+      - Express
+      - PostgreSQL
+      - Redis
+  - name: DevOps
+    level: Intermediate
     keywords:
       - Docker
+      - GitHub Actions
       - Kubernetes
-      - Helm
-      - Drone CI
-      - CircleCI
-      - GitOps
-  - name: Soft Skills
+      - AWS
+  - name: Soft-skills
     keywords:
       - Leadership
-      - Effective Communication
-      - Teamwork
-      - Critical Thinking
-      - Attention to Detail
+      - teamwork
+      - attention to detail
+projects:
+  - name: OpenResume
+    description: Open-source JSON Resume theme builder
+    url: https://github.com/janedoe/openresume
+    highlights:
+      - Supports live preview and export to PDF
+      - Built using Vue 3 and Vite
+      - Featured on Product Hunt
 languages:
   - language: English
     fluency: Native
-    hidden: false
-  - language: French
-    fluency: Native
-    hidden: false
-  - language: Dutch
-    fluency: Fluent
-    hidden: false
+  - language: Spanish
+    fluency: Professional working proficiency
+interests:
+  - name: UX Design
+  - name: Open Source
+  - name: Backpacking
+publications: [ ]
+certificates: [ ]
+awards: [ ]
+extras: [ ]
 conferences:
-  - conference: TechConf
-    name: Building a Framework on top of Spring Boot
-    location: Barcelona, Country
-    time: May 2022
-    hidden: false
-  - conference: Various Meetups
-    location: Europe
-    time: 2020 - Present
-    summary: Presented at JVM-related meetups across Europe.
-    hidden: false
-projects:
-  - name: Resume Editor
-    startDate: March 2025
-    endDate: ''
-    description: UI resume editor created with Vue.js and based on the JSON Resume project.
-    highlights: []
-    summary: Feature-rich and user-friendly
-    hidden: false
-  - name: SQL Framework
-    startDate: Aug 2019
-    endDate: Present
-    description: SQL UI Framework for developers
-    highlights: []
-    summary: Highly extensible and intuitive
-    hidden: true
-certificates: []
-awards: []
-extras: []
+  - title: Bridging Dev and Design in Large Frontends
+    conference: Devoxx Belgium
+    url: https://manifesto.design/en/homepage/
+    location: ''
+    time: '2023'
+    summary: ''

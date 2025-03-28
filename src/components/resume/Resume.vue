@@ -87,7 +87,7 @@ function showTimeline(items) {
           <span>{{ $t("section.experience") }}</span>
         </div>
         <div class="section-content"  :class="{ timeline: showTimeline(work) }">
-          <WorkExperienceItem v-for="entry in work" :items="entry.highlights" :company="entry.name" :location="entry.location" :role="entry.position" :startDate="entry.startDate" :endDate="entry.endDate" :summary="entry.summary" />
+          <WorkExperienceItem v-for="entry in work" :items="entry.highlights" :company="entry.name" :location="entry.location" :role="entry.position" :startDate="entry.startDate" :endDate="entry.endDate" :url="entry.url" :summary="entry.summary" />
         </div>
       </div>
 
@@ -96,7 +96,7 @@ function showTimeline(items) {
           <span>{{ $t("section.projects") }}</span>
         </div>
         <div class="section-content" >
-          <ProjectItem v-for="entry in projects" :highlights="entry.highlights" :name="entry.name" :startDate="entry.startDate" :endDate="entry.endDate" :description="entry.description" />
+          <ProjectItem v-for="entry in projects" :highlights="entry.highlights" :name="entry.name" :url="entry.url" :startDate="entry.startDate" :endDate="entry.endDate" :description="entry.description" />
         </div>
       </div>
 
@@ -105,7 +105,7 @@ function showTimeline(items) {
           <span>{{ $t("section.publications") }}</span>
         </div>
         <div class="section-content" >
-          <PublicationItem v-for="entry in publications" :name="entry.name" :publisher="entry.publisher" :releaseDate="entry.releaseDate" :summary="entry.summary" />
+          <PublicationItem v-for="entry in publications" :name="entry.name" :url="entry.url" :publisher="entry.publisher" :releaseDate="entry.releaseDate" :summary="entry.summary" />
         </div>
       </div>
 
@@ -114,7 +114,7 @@ function showTimeline(items) {
           <span>{{ $t("section.conference") }}</span>
         </div>
         <div class="section-content" >
-          <ConferenceItem v-for="entry in conferences" :items="entry.highlights" :conference="entry.conference" :name="entry.name" :location="entry.location" :summary="entry.summary" :time="entry.time" />
+          <ConferenceItem v-for="entry in conferences" :items="entry.highlights" :conference="entry.conference" :title="entry.title" :location="entry.location" :url="entry.url" :summary="entry.summary" :time="entry.time" />
         </div>
       </div>
 
@@ -123,7 +123,7 @@ function showTimeline(items) {
           <span>{{ $t("section.education") }}</span>
         </div>
         <div class="section-content" >
-          <EducationItem v-for="entry in education" :startDate="entry.startDate" :endDate="entry.endDate" :name="entry.studyType" :school="entry.institution" :description="entry.description" />
+          <EducationItem v-for="entry in education" :startDate="entry.startDate" :endDate="entry.endDate" :name="entry.studyType" :school="entry.institution" :url="entry.url" :description="entry.description" />
         </div>
       </div>
 
@@ -132,7 +132,7 @@ function showTimeline(items) {
           <span>{{ $t("section.certificates") }}</span>
         </div>
         <div class="section-content">
-          <EducationItem v-for="entry in certificates" :startDate="entry.date" :name="entry.issuer" :school="entry.name" />
+          <EducationItem v-for="entry in certificates" :startDate="entry.date" :name="entry.issuer" :school="entry.name" :url="entry.url" />
         </div>
       </div>
 
@@ -150,7 +150,7 @@ function showTimeline(items) {
           <span>{{ $t("section.awards") }}</span>
         </div>
         <div class="section-content">
-          <AwardItem :title="entry.title" :awarder="entry.awarder" :date="entry.date" :summary="entry.summary" v-for="entry in awards" />
+          <AwardItem :title="entry.title" :awarder="entry.awarder" :date="entry.date" :url="entry.url" :summary="entry.summary" v-for="entry in awards" />
         </div>
       </div>
 

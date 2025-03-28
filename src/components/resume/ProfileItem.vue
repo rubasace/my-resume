@@ -1,6 +1,7 @@
 <script setup>
 
 import {getProfileIcon} from "@/util/profileUtils";
+import Title from "@/components/resume/Title.vue";
 
 const props = defineProps({
   icon: {
@@ -27,7 +28,6 @@ const props = defineProps({
 <template>
   <div class="profile">
     <i class="icon" :class="icon??getProfileIcon(network)??`fab fa${network?.replace(/([A-Z])/g, '-$1').toLowerCase()}`"></i>
-    <a :href="url" target="_blank" :title="network" class="title" v-if="url&&text">{{ text }}</a>
-    <span class="title" v-else>{{ text?.length? text : url }}</span>
+    <Title :text="text" :title="network" :url="url"/>
   </div>
 </template>

@@ -13,6 +13,7 @@ export const useDataStore = defineStore('dataStore', () => {
     function sanitizeData(){
         initializeIfMissing('work')
         initializeIfMissing('projects')
+        initializeIfMissing('conferences')
         initializeIfMissing('publications')
         initializeIfMissing('education')
         initializeIfMissing('certificates')

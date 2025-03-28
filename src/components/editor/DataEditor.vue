@@ -38,18 +38,19 @@ const removeElement = (array, index) => {
 </script>
 
 <template>
-  <!--  TODO add support for text on profiles and allow to indicate icon-->
+  <!--  TODO add support for basics.url as rest of network-->
+  <!--  TODO allow to add experience from the top-->
   <!--  TODO allow to modify order of sections at will-->
   <!--  TODO add filepicker for picture-->
   <!--  TODO allow to change resume language -->
   <!--  TODO add translations-->
-  <!--  TODO Revisit items with URL so we can add them as links keeping text visible-->
+  <!--  TODO revisit separators so they only display when needed-->
   <!--  TODO improve dragging of visor (looks like offset is always same???) -->
   <!--  TODO Add alert on overflow and/or allow multi-page-->
   <!--  TODO fix mobile UI -->
-  <!--  TODO allow to add experience from the top-->
   <!--  TODO think of adding other themes-->
   <!--  TODO Generalize theme options (show icons,  shot timeline...) -->
+  <!--  TODO allow to customize icon for profiles?-->
   <!--  TODO add validations?-->
 
   <Section legend="Basic Data" icon="fas fa-address-card" :hideable="false">
@@ -129,6 +130,7 @@ const removeElement = (array, index) => {
           <TextInput v-model="work.location" label="Location"/>
           <TextInput v-model="work.startDate" label="Start Date"/>
           <TextInput v-model="work.endDate" label="End Date"/>
+          <TextInput v-model="work.url" label="URL"/>
         </div>
         <label :for="'summary-' + index" class="font-bold block mb-3 mt-3">Summary</label>
         <Textarea auto-resize :id="'summary-' + index" v-model="work.summary" placeholder="Description of the job (optional)" style="width:100%"/>
@@ -164,8 +166,9 @@ const removeElement = (array, index) => {
                  :key="index"
                  v-model="dataStore.data.projects[index]"
                  @delete="removeElement(dataStore.data.projects,index)">
-        <div class="grid-3">
+        <div class="grid-2">
           <TextInput v-model="project.name" label="Name"/>
+          <TextInput v-model="project.url" label="URL"/>
           <TextInput v-model="project.startDate" label="Start Date"/>
           <TextInput v-model="project.endDate" label="End Date"/>
         </div>
@@ -205,6 +208,7 @@ const removeElement = (array, index) => {
                  @delete="removeElement(dataStore.data.publications, index)">
         <div class="grid-2">
           <TextInput v-model="publication.name" label="Name"/>
+          <TextInput v-model="publication.url" label="URL"/>
           <TextInput v-model="publication.publisher" label="Publisher"/>
           <TextInput v-model="publication.releaseDate" label="Release Date"/>
         </div>
@@ -225,10 +229,11 @@ const removeElement = (array, index) => {
                  v-model="dataStore.data.conferences[index]"
                  @delete="removeElement(dataStore.data.conferences, index)">
         <div class="grid-2">
+          <TextInput v-model="conference.title" label="Title"/>
           <TextInput v-model="conference.conference" label="Conference"/>
-          <TextInput v-model="conference.name" label="Name"/>
           <TextInput v-model="conference.location" label="Location"/>
           <TextInput v-model="conference.time" label="Time"/>
+          <TextInput v-model="conference.url" label="URL"/>
         </div>
         <label :for="'conference-summary-' + index" class="font-bold block mb-3 mt-3">Summary</label>
         <Textarea auto-resize :id="'conference-summary-' + index" v-model="conference.summary" placeholder="Description of the job (optional)"
@@ -251,6 +256,7 @@ const removeElement = (array, index) => {
           <TextInput v-model="education.studyType" label="Study Type"/>
           <TextInput v-model="education.startDate" label="Start Date"/>
           <TextInput v-model="education.endDate" label="End Date"/>
+          <TextInput v-model="education.url" label="Institution URL"/>
         </div>
         <!--      <label :for="'conference-summary-' + index" class="font-bold block mb-3 mt-3">Summary</label>-->
         <!--      <Textarea auto-resize :id="'conference-summary-' + index" v-model="education.summary" placeholder="Description of the job (optional)"-->
@@ -268,10 +274,11 @@ const removeElement = (array, index) => {
                  :key="index"
                  v-model="dataStore.data.certificates[index]"
                  @delete="removeElement(dataStore.data.certificates,index)">
-        <div class="grid-3">
+        <div class="grid-2">
           <TextInput v-model="certificate.name" label="Name"/>
           <TextInput v-model="certificate.issuer" label="Issuer"/>
           <TextInput v-model="certificate.date" label="Date"/>
+          <TextInput v-model="certificate.url" label="Certificate URL"/>
         </div>
       </InputItem>
     </VueDraggable>
@@ -286,10 +293,11 @@ const removeElement = (array, index) => {
                  :key="index" z
                  v-model="dataStore.data.awards[index]"
                  @delete="removeElement(dataStore.data.awards,index)">
-        <div class="grid-3">
+        <div class="grid-2">
           <TextInput v-model="award.title" label="Title"/>
           <TextInput v-model="award.awarder" label="Awarder"/>
           <TextInput v-model="award.date" label="Date"/>
+          <TextInput v-model="award.url" label="URL"/>
         </div>
         <!--        <label :for="'award-summary-' + index" class="font-bold block mb-3 mt-3">Summary</label>-->
         <!--        <Textarea auto-resize :id="'award-summary-' + index" v-model="award.summary" placeholder="Description of award (optional)" style="width:100%"/>-->

@@ -1,5 +1,7 @@
 <script setup>
 
+import Title from "@/components/resume/Title.vue";
+
 defineProps({
   school: {
     type: String,
@@ -17,6 +19,10 @@ defineProps({
     type: [String, Number],
     required: true
   },
+  url: {
+    type: String,
+    required: false
+  },
   description: {
     type: String,
     required: false
@@ -27,7 +33,7 @@ defineProps({
 <template>
   <div class="item">
     <div class="header">
-      <span class="title school">{{ school }}</span>
+      <Title :text="school" :url="url" />
       <span class="separator">/</span>
       <span class="name details">{{ name }}</span>
       <span class="time details">
