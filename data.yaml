@@ -1,94 +1,69 @@
 $schema: https://raw.githubusercontent.com/jsonresume/resume-schema/master/schema.json
 language: en
 basics:
-  name: Rubén Pahíno
+  name: Jane Doe
   label: Software Engineer
-  email: ruben.pahino.verdugo@gmail.com
+  email: jane.doe@example.com
   profiles:
     - network: GitHub
-      url: https://github.com/rubasace
+      url: https://github.com/janedoe
       hidden: false
-      text: rubasace
-    - network: Linkedin
-      url: https://linkedin.com/in/rubenpahino
+      text: janedoe
+    - network: LinkedIn
+      url: https://linkedin.com/in/janedoe
       hidden: false
-      text: rubenpahino
+      text: janedoe
     - network: Instagram
-      url: https://instagram.com/rubenpahino
+      url: https://instagram.com/janedoe
       placeholder: ''
       hidden: true
-      text: rubenpahino
+      text: janedoe
   summary: I built this tool
-  picture: https://avatars.githubusercontent.com/u/9888880?v=4
+  picture: https://img.freepik.com/free-photo/fair-haired-woman-looking-with-pleased-calm-expression_176420-15145.jpg?t=st=1743123554~exp=1743127154~hmac=97db0baf0b7bfc5c96345d96708a52186d4a7ee7819806570b79b3e0147ed3ac&w=1380
   phone: ''
   location:
     summary: ''
 work:
-  - name: Travix International
+  - name: TechCorp Inc.
     position: Backend Tech Lead
-    location: London, UK (Remote)
+    location: Remote
     startDate: Feb 2017
     endDate: Present
     highlights:
-      - >-
-        Helped two small Java teams develop and maintain 200+ microservices by
-        designing and building a corporate Java framework, extending Spring Boot
-        capabilities and providing many cross-cutting concerns out-of-the-box.
-      - >-
-        Removed all Java applications dependency vulnerabilities and reduced
-        zero-day vulnerabilities MTTR to hours by designing a workflow to
-        automatically keep dependencies up to date, combining Renovatebot and
-        Snyk.
-      - >-
-        Improved Java teams velocity and stack reliability by standardizing the
-        CI/CD process, crafting extensions to transparently adopt
-        JIB/Buildpacks, offering sensible, easily customizable defaults for JVM
-        flags and enabling graceful shutdown of services, among others.
-      - >-
-        Reduced the infrastructure cost in a 5% (~7K€/month) by revisiting
-        logging volume and Kubernetes cluster resource utilization, as a
-        part-time member of the Systems Engineering team.
-      - >-
-        Eliminated most Java technical debt, performed over 50 knowledge sharing
-        sessions, took architectural decisions and helped improve the overall
-        company-wide stack as a Backend (Java) Tech lead.
-      - >-
-        Worked at the London offices until October 2020 and remotely from Spain
-        since then.
+      - Designed and built a corporate Java framework, extending Spring Boot with cross-cutting concerns.
+      - Created a workflow with Renovatebot and Snyk to eliminate dependency vulnerabilities.
+      - Standardized CI/CD pipeline with JIB/Buildpacks, JVM optimizations, and graceful shutdown.
+      - Reduced infrastructure costs by analyzing logging and Kubernetes resource usage.
     hidden: false
     summary: ''
-  - name: Imatia Innovation
+  - name: DevSolutions
     position: Backend Developer
-    location: Vigo, Spain
+    location: Anytown, Country
     startDate: Aug 2015
     endDate: Feb 2017
-    summary: >-
-      Designed and developed Java applications using Java 8, Reflection API and
-      classloaders.
+    summary: Developed Java 8 applications using Reflection API and classloaders.
     hidden: false
-  - name: INSA
-    position: Junior backend developer
-    location: Ourense, Spain
+  - name: CodeWorks
+    position: Junior Backend Developer
+    location: Anytown, Country
     startDate: Mar 2015
     endDate: Aug 2015
-    summary: >-
-      Developed eCommerce backend and parallel projects for the Inditex group,
-      using Java and Spring.
+    summary: Developed eCommerce backend using Java and Spring.
     highlights: []
     hidden: false
-  - name: Tesla Technologies
+  - name: TechStart
     position: Internship
-    location: Santiago de Compostela, Spain
+    location: Anytown, Country
     startDate: Jun 2013
     endDate: Aug 2013
     hidden: false
 education:
-  - institution: PCarrier
-    studyType: Master in Java 8 programming
+  - institution: TechAcademy
+    studyType: Master in Java Programming
     startDate: 2014
     endDate: 2015
     hidden: false
-  - institution: USC (Santiago de Compostela)
+  - institution: University of Somewhere
     studyType: Degree in Computer Engineering
     startDate: 2009
     endDate: 2014
@@ -121,87 +96,52 @@ skills:
       - Docker
       - Kubernetes
       - Helm
-      - Drone I/O
+      - Drone CI
       - CircleCI
-      - Flux2
+      - GitOps
   - name: Soft Skills
     keywords:
       - Leadership
-      - effective communication
-      - teamwork
-      - critical thinking
-      - attention to detail
+      - Effective Communication
+      - Teamwork
+      - Critical Thinking
+      - Attention to Detail
 languages:
-  - language: Spanish
-    fluency: Native
-    hidden: false
-  - language: Galician
-    fluency: Native
-    hidden: false
   - language: English
+    fluency: Native
+    hidden: false
+  - language: French
+    fluency: Native
+    hidden: false
+  - language: Dutch
     fluency: Fluent
     hidden: false
 conferences:
-  - conference: Spring I/O
+  - conference: TechConf
     name: Building a Framework on top of Spring Boot
-    location: Barcelona, Spain
+    location: Barcelona, Country
     time: May 2022
     hidden: false
   - conference: Various Meetups
     location: Europe
     time: 2020 - Present
-    summary: >-
-      Presented at various meetups in Galicia (Spain) as well as Amsterdam
-      (Netherlands), focusing on Spring, RSocket and other JVM related
-      technologies.
+    summary: Presented at JVM-related meetups across Europe.
     hidden: false
 projects:
-  - name: CV Builder
+  - name: Resume Editor
     startDate: March 2025
     endDate: ''
-    description: UI Resume editor created with Vue.js and based on the JSON Resume project.
+    description: UI resume editor created with Vue.js and based on the JSON Resume project.
     highlights: []
-    summary: Very nice
+    summary: Feature-rich and user-friendly
     hidden: false
-  - name: Squizy
+  - name: SQL Framework
     startDate: Aug 2019
     endDate: Present
-    description: Best SQL UI Framework baby
+    description: SQL UI Framework for developers
     highlights: []
-    summary: Best framework in history
+    summary: Highly extensible and intuitive
     hidden: true
-publications:
-  - name: Build your own framework
-    publisher: O'Really
-    releaseDate: 29 Sept 2025
-    summary: Lore ipsum blablabla
 certificates: []
 awards: []
 extras: []
-interests:
-  - name: ''
-    keywords:
-      - Homelabbing
-      - Self-hosting
-      - Home-theatre
-      - Music
-      - Poker
-      - Chess
-undefined: {}
-_builderData:
-  style:
-    highlightColor: '#17a095'
-    fontSize: 10
-    marginTop: 0.7
-    marginBottom: 0.75
-    marginLeft: 0.75
-    marginRight: 0.75
-    pictureScale: 0.72
-    pictureTranslateX: 3
-    pictureTranslateY: 3
-    hiddenSections:
-      - Awards
-      - Publications
-      - About
-      - Interests
-  customCss: ''

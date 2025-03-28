@@ -2,22 +2,12 @@ import {defineStore} from 'pinia'
 import yaml from "js-yaml";
 import content from '../../data.yaml?raw';
 import {useLocalStorage} from "@vueuse/core";
-import {useStyleStore} from "@/stores/styleStore";
 
 export const useDataStore = defineStore('dataStore', () => {
 
-    let styleStore = useStyleStore();
     // TODO change file to provide default anonymized values
-    const data = useLocalStorage('json-resume-data', loadInitialData);
+    const data = useLocalStorage('json-resume-data', () => yaml.load(content));
 
-    function loadInitialData(){
-        const value = yaml.load(content)
-        const {_builderData, ...data} = value;
-
-        styleStore.importStyle(_builderData?.style??{})
-        styleStore.customCSS = _builderData?.customCss??''
-        return data
-    }
     sanitizeData()
     function sanitizeData(){
         initializeIfMissing('work')

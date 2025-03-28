@@ -139,8 +139,7 @@ const removeElement = (array, index) => {
 </script>
 
 <template>
-
-  <!--  TODO allow to configure font-->
+  <!--  TODO move all creations of new elements to the store-->
   <!--  TODO allow to modify order of sections at will-->
   <!--  TODO add filepicker for picture-->
   <!--  TODO allow to show/hide icons-->
@@ -192,14 +191,14 @@ const removeElement = (array, index) => {
         <div v-if="uploadError" class="text-red-500 text-sm">{{ uploadError }}</div>
       </div>
 
-<!--      <div v-if="dataStore.data.basics.picture" class="mt-4">-->
-<!--        <label class="font-semibold">Preview</label>-->
-<!--        <img :src="dataStore.data.basics.picture" alt="Preview" class="max-w-xs rounded shadow"/>-->
-<!--      </div>-->
+      <!--      <div v-if="dataStore.data.basics.picture" class="mt-4">-->
+      <!--        <label class="font-semibold">Preview</label>-->
+      <!--        <img :src="dataStore.data.basics.picture" alt="Preview" class="max-w-xs rounded shadow"/>-->
+      <!--      </div>-->
 
       <NumberInput v-model="styleStore.style.pictureTranslateX" label="TranslateX" :step="1" :max-fraction-digits="0" suffix="px"/>
-      <NumberInput v-model="styleStore.style.pictureTranslateY" label="TranslateY" :step="1" :max-fraction-digits="0"  suffix="px"/>
-      <NumberInput v-model="styleStore.style.pictureScale" label="Scale" :min="0.1" :step="0.1" />
+      <NumberInput v-model="styleStore.style.pictureTranslateY" label="TranslateY" :step="1" :max-fraction-digits="0" suffix="px"/>
+      <NumberInput v-model="styleStore.style.pictureScale" label="Scale" :min="0.1" :step="0.1"/>
     </div>
   </Section>
   <Section legend="About" icon="fas fa-user" v-model="dataStore.data.basics.profiles">
@@ -212,7 +211,7 @@ const removeElement = (array, index) => {
                  v-model="dataStore.data.basics.profiles[index]"
                  @delete="removeElement(dataStore.data.basics.profiles, index)">
         <div class="grid-3">
-            <!--   TODO Integrate with predefined set of networks-->
+          <!--   TODO Integrate with predefined set of networks-->
           <TextInput v-model="profile.network" label="Network" :options="['Linkedin', 'Twitter', 'GitHub']"/>
           <TextInput v-model="profile.url" label="URL"/>
           <TextInput v-model="profile.text" label="Text"/>

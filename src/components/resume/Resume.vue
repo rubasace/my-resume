@@ -46,10 +46,10 @@ const profilePic = computed(() => {
 })
 
 const networkIcons = {
-  GitHub: "fa-brands fa-github",
-  Linkedin: "fa-brands fa-linkedin",
-  Twitter: "fa-brands fa-twitter",
-  Instagram: "fa-brands fa-instagram",
+  github: "fa-brands fa-github",
+  linkedin: "fa-brands fa-linkedin",
+  twitter: "fa-brands fa-twitter",
+  instagram: "fa-brands fa-instagram",
 }
 
 function showTimeline(items) {
@@ -70,7 +70,7 @@ function showTimeline(items) {
         </div>
       </div>
       <div class="section" id="contact-section">
-        <ProfileItem v-for="profile in profiles" :icon="networkIcons[profile.network]" :url="profile.url" :text="profile.text" :network="profile.network" />
+        <ProfileItem v-for="profile in profiles" :icon="networkIcons[profile.network?.toLowerCase()]" :url="profile.url" :text="profile.text" :network="profile.network" />
         <ProfileItem icon="fa fa-envelope" :url="data.basics.email" v-if="data.basics.email" network="Email" />
         <ProfileItem icon="fa fa-phone" :text="data.basics.phone" v-if="data.basics.phone" network="Phone"/>
         <ProfileItem icon="fa fa-location-dot" :text="data.basics.location.summary" v-if="data.basics.location.summary" network="Location"/>

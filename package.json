@@ -18,6 +18,7 @@
     "@primeuix/themes": "^1.0.0",
     "@vueuse/components": "^13.0.0",
     "@vueuse/core": "^13.0.0",
+    "google-fonts-complete": "^2.2.3",
     "html2canvas": "^1.4.1",
     "html2pdf.js": "^0.10.3",
     "js-yaml": "^4.1.0",
