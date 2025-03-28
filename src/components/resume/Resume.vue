@@ -17,10 +17,6 @@ const dataStore = useDataStore()
 let styleStore = useStyleStore();
 const data = computed(() => dataStore.data)
 
-
-const sections = ['work', 'projects', 'publications', 'conferences', 'education', 'certificates', 'skills', 'awards', 'interests', 'languages', 'extras']
-
-const visibleSections = computed(() => sections.filter(section => !styleStore.style.hiddenSections?.includes(section) && dataStore.data[section]?.length))
 const profiles = visibleEntries(() => dataStore.data.basics?.profiles, 'Profiles')
 
 function visibleEntries(getter, section) {
@@ -73,25 +69,28 @@ function showTimeline(section) {
         </div>
       </div>
 
-      <div class="section" v-for="section in visibleSections" :id="section + '-section'">
+      <div class="section" v-for="section in styleStore.visibleSections" :id="section + '-section'">
         <div class="section-title">
           <span>{{ $t("section." + section) }}</span>
         </div>
         <div class="section-content" :class="{ timeline: showTimeline(section) }">
           <div v-for="entry in data[section]?.filter(e => !e.hidden)">
-            <WorkExperienceItem v-if="'work'===section" :items="entry.highlights" :company="entry.name" :location="entry.location" :role="entry.position" :startDate="entry.startDate"
+            <WorkExperienceItem v-if="'work'===section" :items="entry.highlights" :company="entry.name" :location="entry.location" :role="entry.position"
+                                :startDate="entry.startDate"
                                 :endDate="entry.endDate" :url="entry.url" :summary="entry.summary"/>
             <ProjectItem v-else-if="'projects'===section" :highlights="entry.highlights" :name="entry.name" :url="entry.url" :startDate="entry.startDate" :endDate="entry.endDate"
                          :description="entry.description"/>
             <PublicationItem v-else-if="'publications'===section" :name="entry.name" :url="entry.url" :publisher="entry.publisher" :releaseDate="entry.releaseDate"
                              :summary="entry.summary"/>
-            <ConferenceItem v-else-if="'conferences'===section" :items="entry.highlights" :conference="entry.conference" :title="entry.title" :location="entry.location" :url="entry.url"
+            <ConferenceItem v-else-if="'conferences'===section" :items="entry.highlights" :conference="entry.conference" :title="entry.title" :location="entry.location"
+                            :url="entry.url"
                             :summary="entry.summary" :time="entry.time"/>
-            <EducationItem v-else-if="'education'===section" :startDate="entry.startDate" :endDate="entry.endDate" :name="entry.studyType" :school="entry.institution" :url="entry.url"
+            <EducationItem v-else-if="'education'===section" :startDate="entry.startDate" :endDate="entry.endDate" :name="entry.studyType" :school="entry.institution"
+                           :url="entry.url"
                            :description="entry.description"/>
-            <EducationItem  v-else-if="'certificates'===section" :startDate="entry.date" :name="entry.issuer" :school="entry.name" :url="entry.url"/>
-            <SkillItem  v-else-if="'skills'===section" :title="entry.name" :value="entry.keywords"/>
-            <AwardItem  v-else-if="'awards'===section" :awarder="entry.awarder" :date="entry.date" :url="entry.url" :summary="entry.summary" v-for="entry in awards"/>
+            <EducationItem v-else-if="'certificates'===section" :startDate="entry.date" :name="entry.issuer" :school="entry.name" :url="entry.url"/>
+            <SkillItem v-else-if="'skills'===section" :title="entry.name" :value="entry.keywords"/>
+            <AwardItem v-else-if="'awards'===section" :awarder="entry.awarder" :date="entry.date" :url="entry.url" :summary="entry.summary" v-for="entry in awards"/>
             <InterestItem v-else-if="'interests'===section" :name="entry.name" :keywords="entry.keywords"/>
             <LanguageItem v-else-if="'languages'===section" :name="entry.language" :level="entry.fluency"/>
           </div>

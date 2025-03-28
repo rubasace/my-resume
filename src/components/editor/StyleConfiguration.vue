@@ -4,6 +4,8 @@ import {Textarea, Select} from "primevue";
 import {useStyleStore} from "@/stores/styleStore";
 import ColorPicker from '@/components/editor/ColorPicker.vue'
 import NumberInput from "@/components/editor/NumberInput.vue";
+import {VueDraggable} from "vue-draggable-plus";
+import SortableSection from "@/components/editor/SortableSection.vue";
 
 let styleStore = useStyleStore();
 
@@ -11,7 +13,6 @@ let styleStore = useStyleStore();
 </script>
 
 <template>
-
   <div class="section-title">Fonts</div>
   <NumberInput v-model="styleStore.style.fontSize" label="Font Size" suffix=" pt" :step="0.1" :maxFractionDigits="2"/>
 
@@ -43,6 +44,11 @@ let styleStore = useStyleStore();
 
   <div class="section-title">Colors</div>
   <ColorPicker v-model="styleStore.style.highlightColor" label="Highlight Color" @reset="styleStore.resetHighlightColor"/>
+
+  <div class="section-title">Sections Order</div>
+  <VueDraggable v-model="styleStore.style.sortedSections">
+    <SortableSection :key="section" v-for="section in styleStore.style.sortedSections" :name="section"/>
+  </VueDraggable>
 
   <div class="section-title">Custom CSS</div>
   <Textarea auto-resize id="custom-css" v-model="styleStore.customCSS" placeholder="Custom CSS rules..." style="width:100%" class="mb-2 mt-2"/>

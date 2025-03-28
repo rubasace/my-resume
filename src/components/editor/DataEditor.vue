@@ -38,7 +38,6 @@ const removeElement = (array, index) => {
 </script>
 
 <template>
-  <!--  TODO allow to modify order of sections at will -->
   <!--  TODO add support for basics.url as rest of network -->
   <!--  TODO add filepicker for picture-->
   <!--  TODO improve dragging of visor (looks like offset is always same???) -->
