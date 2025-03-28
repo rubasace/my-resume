@@ -14,24 +14,26 @@ import 'primeflex/primeflex.min.css'
 
 WebFont.load({google: {families: ["Cormorant+Garamond:300,400,700"]}});
 
-
 import {createI18n} from "vue-i18n";
 
 // TODO move to translations file
 const messages = {
     en: {
         section: {
+            basics: "basic data",
+            picture: "picture",
+            contact: "contact",
             about: "about",
-            experience: "experience",
-            publications: "Publications",
-            projects: "Projects",
-            conference: "conference presentations",
+            work: "experience",
+            publications: "publications",
+            projects: "projects",
+            conferences: "conference presentations",
             education: "education",
             certificates: "certificates",
             skills: "skills",
             languages: "languages",
-            awards: "Awards",
-            interests: "Interests",
+            awards: "awards",
+            interests: "interests",
             extras: "extras",
         },
         editor:{
@@ -42,11 +44,14 @@ const messages = {
     },
     es: {
         section: {
+            basics: "información basica",
+            picture: "imagen",
+            contact: "contacto",
             about: "descripción",
-            experience: "experiencia",
+            work: "experiencia",
             publications: "Publicaciones",
             projects: "Proyectos",
-            conference: "presentaciones en conferencias",
+            conferences: "presentaciones en conferencias",
             education: "estudios",
             certificates: "certificados",
             skills: "habilidades",

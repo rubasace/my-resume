@@ -1,12 +1,12 @@
 <script setup>
 import {useDataStore} from "@/stores/dataStore";
-import {InputChips, Textarea, Select} from "primevue";
+import {InputChips, Select, Textarea} from "primevue";
 import TextInput from "@/components/editor/TextInput.vue";
 import InputItem from "@/components/editor/InputItem.vue";
 import NumberInput from "@/components/editor/NumberInput.vue";
 import {VueDraggable} from "vue-draggable-plus";
 import Section from "@/components/editor/Section.vue";
-import {computed, reactive, ref, watch} from "vue";
+import {computed, ref, watch} from "vue";
 import {useStyleStore} from "@/stores/styleStore";
 import {getProfileNames} from "@/util/profileUtils";
 
@@ -38,22 +38,21 @@ const removeElement = (array, index) => {
 </script>
 
 <template>
-  <!--  TODO add support for basics.url as rest of network-->
-  <!--  TODO allow to add experience from the top-->
-  <!--  TODO allow to modify order of sections at will-->
+  <!--  TODO allow to modify order of sections at will -->
+  <!--  TODO add support for basics.url as rest of network -->
   <!--  TODO add filepicker for picture-->
+  <!--  TODO improve dragging of visor (looks like offset is always same???) -->
+  <!--  TODO fix mobile UI -->
   <!--  TODO allow to change resume language -->
   <!--  TODO add translations-->
-  <!--  TODO revisit separators so they only display when needed-->
-  <!--  TODO improve dragging of visor (looks like offset is always same???) -->
   <!--  TODO Add alert on overflow and/or allow multi-page-->
-  <!--  TODO fix mobile UI -->
   <!--  TODO think of adding other themes-->
   <!--  TODO Generalize theme options (show icons,  shot timeline...) -->
+  <!--  TODO revisit separators so they only display when needed-->
   <!--  TODO allow to customize icon for profiles?-->
   <!--  TODO add validations?-->
 
-  <Section legend="Basic Data" icon="fas fa-address-card" :hideable="false">
+  <Section name="basics" icon="fas fa-address-card" :hideable="false">
     <div class="grid-2">
       <TextInput v-model="dataStore.data.basics.name" label="Name"/>
       <TextInput v-model="dataStore.data.basics.label" label="Label"/>
@@ -63,7 +62,7 @@ const removeElement = (array, index) => {
     </div>
   </Section>
 
-  <Section legend="Picture" icon="fas fa-image">
+  <Section name="picture" icon="fas fa-image">
     <div class="grid-2">
       <Select
           v-model="sourceType"
@@ -97,10 +96,10 @@ const removeElement = (array, index) => {
       <NumberInput v-model="styleStore.style.pictureScale" label="Scale" :min="0.1" :step="0.1"/>
     </div>
   </Section>
-  <Section legend="About" icon="fas fa-user" v-model="dataStore.data.basics.profiles">
+  <Section name="about" icon="fas fa-user" v-model="dataStore.data.basics.profiles">
     <Textarea auto-resize id="summary" v-model="dataStore.data.basics.summary" placeholder="Information about yourself (optional)" style="width:100%" class="mb-2 mt-2"/>
   </Section>
-  <Section legend="Contact" icon="fas fa-link" v-model="dataStore.data.basics.profiles">
+  <Section name="contact" icon="fas fa-link" v-model="dataStore.data.basics.profiles" :hideable="false">
     <VueDraggable v-model="dataStore.data.basics.profiles" handle=".handle">
       <InputItem v-for="(profile, index) in dataStore.data.basics.profiles"
                  :key="index"
@@ -118,7 +117,7 @@ const removeElement = (array, index) => {
       <i class="fas fa-plus"></i> Add Contact
     </button>
   </Section>
-  <Section legend="Experience" icon="fas fa-briefcase">
+  <Section name="work" icon="fas fa-briefcase">
     <VueDraggable v-model="dataStore.data.work" handle=".handle">
       <InputItem v-for="(work, index) in dataStore.data.work"
                  :key="index"
@@ -160,7 +159,7 @@ const removeElement = (array, index) => {
     </button>
   </Section>
 
-  <Section legend="Projects" icon="fas fa-diagram-project">
+  <Section name="projects" icon="fas fa-diagram-project">
     <VueDraggable v-model="dataStore.data.projects" handle=".handle">
       <InputItem v-for="(project, index) in dataStore.data.projects"
                  :key="index"
@@ -200,7 +199,7 @@ const removeElement = (array, index) => {
     </button>
   </Section>
 
-  <Section legend="Publications" icon="fas fa-book">
+  <Section name="publications" icon="fas fa-book">
     <VueDraggable v-model="dataStore.data.publications" handle=".handle">
       <InputItem v-for="(publication, index) in dataStore.data.publications"
                  :key="index"
@@ -222,7 +221,7 @@ const removeElement = (array, index) => {
     </button>
   </Section>
 
-  <Section legend="Conferences" icon="fas fa-microphone">
+  <Section name="conferences" icon="fas fa-microphone">
     <VueDraggable v-model="dataStore.data.conferences" handle=".handle">
       <InputItem v-for="(conference, index) in dataStore.data.conferences"
                  :key="index"
@@ -245,7 +244,7 @@ const removeElement = (array, index) => {
     </button>
   </Section>
 
-  <Section legend="Education" icon="fas fa-graduation-cap">
+  <Section name="education" icon="fas fa-graduation-cap">
     <VueDraggable v-model="dataStore.data.education" handle=".handle">
       <InputItem v-for="(education, index) in dataStore.data.education"
                  :key="index"
@@ -268,7 +267,7 @@ const removeElement = (array, index) => {
     </button>
   </Section>
 
-  <Section legend="Certificates" icon="fas fa-award">
+  <Section name="certificates" icon="fas fa-award">
     <VueDraggable v-model="dataStore.data.certificates" handle=".handle">
       <InputItem v-for="(certificate, index) in dataStore.data.certificates"
                  :key="index"
@@ -287,7 +286,7 @@ const removeElement = (array, index) => {
     </button>
   </Section>
 
-  <Section legend="Awards" icon="fas fa-trophy">
+  <Section name="awards" icon="fas fa-trophy">
     <VueDraggable v-model="dataStore.data.awards" handle=".handle">
       <InputItem v-for="(award, index) in dataStore.data.awards"
                  :key="index" z
@@ -308,7 +307,7 @@ const removeElement = (array, index) => {
     </button>
   </Section>
 
-  <Section legend="Skills" icon="fas fa-brain">
+  <Section name="skills" icon="fas fa-brain">
     <VueDraggable v-model="dataStore.data.skills" handle=".handle">
       <InputItem v-for="(skill, index) in dataStore.data.skills"
                  :key="index"
@@ -326,7 +325,7 @@ const removeElement = (array, index) => {
     </button>
   </Section>
 
-  <Section legend="Languages" icon="fas fa-language">
+  <Section name="languages" icon="fas fa-language">
     <VueDraggable v-model="dataStore.data.languages" handle=".handle">
       <InputItem v-for="(language, index) in dataStore.data.languages"
                  :key="index"
@@ -343,7 +342,7 @@ const removeElement = (array, index) => {
     </button>
   </Section>
 
-  <Section legend="Interests" icon="fas fa-star">
+  <Section name="interests" icon="fas fa-star">
     <VueDraggable v-model="dataStore.data.interests" handle=".handle">
       <InputItem v-for="(interest, index) in dataStore.data.interests"
                  :key="index"

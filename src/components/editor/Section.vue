@@ -1,13 +1,13 @@
 <script setup>
 
 import {Fieldset} from "primevue";
-import {computed, ref} from "vue";
+import {computed} from "vue";
 import {useStyleStore} from "@/stores/styleStore";
 
 let styleStore = useStyleStore();
 
 const props = defineProps({
-  legend: String,
+  name: String,
   hideable: {
     type: Boolean,
     default: true
@@ -15,12 +15,12 @@ const props = defineProps({
   icon: String
 })
 
-const hidden = computed(() => styleStore.style.hiddenSections.includes(props.legend))
+const hidden = computed(() => styleStore.style.hiddenSections.includes(props.name))
 function toggleVisibility(){
   if(hidden.value){
-    styleStore.style.hiddenSections = styleStore.style.hiddenSections.filter(e => e !== props.legend)
+    styleStore.style.hiddenSections = styleStore.style.hiddenSections.filter(e => e !== props.name)
   } else {
-    styleStore.style.hiddenSections.push(props.legend)
+    styleStore.style.hiddenSections.push(props.name)
   }
 }
 
@@ -33,7 +33,7 @@ function toggleVisibility(){
         <div class="legend">
           <div class="section-title">
             <i class="icon" :class="icon"></i>
-            <span class="title">{{ legend }}</span>
+            <span class="title">{{ $t("section." + name) }}</span>
           </div>
           <div class="actions">
             <i class="icon" :class="hidden ? 'fas fa-eye-slash' : 'fas fa-eye'" v-if="hideable" @click="toggleVisibility"></i>
@@ -69,6 +69,7 @@ function toggleVisibility(){
         color: var(--p-primary-color)
 
       .title
+        text-transform: capitalize
         font-weight: bold
 
     .actions

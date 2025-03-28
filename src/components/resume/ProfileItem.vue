@@ -3,7 +3,7 @@
 import {getProfileIcon} from "@/util/profileUtils";
 import Title from "@/components/resume/Title.vue";
 
-const props = defineProps({
+defineProps({
   icon: {
     type: String,
     required: false

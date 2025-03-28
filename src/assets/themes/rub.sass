@@ -32,7 +32,7 @@ $item-separation: 0.2em !default
       &#publications-section
         .section-title::before
           content: "\f02d"
-      &#conference-section
+      &#conferences-section
         .section-title::before
           content: "\f130"
       &#education-section
@@ -142,6 +142,13 @@ body
           flex: 0 1 auto
           white-space: nowrap
 
+      &#languages-section
+        .section-content
+          display: flex
+          flex-direction: row
+          flex-wrap: wrap
+          justify-content: space-between
+          align-items: center
       .section-title
         font-family: $default-titles-font-family
         font-size: 1.15em
