@@ -38,7 +38,6 @@ const removeElement = (array, index) => {
 </script>
 
 <template>
-  <!--  TODO add support for basics.url as rest of network -->
   <!--  TODO add filepicker for picture-->
   <!--  TODO improve dragging of visor (looks like offset is always same???) -->
   <!--  TODO fix mobile UI -->
@@ -61,6 +60,7 @@ const removeElement = (array, index) => {
       <TextInput v-model="dataStore.data.basics.phone" label="Phone"/>
       <TextInput v-model="dataStore.data.basics.email" label="Email"/>
       <TextInput v-model="dataStore.data.basics.location.summary" label="Location"/>
+      <TextInput v-model="dataStore.data.basics.url" label="Website"/>
     </div>
   </Section>
 
