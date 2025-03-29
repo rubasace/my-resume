@@ -1,4 +1,4 @@
-import {ref, onUnmounted, watch} from 'vue'
+import { ref, onUnmounted, watch } from 'vue'
 
 export function useDraggable(htmlElement) {
     const initialOffsetX = ref(0)
@@ -23,23 +23,47 @@ export function useDraggable(htmlElement) {
         dragging.value = false
     }
 
-    function onMouseDown(e) {
-        dragging.value = true
-        startX.value = e.clientX
-        startY.value = e.clientY
-        window.addEventListener('mousemove', onMouseMove)
-        window.addEventListener('mouseup', onMouseUp)
+    // Helper to get clientX/Y from mouse or touch
+    function getClientCoords(e) {
+        if (e.touches && e.touches.length > 0) {
+            return {
+                x: e.touches[0].clientX,
+                y: e.touches[0].clientY
+            }
+        } else {
+            return {
+                x: e.clientX,
+                y: e.clientY
+            }
+        }
     }
 
-    function onMouseMove(e) {
+    function onStart(e) {
+        const { x, y } = getClientCoords(e)
+        dragging.value = true
+        startX.value = x
+        startY.value = y
+
+        window.addEventListener('mousemove', onMove)
+        window.addEventListener('mouseup', onEnd)
+        window.addEventListener('touchmove', onMove, { passive: false })
+        window.addEventListener('touchend', onEnd)
+    }
+
+    function onMove(e) {
         if (!dragging.value) return
-        currentDragX.value = e.clientX - startX.value
-        currentDragY.value = e.clientY - startY.value
+        const { x, y } = getClientCoords(e)
+
+        currentDragX.value = x - startX.value
+        currentDragY.value = y - startY.value
         offsetX.value = initialOffsetX.value + currentDragX.value
         offsetY.value = initialOffsetY.value + currentDragY.value
+
+        // Prevent page from scrolling while dragging on touch
+        if (e.cancelable) e.preventDefault()
     }
 
-    function onMouseUp() {
+    function onEnd() {
         if (!dragging.value) return
         dragging.value = false
         currentDragX.value = 0
@@ -47,16 +71,20 @@ export function useDraggable(htmlElement) {
         initialOffsetX.value = offsetX.value
         initialOffsetY.value = offsetY.value
 
-        window.removeEventListener('mousemove', onMouseMove)
-        window.removeEventListener('mouseup', onMouseUp)
+        window.removeEventListener('mousemove', onMove)
+        window.removeEventListener('mouseup', onEnd)
+        window.removeEventListener('touchmove', onMove)
+        window.removeEventListener('touchend', onEnd)
     }
 
-    watch(htmlElement, (e) =>
-        e?.addEventListener('mousedown', onMouseDown)
-    )
+    watch(htmlElement, (el) => {
+        el?.addEventListener('mousedown', onStart)
+        el?.addEventListener('touchstart', onStart, { passive: false })
+    })
 
     onUnmounted(() => {
-        htmlElement.value?.removeEventListener('mousedown', onMouseDown)
+        htmlElement.value?.removeEventListener('mousedown', onStart)
+        htmlElement.value?.removeEventListener('touchstart', onStart)
     })
 
     return {
