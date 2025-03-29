@@ -44,9 +44,12 @@ const removeElement = (array, index) => {
   <!--  TODO fix mobile UI -->
   <!--  TODO allow to change resume language -->
   <!--  TODO add translations-->
-  <!--  TODO Add alert on overflow and/or allow multi-page-->
   <!--  TODO think of adding other themes-->
   <!--  TODO Generalize theme options (show icons,  shot timeline...) -->
+  <!--  TODO Add alert on overflow and/or allow multi-page-->
+
+  <!--  TODO rethink if it makes sense to capitalize via CSS -->
+  <!--  TODO design an onboarding flow for first time user??  -->
   <!--  TODO revisit separators so they only display when needed-->
   <!--  TODO allow to customize icon for profiles?-->
   <!--  TODO add validations?-->
