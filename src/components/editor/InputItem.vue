@@ -87,7 +87,7 @@ function deleteItem() {
       </div>
     </div>
 
-    <div class="actions">
+    <div class="actions" :class="expanded ? 'expanded' : ''">
       <i :class="expanded ? 'fas fa-check' : 'fas fa-pencil'" v-if="!skipSummary" @click="() => expanded=!expanded"/>
       <i :class="model?.hidden ? 'fas fa-eye-slash' : 'fas fa-eye'" @click="() => model.hidden = !model?.hidden" v-if="model"></i>
       <i class="fas fa-trash" @click="deleteItem"></i>
@@ -135,4 +135,11 @@ function deleteItem() {
     display: flex
     flex-wrap: wrap
     justify-content: space-between
+
+@media (max-width: 768px)
+  .input-item
+    .content
+      padding: 1em 0.5em
+    .actions.expanded
+      flex-direction: column
 </style>

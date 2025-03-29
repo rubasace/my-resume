@@ -7,6 +7,10 @@ import App from "./App.vue";
 import "./assets/themes/rub.sass";
 import WebFont from "webfontloader";
 
+import vhCheck from 'vh-check';
+
+vhCheck();
+
 import '@fortawesome/fontawesome-free/css/all.min.css';
 
 import Lara from '@primeuix/themes/aura';

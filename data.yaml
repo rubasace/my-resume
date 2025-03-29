@@ -4,7 +4,7 @@ basics:
   image: https://example.com/avatar.jpg
   email: jane.doe@example.com
   phone: ''
-  url: https://janedoe.dev
+  url: ''
   summary: >-
     Experienced full stack developer with a passion for clean code, scalable
     systems, and elegant UI/UX. 8+ years building web apps across the stack.

@@ -29,6 +29,7 @@
     "primeflex": "^4.0.0",
     "primevue": "^4.3.2",
     "sass": "1.85.1",
+    "vh-check": "^2.0.5",
     "vue": "^3.2.47",
     "vue-draggable-plus": "^0.6.0",
     "vue-i18n": "11.1.1",

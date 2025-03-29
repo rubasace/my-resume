@@ -82,13 +82,13 @@ function uploadPicture(event) {
 </script>
 
 <template>
-  <!--  TODO fix mobile UI -->
   <!--  TODO allow to change resume language -->
   <!--  TODO add translations-->
   <!--  TODO think of adding other themes-->
   <!--  TODO Generalize theme options (show icons,  shot timeline...) -->
   <!--  TODO Add alert on overflow and/or allow multi-page-->
 
+  <!--  TODO add image preview for mobile display -->
   <!--  TODO cleanup unnecessary dependencies and fix vulnerabilities -->
   <!--  TODO onboard renovate -->
   <!--  TODO rethink if it makes sense to capitalize via CSS -->

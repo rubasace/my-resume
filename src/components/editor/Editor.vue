@@ -53,7 +53,7 @@ const dataStore = useDataStore()
 </template>
 <style scoped lang="sass">
 .editor
-  height: 100vh
+  height: 100%
 
   .tab-content
     //background-color: white
