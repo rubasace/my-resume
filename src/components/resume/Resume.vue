@@ -63,7 +63,7 @@ function showTimeline(section) {
         </div>
         <div class="section" id="contact-section">
           <ProfileItem v-for="profile in profiles" :icon="profile.icon" :url="profile.url" :text="profile.text" :network="profile.network"/>
-          <ProfileItem icon="fa fa-envelope" :text="data.basics.email" :url="data.basics.email" v-if="data.basics.email" network="Email"/>
+          <ProfileItem icon="fa fa-envelope" :text="data.basics.email" :url="'mailto:'+data.basics.email" v-if="data.basics.email" network="Email"/>
           <ProfileItem icon="fa fa-globe" :text="data.basics.url" :url="data.basics.url" v-if="data.basics.url" network="Website"/>
           <ProfileItem icon="fa fa-phone" :text="data.basics.phone" v-if="data.basics.phone" network="Phone"/>
           <ProfileItem icon="fa fa-location-dot" :text="data.basics.location.summary" v-if="data.basics.location.summary" network="Location"/>

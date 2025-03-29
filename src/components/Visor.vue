@@ -1,6 +1,6 @@
 <script setup>
 import {onMounted, ref, useTemplateRef} from "vue";
-import {useDraggable} from "@vueuse/core";
+import {useDraggable} from "@/composables/useDraggable";
 
 
 const MAX_ZOOM_IN = 4;
@@ -11,7 +11,7 @@ const contentRef = ref(null);
 const originalContentRef = ref(null);
 
 const content = useTemplateRef('contentRef')
-const {x, y} = useDraggable(content, {})
+const {x, y, resetDragging} = useDraggable(content)
 
 const scale = ref(1);
 const showMargins = ref(false)
@@ -44,6 +44,7 @@ function resetZoom() {
   calculateScale();
   x.value = 0;
   y.value = 0;
+  resetDragging()
 }
 
 function toggleMargins() {
@@ -119,6 +120,11 @@ onMounted(() => {
       z-index: 10
       user-select: none
       cursor: grab
+      *
+        user-select: none
+        pointer-events: none
+        -webkit-user-drag: none
+        -webkit-touch-callout: none
 
   .menu
     position: absolute

@@ -82,8 +82,6 @@ function uploadPicture(event) {
 </script>
 
 <template>
-  <!--  TODO add filepicker for picture-->
-  <!--  TODO improve dragging of visor (looks like offset is always same???) -->
   <!--  TODO fix mobile UI -->
   <!--  TODO allow to change resume language -->
   <!--  TODO add translations-->
