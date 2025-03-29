@@ -17,7 +17,5 @@ export function getProfileNames() {
 }
 
 export function getProfileIcon(name) {
-    console.log(profiles)
-    console.log(name)
     return profiles[name];
 }

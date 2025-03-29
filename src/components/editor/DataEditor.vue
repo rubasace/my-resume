@@ -1,16 +1,17 @@
 <script setup>
 import {useDataStore} from "@/stores/dataStore";
-import {InputChips, Select, Textarea} from "primevue";
+import {InputChips, Select, Textarea, useToast} from "primevue";
 import TextInput from "@/components/editor/TextInput.vue";
 import InputItem from "@/components/editor/InputItem.vue";
 import NumberInput from "@/components/editor/NumberInput.vue";
 import {VueDraggable} from "vue-draggable-plus";
 import Section from "@/components/editor/Section.vue";
-import {computed, ref, watch} from "vue";
+import {computed, nextTick, ref, watch} from "vue";
 import {useStyleStore} from "@/stores/styleStore";
 import {getProfileNames} from "@/util/profileUtils";
+import FilePicker from "@/components/editor/FilePicker.vue";
 
-
+const toast = useToast();
 const dataStore = useDataStore();
 const styleStore = useStyleStore();
 
@@ -25,15 +26,58 @@ watch(pageTitle, (newTitle) => {
   document.title = newTitle
 }, {immediate: true})
 
-const sourceType = ref('url')
+const sourceType = ref(dataStore.pictureData ? 'file' : 'url')
+
 const sourceOptions = [
   {label: 'URL', value: 'url'},
-  // { label: 'File', value: 'file' },
+  {label: 'File', value: 'file'},
 ]
+
+watch(() => dataStore.pictureData, (e) => {
+  sourceType.value = e ? 'file' : 'url'
+}, {immediate: true})
 
 const removeElement = (array, index) => {
   array.splice(index, 1);
 };
+
+function uploadPicture(event) {
+  const file = event.files?.[0];
+  if (!file) return;
+
+  const reader = new FileReader();
+
+  reader.onload = () => {
+    const base64Image = reader.result;
+    try {
+      dataStore.setPicture(file.name, base64Image);
+      toast.add({
+        severity: 'success',
+        summary: 'Picture uploaded',
+        detail: `${file.name} was uploaded successfully`,
+        life: 5000
+      });
+    } catch (e) {
+      toast.add({
+        severity: 'error',
+        summary: 'Error setting picture',
+        detail: e.message,
+        life: 5000
+      });
+    }
+  };
+
+  reader.onerror = () => {
+    toast.add({
+      severity: 'error',
+      summary: 'Error reading file',
+      detail: reader.error?.message || 'Unknown error',
+      life: 5000
+    });
+  };
+
+  reader.readAsDataURL(file); // converts to base64
+}
 
 </script>
 
@@ -47,6 +91,8 @@ const removeElement = (array, index) => {
   <!--  TODO Generalize theme options (show icons,  shot timeline...) -->
   <!--  TODO Add alert on overflow and/or allow multi-page-->
 
+  <!--  TODO cleanup unnecessary dependencies and fix vulnerabilities -->
+  <!--  TODO onboard renovate -->
   <!--  TODO rethink if it makes sense to capitalize via CSS -->
   <!--  TODO design an onboarding flow for first time user??  -->
   <!--  TODO revisit separators so they only display when needed-->
@@ -81,17 +127,13 @@ const removeElement = (array, index) => {
           label="Picture URL"
           placeholder="https://example.com/image.jpg"
       />
-
-      <div v-else-if="sourceType === 'file'" class="flex flex-col gap-1">
-        <input type="file" @change="handleFileUpload" accept="image/*"/>
-        <small class="text-sm text-gray-500">Max 4MB</small>
-        <div v-if="uploadError" class="text-red-500 text-sm">{{ uploadError }}</div>
+      <div v-else-if="sourceType === 'file'" class="flex align-items-center">
+        <div v-if="dataStore.pictureData" class="flex gap-3 align-items-center">
+          <span class="picture-name">{{ dataStore.data.basics.picture }}</span>
+          <button @click="dataStore.clearPicture" title="Zoom in"><i class="fas fa-times"/></button>
+        </div>
+        <FilePicker label="Upload picture" accept="image/*" @select="uploadPicture" v-else/>
       </div>
-
-      <!--      <div v-if="dataStore.data.basics.picture" class="mt-4">-->
-      <!--        <label class="font-semibold">Preview</label>-->
-      <!--        <img :src="dataStore.data.basics.picture" alt="Preview" class="max-w-xs rounded shadow"/>-->
-      <!--      </div>-->
 
       <NumberInput v-model="styleStore.style.pictureTranslateX" label="TranslateX" :step="1" :max-fraction-digits="0" suffix="px"/>
       <NumberInput v-model="styleStore.style.pictureTranslateY" label="TranslateY" :step="1" :max-fraction-digits="0" suffix="px"/>

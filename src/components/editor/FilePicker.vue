@@ -11,6 +11,10 @@ defineProps({
   label: {
     type: String,
     default: "Import"
+  },
+  accept: {
+    type: String,
+    default: ".json,.yaml,.yml,application/json,application/x-yaml,text/yaml"
   }
 });
 
@@ -27,7 +31,7 @@ function openFilePicker() {
         @select="emit('select', $event)"
         customUpload
         auto
-        accept=".json,.yaml,.yml,application/json,application/x-yaml,text/yaml"
+        :accept="accept"
     />
   </div>
   <Button :label="label" icon="pi pi-upload" severity="primary" @click="openFilePicker" class="action" raised/>

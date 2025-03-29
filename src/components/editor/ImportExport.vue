@@ -30,6 +30,7 @@ function importData(event) {
         const {_builderData, ...data} = parseFileContent(fileContent, fileName);
 
         dataStore.importData(data)
+        dataStore.setPicture(data.basics.picture, _builderData?.pictureData)
         styleStore.importStyle(_builderData?.style??{})
         styleStore.customCSS = _builderData?.customCss??''
 
@@ -53,7 +54,8 @@ function exportFile(format) {
     ...dataStore.data,
     _builderData: {
       style: {...styleStore.style},
-      customCss: styleStore.customCSS
+      customCss: styleStore.customCSS,
+      pictureData: dataStore.pictureData
     }
   }
   const data = format === 'yaml' ? yaml.dump(mergedData) : JSON.stringify(mergedData, null, 2)

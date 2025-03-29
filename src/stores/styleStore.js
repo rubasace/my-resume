@@ -78,12 +78,10 @@ export const useStyleStore = defineStore('styleStore', () => {
 
     watch(style.fontFamily, (font) => {
         if (!font) return
-        console.log('Selected font', font)
         WebFont.load({
             google: {
                 families: [font.value],
             }, active() {
-                console.log('works!!')
             }, inactive() {
                 console.warn(`Failed to load font: ${font.label}`);
                 nextTick(() => {

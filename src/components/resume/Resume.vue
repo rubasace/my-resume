@@ -26,13 +26,19 @@ function visibleEntries(getter, section) {
 
 const profilePic = computed(() => {
   if (styleStore.style.hiddenSections?.includes('picture')) {
-    return null
+    return null;
   }
-  if (data.value.basics.picture?.startsWith("http")) {
-    return data.value.basics.picture
+
+  const picture = data.value.basics.picture;
+  const pictureData = dataStore.pictureData;
+
+  if (pictureData) {
+    return pictureData;
+  } else if (picture?.startsWith('http')) {
+    return picture;
   }
   return null;
-})
+});
 
 function showTimeline(section) {
   if (!styleStore.style.showTimeline || 'work' !== section) {

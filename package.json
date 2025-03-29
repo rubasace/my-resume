@@ -21,6 +21,7 @@
     "google-fonts-complete": "^2.2.3",
     "html2canvas": "^1.4.1",
     "html2pdf.js": "^0.10.3",
+    "idb-keyval": "^6.2.1",
     "js-yaml": "^4.1.0",
     "jspdf": "^3.0.0",
     "pdfmake": "^0.2.18",
