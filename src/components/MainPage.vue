@@ -17,7 +17,6 @@ function toggleEditor() {
 }
 </script>
 
-<!--TODO allow to configure language-->
 <template>
   <div class="edit-toggle" v-if="isMobile && !showEditor">
     <button @click="toggleEditor" aria-label="Edit">
@@ -32,12 +31,10 @@ function toggleEditor() {
       </Visor>
     </div>
 
-    <!-- Desktop Editor -->
     <div class="editor" v-if="!isMobile && showEditor">
       <Editor />
     </div>
 
-    <!-- Mobile Dialog Editor -->
     <Dialog
         v-if="isMobile"
         v-model:visible="showEditor"

@@ -12,8 +12,6 @@ import ImportExport from "@/components/editor/ImportExport.vue";
 import StyleConfiguration from "@/components/editor/StyleConfiguration.vue";
 import {useLocaleStore} from "@/stores/localeStore";
 
-
-const dataStore = useDataStore()
 const localeStore = useLocaleStore();
 
 </script>
@@ -24,8 +22,7 @@ const localeStore = useLocaleStore();
       <TabList>
         <Tab value="0">{{ localeStore.getAppMessage("editor.data") }}</Tab>
         <Tab value="1">{{ localeStore.getAppMessage("editor.style") }}</Tab>
-        <Tab value="2">Raw Data</Tab>
-        <Tab value="3">{{ localeStore.getAppMessage("editor.importExport") }}</Tab>
+        <Tab value="2">{{ localeStore.getAppMessage("editor.importExport") }}</Tab>
       </TabList>
       <TabPanels>
         <TabPanel value="0">
@@ -39,11 +36,6 @@ const localeStore = useLocaleStore();
           </div>
         </TabPanel>
         <TabPanel value="2">
-          <div class="tab-content">
-            <pre>{{ JSON.stringify(dataStore.data, null, 2) }}</pre>
-          </div>
-        </TabPanel>
-        <TabPanel value="3">
           <div class="tab-content">
             <ImportExport/>
           </div>

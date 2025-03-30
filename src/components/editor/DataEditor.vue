@@ -110,13 +110,12 @@ function localeOptionTemplate(option) {
 </script>
 
 <template>
-  <!--  TODO allow to change resume language -->
-  <!--  TODO add translations-->
   <!--  TODO think of adding other themes-->
   <!--  TODO Generalize theme options (show icons,  shot timeline...) -->
   <!--  TODO Add alert on overflow and/or allow multi-page-->
   <!--  TODO support zoom gestures (mouse and fingers) -->
 
+  <!--  TODO add translations for menus and support language switching -->
   <!--  TODO improve printing to PDF on Android -->
   <!--  TODO add image preview for mobile display -->
   <!--  TODO cleanup unnecessary dependencies and fix vulnerabilities -->
