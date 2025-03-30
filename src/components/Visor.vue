@@ -122,7 +122,6 @@ onMounted(() => {
       cursor: grab
       *
         user-select: none
-        pointer-events: none
         -webkit-user-drag: none
         -webkit-touch-callout: none
 
