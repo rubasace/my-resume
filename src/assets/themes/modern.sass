@@ -1,0 +1,198 @@
+@import "../layout"
+
+//TODO move all this to configurable variables
+$background: whitesmoke !default
+$default-font-family: Cambria, sans-serif
+$details-font-size: 0.9em !default
+$details-color: lighten($default-font-color, 40%) !default
+$time-color: lighten($default-font-color, 30%) !default
+$time-font-size: 0.95em !default
+$contact-font-size: 0.89em !default
+$title-font-size: 2.7em !default
+$header-line-height: 2em !default
+$section-separation: 0.06in !default
+$item-separation: 0.2em !default
+$highlight-color: #085bc1
+
+.page
+  box-sizing: border-box
+  background-color: $background
+
+body
+  margin: 0
+  padding: 0
+  /*line-height: 1pt*/
+  text-rendering: optimizeLegibility
+  -webkit-font-smoothing: antialiased
+  -moz-osx-font-smoothing: grayscale
+  font-family: $default-font-family
+
+  .resume
+    width: 100%
+    height: 100%
+    position: relative
+    .page-content
+      width: 100%
+      display: flex
+      flex-direction: column
+      gap: $section-separation
+
+      #profile-section
+        display: flex
+        width: 100%
+        position: relative
+
+        .picture
+          position: absolute
+          top: -1em
+          right: 0
+          $image-size: 6em
+          width: $image-size
+          height: $image-size
+          border-radius: 10%
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.1)
+          border: 1px solid #bbb
+          background-color: white
+          overflow: hidden
+          display: flex
+          align-items: center
+          justify-content: center
+
+
+          img
+            object-fit: contain
+            $initial-scale: 250%
+            width: $initial-scale
+            height: $initial-scale
+            transform-origin: center
+
+        .title
+          position: relative
+          text-transform: capitalize
+          font-size: $title-font-size
+          display: flex
+          flex-direction: column
+          //align-items: center
+          justify-content: center
+          //gap: 0.4em
+          padding: 0
+
+          .name
+            font-weight: bold
+            color: $highlight-color
+
+          .role
+            font-size: 0.5em
+            font-style: italic
+            display: none
+
+
+
+      .section
+        width: 100%
+        position: relative
+        margin-top: 0
+        margin-bottom: $section-separation
+        padding-top: $section-separation
+
+        border-top: 1px solid #ccc
+
+        &#profile-section
+          margin-top: 0
+          margin-bottom: 0
+          border-top: none
+
+        &#contact-section
+          display: flex
+          flex-direction: row
+          flex-wrap: wrap
+          //justify-content: space-between
+          align-items: center
+          gap: 2em
+          font-size: $contact-font-size
+          width: 80%
+          border-top: none
+          .icon
+            width: 1em
+            margin-right: 0.25em
+            height: 1em
+          > *
+            flex: 0 1 auto
+            white-space: nowrap
+
+
+
+
+        &#languages-section
+          .section-content
+            display: flex
+            flex-direction: row
+            flex-wrap: wrap
+            justify-content: space-between
+            align-items: center
+        .section-title
+          font-size: 1.15em
+          margin-bottom: 0.25em
+
+          span
+            text-transform: uppercase
+            font-weight: bold
+            display: inline-block
+            width: 100%
+
+    .item
+      width: 100%
+      &.skill
+        margin-bottom: 0.3em
+      .header
+        display: grid
+        grid-template-areas: "title separator1 name" "location separator2 time"
+        grid-template-columns: auto auto auto
+        column-gap: 0.4em
+
+        .title
+          grid-area: title
+          font-weight: bold
+          color: $highlight-color
+
+
+        .details.name, .details.company
+          grid-area: name
+          font-weight: bold
+          color: black
+          text-transform: capitalize
+
+
+        .details.location
+          grid-area: location
+          font-style: italic
+
+
+        .details.time
+          grid-area: time
+          font-style: normal
+          color: $time-color
+          font-size: $time-font-size
+
+      .description
+        white-space: pre-line
+
+        .summary
+          padding-bottom: 0.5em
+          font-size: 1em
+
+        .item-list
+          margin: 0
+          padding: 0 0 0 1.2em
+
+          .item
+            margin-top: $item-separation
+
+            &:first-of-type
+              margin-top: 0
+
+      &.item
+        .title
+          font-weight: bold
+
+

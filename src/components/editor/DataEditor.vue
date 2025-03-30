@@ -115,6 +115,7 @@ function localeOptionTemplate(option) {
   <!--  TODO Add alert on overflow and/or allow multi-page-->
   <!--  TODO support zoom gestures (mouse and fingers) -->
 
+  <!--  Think of integration with openai API for automatic translation if key proivded by user? -->
   <!--  TODO add translations for menus and support language switching -->
   <!--  TODO improve printing to PDF on Android -->
   <!--  TODO add image preview for mobile display -->

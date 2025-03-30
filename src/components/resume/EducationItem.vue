@@ -33,9 +33,10 @@ defineProps({
 <template>
   <div class="item">
     <div class="header">
-      <Title :text="school" :url="url" />
+      <span class="title">{{name}}</span>
       <span class="separator">/</span>
-      <span class="name details">{{ name }}</span>
+      <a class="details name school" :href="url" target="_blank" :title="school" v-if="url">{{ school }}</a>
+      <span class="details name school" v-else>{{ school }}</span>
       <span class="time details">
         <span>{{ String(startDate) }}</span>
         <span v-if="endDate"> - {{ String(endDate) }}</span>
