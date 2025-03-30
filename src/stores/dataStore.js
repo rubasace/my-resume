@@ -20,6 +20,7 @@ export const useDataStore = defineStore('dataStore', () => {
     }
 
     function sanitizeData() {
+        initializeIfMissing('language', 'en')
         initializeIfMissing('work')
         initializeIfMissing('projects')
         initializeIfMissing('conferences')

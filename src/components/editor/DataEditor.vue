@@ -6,14 +6,16 @@ import InputItem from "@/components/editor/InputItem.vue";
 import NumberInput from "@/components/editor/NumberInput.vue";
 import {VueDraggable} from "vue-draggable-plus";
 import Section from "@/components/editor/Section.vue";
-import {computed, nextTick, ref, watch} from "vue";
+import {computed, ref, watch} from "vue";
 import {useStyleStore} from "@/stores/styleStore";
 import {getProfileNames} from "@/util/profileUtils";
 import FilePicker from "@/components/editor/FilePicker.vue";
+import {useLocaleStore} from "@/stores/localeStore";
 
 const toast = useToast();
 const dataStore = useDataStore();
 const styleStore = useStyleStore();
+const localeStore = useLocaleStore();
 
 const pageTitle = computed(() => {
   const name = dataStore.data.basics?.name || ''
@@ -79,6 +81,32 @@ function uploadPicture(event) {
   reader.readAsDataURL(file); // converts to base64
 }
 
+// TODO improve this
+const flagMap = {
+  en: '🇺🇸',
+  es: '🇪🇸',
+  fr: '🇫🇷',
+  de: '🇩🇪',
+  it: '🇮🇹',
+  pt: '🇵🇹',
+  zh: '🇨🇳',
+  ja: '🇯🇵',
+  nl: '🇳🇱',
+  pl: '🇵🇱',
+}
+
+const localeOptions = computed(() =>
+    localeStore.supportedLocales.map((code) => ({
+      label: `${flagMap[code] ?? ''} ${code.toUpperCase()}`,
+      value: code,
+      flag: flagMap[code] ?? '🏳️'
+    }))
+)
+
+function localeOptionTemplate(option) {
+  return `${option.flag} ${option.value.toUpperCase()}`
+}
+
 </script>
 
 <template>
@@ -99,6 +127,20 @@ function uploadPicture(event) {
   <!--  TODO allow to customize icon for profiles?-->
   <!--  TODO add validations?-->
 
+  <Section name="locale" icon="fas fa-globe" :hideable="false">
+  <div class="grid-2">
+    <Select
+        id="resume-language"
+        v-model="dataStore.data.language"
+        :options="localeOptions"
+        option-label="label"
+        option-value="value"
+        class="w-full"
+        :item-template="localeOptionTemplate"
+        placeholder="Select Language"
+    />
+  </div>
+  </Section>
   <Section name="basics" icon="fas fa-address-card" :hideable="false">
     <div class="grid-2">
       <TextInput v-model="dataStore.data.basics.name" label="Name"/>

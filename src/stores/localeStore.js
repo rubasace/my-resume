@@ -8,46 +8,49 @@ export const useLocaleStore = defineStore('localeStore', () => {
     const DEFAULT_LANGUAGE = "en";
     const localeModules = import.meta.glob('@/i18n/locales/*.json')
 
-    const dataStore = useDataStore()
-
-    const appLocale = useLocalStorage('resume-builder-app-locale', undefined)
-    const resumeLocale = computed(() => dataStore.data?.basics?.language)
     const supportedLocales = Object.keys(localeModules)
-        .map((path) => path.match(/\.\/locales\/(.*)\.json$/)?.[1])
+        .map((path) => path.match(/\/src\/i18n\/locales\/(.*)\.json$/)?.[1])
         .filter(Boolean)
         .sort()
 
+    const dataStore = useDataStore()
+    const appLocale = useLocalStorage('resume-builder-app-locale', undefined)
+    const resumeLocale = computed(() => dataStore.data.language)
 
     // TODO use localstorage and resume data
-
-
     const appI18n = ref(null)
     const resumeI18n = ref(null)
 
     setupI18n(appLocale.value).then(e => appI18n.value = e)
-    setupI18n(resumeLocale.value).then(e => resumeI18n.value = e)
+    setupI18n(resumeLocale.value, '.resume').then(e => resumeI18n.value = e)
 
-    watch(appLocale, async () => {
-        appI18n.value = await setupI18n(appLocale.value)
+    watch(appLocale, async (newLocale) => {
+        appI18n.value = await setupI18n(newLocale)
+        console.log(newLocale)
     })
 
-    watch(resumeLocale, async () => {
-        resumeI18n.value = await setupI18n(resumeLocale.value)
+    watch(resumeLocale, async (newLocale) => {
+        resumeI18n.value = await setupI18n(newLocale, '.resume')
+        console.log(newLocale)
     })
 
     function getAppMessage(key) {
-        return appI18n.value?.global?.t(key) ?? key
+        return computed(() => {
+            return appI18n.value?.global?.t(key) ?? key
+        })
     }
     function getResumeMessage(key) {
-        return resumeI18n.value?.global?.t(key) ?? key
+        return computed(() => {
+            return resumeI18n.value?.global?.t(key) ?? key
+        })
     }
 
-    async function setupI18n(locale) {
+    async function setupI18n(locale, htmlSelector = 'html') {
         const i18n = createI18n({
             legacy: false,
             fallbackLocale: DEFAULT_LANGUAGE
         })
-        await setI18nLanguage(i18n, locale ?? navigator.language )
+        await setI18nLanguage(i18n, locale ?? navigator.language, htmlSelector)
         return i18n
     }
 
@@ -77,10 +80,13 @@ export const useLocaleStore = defineStore('localeStore', () => {
     }
 
     async function loadLocaleMessages(i18n, locale) {
+        console.log(i18n)
         if (i18n.global.availableLocales.includes(locale)) {
             return nextTick()
         }
         const localeKey = `/src/i18n/locales/${locale}.json`
+
+        console.log(localeModules)
         const load = localeModules[localeKey]
         if (!load) throw new Error(`Locale "${locale}" not found`)
 
@@ -90,11 +96,10 @@ export const useLocaleStore = defineStore('localeStore', () => {
         return nextTick()
     }
 
-
-
     return {
         appLocale,
         getResumeMessage,
-        getAppMessage
+        getAppMessage,
+        supportedLocales
     }
 })

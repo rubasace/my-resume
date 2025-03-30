@@ -1,5 +1,6 @@
 {
   "section": {
+    "locale": "resume language",
     "basics": "basic data",
     "picture": "picture",
     "contact": "contact",

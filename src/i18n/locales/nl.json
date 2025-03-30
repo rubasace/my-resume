@@ -1,0 +1,25 @@
+{
+  "section": {
+    "locale": "taal van het cv",
+    "basics": "basisgegevens",
+    "picture": "foto",
+    "contact": "contact",
+    "about": "over mij",
+    "work": "werkervaring",
+    "publications": "publicaties",
+    "projects": "projecten",
+    "conferences": "conferentiepresentaties",
+    "education": "opleiding",
+    "certificates": "certificaten",
+    "skills": "vaardigheden",
+    "languages": "talen",
+    "awards": "onderscheidingen",
+    "interests": "interesses",
+    "extras": "extra's"
+  },
+  "editor": {
+    "data": "Gegevens",
+    "style": "Stijl",
+    "importExport": "Importeren / Exporteren"
+  }
+}

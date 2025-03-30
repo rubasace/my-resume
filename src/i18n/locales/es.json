@@ -1,5 +1,6 @@
 {
   "section": {
+    "locale": "idioma del CV",
     "basics": "información basica",
     "picture": "imagen",
     "contact": "contacto",

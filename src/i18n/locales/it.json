@@ -1,0 +1,25 @@
+{
+  "section": {
+    "locale": "lingua del curriculum",
+    "basics": "dati di base",
+    "picture": "foto",
+    "contact": "contatto",
+    "about": "su di me",
+    "work": "esperienza lavorativa",
+    "publications": "pubblicazioni",
+    "projects": "progetti",
+    "conferences": "presentazioni a conferenze",
+    "education": "formazione",
+    "certificates": "certificati",
+    "skills": "competenze",
+    "languages": "lingue",
+    "awards": "premi",
+    "interests": "interessi",
+    "extras": "extra"
+  },
+  "editor": {
+    "data": "Dati",
+    "style": "Stile",
+    "importExport": "Importa / Esporta"
+  }
+}

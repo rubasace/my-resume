@@ -1,0 +1,25 @@
+{
+  "section": {
+    "locale": "język CV",
+    "basics": "podstawowe dane",
+    "picture": "zdjęcie",
+    "contact": "kontakt",
+    "about": "o mnie",
+    "work": "doświadczenie zawodowe",
+    "publications": "publikacje",
+    "projects": "projekty",
+    "conferences": "prezentacje konferencyjne",
+    "education": "wykształcenie",
+    "certificates": "certyfikaty",
+    "skills": "umiejętności",
+    "languages": "języki",
+    "awards": "nagrody",
+    "interests": "zainteresowania",
+    "extras": "dodatki"
+  },
+  "editor": {
+    "data": "Dane",
+    "style": "Styl",
+    "importExport": "Import / Eksport"
+  }
+}

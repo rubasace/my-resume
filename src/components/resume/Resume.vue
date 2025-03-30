@@ -83,7 +83,7 @@ function showTimeline(section) {
 
         <div class="section" v-for="section in styleStore.visibleSections" :id="section + '-section'">
           <div class="section-title">
-            <span>{{ localeStore.getAppMessage("section." + section) }}</span>
+            <span>{{ localeStore.getResumeMessage("section." + section) }}</span>
           </div>
           <div class="section-content" :class="{ timeline: showTimeline(section) }">
             <div v-for="entry in data[section]?.filter(e => !e.hidden)">

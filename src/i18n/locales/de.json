@@ -1,0 +1,25 @@
+{
+  "section": {
+    "locale": "Lebenslauf-Sprache",
+    "basics": "Grunddaten",
+    "picture": "Foto",
+    "contact": "Kontakt",
+    "about": "Über mich",
+    "work": "Berufserfahrung",
+    "publications": "Veröffentlichungen",
+    "projects": "Projekte",
+    "conferences": "Konferenzpräsentationen",
+    "education": "Ausbildung",
+    "certificates": "Zertifikate",
+    "skills": "Fähigkeiten",
+    "languages": "Sprachen",
+    "awards": "Auszeichnungen",
+    "interests": "Interessen",
+    "extras": "Extras"
+  },
+  "editor": {
+    "data": "Daten",
+    "style": "Stil",
+    "importExport": "Import / Export"
+  }
+}
