@@ -12,7 +12,7 @@ defineProps({
   },
   location: {
     type: String,
-    required: true
+    required: false
   },
   startDate: {
     type: String,
@@ -20,7 +20,7 @@ defineProps({
   },
   endDate: {
     type: String,
-    required: true
+    required: false
   },
   url: {
     type: String,
@@ -42,7 +42,7 @@ defineProps({
     <div class="header">
       <span class="role name title">{{ role }}</span>
       <span class="separator details">/</span>
-      <a class="details company" :href="url" target="_blank" :title="linkTitle" v-if="url">{{ company }}</a>
+      <a class="details company" :href="url" target="_blank" :title="company" v-if="url">{{ company }}</a>
       <span class="details company" v-else>{{ company }}</span>
       <span class="separator details" v-if="location">|</span>
       <span class="location details">{{ location }}</span>

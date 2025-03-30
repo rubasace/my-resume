@@ -6,7 +6,7 @@ const props = defineProps({
   label: String
 })
 
-let id = useId();
+const id = useId();
 
 const emit = defineEmits(['update:modelValue','reset']);
 

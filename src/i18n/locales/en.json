@@ -1,0 +1,24 @@
+{
+  "section": {
+    "basics": "basic data",
+    "picture": "picture",
+    "contact": "contact",
+    "about": "about",
+    "work": "experience",
+    "publications": "publications",
+    "projects": "projects",
+    "conferences": "conference presentations",
+    "education": "education",
+    "certificates": "certificates",
+    "skills": "skills",
+    "languages": "languages",
+    "awards": "awards",
+    "interests": "interests",
+    "extras": "extras"
+  },
+  "editor": {
+    "data": "Data",
+    "style": "Style",
+    "importExport": "Import / Export"
+  }
+}

@@ -17,7 +17,7 @@ const props = defineProps({
 });
 
 
-let emit = defineEmits(['delete']);
+const emit = defineEmits(['delete']);
 
 const summaryTitle = computed(() => {
   if(!model.value || props.skipSummary){

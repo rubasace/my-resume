@@ -17,7 +17,7 @@ defineProps({
   },
   endDate: {
     type: [String, Number],
-    required: true
+    required: false
   },
   url: {
     type: String,

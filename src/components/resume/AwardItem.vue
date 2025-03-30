@@ -10,11 +10,11 @@ defineProps({
   },
   awarder: {
     type: String,
-    required: true
+    required: false
   },
   date: {
     type: [String, Number],
-    required: true
+    required: false
   },
   url: {
     type: String,

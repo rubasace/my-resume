@@ -18,7 +18,7 @@ defineProps({
   },
   keywords: {
     type: Object,
-    required: true
+    required: false
   }
 })
 </script>

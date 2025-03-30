@@ -87,7 +87,9 @@ function uploadPicture(event) {
   <!--  TODO think of adding other themes-->
   <!--  TODO Generalize theme options (show icons,  shot timeline...) -->
   <!--  TODO Add alert on overflow and/or allow multi-page-->
+  <!--  TODO support zoom gestures (mouse and fingers) -->
 
+  <!--  TODO improve printing to PDF on Android -->
   <!--  TODO add image preview for mobile display -->
   <!--  TODO cleanup unnecessary dependencies and fix vulnerabilities -->
   <!--  TODO onboard renovate -->

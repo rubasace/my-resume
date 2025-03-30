@@ -9,7 +9,7 @@ const PICTURE_DATA_INDEX_DB_KEY = 'resume-builder-profile-picture';
 export const useDataStore = defineStore('dataStore', () => {
 
     // TODO change file to provide default anonymized values
-    const data = useLocalStorage('json-resume-data', () => yaml.load(content));
+    const data = useLocalStorage('resume-builder-data', () => yaml.load(content));
     sanitizeData()
 
     const pictureData = ref(null)

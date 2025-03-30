@@ -7,7 +7,7 @@ import NumberInput from "@/components/editor/NumberInput.vue";
 import {VueDraggable} from "vue-draggable-plus";
 import SortableSection from "@/components/editor/SortableSection.vue";
 
-let styleStore = useStyleStore();
+const styleStore = useStyleStore();
 
 
 </script>

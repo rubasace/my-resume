@@ -3,8 +3,10 @@
 import {Fieldset} from "primevue";
 import {computed} from "vue";
 import {useStyleStore} from "@/stores/styleStore";
+import {useLocaleStore} from "@/stores/localeStore";
 
-let styleStore = useStyleStore();
+const styleStore = useStyleStore();
+const localeStore = useLocaleStore()
 
 const props = defineProps({
   name: String,
@@ -33,7 +35,7 @@ function toggleVisibility(){
         <div class="legend">
           <div class="section-title">
             <i class="icon" :class="icon"></i>
-            <span class="title">{{ $t("section." + name) }}</span>
+            <span class="title">{{ localeStore.getAppMessage("section." + name) }}</span>
           </div>
           <div class="actions">
             <i class="icon" :class="hidden ? 'fas fa-eye-slash' : 'fas fa-eye'" v-if="hideable" @click="toggleVisibility"></i>

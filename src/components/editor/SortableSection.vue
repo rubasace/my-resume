@@ -1,15 +1,19 @@
 <script setup>
 
+import {useLocaleStore} from "@/stores/localeStore";
+
 defineProps({
   name: String
 });
+
+const localeStore = useLocaleStore();
 
 </script>
 
 <template>
   <div class="sortable-section">
     <div class="content">
-      {{$t("section." + name)}}
+      {{localeStore.getAppMessage("section." + name)}}
     </div>
     <div class="actions">
       <i class="fas fa-bars handle"></i>

@@ -17,7 +17,7 @@ defineProps({
   },
   location: {
     type: String,
-    required: true
+    required: false
   },
   time: {
     type: String,

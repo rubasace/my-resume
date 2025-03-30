@@ -59,7 +59,7 @@ export const useStyleStore = defineStore('styleStore', () => {
         showTimeline: true
     }
 
-    const customCSS = useLocalStorage('json-resume-custom-css', '');
+    const customCSS = useLocalStorage('resume-builder-custom-css', '');
 
     const style = reactive(Object.fromEntries(Object.entries(defaultStyle).map(([key, defaultValue]) => {
         const keyIdentifier = `${key.replace(/([A-Z])/g, '-$1')}`.toLowerCase()

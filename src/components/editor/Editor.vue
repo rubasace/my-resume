@@ -10,9 +10,11 @@ import TabPanel from 'primevue/tabpanel';
 import DataEditor from "./DataEditor.vue";
 import ImportExport from "@/components/editor/ImportExport.vue";
 import StyleConfiguration from "@/components/editor/StyleConfiguration.vue";
+import {useLocaleStore} from "@/stores/localeStore";
 
 
 const dataStore = useDataStore()
+const localeStore = useLocaleStore();
 
 </script>
 
@@ -20,10 +22,10 @@ const dataStore = useDataStore()
   <div class="editor">
     <Tabs value="0">
       <TabList>
-        <Tab value="0">{{ $t("editor.data") }}</Tab>
-        <Tab value="1">{{ $t("editor.style") }}</Tab>
+        <Tab value="0">{{ localeStore.getAppMessage("editor.data") }}</Tab>
+        <Tab value="1">{{ localeStore.getAppMessage("editor.style") }}</Tab>
         <Tab value="2">Raw Data</Tab>
-        <Tab value="3">{{ $t("editor.importExport") }}</Tab>
+        <Tab value="3">{{ localeStore.getAppMessage("editor.importExport") }}</Tab>
       </TabList>
       <TabPanels>
         <TabPanel value="0">

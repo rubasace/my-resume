@@ -13,9 +13,12 @@ import InterestItem from "@/components/resume/InterestItem.vue";
 import ProjectItem from "@/components/resume/ProjectItem.vue";
 import PublicationItem from "@/components/resume/PublicationItem.vue";
 import CertificateItem from "@/components/resume/CertificateItem.vue";
+import {useLocaleStore} from "@/stores/localeStore";
+
 
 const dataStore = useDataStore()
-let styleStore = useStyleStore();
+const styleStore = useStyleStore()
+const localeStore = useLocaleStore()
 const data = computed(() => dataStore.data)
 
 const profiles = visibleEntries(() => dataStore.data.basics?.profiles, 'Profiles')
@@ -71,7 +74,7 @@ function showTimeline(section) {
 
         <div class="section" v-if="data.basics.summary && !styleStore.style.hiddenSections?.includes('about')" id="summary-section">
           <div class="section-title">
-            <span>{{ $t("section.about") }}</span>
+            <span>{{ localeStore.getResumeMessage("section.about") }}</span>
           </div>
           <div class="section-content">
             <p>{{ data.basics.summary }}</p>
@@ -80,7 +83,7 @@ function showTimeline(section) {
 
         <div class="section" v-for="section in styleStore.visibleSections" :id="section + '-section'">
           <div class="section-title">
-            <span>{{ $t("section." + section) }}</span>
+            <span>{{ localeStore.getAppMessage("section." + section) }}</span>
           </div>
           <div class="section-content" :class="{ timeline: showTimeline(section) }">
             <div v-for="entry in data[section]?.filter(e => !e.hidden)">

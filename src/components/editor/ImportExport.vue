@@ -7,7 +7,7 @@ import yaml from "js-yaml";
 import {useStyleStore} from "@/stores/styleStore";
 
 const dataStore = useDataStore();
-let styleStore = useStyleStore();
+const styleStore = useStyleStore();
 
 const toast = useToast();
 

@@ -12,11 +12,11 @@ defineProps({
   },
   startDate: {
     type: String,
-    required: true
+    required: false
   },
   endDate: {
     type: String,
-    required: true
+    required: false
   },
   description: {
     type: String,
