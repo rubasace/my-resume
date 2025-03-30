@@ -40,7 +40,7 @@ function toggleEditor() {
         v-model:visible="showEditor"
         modal
         dismissableMask
-        :style="{ width: '95vw', height: '95vh' }"
+        :style="{ width: '100vw', height: '100vh' }"
         contentClass="editor-dialog"
     >
       <Editor />
