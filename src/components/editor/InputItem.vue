@@ -72,8 +72,8 @@ function deleteItem() {
 </script>
 
 <template>
-  <div class="input-item" :class="model?.hidden ? 'hidden-input' : ''">
-    <div class="content">
+  <div class="input-item" :class="(model?.hidden ? 'hidden-input' : '') + (expanded ? ' expanded' : '')" >
+    <div class="content" >
       <div class="input" v-if="expanded || skipSummary">
         <slot/>
       </div>
@@ -87,7 +87,7 @@ function deleteItem() {
       </div>
     </div>
 
-    <div class="actions" :class="expanded ? 'expanded' : ''">
+    <div class="actions">
       <i :class="expanded ? 'fas fa-check' : 'fas fa-pencil'" v-if="!skipSummary" @click="() => expanded=!expanded"/>
       <i :class="model?.hidden ? 'fas fa-eye-slash' : 'fas fa-eye'" @click="() => model.hidden = !model?.hidden" v-if="model"></i>
       <i class="fas fa-trash" @click="deleteItem"></i>
@@ -137,9 +137,11 @@ function deleteItem() {
     justify-content: space-between
 
 @media (max-width: 768px)
-  .input-item
+  .input-item.expanded
+    flex-wrap: wrap
     .content
       padding: 1em 0.5em
-    .actions.expanded
-      flex-direction: column
+      min-width: 100%
+    .actions
+      margin: 1em
 </style>
