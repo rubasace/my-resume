@@ -13,7 +13,7 @@ import WebFontLoader from 'webfontloader';
 
 WebFontLoader.load({
     google: {
-        families: ['Garamond:100,300,400,500,700,900']
+        families: ['Cormorant Garamond:100,300,400,500,700,900']
     }
 })
 vhCheck();
