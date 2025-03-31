@@ -1,7 +1,6 @@
 import {defineStore} from 'pinia';
 import {useLocalStorage} from "@vueuse/core";
 import {computed, nextTick, reactive, toRefs, watch} from "vue";
-import fonts from "google-fonts-complete";
 import WebFont from "webfontloader";
 import {useDataStore} from "@/stores/dataStore";
 
@@ -9,33 +8,6 @@ import {useDataStore} from "@/stores/dataStore";
 export const useStyleStore = defineStore('styleStore', () => {
 
     const dataStore = useDataStore()
-    const availableFonts = Object.entries(fonts).map(([name, data]) => {
-        const normalVariants = data.variants?.normal ?? {};
-        const italicVariants = data.variants?.italic ?? {};
-
-        const normalWeights = extractWeights(normalVariants);
-        const italicWeights = extractWeights(italicVariants);
-
-        // Prioritize normal weights
-        const preferredWeights = normalWeights.length > 0 ? normalWeights : italicWeights;
-
-        // Use common weights if available
-        const commonWeights = ["300", "400", "700"];
-        const selectedWeights = commonWeights.filter(w => preferredWeights.includes(w));
-        const weightsToUse = selectedWeights.length > 0 ? selectedWeights : preferredWeights;
-
-        return {
-            label: name, value: `${name.replace(/\s+/g, "+")}:${weightsToUse.join(",")}`,
-        };
-    });
-
-    function extractWeights(variantObject) {
-        return Object.keys(variantObject).sort();
-    }
-
-    const defaultFontFamily = {
-        label: "Cormorant Garamond", value: "Cormorant+Garamond:300,400,700"
-    }
 
     const defaultHighlightColor = '#17a095';
     const defaultFontSize = 11
@@ -43,7 +15,6 @@ export const useStyleStore = defineStore('styleStore', () => {
     const defaultSortedSections = ['work', 'projects', 'publications', 'conferences', 'education', 'certificates', 'skills', 'awards', 'interests', 'languages']
 
     const defaultStyle = {
-        fontFamily: defaultFontFamily,
         highlightColor: defaultHighlightColor,
         fontSize: defaultFontSize,
         marginTop: defaultMargin,
@@ -56,7 +27,8 @@ export const useStyleStore = defineStore('styleStore', () => {
         hiddenSections: [],
         sortedSections: defaultSortedSections,
         showIcons: true,
-        showTimeline: true
+        showTimeline: true,
+        theme: 'rub'
     }
 
     const customCSS = useLocalStorage('resume-builder-custom-css', '');
@@ -73,23 +45,7 @@ export const useStyleStore = defineStore('styleStore', () => {
         return [key, styleRef];
     })));
 
-    const visibleSections = computed(() => style.sortedSections.filter(section => !style.hiddenSections?.includes(section) && dataStore.data[section]?.filter(e=>!e.hidden).length))
-
-
-    watch(style.fontFamily, (font) => {
-        if (!font) return
-        WebFont.load({
-            google: {
-                families: [font.value],
-            }, active() {
-            }, inactive() {
-                console.warn(`Failed to load font: ${font.label}`);
-                nextTick(() => {
-                    style.fontFamily = defaultFontFamily
-                })
-            },
-        });
-    }, {immediate: true, deep: true});
+    const visibleSections = computed(() => style.sortedSections.filter(section => !style.hiddenSections?.includes(section) && dataStore.data[section]?.filter(e => !e.hidden).length))
 
 
     function importStyle(newStyle) {
@@ -125,7 +81,6 @@ export const useStyleStore = defineStore('styleStore', () => {
         style: toRefs(style),
         visibleSections,
         customCSS,
-        availableFonts,
         importStyle,
         resetHighlightColor,
         resetMargins

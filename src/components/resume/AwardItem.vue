@@ -31,11 +31,11 @@ defineProps({
   <div class="item">
     <div class="header">
       <Title :text="title" :url="url" />
-      <span class="separator" v-if="awarder"> - </span>
-      <span class="awarder details" v-if="awarder">{{ awarder }}</span>
-      <span class="time details">
+      <div class="separator" v-if="awarder"> - </div>
+      <div class="awarder details" v-if="awarder">{{ awarder }}</div>
+      <div class="time details">
         <span>{{ String(date) }}</span>
-      </span>
+      </div>
     </div>
 <!--    <div class="description" v-if="summary">-->
 <!--      <p>{{ summary }}</p>-->

@@ -27,12 +27,10 @@ export const useLocaleStore = defineStore('localeStore', () => {
 
     watch(appLocale, async (newLocale) => {
         appI18n.value = await setupI18n(newLocale)
-        console.log(newLocale)
     })
 
     watch(resumeLocale, async (newLocale) => {
         resumeI18n.value = await setupI18n(newLocale, '.resume')
-        console.log(newLocale)
     })
 
     function getAppMessage(key) {
@@ -81,13 +79,11 @@ export const useLocaleStore = defineStore('localeStore', () => {
     }
 
     async function loadLocaleMessages(i18n, locale) {
-        console.log(i18n)
         if (i18n.global.availableLocales.includes(locale)) {
             return nextTick()
         }
         const localeKey = `/src/i18n/locales/${locale}.json`
 
-        console.log(localeModules)
         const load = localeModules[localeKey]
         if (!load) throw new Error(`Locale "${locale}" not found`)
 

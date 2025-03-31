@@ -1,6 +1,5 @@
-@import "../layout"
+@import "@/assets/layout"
 
-//TODO move all this to configurable variables
 $background: whitesmoke !default
 $default-font-family: Cambria, sans-serif
 $default-titles-font-family: Georgia, serif !default
@@ -14,62 +13,65 @@ $header-line-height: 2em !default
 $section-separation: 0.7em !default
 $item-separation: 0.2em !default
 
-.page
-  box-sizing: border-box
-  background-color: $background
-
-  &.show-icons
-    .section
-      &#summary-section
-        .section-title::before
-          content: "\f007"
-      &#work-section
-        .section-title::before
-          content: "\f0b1"
-      &#projects-section
-        .section-title::before
-          content: "\f542"
-      &#publications-section
-        .section-title::before
-          content: "\f02d"
-      &#conferences-section
-        .section-title::before
-          content: "\f130"
-      &#education-section
-        .section-title::before
-          content: "\f19d"
-      &#certificates-section
-        .section-title::before
-          content: "\f559"
-      &#skills-section
-        .section-title::before
-          content: "\f5dc"
-      &#awards-section
-        .section-title::before
-          content: "\f091"
-      &#languages-section
-        .section-title::before
-          content: "\f1ab"
-      &#interests-section
-        .section-title::before
-          content: "\f005"
-      &#extras-section
-        .section-title::before
-          content: "\f196"
-
-body
-  margin: 0
-  padding: 0
-  /*line-height: 1pt;*/
-  text-rendering: optimizeLegibility
-  -webkit-font-smoothing: antialiased
-  -moz-osx-font-smoothing: grayscale
+.resume.theme-rub
+  width: 100%
+  height: 100%
+  position: relative
   font-family: $default-font-family
+  color: black
+  .page
+    box-sizing: border-box
+    background-color: $background
 
-  .resume
-    width: 100%
-    height: 100%
-    position: relative
+    &.show-icons
+      .section
+        &#summary-section
+          .section-title::before
+            content: "\f007"
+
+        &#work-section
+          .section-title::before
+            content: "\f0b1"
+
+        &#projects-section
+          .section-title::before
+            content: "\f542"
+
+        &#publications-section
+          .section-title::before
+            content: "\f02d"
+
+        &#conferences-section
+          .section-title::before
+            content: "\f130"
+
+        &#education-section
+          .section-title::before
+            content: "\f19d"
+
+        &#certificates-section
+          .section-title::before
+            content: "\f559"
+
+        &#skills-section
+          .section-title::before
+            content: "\f5dc"
+
+        &#awards-section
+          .section-title::before
+            content: "\f091"
+
+        &#languages-section
+          .section-title::before
+            content: "\f1ab"
+
+        &#interests-section
+          .section-title::before
+            content: "\f005"
+
+        &#extras-section
+          .section-title::before
+            content: "\f196"
 
     #profile-section
       display: flex
@@ -116,7 +118,6 @@ body
           font-style: italic
 
 
-
     .section
       width: 100%
       position: relative
@@ -137,8 +138,10 @@ body
         font-size: $contact-font-size
         width: 80%
         margin-bottom: 2.3em
+
         .icon
           width: 1em
+
         > *
           flex: 0 1 auto
           white-space: nowrap
@@ -150,6 +153,10 @@ body
           flex-wrap: wrap
           justify-content: space-between
           align-items: center
+          .item
+            display: flex
+            .value
+              margin-left: 0.4em
       .section-title
         font-family: $default-titles-font-family
         font-size: 1.15em
@@ -178,8 +185,10 @@ body
 
     .timeline
       position: relative
+
       .title
         position: relative
+
         .name
           position: relative
 
@@ -202,7 +211,6 @@ body
           box-shadow: 0 $pointSpace 0 whitesmoke, 0 calc(#{$pointSpace} * -1) 0 whitesmoke
 
 
-
       &::after
         content: ""
         background-color: slategray
@@ -215,8 +223,10 @@ body
 
   .item
     width: 100%
+
     &.skill
       margin-bottom: 0.3em
+
     .header
       line-height: $header-line-height
       vertical-align: middle
@@ -274,8 +284,8 @@ body
     height: 1em
 
 
-.separator
-  margin: 0 0.4em
+  .separator
+    margin: 0 0.4em
 
-.flex
-  display: flex
+  .flex
+    display: flex

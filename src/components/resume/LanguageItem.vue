@@ -16,10 +16,10 @@ defineProps({
 })
 </script>
 <template>
-  <div class="item skills">
+  <div class="item languages">
     <i class="icon" :class="icon"></i>
-    <span class="title" v-if="name">{{ name }}</span>
-    <span class="title" v-if="name&&level">: </span>
-    <span class="value">{{ level }}</span>
+    <div class="title" v-if="name">{{ name }}</div>
+    <div class="title" v-if="name&&level">: </div>
+    <div class="value">{{ level }}</div>
   </div>
 </template>

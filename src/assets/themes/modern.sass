@@ -1,4 +1,4 @@
-@import "../layout"
+@import "@/assets/layout"
 
 //TODO move all this to configurable variables
 $background: whitesmoke !default
@@ -6,31 +6,23 @@ $default-font-family: Cambria, sans-serif
 $details-font-size: 0.9em !default
 $details-color: lighten($default-font-color, 40%) !default
 $time-color: lighten($default-font-color, 30%) !default
-$time-font-size: 0.95em !default
+$time-font-size: 0.85em !default
 $contact-font-size: 0.89em !default
-$title-font-size: 2.7em !default
-$header-line-height: 2em !default
+$title-font-size: 2.5em !default
+$header-line-height: 1.6em !default
 $section-separation: 0.06in !default
 $item-separation: 0.2em !default
 $highlight-color: #085bc1
 
-.page
-  box-sizing: border-box
-  background-color: $background
-
-body
-  margin: 0
-  padding: 0
-  /*line-height: 1pt*/
-  text-rendering: optimizeLegibility
-  -webkit-font-smoothing: antialiased
-  -moz-osx-font-smoothing: grayscale
+.resume.theme-modern
+  width: 100%
+  height: 100%
+  position: relative
   font-family: $default-font-family
-
-  .resume
-    width: 100%
-    height: 100%
-    position: relative
+  color: black
+  .page
+    box-sizing: border-box
+    background-color: $background
     .page-content
       width: 100%
       display: flex
@@ -92,7 +84,7 @@ body
         width: 100%
         position: relative
         margin-top: 0
-        margin-bottom: $section-separation
+        //margin-bottom: $section-separation
         padding-top: $section-separation
 
         border-top: 1px solid #ccc
@@ -122,7 +114,6 @@ body
 
 
 
-
         &#languages-section
           .section-content
             display: flex
@@ -130,6 +121,10 @@ body
             flex-wrap: wrap
             justify-content: space-between
             align-items: center
+            .item
+              display: flex
+              .value
+                margin-left: 0.4em
         .section-title
           font-size: 1.15em
           margin-bottom: 0.25em
@@ -145,34 +140,49 @@ body
       &.skill
         margin-bottom: 0.3em
       .header
-        display: grid
-        grid-template-areas: "title separator1 name" "location separator2 time"
-        grid-template-columns: auto auto auto
-        column-gap: 0.4em
+        line-height: $header-line-height
+        vertical-align: middle
+        align-items: baseline
+        display: flex
+        flex-wrap: wrap
+        font-size: 1.1em
+        .title,
+        .separator.details,
+        .details.company
+          white-space: nowrap
 
         .title
-          grid-area: title
           font-weight: bold
           color: $highlight-color
 
-
-        .details.name, .details.company
-          grid-area: name
+        .details
+          font-size: $details-font-size
+          color: $details-color
           font-weight: bold
-          color: black
-          text-transform: capitalize
+          display: flex
+          flex-wrap: wrap
+
+          &.name, &.company
+            color: black
+            position: relative
+            &::after
+              content: ''
+              flex: 1 1 auto
 
 
-        .details.location
-          grid-area: location
-          font-style: italic
 
+          &.location
+            font-style: italic
 
-        .details.time
-          grid-area: time
-          font-style: normal
-          color: $time-color
-          font-size: $time-font-size
+          &.time
+            font-style: normal
+            margin-left: auto
+            color: $time-color
+            font-size: $time-font-size
+            margin-top: -0.7em
+
+        .separator
+          margin: 0 0.4em
 
       .description
         white-space: pre-line

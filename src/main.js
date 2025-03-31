@@ -4,9 +4,8 @@ import ToastService from 'primevue/toastservice';
 import ConfirmationService from 'primevue/confirmationservice';
 import {createPinia} from "pinia";
 import App from "./App.vue";
-import "./assets/themes/rub.sass";
-// import "./assets/themes/modern.sass";
-// import "./assets/themes/test.sass";
+import "./assets/layout.sass";
+import.meta.glob('@/assets/themes/*.sass', { eager: true })
 import Lara from '@primeuix/themes/aura';
 import 'primeflex/primeflex.min.css'
 import '@fortawesome/fontawesome-free/css/all.min.css';

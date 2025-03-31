@@ -6,21 +6,43 @@ import ColorPicker from '@/components/editor/ColorPicker.vue'
 import NumberInput from "@/components/editor/NumberInput.vue";
 import {VueDraggable} from "vue-draggable-plus";
 import SortableSection from "@/components/editor/SortableSection.vue";
+import Section from "@/components/editor/Section.vue";
+import {useThemeStore} from "@/stores/themeStore";
+import Resume from "@/components/resume/Resume.vue";
 
 const styleStore = useStyleStore();
+const themeStore = useThemeStore();
 
 
 </script>
 
+
 <template>
+  <Section name="theme" :hideable="false">
+    <div class="theme-selector grid-3">
+      <div class="theme" v-for="theme in themeStore.availableThemes" :key="theme" @click="themeStore.selectedTheme=theme">
+        <div class="title">{{ theme }}</div>
+        <div class="preview">
+          <Resume :class="'theme-'+theme"/>
+        </div>
+      </div>
+    </div>
+    <Select
+        id="resume-theme"
+        v-model="themeStore.selectedTheme"
+        :options="themeStore.availableThemes"
+        class="w-full"
+        placeholder="Select Theme"
+    />
+  </Section>
   <div class="section-title">Fonts</div>
   <NumberInput v-model="styleStore.style.fontSize" label="Font Size" suffix=" pt" :step="0.1" :maxFractionDigits="2"/>
 
-<!--  <Select v-model="styleStore.style.fontFamily"-->
-<!--          :options="styleStore.availableFonts"-->
-<!--          optionLabel="label"-->
-<!--          placeholder="Choose a font"-->
-<!--          class="mt-3"/>-->
+  <!--  <Select v-model="styleStore.style.fontFamily"-->
+  <!--          :options="styleStore.availableFonts"-->
+  <!--          optionLabel="label"-->
+  <!--          placeholder="Choose a font"-->
+  <!--          class="mt-3"/>-->
 
   <div class="section-title">Margins</div>
   <div class="grid-2">
@@ -33,11 +55,11 @@ const styleStore = useStyleStore();
   <div class="section-title">Misc</div>
   <div class="grid-2">
     <label class="flex items-center gap-2">
-      <input type="checkbox" v-model="styleStore.style.showIcons" />
+      <input type="checkbox" v-model="styleStore.style.showIcons"/>
       Show Icons
     </label>
     <label class="flex items-center gap-2">
-      <input type="checkbox" v-model="styleStore.style.showTimeline" />
+      <input type="checkbox" v-model="styleStore.style.showTimeline"/>
       Show Timeline
     </label>
   </div>
@@ -60,4 +82,11 @@ const styleStore = useStyleStore();
   margin: 1em 0
   font-weight: bold
   font-size: 1.6em
+
+.theme-selector
+  .theme
+    max-width: 20%
+    .preview
+      .resume
+        transform: scale(0.3)
 </style>
