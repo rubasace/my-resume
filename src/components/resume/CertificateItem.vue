@@ -32,8 +32,8 @@ defineProps({
       <Title :text="name" :url="url" />
       <span class="separator">/</span>
       <span class="issuer details">{{ issuer }}</span>
-      <span class="time details" v-if="date">
-        <span>{{ String(date) }}</span>
+      <span class="time details">
+        <span v-if="date">{{ String(date) }}</span>
       </span>
     </div>
     <div class="description" v-if="description">

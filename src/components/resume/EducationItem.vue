@@ -1,7 +1,5 @@
 <script setup>
 
-import Title from "@/components/resume/Title.vue";
-
 defineProps({
   school: {
     type: String,
@@ -31,7 +29,7 @@ defineProps({
 </script>
 
 <template>
-  <div class="item">
+  <div class="item education">
     <div class="header">
       <div class="title">{{ name }}</div>
       <div class="separator">/</div>
@@ -39,6 +37,7 @@ defineProps({
         <a :href="url" target="_blank" :title="school" v-if="url">{{ school }}</a>
         <span v-else>{{ school }}</span>
       </div>
+      <div class="location"></div>
       <div class="time details">
         <span>{{ String(startDate) }}</span>
         <span v-if="endDate"> - {{ String(endDate) }}</span>

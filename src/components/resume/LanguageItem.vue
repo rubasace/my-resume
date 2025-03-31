@@ -18,7 +18,7 @@ defineProps({
 <template>
   <div class="item languages">
     <i class="icon" :class="icon"></i>
-    <div class="title" v-if="name">{{ name }}</div>
+    <div class="title">{{ name }}</div>
     <div class="title" v-if="name&&level">: </div>
     <div class="value">{{ level }}</div>
   </div>

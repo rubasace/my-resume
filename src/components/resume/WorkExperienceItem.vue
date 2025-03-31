@@ -1,5 +1,4 @@
 <script setup>
-import Title from "@/components/resume/Title.vue";
 
 defineProps({
   company: {
@@ -40,7 +39,7 @@ defineProps({
 <template>
   <div class="item">
     <div class="header">
-      <div class="role name title">{{ role }}</div>
+      <div class="role title">{{ role }}</div>
       <div class="separator details">/</div>
       <div class="details company">
         <a :href="url" target="_blank" :title="company" v-if="url">{{ company }}</a>

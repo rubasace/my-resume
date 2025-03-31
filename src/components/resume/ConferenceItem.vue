@@ -39,9 +39,9 @@ defineProps({
     <div class="header">
       <Title :text="title" :url="url" />
       <span class="separator" v-if="conference">/</span>
-      <span class="conference name details" v-if="conference">{{ conference }}</span>
+      <span class="conference name details">{{ conference }}</span>
       <span class="separator details" v-if="(conference || title )&&location">|</span>
-      <span class="location details" v-if="location">{{ location }}</span>
+      <span class="location details">{{ location }}</span>
       <span class="time details">{{ time }}</span>
     </div>
     <div class="description">

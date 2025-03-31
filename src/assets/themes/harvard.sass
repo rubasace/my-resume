@@ -1,20 +1,20 @@
 //TODO move all this to configurable variables
 
 $default-font-color: black
+$secondary-color: #444
 $background: whitesmoke !default
-$default-font-family: Cambria, sans-serif
+$default-font-family: Garamond, sans-serif
 $details-font-size: 0.9em !default
 $details-color: lighten($default-font-color, 40%) !default
 $time-color: lighten($default-font-color, 30%) !default
 $time-font-size: 0.85em !default
-$contact-font-size: 0.89em !default
+$contact-font-size: 0.8em !default
 $title-font-size: 2.5em !default
 $header-line-height: 1.6em !default
 $section-separation: 0.06in !default
 $item-separation: 0.2em !default
-$highlight-color: #085bc1
 
-.resume.theme-modern
+.resume.theme-harvard
   width: 100%
   height: 100%
   position: relative
@@ -46,7 +46,7 @@ $highlight-color: #085bc1
           border: 1px solid #bbb
           background-color: white
           overflow: hidden
-          display: flex
+          display: none
           align-items: center
           justify-content: center
 
@@ -64,14 +64,11 @@ $highlight-color: #085bc1
           font-size: $title-font-size
           display: flex
           flex-direction: column
-          //align-items: center
           justify-content: center
-          //gap: 0.4em
           padding: 0
 
           .name
             font-weight: bold
-            color: $highlight-color
 
           .role
             font-size: 0.5em
@@ -93,16 +90,17 @@ $highlight-color: #085bc1
           margin-top: 0
           margin-bottom: 0
           border-top: none
+          display: flex
+          justify-content: center
 
         &#contact-section
           display: flex
           flex-direction: row
-          flex-wrap: wrap
-          //justify-content: space-between
+          justify-content: center
           align-items: center
-          gap: 2em
+          flex-wrap: wrap
+          gap: 1em
           font-size: $contact-font-size
-          width: 80%
           border-top: none
           .icon
             width: 1em
@@ -111,8 +109,6 @@ $highlight-color: #085bc1
           > *
             flex: 0 1 auto
             white-space: nowrap
-
-
 
         &#languages-section
           .section-content
@@ -128,6 +124,7 @@ $highlight-color: #085bc1
         .section-title
           font-size: 1.15em
           margin-bottom: 0.25em
+          text-align: center
 
           span
             text-transform: uppercase
@@ -139,6 +136,15 @@ $highlight-color: #085bc1
       width: 100%
       &.skill
         margin-bottom: 0.3em
+      &.education
+        .header
+          .school
+            order: 3
+            font-size: 1em
+            font-weight: normal
+          .title
+            order: 1
+            font-size: 1.1em
       .header
         line-height: $header-line-height
         vertical-align: middle
@@ -146,43 +152,27 @@ $highlight-color: #085bc1
         display: flex
         flex-wrap: wrap
         font-size: 1.1em
-        .title,
-        .separator.details,
-        .details.company
-          white-space: nowrap
+
+        &>*
+          width: 50%
 
         .title
           font-weight: bold
-          color: $highlight-color
-
-        .details
-          font-size: $details-font-size
-          color: $details-color
+          order: 3
+        .name,.company
+          font-size: 1.1em
           font-weight: bold
-          display: flex
-          flex-wrap: wrap
-
-          &.name, &.company
-            color: black
-            position: relative
-            &::after
-              content: ''
-              flex: 1 1 auto
-
-
-
-          &.location
-            font-style: italic
-
-          &.time
-            font-style: normal
-            margin-left: auto
-            color: $time-color
-            font-size: $time-font-size
-            margin-top: -0.7em
+          order: 1
+        .location
+          text-align: right
+          order: 2
+        .time
+          text-align: right
+          order: 4
 
         .separator
-          margin: 0 0.4em
+          display: none
+
 
       .description
         white-space: pre-line

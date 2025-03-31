@@ -1,7 +1,4 @@
 <script setup>
-import {useDataStore} from "@/stores/dataStore";
-
-
 import Tabs from 'primevue/tabs';
 import TabList from 'primevue/tablist';
 import Tab from 'primevue/tab';
@@ -46,6 +43,8 @@ const localeStore = useLocaleStore();
   </div>
 </template>
 <style scoped lang="sass">
+.p-tab
+  text-transform: capitalize
 .editor
   height: 100%
 

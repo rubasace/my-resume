@@ -1,9 +1,9 @@
 import {defineStore} from 'pinia'
 import {useLocalStorage} from "@vueuse/core";
-// TODO load all dynamically
-import "@/assets/themes/modern.sass";
-import "@/assets/themes/rub.sass";
 import {nextTick, watch} from "vue";
+
+import.meta.glob('@/assets/themes/*.sass', { eager: true })
+
 
 export const useThemeStore = defineStore('themeStore', () => {
     const DEFAULT_THEME = "rub";

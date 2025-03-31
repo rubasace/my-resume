@@ -18,8 +18,9 @@
     "extras": "suppléments"
   },
   "editor": {
-    "data": "Données",
-    "style": "Style",
-    "importExport": "Importer / Exporter"
+    "theme": "thème",
+    "data": "données",
+    "style": "style",
+    "importExport": "importer / exporter"
   }
 }

@@ -110,11 +110,12 @@ function localeOptionTemplate(option) {
 </script>
 
 <template>
-  <!--  TODO think of adding other themes-->
+  <!--  TODO persist theme in yaml/json-->
   <!--  TODO Generalize theme options (show icons,  shot timeline...) -->
   <!--  TODO Add alert on overflow and/or allow multi-page-->
   <!--  TODO support zoom gestures (mouse and fingers) -->
 
+  <!--  TODO design color palette -->
   <!--  Think of integration with openai API for automatic translation if key proivded by user? -->
   <!--  TODO add translations for menus and support language switching -->
   <!--  TODO improve printing to PDF on Android -->

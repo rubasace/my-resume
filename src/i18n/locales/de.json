@@ -1,25 +1,26 @@
 {
   "section": {
-    "locale": "Lebenslauf-Sprache",
-    "basics": "Grunddaten",
-    "picture": "Foto",
-    "contact": "Kontakt",
-    "about": "Über mich",
-    "work": "Berufserfahrung",
-    "publications": "Veröffentlichungen",
-    "projects": "Projekte",
-    "conferences": "Konferenzpräsentationen",
-    "education": "Ausbildung",
-    "certificates": "Zertifikate",
-    "skills": "Fähigkeiten",
-    "languages": "Sprachen",
-    "awards": "Auszeichnungen",
-    "interests": "Interessen",
-    "extras": "Extras"
+    "locale": "lebenslauf-Sprache",
+    "basics": "grunddaten",
+    "picture": "foto",
+    "contact": "kontakt",
+    "about": "über mich",
+    "work": "berufserfahrung",
+    "publications": "veröffentlichungen",
+    "projects": "projekte",
+    "conferences": "konferenzpräsentationen",
+    "education": "ausbildung",
+    "certificates": "zertifikate",
+    "skills": "fähigkeiten",
+    "languages": "sprachen",
+    "awards": "auszeichnungen",
+    "interests": "interessen",
+    "extras": "extras"
   },
   "editor": {
-    "data": "Daten",
-    "style": "Stil",
-    "importExport": "Import / Export"
+    "theme": "thema",
+    "data": "daten",
+    "style": "stil",
+    "importExport": "import / export"
   }
 }

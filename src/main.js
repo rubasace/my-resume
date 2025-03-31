@@ -5,12 +5,17 @@ import ConfirmationService from 'primevue/confirmationservice';
 import {createPinia} from "pinia";
 import App from "./App.vue";
 import "./assets/layout.sass";
-import.meta.glob('@/assets/themes/*.sass', { eager: true })
 import Lara from '@primeuix/themes/aura';
 import 'primeflex/primeflex.min.css'
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import vhCheck from 'vh-check';
+import WebFontLoader from 'webfontloader';
 
+WebFontLoader.load({
+    google: {
+        families: ['Garamond:100,300,400,500,700,900']
+    }
+})
 vhCheck();
 const pinia = createPinia()
 const app = createApp(App)

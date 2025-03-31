@@ -29,9 +29,11 @@ defineProps({
 <template>
   <div class="item">
     <div class="header">
-      <Title :text="name" :url="url" />
+      <Title :text="name" :url="url"/>
       <span class="separator" v-if="name && publisher">/</span>
-      <span class="location details" v-if="publisher">{{ publisher }}</span>
+      <!--      Done for consistency so themes don't break if reordering elements like Harvard theme -->
+      <span class="location"></span>
+      <span class="name details">{{ publisher }}</span>
       <span class="time details">{{ releaseDate }}</span>
     </div>
     <div class="description">
