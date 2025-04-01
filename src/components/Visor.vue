@@ -1,7 +1,10 @@
 <script setup>
 import {onMounted, ref, useTemplateRef} from "vue";
 import {useDraggable} from "@/composables/useDraggable";
+import {useThemeStore} from "@/stores/themeStore";
 
+//Done so theme is initialized before visor
+useThemeStore()
 
 const MAX_ZOOM_IN = 4;
 const MIN_ZOOM_OUT = 0.25;
