@@ -1,4 +1,4 @@
-import { ref, onUnmounted, watch } from 'vue'
+import {onUnmounted, ref, watch} from 'vue'
 
 export function useDraggable(htmlElement) {
     const initialOffsetX = ref(0)
@@ -39,6 +39,9 @@ export function useDraggable(htmlElement) {
     }
 
     function onStart(e) {
+        if(e.touches && e.touches.length > 1){
+            return
+        }
         const { x, y } = getClientCoords(e)
         dragging.value = true
         startX.value = x

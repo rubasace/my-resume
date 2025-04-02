@@ -2,6 +2,7 @@
 import {onMounted, ref, useTemplateRef} from "vue";
 import {useDraggable} from "@/composables/useDraggable";
 import {useThemeStore} from "@/stores/themeStore";
+import {usePinch} from "@vueuse/gesture";
 
 //Done so theme is initialized before visor
 useThemeStore()
@@ -18,6 +19,30 @@ const {x, y, resetDragging} = useDraggable(content)
 
 const scale = ref(1);
 const showMargins = ref(false)
+const previousOffset = ref(0)
+
+const pinchHandler = ({offset: [d, a], pinching}) => {
+  if(!pinching) {
+    return
+  }
+  const isZoomIn = d > previousOffset.value
+  const zoomStep = 0.01
+  previousOffset.value = d
+  if(isZoomIn) {
+    zoomIn(zoomStep)
+  } else {
+    zoomOut(zoomStep)
+  }
+}
+
+
+usePinch(pinchHandler, {
+  domTarget: contentRef,
+  eventOptions: {
+    passive: false,
+  },
+})
+
 
 function calculateScale() {
   if (visorRef.value && contentRef.value) {
@@ -34,13 +59,12 @@ function calculateScale() {
   }
 }
 
-
-function zoomIn() {
-  scale.value = Math.min(scale.value + 0.1, MAX_ZOOM_IN);
+function zoomIn(step = 0.1) {
+  scale.value = Math.min(scale.value + step, MAX_ZOOM_IN);
 }
 
-function zoomOut() {
-  scale.value = Math.max(scale.value - 0.1, MIN_ZOOM_OUT);
+function zoomOut(step = 0.1) {
+  scale.value = Math.max(scale.value - step, MIN_ZOOM_OUT);
 }
 
 function resetZoom() {
@@ -51,11 +75,11 @@ function resetZoom() {
 }
 
 function toggleMargins() {
- showMargins.value = !showMargins.value
- contentRef?.value?.querySelector('.page')?.classList.toggle('show-margins')
+  showMargins.value = !showMargins.value
+  contentRef?.value?.querySelector('.page')?.classList.toggle('show-margins')
 }
 
-function downloadPDF(){
+function downloadPDF() {
   window.print();
 }
 
@@ -121,6 +145,7 @@ onMounted(() => {
       z-index: 10
       user-select: none
       cursor: grab
+
       *
         user-select: none
         -webkit-user-drag: none

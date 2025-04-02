@@ -110,9 +110,8 @@ function localeOptionTemplate(option) {
 </script>
 
 <template>
-  <!--  TODO persist theme in yaml/json-->
   <!--  TODO support zoom gestures (mouse and fingers) -->
-  <!--  TODO Generalize theme options (show icons, show timeline...) -->
+  <!--  TODO Generalize theme options (show icons, show timeline...) make them configurable per theme -->
   <!--  TODO Add alert on overflow and/or allow multi-page-->
   <!--  TODO add translations for menus and support language switching -->
 

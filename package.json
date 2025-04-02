@@ -17,6 +17,7 @@
     "@primeuix/themes": "^1.0.0",
     "@vueuse/components": "^13.0.0",
     "@vueuse/core": "^13.0.0",
+    "@vueuse/gesture": "^2.0.0",
     "idb-keyval": "^6.2.1",
     "js-yaml": "^4.1.0",
     "pinia": "^3.0.1",
