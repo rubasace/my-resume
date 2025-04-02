@@ -7,7 +7,7 @@ import.meta.glob('@/assets/themes/*.sass', { eager: true })
 
 export const useThemeStore = defineStore('themeStore', () => {
     const DEFAULT_THEME = "elegant";
-    const themeModules = import.meta.glob('@/assets/themes/*.sass', {as: 'raw', eager: true})
+    const themeModules = import.meta.glob('@/assets/themes/*.sass', {query: '?raw', import: 'default', eager: true})
 
     const availableThemes = Object.keys(themeModules)
         .map((path) => path.match(/\/src\/assets\/themes\/(.*)\.sass$/)?.[1])
