@@ -31,6 +31,10 @@ export const useThemeStore = defineStore('themeStore', () => {
     }
 
     watch(selectedTheme, (newTheme) => {
+        if(!availableThemes.includes(newTheme)){
+            selectedTheme.value = DEFAULT_THEME
+            return
+        }
         nextTick(() => applyTheme(newTheme, '.view .resume'))
     }, { immediate: true })
 

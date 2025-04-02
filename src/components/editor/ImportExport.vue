@@ -5,9 +5,11 @@ import {useDataStore} from "@/stores/dataStore";
 import {Button, useToast} from "primevue";
 import yaml from "js-yaml";
 import {useStyleStore} from "@/stores/styleStore";
+import {useThemeStore} from "@/stores/themeStore";
 
 const dataStore = useDataStore();
 const styleStore = useStyleStore();
+const themeStore = useThemeStore();
 
 const toast = useToast();
 
@@ -33,6 +35,8 @@ function importData(event) {
         dataStore.setPicture(data.basics.picture, _builderData?.pictureData)
         styleStore.importStyle(_builderData?.style??{})
         styleStore.customCSS = _builderData?.customCss??''
+        styleStore.customCSS = _builderData?.customCss??''
+        themeStore.selectedTheme = _builderData?.theme??''
 
         toast.add({severity: 'success', description: 'Data file imported successfully', detail: `Loaded content from ${file.name}`, life: 5000});
       } catch (error) {
@@ -55,6 +59,7 @@ function exportFile(format) {
     _builderData: {
       style: {...styleStore.style},
       customCss: styleStore.customCSS,
+      theme: themeStore.selectedTheme,
       pictureData: dataStore.pictureData
     }
   }
