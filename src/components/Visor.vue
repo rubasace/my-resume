@@ -101,8 +101,8 @@ onMounted(() => {
       </div>
     </div>
     <div class="menu">
-      <button @click="zoomIn" title="Zoom in"><i class="fas fa-magnifying-glass-plus"/></button>
-      <button @click="zoomOut" title="Zoom out"><i class="fas fa-magnifying-glass-minus"/></button>
+      <button @click="zoomIn()" title="Zoom in"><i class="fas fa-magnifying-glass-plus"/></button>
+      <button @click="zoomOut()" title="Zoom out"><i class="fas fa-magnifying-glass-minus"/></button>
       <button @click="resetZoom" title="Fit to screen"><i class="fas fa-expand"/></button>
       <button @click="toggleMargins" :title="showMargins?'Hide margins':'Show margins'"><i :class="showMargins?'fas fa-border-all':'fas fa-border-none'"/></button>
       <button @click="downloadPDF" title="Download PDF"><i class="fas fa-file-pdf"/></button>
