@@ -21,10 +21,10 @@
     "js-yaml": "^4.1.0",
     "pinia": "^3.0.1",
     "primeflex": "^4.0.0",
-    "primevue": "^4.3.2",
-    "sass": "1.85.1",
+    "primevue": "^4.3.3",
+    "sass": "1.86.1",
     "vh-check": "^2.0.5",
-    "vue": "^3.2.47",
+    "vue": "^3.5.13",
     "vue-draggable-plus": "^0.6.0",
     "vue-i18n": "^11.1.2",
     "webfontloader": "^1.6.28"
