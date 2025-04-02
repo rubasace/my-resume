@@ -111,20 +111,18 @@ function localeOptionTemplate(option) {
 
 <template>
   <!--  TODO persist theme in yaml/json-->
-  <!--  TODO Generalize theme options (show icons,  shot timeline...) -->
-  <!--  TODO Add alert on overflow and/or allow multi-page-->
   <!--  TODO support zoom gestures (mouse and fingers) -->
+  <!--  TODO Generalize theme options (show icons, show timeline...) -->
+  <!--  TODO Add alert on overflow and/or allow multi-page-->
+  <!--  TODO add translations for menus and support language switching -->
 
   <!--  TODO design color palette -->
-  <!--  Think of integration with openai API for automatic translation if key proivded by user? -->
-  <!--  TODO add translations for menus and support language switching -->
+  <!--  TODO Think of integration with openai API for automatic translation if key proivded by user? -->
   <!--  TODO improve printing to PDF on Android -->
   <!--  TODO add image preview for mobile display -->
   <!--  TODO cleanup unnecessary dependencies and fix vulnerabilities -->
-  <!--  TODO onboard renovate -->
-  <!--  TODO rethink if it makes sense to capitalize via CSS -->
   <!--  TODO design an onboarding flow for first time user??  -->
-  <!--  TODO revisit separators so they only display when needed-->
+  <!--  TODO revisit separators so they only display when needed -->
   <!--  TODO allow to customize icon for profiles?-->
   <!--  TODO add validations?-->
 

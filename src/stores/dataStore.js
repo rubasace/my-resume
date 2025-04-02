@@ -3,12 +3,11 @@ import yaml from "js-yaml";
 import content from '../../data.yaml?raw';
 import {useLocalStorage} from "@vueuse/core";
 import {nextTick, reactive, ref, watch} from "vue";
-import {set, get, del} from 'idb-keyval';
+import {del, get, set} from 'idb-keyval';
 
 const PICTURE_DATA_INDEX_DB_KEY = 'resume-builder-profile-picture';
 export const useDataStore = defineStore('dataStore', () => {
 
-    // TODO change file to provide default anonymized values
     const data = useLocalStorage('resume-builder-data', () => yaml.load(content));
     sanitizeData()
 

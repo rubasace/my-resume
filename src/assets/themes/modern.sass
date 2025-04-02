@@ -1,11 +1,10 @@
-//TODO move all this to configurable variables
+@use "sass:color"
 
 $default-font-color: black
 $background: whitesmoke !default
 $default-font-family: Cambria, sans-serif
 $details-font-size: 0.9em !default
-$details-color: lighten($default-font-color, 40%) !default
-$time-color: lighten($default-font-color, 30%) !default
+$details-color: color.adjust($default-font-color, $lightness: 30%)
 $time-font-size: 0.85em !default
 $contact-font-size: 0.89em !default
 $title-font-size: 2.5em !default
@@ -177,7 +176,6 @@ $highlight-color: #085bc1
           &.time
             font-style: normal
             margin-left: auto
-            color: $time-color
             font-size: $time-font-size
             margin-top: -0.7em
 

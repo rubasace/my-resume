@@ -1,5 +1,5 @@
 import {computed, nextTick, ref, watch} from 'vue'
-import { defineStore } from 'pinia'
+import {defineStore} from 'pinia'
 import {createI18n} from "vue-i18n";
 import {useDataStore} from "@/stores/dataStore";
 
@@ -13,12 +13,11 @@ export const useLocaleStore = defineStore('localeStore', () => {
         .sort()
 
     const dataStore = useDataStore()
-    // const appLocale = useLocalStorage('resume-builder-app-locale', undefined)
     // TODO change when we translate the menus
+    // const appLocale = useLocalStorage('resume-builder-app-locale', undefined)
     const appLocale = ref(DEFAULT_LANGUAGE)
     const resumeLocale = computed(() => dataStore.data.language)
 
-    // TODO use localstorage and resume data
     const appI18n = ref(null)
     const resumeI18n = ref(null)
 

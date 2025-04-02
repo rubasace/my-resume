@@ -1,10 +1,12 @@
+@use "sass:color"
+
 $background: whitesmoke !default
 $default-font-family: Cambria, sans-serif
 $default-font-color: black
 $default-titles-font-family: Georgia, serif !default
 $details-font-size: 0.9em !default
-$details-color: lighten($default-font-color, 40%) !default
-$time-color: lighten($default-font-color, 30%) !default
+$details-color: color.adjust($default-font-color, $lightness: 40%) !default
+$time-color: color.adjust($default-font-color, $lightness: 30%) !default
 $time-font-size: 0.95em !default
 $contact-font-size: 0.89em !default
 $title-font-size: 2.7em !default

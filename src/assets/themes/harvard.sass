@@ -1,12 +1,13 @@
-//TODO move all this to configurable variables
+@use "sass:color"
 
+//TODO move all this to configurable variables
 $default-font-color: black
 $secondary-color: #444
 $background: whitesmoke !default
 $default-font-family: Cormorant Garamond, sans-serif
 $details-font-size: 0.9em !default
-$details-color: lighten($default-font-color, 40%) !default
-$time-color: lighten($default-font-color, 30%) !default
+$details-color: color.adjust($default-font-color, $lightness: 40%) !default
+$time-color: color.adjust($default-font-color, $lightness: 30%) !default
 $time-font-size: 0.85em !default
 $contact-font-size: 0.8em !default
 $title-font-size: 2.5em !default

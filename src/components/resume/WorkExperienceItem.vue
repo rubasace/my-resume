@@ -40,7 +40,7 @@ defineProps({
   <div class="item">
     <div class="header">
       <div class="role title">{{ role }}</div>
-      <div class="separator details">/</div>
+      <div class="separator details" v-if="role&&company">/</div>
       <div class="details company">
         <a :href="url" target="_blank" :title="company" v-if="url">{{ company }}</a>
         <span v-else>{{ company }}</span>

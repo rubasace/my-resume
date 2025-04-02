@@ -65,7 +65,6 @@ onMounted(() => {
 });
 </script>
 
-<!--TODO allow to move around the page-->
 <template>
   <div ref="visorRef" class="visor">
     <div class="content-wrapper">
@@ -78,7 +77,6 @@ onMounted(() => {
       </div>
     </div>
     <div class="menu">
-      <!--      TODO translate titles -->
       <button @click="zoomIn" title="Zoom in"><i class="fas fa-magnifying-glass-plus"/></button>
       <button @click="zoomOut" title="Zoom out"><i class="fas fa-magnifying-glass-minus"/></button>
       <button @click="resetZoom" title="Fit to screen"><i class="fas fa-expand"/></button>
