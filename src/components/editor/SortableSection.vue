@@ -13,7 +13,7 @@ const localeStore = useLocaleStore();
 <template>
   <div class="sortable-section">
     <div class="content">
-      {{localeStore.getAppMessage("section." + name)}}
+      {{$t("section." + name)}}
     </div>
     <div class="actions">
       <i class="fas fa-bars handle"></i>

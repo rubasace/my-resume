@@ -1,9 +1,12 @@
 <script setup>
 
 import {computed, ref} from "vue";
-import { useConfirm } from "primevue/useconfirm";
+import {useConfirm} from "primevue/useconfirm";
+import {useI18n} from "vue-i18n";
 
 const confirm = useConfirm();
+
+const {t} = useI18n()
 
 const model = defineModel({
   required: false
@@ -58,11 +61,11 @@ const expanded = ref(!summaryTitle.value || summaryTitle.value === "")
 
 function deleteItem() {
   confirm.require({
-    message: 'Are you sure you want to delete this item?',
-    header: 'Confirm Deletion',
+    message: t('editor.delete.message'),
+    header: t('editor.delete.header'),
     icon: 'fas fa-exclamation-triangle',
-    acceptLabel: 'Yes',
-    rejectLabel: 'No',
+    acceptLabel: t('editor.delete.accept'),
+    rejectLabel: t('editor.delete.reject'),
     acceptClass: 'p-button-danger',
     rejectClass: 'p-button-secondary',
     accept: () => emit('delete'),

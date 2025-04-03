@@ -18,9 +18,11 @@
     "extras": "extra"
   },
   "editor": {
-    "theme": "tema",
-    "data": "dati",
-    "style": "stile",
-    "importExport": "importa / esporta"
+    "tabs": {
+      "data": "dati",
+      "style": "stile",
+      "importExport": "importa / esporta"
+    },
+    "theme": "tema"
   }
 }

@@ -8,18 +8,15 @@ import {VueDraggable} from "vue-draggable-plus";
 import SortableSection from "@/components/editor/SortableSection.vue";
 import {useThemeStore} from "@/stores/themeStore";
 import Resume from "@/components/resume/Resume.vue";
-import {useLocaleStore} from "@/stores/localeStore";
 
 const styleStore = useStyleStore();
 const themeStore = useThemeStore();
-const localeStore = useLocaleStore()
-
 
 </script>
 
 
 <template>
-  <div class="section-title">{{localeStore.getAppMessage("editor.theme")}}</div>
+  <div class="section-title">{{$t("editor.style.theme.section-title")}}</div>
     <div class="theme-selector">
       <div class="theme" :class="theme===themeStore.selectedTheme ? 'selected' : ''" v-for="theme in themeStore.availableThemes" :key="theme" @click="themeStore.selectedTheme=theme">
         <div class="title">{{ theme }}</div>
@@ -28,45 +25,40 @@ const localeStore = useLocaleStore()
         </div>
       </div>
     </div>
-  <div class="section-title">Fonts</div>
-  <NumberInput v-model="styleStore.style.fontSize" label="Font Size" suffix=" pt" :step="0.1" :maxFractionDigits="2"/>
+  <div class="section-title">{{$t("editor.style.font.section-title")}}</div>
+  <NumberInput v-model="styleStore.style.fontSize" :label="$t('editor.style.font.font-size')" suffix=" pt" :step="0.1" :maxFractionDigits="2"/>
 
-  <!--  <Select v-model="styleStore.style.fontFamily"-->
-  <!--          :options="styleStore.availableFonts"-->
-  <!--          optionLabel="label"-->
-  <!--          placeholder="Choose a font"-->
-  <!--          class="mt-3"/>-->
 
-  <div class="section-title">Margins</div>
+  <div class="section-title">{{$t("editor.style.margin.section-title")}}</div>
   <div class="grid-2">
-    <NumberInput v-model="styleStore.style.marginTop" label="Margin Top" suffix=" in" :step="0.01"/>
-    <NumberInput v-model="styleStore.style.marginBottom" label="Margin Bottom" suffix=" in" :step="0.01"/>
-    <NumberInput v-model="styleStore.style.marginLeft" label="Margin Left" suffix=" in" :step="0.01"/>
-    <NumberInput v-model="styleStore.style.marginRight" label="Margin Right" suffix=" in" :step="0.01"/>
+    <NumberInput v-model="styleStore.style.marginTop" :label="$t('editor.style.margin.margin-top')" suffix=" in" :step="0.01"/>
+    <NumberInput v-model="styleStore.style.marginBottom" :label="$t('editor.style.margin.margin-bottom')" suffix=" in" :step="0.01"/>
+    <NumberInput v-model="styleStore.style.marginLeft" :label="$t('editor.style.margin.margin-left')" suffix=" in" :step="0.01"/>
+    <NumberInput v-model="styleStore.style.marginRight" :label="$t('editor.style.margin.margin-right')" suffix=" in" :step="0.01"/>
   </div>
 
-  <div class="section-title">Misc</div>
+  <div class="section-title">{{$t("editor.style.misc.section-title")}}</div>
   <div class="grid-2">
     <label class="flex items-center gap-2">
       <input type="checkbox" v-model="styleStore.style.showIcons"/>
-      Show Icons
+      {{$t("editor.style.misc.show-icons")}}
     </label>
     <label class="flex items-center gap-2">
       <input type="checkbox" v-model="styleStore.style.showTimeline"/>
-      Show Timeline
+      {{$t("editor.style.misc.show-timeline")}}
     </label>
   </div>
 
-  <div class="section-title">Colors</div>
-  <ColorPicker v-model="styleStore.style.highlightColor" label="Highlight Color" @reset="styleStore.resetHighlightColor"/>
+  <div class="section-title">{{$t("editor.style.color.section-title")}}</div>
+  <ColorPicker v-model="styleStore.style.highlightColor" :label="$t('editor.style.color.highlight-color')" @reset="styleStore.resetHighlightColor"/>
 
-  <div class="section-title">Sections Order</div>
+  <div class="section-title">{{$t("editor.style.section-order.section-title")}}</div>
   <VueDraggable v-model="styleStore.style.sortedSections">
     <SortableSection :key="section" v-for="section in styleStore.style.sortedSections" :name="section"/>
   </VueDraggable>
 
-  <div class="section-title">Custom CSS</div>
-  <Textarea auto-resize id="custom-css" v-model="styleStore.customCSS" placeholder="Custom CSS rules..." style="width:100%" class="mb-2 mt-2"/>
+  <div class="section-title">{{$t("editor.style.custom-css.section-title")}}</div>
+  <Textarea auto-resize id="custom-css" v-model="styleStore.customCSS" :placeholder="$t('editor.style.custom-css.placeholder')" style="width:100%" class="mb-2 mt-2"/>
 </template>
 
 <style scoped lang="sass">

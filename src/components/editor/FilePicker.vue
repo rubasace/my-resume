@@ -1,7 +1,7 @@
 <script setup>
 
 import {ref} from "vue";
-import {FileUpload, Button} from "primevue";
+import {Button, FileUpload} from "primevue";
 
 const fileInput = ref(null);
 
@@ -10,7 +10,7 @@ const emit = defineEmits(["select"]);
 defineProps({
   label: {
     type: String,
-    default: "Import"
+    default: "editor.import.import"
   },
   accept: {
     type: String,
@@ -34,7 +34,7 @@ function openFilePicker() {
         :accept="accept"
     />
   </div>
-  <Button :label="label" icon="pi pi-upload" severity="primary" @click="openFilePicker" class="action" raised/>
+  <Button :label="$t(label)" icon="pi pi-upload" severity="primary" @click="openFilePicker" class="action" raised/>
 </template>
 
 <style scoped lang="sass">

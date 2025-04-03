@@ -17,10 +17,183 @@
     "interests": "interests",
     "extras": "extras"
   },
+  "visor": {
+    "menu": {
+      "zoomIn": "Zoom in",
+      "zoomOut": "Zoom out",
+      "fitToScreen": "Fit to screen",
+      "showMargins": "Show margins",
+      "hideMargins": "Hide margins",
+      "downloadPDF": "Download PDF"
+    }
+  },
   "editor": {
-    "data": "data",
-    "style": "style",
-    "theme": "theme",
-    "importExport": "import / export"
+    "tabs": {
+      "data": "Data",
+      "style": "Style",
+      "importExport": "Import / Export"
+    },
+    "data": {
+      "basics": {
+        "name": "Name",
+        "label": "Label",
+        "phone": "Phone",
+        "email": "Email",
+        "location": "Location",
+        "website": "Website",
+        "summaryPlaceholder": "Information about yourself (optional)"
+      },
+      "picture": {
+        "translateX": "TranslateX",
+        "translateY": "TranslateY",
+        "scale": "Scale",
+        "url": "URL",
+        "urlType": "URL",
+        "fileType": "File",
+        "upload": "Upload file",
+        "success": "Picture uploaded",
+        "successDetail": "{name} was uploaded successfully",
+        "error": "Error setting picture"
+      },
+      "profiles": {
+        "network": "Network",
+        "url": "URL",
+        "text": "Text",
+        "addProfile": "Add Contact"
+      },
+      "work": {
+        "name": "Company",
+        "position": "Position",
+        "location": "Location",
+        "startDate": "Start Date",
+        "endDate": "End Date",
+        "url": "URL",
+        "summary": "Summary",
+        "summaryPlaceholder": "Description of the job (optional)",
+        "highlights": "Highlights",
+        "addHighlight": "Add Highlight",
+        "addExperience": "Add Experience"
+      },
+      "projects": {
+        "name": "Name",
+        "url": "URL",
+        "startDate": "Start Date",
+        "endDate": "End Date",
+        "description": "Description",
+        "descriptionPlaceholder": "Description of the project (optional)",
+        "highlights": "Highlights",
+        "addHighlight": "Add Highlight",
+        "addProject": "Add Project"
+      },
+      "publications": {
+        "name": "Name",
+        "url": "URL",
+        "publisher": "Publisher",
+        "releaseDate": "Release Date",
+        "summary": "Summary",
+        "summaryPlaceholder": "Description of the publication (optional)",
+        "addPublication": "Add Publication"
+      },
+      "conferences": {
+        "title": "Title",
+        "conference": "Conference",
+        "location": "Location",
+        "time": "Time",
+        "url": "URL",
+        "summary": "Summary",
+        "summaryPlaceholder": "Description of the job (optional)",
+        "addConference": "Add Conference"
+      },
+      "education": {
+        "institution": "Institution",
+        "studyType": "Study Type",
+        "startDate": "Start Date",
+        "endDate": "End Date",
+        "url": "Institution URL",
+        "addEducation": "Add Education"
+      },
+      "certificates": {
+        "name": "Name",
+        "issuer": "Issuer",
+        "date": "Date",
+        "url": "Certificate URL",
+        "addCertificate": "Add Certificate"
+      },
+      "awards": {
+        "title": "Title",
+        "awarder": "Awarder",
+        "date": "Date",
+        "url": "URL",
+        "addAward": "Add Award"
+      },
+      "skills": {
+        "name": "Name",
+        "keywords": "Keywords",
+        "addKeyword": "Add a keyword",
+        "addSkill": "Add Skill"
+      },
+      "languages": {
+        "language": "Language",
+        "fluency": "Fluency",
+        "addLanguage": "Add Language"
+      },
+      "interests": {
+        "name": "Name",
+        "keywords": "Keywords",
+        "addKeyword": "Add a keyword",
+        "addInterest": "Add Interest"
+      }
+    },
+    "style": {
+      "theme": {
+        "section-title": "Theme"
+      },
+      "font": {
+        "section-title": "Font",
+        "font-size": "Font size"
+      },
+      "margin": {
+        "section-title": "Margins",
+        "margin-top": "Margin top",
+        "margin-bottom": "Margin bottom",
+        "margin-left": "Margin left",
+        "margin-right": "Margin right"
+      },
+      "misc": {
+        "section-title": "Misc",
+        "show-icons": "Show icons",
+        "show-timeline": "Show timeline"
+      },
+      "color": {
+        "section-title": "Color",
+        "highlight-color": "Highlight color"
+      },
+      "section-order": {
+        "section-title": "Section Order"
+      },
+      "custom-css": {
+        "section-title": "Custom CSS",
+        "placeholder": "Custom CSS rules..."
+      }
+    },
+    "import": {
+      "import": "Import",
+      "export-json": "Export to JSON",
+      "export-yaml": "Export to YAML",
+      "success": "File imported successfully",
+      "successDetail": "Loaded content from {name}",
+      "error": "Error loading file",
+      "errorDetail": "File {name} was not loaded successfully. Error received: {message}"
+    },
+    "export": {
+      "success": "Configuration exported successfully",
+      "successDetail": "Downloaded file {name}"
+    },
+    "delete": {
+      "message": "Are you sure you want to delete this item?",
+      "header": "Confirm Deletion",
+      "accept": "Yes",
+      "reject": "No"
+    }
   }
 }

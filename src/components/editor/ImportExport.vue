@@ -6,12 +6,15 @@ import {Button, useToast} from "primevue";
 import yaml from "js-yaml";
 import {useStyleStore} from "@/stores/styleStore";
 import {useThemeStore} from "@/stores/themeStore";
+import {useI18n} from "vue-i18n";
 
 const dataStore = useDataStore();
 const styleStore = useStyleStore();
 const themeStore = useThemeStore();
 
 const toast = useToast();
+
+const {t} = useI18n()
 
 
 function importData(event) {
@@ -29,24 +32,38 @@ function importData(event) {
       try {
         const fileContent = e.target.result;
         const fileName = file.name;
-        const {_builderData, ...data} = parseFileContent(fileContent, fileName);
+        const { _builderData, ...data } = parseFileContent(fileContent, fileName);
 
-        dataStore.importData(data)
-        dataStore.setPicture(data.basics.picture, _builderData?.pictureData)
-        styleStore.importStyle(_builderData?.style??{})
-        styleStore.customCSS = _builderData?.customCss??''
-        styleStore.customCSS = _builderData?.customCss??''
-        themeStore.selectedTheme = _builderData?.theme??''
+        dataStore.importData(data);
+        dataStore.setPicture(data.basics.picture, _builderData?.pictureData);
+        styleStore.importStyle(_builderData?.style ?? {});
+        styleStore.customCSS = _builderData?.customCss ?? '';
+        themeStore.selectedTheme = _builderData?.theme ?? '';
 
-        toast.add({severity: 'success', description: 'Data file imported successfully', detail: `Loaded content from ${file.name}`, life: 5000});
+        toast.add({
+          severity: 'success',
+          summary: t('editor.import.success'),
+          detail: t('editor.import.successDetail', { name: file.name }),
+          life: 5000
+        });
       } catch (error) {
-        toast.add({severity: 'error', description: 'Error loading file', detail: `Data file ${file.name} was not loaded successfully. Error received: ${error.message}`, life: 5000});
-        console.error(error)
+        toast.add({
+          severity: 'error',
+          summary: t('editor.import.error'),
+          detail: t('editor.import.errorDetail', { name: file.name, message: error.message }),
+          life: 5000
+        });
+        console.error(error);
       }
-    }
+    };
 
     reader.onerror = (error) => {
-      toast.add({severity: 'error', description: 'Error loading file', detail: `Data file ${file.name} was not loaded successfully. Error received: ${error.message}`, life: 5000});
+      toast.add({
+        severity: 'error',
+        summary: t('editor.import.error'),
+        detail: t('editor.import.errorDetail', { name: file.name, message: error.message }),
+        life: 5000
+      });
     };
 
     reader.readAsText(file);
@@ -74,15 +91,19 @@ function exportFile(format) {
 
   URL.revokeObjectURL(url)
 
-  toast.add({severity: 'success', description: 'Configuration exported successfully', detail: `Downloaded file ${a.download}`, life: 5000});
-}
+  toast.add({
+    severity: 'success',
+    summary: t('editor.export.success'),
+    detail: t('editor.export.successDetail', { name: a.download }),
+    life: 5000
+  });}
 </script>
 
 <template>
   <div class="grid-3">
     <FilePicker @select="importData"/>
-    <Button label="Export to JSON" icon="pi pi-download" severity="info" @click="exportFile('json')" class="action" raised/>
-    <Button label="Export to YAML" icon="pi pi-download" severity="warn" @click="exportFile('yaml')" class="action" raised/>
+    <Button :label="$t('editor.export.export-json')" icon="pi pi-download" severity="info" @click="exportFile('json')" class="action" raised/>
+    <Button :label="$t('editor.export.export-yaml')" icon="pi pi-download" severity="warn" @click="exportFile('yaml')" class="action" raised/>
   </div>
 </template>
 

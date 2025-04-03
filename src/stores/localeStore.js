@@ -2,6 +2,7 @@ import {computed, nextTick, ref, watch} from 'vue'
 import {defineStore} from 'pinia'
 import {createI18n} from "vue-i18n";
 import {useDataStore} from "@/stores/dataStore";
+import {useLocalStorage} from "@vueuse/core";
 
 export const useLocaleStore = defineStore('localeStore', () => {
     const DEFAULT_LANGUAGE = "en";
@@ -14,14 +15,12 @@ export const useLocaleStore = defineStore('localeStore', () => {
 
     const dataStore = useDataStore()
     // TODO change when we translate the menus
-    // const appLocale = useLocalStorage('resume-builder-app-locale', undefined)
-    const appLocale = ref(DEFAULT_LANGUAGE)
+    const appLocale = useLocalStorage('resume-builder-app-locale', undefined)
     const resumeLocale = computed(() => dataStore.data.language)
 
     const appI18n = ref(null)
     const resumeI18n = ref(null)
 
-    setupI18n(appLocale.value).then(e => appI18n.value = e)
     setupI18n(resumeLocale.value, '.resume').then(e => resumeI18n.value = e)
 
     watch(appLocale, async (newLocale) => {
@@ -32,15 +31,15 @@ export const useLocaleStore = defineStore('localeStore', () => {
         resumeI18n.value = await setupI18n(newLocale, '.resume')
     })
 
-    function getAppMessage(key) {
-        return computed(() => {
-            return appI18n.value?.global?.t(key) ?? key
-        })
-    }
     function getResumeMessage(key) {
         return computed(() => {
             return resumeI18n.value?.global?.t(key) ?? key
         })
+    }
+
+    async function initAppI18n(){
+        appI18n.value = setupI18n(appLocale.value)
+        return appI18n.value
     }
 
     async function setupI18n(locale, htmlSelector = 'html') {
@@ -48,7 +47,8 @@ export const useLocaleStore = defineStore('localeStore', () => {
             legacy: false,
             fallbackLocale: DEFAULT_LANGUAGE
         })
-        await setI18nLanguage(i18n, locale ?? navigator.language, htmlSelector)
+        await loadLocaleMessages(i18n, DEFAULT_LANGUAGE)
+        await setI18nLanguage(i18n, locale, htmlSelector)
         return i18n
     }
 
@@ -64,13 +64,13 @@ export const useLocaleStore = defineStore('localeStore', () => {
     }
 
     function normalizeLocale(locale) {
-        if(!locale){
-            return DEFAULT_LANGUAGE
+
+        const targetLocale = locale ?? navigator.language ?? DEFAULT_LANGUAGE
+
+        if(supportedLocales.includes(targetLocale)){
+            return targetLocale
         }
-        if(supportedLocales.includes(locale)){
-            return locale
-        }
-        const langLocale = locale.split('-')[0]
+        const langLocale = targetLocale.split('-')[0]
         if(supportedLocales.includes(langLocale)){
             return langLocale
         }
@@ -93,9 +93,9 @@ export const useLocaleStore = defineStore('localeStore', () => {
     }
 
     return {
+        initAppI18n,
         appLocale,
         getResumeMessage,
-        getAppMessage,
         supportedLocales
     }
 })

@@ -1,13 +1,13 @@
 {
   "section": {
     "locale": "idioma del CV",
-    "basics": "información basica",
+    "basics": "información básica",
     "picture": "imagen",
     "contact": "contacto",
     "about": "descripción",
     "work": "experiencia",
-    "publications": "Publicaciones",
-    "projects": "Proyectos",
+    "publications": "publicaciones",
+    "projects": "proyectos",
     "conferences": "presentaciones en conferencias",
     "education": "estudios",
     "certificates": "certificados",
@@ -17,10 +17,183 @@
     "interests": "intereses",
     "extras": "extras"
   },
+  "visor": {
+    "menu": {
+      "zoomIn": "Acercar",
+      "zoomOut": "Alejar",
+      "fitToScreen": "Ajustar a la pantalla",
+      "showMargins": "Mostrar márgenes",
+      "hideMargins": "Ocultar márgenes",
+      "downloadPDF": "Descargar PDF"
+    }
+  },
   "editor": {
-    "theme": "tema",
-    "data": "datos",
-    "style": "estilo",
-    "importExport": "importar / exportar"
+    "tabs": {
+      "data": "Datos",
+      "style": "Estilo",
+      "importExport": "Importar / Exportar"
+    },
+    "data": {
+      "basics": {
+        "name": "Nombre",
+        "label": "Título",
+        "phone": "Teléfono",
+        "email": "Email",
+        "location": "Ubicación",
+        "website": "Sitio Web",
+        "summaryPlaceholder": "Información sobre ti (opcional)"
+      },
+      "picture": {
+        "translateX": "Trasladar X",
+        "translateY": "Trasladar Y",
+        "scale": "Escala",
+        "url": "URL",
+        "urlType": "URL",
+        "fileType": "Archivo",
+        "upload": "Subir archivo",
+        "success": "Imagen subida",
+        "successDetail": "{name} se subió correctamente",
+        "error": "Error al establecer la imagen"
+      },
+      "profiles": {
+        "network": "Red",
+        "url": "URL",
+        "text": "Texto",
+        "addProfile": "Agregar contacto"
+      },
+      "work": {
+        "name": "Empresa",
+        "position": "Puesto",
+        "location": "Ubicación",
+        "startDate": "Fecha de inicio",
+        "endDate": "Fecha de fin",
+        "url": "URL",
+        "summary": "Resumen",
+        "summaryPlaceholder": "Descripción del trabajo (opcional)",
+        "highlights": "Logros",
+        "addHighlight": "Agregar logro",
+        "addExperience": "Agregar experiencia"
+      },
+      "projects": {
+        "name": "Nombre",
+        "url": "URL",
+        "startDate": "Fecha de inicio",
+        "endDate": "Fecha de fin",
+        "description": "Descripción",
+        "descriptionPlaceholder": "Descripción del proyecto (opcional)",
+        "highlights": "Aspectos destacados",
+        "addHighlight": "Agregar punto destacado",
+        "addProject": "Agregar proyecto"
+      },
+      "publications": {
+        "name": "Nombre",
+        "url": "URL",
+        "publisher": "Editorial",
+        "releaseDate": "Fecha de publicación",
+        "summary": "Resumen",
+        "summaryPlaceholder": "Descripción de la publicación (opcional)",
+        "addPublication": "Agregar publicación"
+      },
+      "conferences": {
+        "title": "Título",
+        "conference": "Conferencia",
+        "location": "Ubicación",
+        "time": "Fecha",
+        "url": "URL",
+        "summary": "Resumen",
+        "summaryPlaceholder": "Descripción de la presentación (opcional)",
+        "addConference": "Agregar presentación"
+      },
+      "education": {
+        "institution": "Institución",
+        "studyType": "Tipo de estudio",
+        "startDate": "Fecha de inicio",
+        "endDate": "Fecha de fin",
+        "url": "URL de la institución",
+        "addEducation": "Agregar estudios"
+      },
+      "certificates": {
+        "name": "Nombre",
+        "issuer": "Institución",
+        "date": "Fecha",
+        "url": "URL del certificado",
+        "addCertificate": "Agregar certificado"
+      },
+      "awards": {
+        "title": "Título",
+        "awarder": "Otorgado por",
+        "date": "Fecha",
+        "url": "URL",
+        "addAward": "Agregar reconocimiento"
+      },
+      "skills": {
+        "name": "Nombre",
+        "keywords": "Palabras clave",
+        "addKeyword": "Agregar palabra clave",
+        "addSkill": "Agregar habilidad"
+      },
+      "languages": {
+        "language": "Idioma",
+        "fluency": "Nivel",
+        "addLanguage": "Agregar idioma"
+      },
+      "interests": {
+        "name": "Nombre",
+        "keywords": "Palabras clave",
+        "addKeyword": "Agregar palabra clave",
+        "addInterest": "Agregar interés"
+      }
+    },
+    "style": {
+      "theme": {
+        "section-title": "Tema"
+      },
+      "font": {
+        "section-title": "Tipografía",
+        "font-size": "Tamaño de fuente"
+      },
+      "margin": {
+        "section-title": "Márgenes",
+        "margin-top": "Margen superior",
+        "margin-bottom": "Margen inferior",
+        "margin-left": "Margen izquierdo",
+        "margin-right": "Margen derecho"
+      },
+      "misc": {
+        "section-title": "Varios",
+        "show-icons": "Mostrar íconos",
+        "show-timeline": "Mostrar línea de tiempo"
+      },
+      "color": {
+        "section-title": "Color",
+        "highlight-color": "Color de resaltado"
+      },
+      "section-order": {
+        "section-title": "Orden de secciones"
+      },
+      "custom-css": {
+        "section-title": "CSS personalizado",
+        "placeholder": "Reglas CSS personalizadas..."
+      }
+    },
+    "import": {
+      "import": "Importar",
+      "success": "Archivo importado correctamente",
+      "successDetail": "Contenido cargado desde {name}",
+      "error": "Error al cargar el archivo",
+      "errorDetail": "El archivo {name} no se cargó correctamente. Error recibido: {message}"
+    },
+    "export": {
+      "export-json": "Exportar a JSON",
+      "export-yaml": "Exportar a YAML",
+      "success": "Configuración exportada correctamente",
+      "successDetail": "Archivo descargado: {name}"
+    },
+    "delete": {
+      "message": "¿Estás seguro de que deseas eliminar este elemento?",
+      "header": "Confirmar eliminación",
+      "accept": "Sí",
+      "reject": "No"
+    }
   }
 }

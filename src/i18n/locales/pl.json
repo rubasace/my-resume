@@ -18,9 +18,11 @@
     "extras": "dodatki"
   },
   "editor": {
-    "theme": "temat",
-    "data": "dane",
-    "style": "styl",
-    "importExport": "import / eksport"
+    "tabs": {
+      "data": "dane",
+      "style": "styl",
+      "importExport": "import / eksport"
+    },
+    "theme": "temat"
   }
 }
