@@ -56,7 +56,7 @@ function toggleEditor() {
   position: absolute
   display: block
   top: 0
-  right: 3em
+  left: 2em
   margin: 0.5em
   z-index: 20
 .main-page

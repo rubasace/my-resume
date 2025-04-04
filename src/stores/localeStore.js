@@ -13,6 +13,19 @@ export const useLocaleStore = defineStore('localeStore', () => {
         .filter(Boolean)
         .sort()
 
+    const flagMap = {
+        en: '🇺🇸',
+        es: '🇪🇸',
+        fr: '🇫🇷',
+        de: '🇩🇪',
+        it: '🇮🇹',
+        pt: '🇵🇹',
+        zh: '🇨🇳',
+        ja: '🇯🇵',
+        nl: '🇳🇱',
+        pl: '🇵🇱',
+    }
+
     const dataStore = useDataStore()
     // TODO change when we translate the menus
     const appLocale = useLocalStorage('resume-builder-app-locale', undefined)
@@ -94,11 +107,16 @@ export const useLocaleStore = defineStore('localeStore', () => {
         return nextTick()
     }
 
+    function getFlag(locale){
+        return flagMap[locale] ?? ''
+    }
+
     return {
         appI18n,
         appLocale,
         getAppMessage,
         getResumeMessage,
-        supportedLocales
+        supportedLocales,
+        getFlag
     }
 })

@@ -81,25 +81,11 @@ function uploadPicture(event) {
   reader.readAsDataURL(file); // converts to base64
 }
 
-// TODO improve this
-const flagMap = {
-  en: '🇺🇸',
-  es: '🇪🇸',
-  fr: '🇫🇷',
-  de: '🇩🇪',
-  it: '🇮🇹',
-  pt: '🇵🇹',
-  zh: '🇨🇳',
-  ja: '🇯🇵',
-  nl: '🇳🇱',
-  pl: '🇵🇱',
-}
-
 const localeOptions = computed(() =>
     localeStore.supportedLocales.map((code) => ({
-      label: `${flagMap[code] ?? ''} ${code.toUpperCase()}`,
+      label: `${localeStore.getFlag(code)} ${code.toUpperCase()}`,
       value: code,
-      flag: flagMap[code] ?? '🏳️'
+      flag: localeStore.getFlag(code)
     }))
 )
 
