@@ -1,11 +1,11 @@
 <script setup>
-import {computed, useId} from 'vue'; // VueUse for unique ID generation
+import {computed, unref, useId} from 'vue'; // VueUse for unique ID generation
 import InputNumber from 'primevue/inputnumber';
 import FloatLabel from 'primevue/floatlabel';
 
 const props = defineProps({
   modelValue: Number,
-  label: String,
+  label: [String, Object],
   maxFractionDigits: {
     type: Number,
     default: 2
@@ -14,7 +14,8 @@ const props = defineProps({
 
 const emit = defineEmits(['update:modelValue']);
 const uniqueId = useId();
-const inputId = `${props.label.toLowerCase()}-${uniqueId}`;
+const labelText = computed(() => unref(props.label)) // reactive even if it's a ref or string
+const inputId = computed(() => `${labelText.value.toLowerCase()}-${uniqueId}`);
 
 const model = computed({
   get: () => props.modelValue,
@@ -33,6 +34,6 @@ const model = computed({
         v-bind="$attrs"
         :maxFractionDigits="maxFractionDigits"
     />
-    <label :for="inputId">{{ props.label }}</label>
+    <label :for="inputId">{{ labelText }}</label>
   </FloatLabel>
 </template>

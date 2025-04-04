@@ -49,8 +49,10 @@
         "scale": "Escala",
         "url": "URL",
         "urlType": "URL",
+        "placeholder": "URL de la imagen",
         "fileType": "Archivo",
         "upload": "Subir archivo",
+        "clear": "Eliminar imagen",
         "success": "Imagen subida",
         "successDetail": "{name} se subió correctamente",
         "error": "Error al establecer la imagen"

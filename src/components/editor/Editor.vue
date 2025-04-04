@@ -17,9 +17,9 @@ const localeStore = useLocaleStore();
   <div class="editor">
     <Tabs value="0">
       <TabList>
-        <Tab value="0">{{ $t("editor.tabs.data") }}</Tab>
-        <Tab value="1">{{ $t("editor.tabs.style") }}</Tab>
-        <Tab value="2">{{ $t("editor.tabs.importExport") }}</Tab>
+        <Tab value="0">{{ localeStore.getAppMessage("editor.tabs.data") }}</Tab>
+        <Tab value="1">{{ localeStore.getAppMessage("editor.tabs.style") }}</Tab>
+        <Tab value="2">{{ localeStore.getAppMessage("editor.tabs.importExport") }}</Tab>
       </TabList>
       <TabPanels>
         <TabPanel value="0">

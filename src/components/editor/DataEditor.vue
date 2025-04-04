@@ -11,14 +11,11 @@ import {useStyleStore} from "@/stores/styleStore";
 import {getProfileNames} from "@/util/profileUtils";
 import FilePicker from "@/components/editor/FilePicker.vue";
 import {useLocaleStore} from "@/stores/localeStore";
-import {useI18n} from "vue-i18n";
 
 const toast = useToast();
 const dataStore = useDataStore();
 const styleStore = useStyleStore();
 const localeStore = useLocaleStore();
-
-const { t } = useI18n()
 
 const pageTitle = computed(() => {
   const name = dataStore.data.basics?.name || ''
@@ -33,10 +30,10 @@ watch(pageTitle, (newTitle) => {
 
 const sourceType = ref(dataStore.pictureData ? 'file' : 'url')
 
-const sourceOptions = [
-  {label: t('editor.data.picture.urlType'), value: 'url'},
-  {label: t('editor.data.picture.fileType'), value: 'file'},
-]
+const sourceOptions = computed(() => [
+  {label: localeStore.getAppMessage('editor.data.picture.urlType').value, value: 'url'},
+  {label: localeStore.getAppMessage('editor.data.picture.fileType').value, value: 'file'},
+])
 
 watch(() => dataStore.pictureData, (e) => {
   sourceType.value = e ? 'file' : 'url'
@@ -58,14 +55,14 @@ function uploadPicture(event) {
       dataStore.setPicture(file.name, base64Image);
       toast.add({
         severity: 'success',
-        summary: t('editor.data.picture.success'),
-        detail: t('editor.data.picture.successDetail', { name: file.name }),
+        summary: localeStore.getAppMessage('editor.data.picture.success'),
+        detail: localeStore.getAppMessage('editor.data.picture.successDetail', { name: file.name }),
         life: 5000
       });
     } catch (e) {
       toast.add({
         severity: 'error',
-        summary: t('editor.data.picture.error'),
+        summary: localeStore.getAppMessage('editor.data.picture.error'),
         detail: e.message,
         life: 5000
       });
@@ -75,7 +72,7 @@ function uploadPicture(event) {
   reader.onerror = () => {
     toast.add({
       severity: 'error',
-      summary: t('editor.data.picture.error'),
+      summary: localeStore.getAppMessage('editor.data.picture.error'),
       detail: reader.error?.message || 'Unknown error',
       life: 5000
     });
@@ -143,12 +140,12 @@ function localeOptionTemplate(option) {
   </Section>
   <Section name="basics" icon="fas fa-address-card" :hideable="false">
     <div class="grid-2">
-      <TextInput v-model="dataStore.data.basics.name" :label="$t('editor.data.basics.name')"/>
-      <TextInput v-model="dataStore.data.basics.label" :label="$t('editor.data.basics.label')"/>
-      <TextInput v-model="dataStore.data.basics.phone" :label="$t('editor.data.basics.phone')"/>
-      <TextInput v-model="dataStore.data.basics.email" :label="$t('editor.data.basics.email')"/>
-      <TextInput v-model="dataStore.data.basics.location.summary" :label="$t('editor.data.basics.location')"/>
-      <TextInput v-model="dataStore.data.basics.url" :label="$t('editor.data.basics.website')"/>
+      <TextInput v-model="dataStore.data.basics.name" :label="localeStore.getAppMessage('editor.data.basics.name')"/>
+      <TextInput v-model="dataStore.data.basics.label" :label="localeStore.getAppMessage('editor.data.basics.label')"/>
+      <TextInput v-model="dataStore.data.basics.phone" :label="localeStore.getAppMessage('editor.data.basics.phone')"/>
+      <TextInput v-model="dataStore.data.basics.email" :label="localeStore.getAppMessage('editor.data.basics.email')"/>
+      <TextInput v-model="dataStore.data.basics.location.summary" :label="localeStore.getAppMessage('editor.data.basics.location')"/>
+      <TextInput v-model="dataStore.data.basics.url" :label="localeStore.getAppMessage('editor.data.basics.website')"/>
     </div>
   </Section>
 
@@ -166,18 +163,18 @@ function localeOptionTemplate(option) {
       <TextInput
           v-if="sourceType === 'url'"
           v-model="dataStore.data.basics.picture"
-          :label="$t('editor.data.picture.url')"
-          :placeholder="$t('editor.data.picture.placeholder')"
+          :label="localeStore.getAppMessage('editor.data.picture.url')"
+          :placeholder="localeStore.getAppMessage('editor.data.picture.placeholder')"
       />
       <div v-else-if="sourceType === 'file'" class="flex align-items-center">
         <div v-if="dataStore.pictureData" class="flex gap-3 align-items-center">
           <span class="picture-name">{{ dataStore.data.basics.picture }}</span>
-          <button @click="dataStore.clearPicture" :title="$t('editor.data.picture.clear')">
+          <button @click="dataStore.clearPicture" :title="localeStore.getAppMessage('editor.data.picture.clear')">
             <i class="fas fa-times" />
           </button>
         </div>
         <FilePicker
-            :label="$t('editor.data.picture.upload')"
+            :label="localeStore.getAppMessage('editor.data.picture.upload')"
             accept="image/*"
             @select="uploadPicture"
             v-else
@@ -186,21 +183,21 @@ function localeOptionTemplate(option) {
 
       <NumberInput
           v-model="styleStore.style.pictureTranslateX"
-          :label="$t('editor.data.picture.translateX')"
+          :label="localeStore.getAppMessage('editor.data.picture.translateX')"
           :step="1"
           :max-fraction-digits="0"
           suffix="px"
       />
       <NumberInput
           v-model="styleStore.style.pictureTranslateY"
-          :label="$t('editor.data.picture.translateY')"
+          :label="localeStore.getAppMessage('editor.data.picture.translateY')"
           :step="1"
           :max-fraction-digits="0"
           suffix="px"
       />
       <NumberInput
           v-model="styleStore.style.pictureScale"
-          :label="$t('editor.data.picture.scale')"
+          :label="localeStore.getAppMessage('editor.data.picture.scale')"
           :min="0.1"
           :step="0.1"
       />
@@ -211,7 +208,7 @@ function localeOptionTemplate(option) {
       auto-resize
       id="summary"
       v-model="dataStore.data.basics.summary"
-      :placeholder="$t('editor.data.basics.summaryPlaceholder')"
+      :placeholder="localeStore.getAppMessage('editor.data.basics.summaryPlaceholder')"
       style="width:100%"
       class="mb-2 mt-2"
   />
@@ -229,16 +226,16 @@ function localeOptionTemplate(option) {
           <!-- TODO Integrate with predefined set of networks -->
           <TextInput
               v-model="profile.network"
-              :label="$t('editor.data.profiles.network')"
+              :label="localeStore.getAppMessage('editor.data.profiles.network')"
               :options="getProfileNames()"
           />
-          <TextInput v-model="profile.url" :label="$t('editor.data.profiles.url')" />
-          <TextInput v-model="profile.text" :label="$t('editor.data.profiles.text')" />
+          <TextInput v-model="profile.url" :label="localeStore.getAppMessage('editor.data.profiles.url')" />
+          <TextInput v-model="profile.text" :label="localeStore.getAppMessage('editor.data.profiles.text')" />
         </div>
       </InputItem>
     </VueDraggable>
     <button @click="dataStore.addProfile" class="button-add">
-      <i class="fas fa-plus"></i> {{ $t('editor.data.profiles.addProfile') }}
+      <i class="fas fa-plus"></i> {{ localeStore.getAppMessage('editor.data.profiles.addProfile') }}
     </button>
   </Section>
   <Section name="work" icon="fas fa-briefcase">
@@ -250,27 +247,27 @@ function localeOptionTemplate(option) {
           @delete="removeElement(dataStore.data.work, index)"
       >
         <div class="grid-3">
-          <TextInput v-model="work.name" :label="$t('editor.data.work.name')" />
-          <TextInput v-model="work.position" :label="$t('editor.data.work.position')" />
-          <TextInput v-model="work.location" :label="$t('editor.data.work.location')" />
-          <TextInput v-model="work.startDate" :label="$t('editor.data.work.startDate')" />
-          <TextInput v-model="work.endDate" :label="$t('editor.data.work.endDate')" />
-          <TextInput v-model="work.url" :label="$t('editor.data.work.url')" />
+          <TextInput v-model="work.name" :label="localeStore.getAppMessage('editor.data.work.name')" />
+          <TextInput v-model="work.position" :label="localeStore.getAppMessage('editor.data.work.position')" />
+          <TextInput v-model="work.location" :label="localeStore.getAppMessage('editor.data.work.location')" />
+          <TextInput v-model="work.startDate" :label="localeStore.getAppMessage('editor.data.work.startDate')" />
+          <TextInput v-model="work.endDate" :label="localeStore.getAppMessage('editor.data.work.endDate')" />
+          <TextInput v-model="work.url" :label="localeStore.getAppMessage('editor.data.work.url')" />
         </div>
 
         <label :for="'summary-' + index" class="font-bold block mb-3 mt-3">
-          {{ $t('editor.data.work.summary') }}
+          {{ localeStore.getAppMessage('editor.data.work.summary') }}
         </label>
         <Textarea
             auto-resize
             :id="'summary-' + index"
             v-model="work.summary"
-            :placeholder="$t('editor.data.work.summaryPlaceholder')"
+            :placeholder="localeStore.getAppMessage('editor.data.work.summaryPlaceholder')"
             style="width:100%"
         />
 
         <label :for="'highlight-' + index + '-' + 0" class="font-bold block mb-3 mt-3">
-          {{ $t('editor.data.work.highlights') }}
+          {{ localeStore.getAppMessage('editor.data.work.highlights') }}
         </label>
         <VueDraggable v-model="work.highlights" handle=".handle">
           <InputItem
@@ -289,13 +286,13 @@ function localeOptionTemplate(option) {
         </VueDraggable>
 
         <button @click="dataStore.addHighlight(work)" class="button-add">
-          <i class="fas fa-plus"></i> {{ $t('editor.data.work.addHighlight') }}
+          <i class="fas fa-plus"></i> {{ localeStore.getAppMessage('editor.data.work.addHighlight') }}
         </button>
       </InputItem>
     </VueDraggable>
 
     <button @click="dataStore.addExperience" class="button-add">
-      <i class="fas fa-plus"></i> {{ $t('editor.data.work.addExperience') }}
+      <i class="fas fa-plus"></i> {{ localeStore.getAppMessage('editor.data.work.addExperience') }}
     </button>
   </Section>
 
@@ -308,25 +305,25 @@ function localeOptionTemplate(option) {
           @delete="removeElement(dataStore.data.projects, index)"
       >
         <div class="grid-2">
-          <TextInput v-model="project.name" :label="$t('editor.data.projects.name')" />
-          <TextInput v-model="project.url" :label="$t('editor.data.projects.url')" />
-          <TextInput v-model="project.startDate" :label="$t('editor.data.projects.startDate')" />
-          <TextInput v-model="project.endDate" :label="$t('editor.data.projects.endDate')" />
+          <TextInput v-model="project.name" :label="localeStore.getAppMessage('editor.data.projects.name')" />
+          <TextInput v-model="project.url" :label="localeStore.getAppMessage('editor.data.projects.url')" />
+          <TextInput v-model="project.startDate" :label="localeStore.getAppMessage('editor.data.projects.startDate')" />
+          <TextInput v-model="project.endDate" :label="localeStore.getAppMessage('editor.data.projects.endDate')" />
         </div>
 
         <label :for="'project-summary-' + index" class="font-bold block mb-3 mt-3">
-          {{ $t('editor.data.projects.description') }}
+          {{ localeStore.getAppMessage('editor.data.projects.description') }}
         </label>
         <Textarea
             auto-resize
             :id="'project-summary-' + index"
             v-model="project.description"
-            :placeholder="$t('editor.data.projects.descriptionPlaceholder')"
+            :placeholder="localeStore.getAppMessage('editor.data.projects.descriptionPlaceholder')"
             style="width:100%"
         />
 
         <label :for="'project-highlight-' + index + '-' + 0" class="font-bold block mb-3 mt-3">
-          {{ $t('editor.data.projects.highlights') }}
+          {{ localeStore.getAppMessage('editor.data.projects.highlights') }}
         </label>
         <VueDraggable v-model="project.highlights" handle=".handle">
           <InputItem
@@ -345,13 +342,13 @@ function localeOptionTemplate(option) {
         </VueDraggable>
 
         <button @click="dataStore.addHighlight(project)" class="button-add">
-          <i class="fas fa-plus"></i> {{ $t('editor.data.projects.addHighlight') }}
+          <i class="fas fa-plus"></i> {{ localeStore.getAppMessage('editor.data.projects.addHighlight') }}
         </button>
       </InputItem>
     </VueDraggable>
 
     <button @click="dataStore.addProject" class="button-add">
-      <i class="fas fa-plus"></i> {{ $t('editor.data.projects.addProject') }}
+      <i class="fas fa-plus"></i> {{ localeStore.getAppMessage('editor.data.projects.addProject') }}
     </button>
   </Section>
 
@@ -364,27 +361,27 @@ function localeOptionTemplate(option) {
           @delete="removeElement(dataStore.data.publications, index)"
       >
         <div class="grid-2">
-          <TextInput v-model="publication.name" :label="$t('editor.data.publications.name')" />
-          <TextInput v-model="publication.url" :label="$t('editor.data.publications.url')" />
-          <TextInput v-model="publication.publisher" :label="$t('editor.data.publications.publisher')" />
-          <TextInput v-model="publication.releaseDate" :label="$t('editor.data.publications.releaseDate')" />
+          <TextInput v-model="publication.name" :label="localeStore.getAppMessage('editor.data.publications.name')" />
+          <TextInput v-model="publication.url" :label="localeStore.getAppMessage('editor.data.publications.url')" />
+          <TextInput v-model="publication.publisher" :label="localeStore.getAppMessage('editor.data.publications.publisher')" />
+          <TextInput v-model="publication.releaseDate" :label="localeStore.getAppMessage('editor.data.publications.releaseDate')" />
         </div>
 
         <label :for="'publication-summary-' + index" class="font-bold block mb-3 mt-3">
-          {{ $t('editor.data.publications.summary') }}
+          {{ localeStore.getAppMessage('editor.data.publications.summary') }}
         </label>
         <Textarea
             auto-resize
             :id="'publication-summary-' + index"
             v-model="publication.summary"
-            :placeholder="$t('editor.data.publications.summaryPlaceholder')"
+            :placeholder="localeStore.getAppMessage('editor.data.publications.summaryPlaceholder')"
             style="width:100%"
         />
       </InputItem>
     </VueDraggable>
 
     <button @click="dataStore.addPublication" class="button-add">
-      <i class="fas fa-plus"></i> {{ $t('editor.data.publications.addPublication') }}
+      <i class="fas fa-plus"></i> {{ localeStore.getAppMessage('editor.data.publications.addPublication') }}
     </button>
   </Section>
 
@@ -397,28 +394,28 @@ function localeOptionTemplate(option) {
           @delete="removeElement(dataStore.data.conferences, index)"
       >
         <div class="grid-2">
-          <TextInput v-model="conference.title" :label="$t('editor.data.conferences.title')" />
-          <TextInput v-model="conference.conference" :label="$t('editor.data.conferences.conference')" />
-          <TextInput v-model="conference.location" :label="$t('editor.data.conferences.location')" />
-          <TextInput v-model="conference.time" :label="$t('editor.data.conferences.time')" />
-          <TextInput v-model="conference.url" :label="$t('editor.data.conferences.url')" />
+          <TextInput v-model="conference.title" :label="localeStore.getAppMessage('editor.data.conferences.title')" />
+          <TextInput v-model="conference.conference" :label="localeStore.getAppMessage('editor.data.conferences.conference')" />
+          <TextInput v-model="conference.location" :label="localeStore.getAppMessage('editor.data.conferences.location')" />
+          <TextInput v-model="conference.time" :label="localeStore.getAppMessage('editor.data.conferences.time')" />
+          <TextInput v-model="conference.url" :label="localeStore.getAppMessage('editor.data.conferences.url')" />
         </div>
 
         <label :for="'conference-summary-' + index" class="font-bold block mb-3 mt-3">
-          {{ $t('editor.data.conferences.summary') }}
+          {{ localeStore.getAppMessage('editor.data.conferences.summary') }}
         </label>
         <Textarea
             auto-resize
             :id="'conference-summary-' + index"
             v-model="conference.summary"
-            :placeholder="$t('editor.data.conferences.summaryPlaceholder')"
+            :placeholder="localeStore.getAppMessage('editor.data.conferences.summaryPlaceholder')"
             style="width:100%"
         />
       </InputItem>
     </VueDraggable>
 
     <button @click="dataStore.addConference" class="button-add">
-      <i class="fas fa-plus"></i> {{ $t('editor.data.conferences.addConference') }}
+      <i class="fas fa-plus"></i> {{ localeStore.getAppMessage('editor.data.conferences.addConference') }}
     </button>
   </Section>
 
@@ -431,17 +428,17 @@ function localeOptionTemplate(option) {
           @delete="removeElement(dataStore.data.education, index)"
       >
         <div class="grid-2">
-          <TextInput v-model="education.institution" :label="$t('editor.data.education.institution')" />
-          <TextInput v-model="education.studyType" :label="$t('editor.data.education.studyType')" />
-          <TextInput v-model="education.startDate" :label="$t('editor.data.education.startDate')" />
-          <TextInput v-model="education.endDate" :label="$t('editor.data.education.endDate')" />
-          <TextInput v-model="education.url" :label="$t('editor.data.education.url')" />
+          <TextInput v-model="education.institution" :label="localeStore.getAppMessage('editor.data.education.institution')" />
+          <TextInput v-model="education.studyType" :label="localeStore.getAppMessage('editor.data.education.studyType')" />
+          <TextInput v-model="education.startDate" :label="localeStore.getAppMessage('editor.data.education.startDate')" />
+          <TextInput v-model="education.endDate" :label="localeStore.getAppMessage('editor.data.education.endDate')" />
+          <TextInput v-model="education.url" :label="localeStore.getAppMessage('editor.data.education.url')" />
         </div>
       </InputItem>
     </VueDraggable>
 
     <button @click="dataStore.addEducation" class="button-add">
-      <i class="fas fa-plus"></i> {{ $t('editor.data.education.addEducation') }}
+      <i class="fas fa-plus"></i> {{ localeStore.getAppMessage('editor.data.education.addEducation') }}
     </button>
   </Section>
 
@@ -454,16 +451,16 @@ function localeOptionTemplate(option) {
           @delete="removeElement(dataStore.data.certificates, index)"
       >
         <div class="grid-2">
-          <TextInput v-model="certificate.name" :label="$t('editor.data.certificates.name')" />
-          <TextInput v-model="certificate.issuer" :label="$t('editor.data.certificates.issuer')" />
-          <TextInput v-model="certificate.date" :label="$t('editor.data.certificates.date')" />
-          <TextInput v-model="certificate.url" :label="$t('editor.data.certificates.url')" />
+          <TextInput v-model="certificate.name" :label="localeStore.getAppMessage('editor.data.certificates.name')" />
+          <TextInput v-model="certificate.issuer" :label="localeStore.getAppMessage('editor.data.certificates.issuer')" />
+          <TextInput v-model="certificate.date" :label="localeStore.getAppMessage('editor.data.certificates.date')" />
+          <TextInput v-model="certificate.url" :label="localeStore.getAppMessage('editor.data.certificates.url')" />
         </div>
       </InputItem>
     </VueDraggable>
 
     <button @click="dataStore.addCertificate" class="button-add">
-      <i class="fas fa-plus"></i> {{ $t('editor.data.certificates.addCertificate') }}
+      <i class="fas fa-plus"></i> {{ localeStore.getAppMessage('editor.data.certificates.addCertificate') }}
     </button>
   </Section>
 
@@ -476,16 +473,16 @@ function localeOptionTemplate(option) {
           @delete="removeElement(dataStore.data.awards, index)"
       >
         <div class="grid-2">
-          <TextInput v-model="award.title" :label="$t('editor.data.awards.title')" />
-          <TextInput v-model="award.awarder" :label="$t('editor.data.awards.awarder')" />
-          <TextInput v-model="award.date" :label="$t('editor.data.awards.date')" />
-          <TextInput v-model="award.url" :label="$t('editor.data.awards.url')" />
+          <TextInput v-model="award.title" :label="localeStore.getAppMessage('editor.data.awards.title')" />
+          <TextInput v-model="award.awarder" :label="localeStore.getAppMessage('editor.data.awards.awarder')" />
+          <TextInput v-model="award.date" :label="localeStore.getAppMessage('editor.data.awards.date')" />
+          <TextInput v-model="award.url" :label="localeStore.getAppMessage('editor.data.awards.url')" />
         </div>
       </InputItem>
     </VueDraggable>
 
     <button @click="dataStore.addAward" class="button-add">
-      <i class="fas fa-plus"></i> {{ $t('editor.data.awards.addAward') }}
+      <i class="fas fa-plus"></i> {{ localeStore.getAppMessage('editor.data.awards.addAward') }}
     </button>
   </Section>
 
@@ -498,13 +495,13 @@ function localeOptionTemplate(option) {
           @delete="removeElement(dataStore.data.skills, index)"
       >
         <div class="grid-2">
-          <TextInput v-model="skill.name" :label="$t('editor.data.skills.name')" />
+          <TextInput v-model="skill.name" :label="localeStore.getAppMessage('editor.data.skills.name')" />
         </div>
         <label :for="'keywords-' + index" class="font-bold block mb-2 mt-2">
-          {{ $t('editor.data.skills.keywords') }}
+          {{ localeStore.getAppMessage('editor.data.skills.keywords') }}
         </label>
         <InputChips
-            :placeholder="$t('editor.data.skills.addKeyword')"
+            :placeholder="localeStore.getAppMessage('editor.data.skills.addKeyword')"
             v-model="skill.keywords"
             :input-id="'keywords-' + index"
         />
@@ -512,7 +509,7 @@ function localeOptionTemplate(option) {
     </VueDraggable>
 
     <button @click="dataStore.addSkill" class="button-add">
-      <i class="fas fa-plus"></i> {{ $t('editor.data.skills.addSkill') }}
+      <i class="fas fa-plus"></i> {{ localeStore.getAppMessage('editor.data.skills.addSkill') }}
     </button>
   </Section>
 
@@ -525,14 +522,14 @@ function localeOptionTemplate(option) {
           @delete="removeElement(dataStore.data.languages, index)"
       >
         <div class="grid-2">
-          <TextInput v-model="language.language" :label="$t('editor.data.languages.language')" />
-          <TextInput v-model="language.fluency" :label="$t('editor.data.languages.fluency')" />
+          <TextInput v-model="language.language" :label="localeStore.getAppMessage('editor.data.languages.language')" />
+          <TextInput v-model="language.fluency" :label="localeStore.getAppMessage('editor.data.languages.fluency')" />
         </div>
       </InputItem>
     </VueDraggable>
 
     <button @click="dataStore.addLanguage" class="button-add">
-      <i class="fas fa-plus"></i> {{ $t('editor.data.languages.addLanguage') }}
+      <i class="fas fa-plus"></i> {{ localeStore.getAppMessage('editor.data.languages.addLanguage') }}
     </button>
   </Section>
 
@@ -545,13 +542,13 @@ function localeOptionTemplate(option) {
           @delete="removeElement(dataStore.data.interests, index)"
       >
         <div class="grid-2">
-          <TextInput v-model="interest.name" :label="$t('editor.data.interests.name')" />
+          <TextInput v-model="interest.name" :label="localeStore.getAppMessage('editor.data.interests.name')" />
         </div>
         <label :for="'keywords-' + index" class="font-bold block mb-2 mt-2">
-          {{ $t('editor.data.interests.keywords') }}
+          {{ localeStore.getAppMessage('editor.data.interests.keywords') }}
         </label>
         <InputChips
-            :placeholder="$t('editor.data.interests.addKeyword')"
+            :placeholder="localeStore.getAppMessage('editor.data.interests.addKeyword')"
             v-model="interest.keywords"
             :input-id="'keywords-' + index"
         />
@@ -559,7 +556,7 @@ function localeOptionTemplate(option) {
     </VueDraggable>
 
     <button @click="dataStore.addInterest" class="button-add">
-      <i class="fas fa-plus"></i> {{ $t('editor.data.interests.addInterest') }}
+      <i class="fas fa-plus"></i> {{ localeStore.getAppMessage('editor.data.interests.addInterest') }}
     </button>
   </Section>
 

@@ -2,7 +2,9 @@
 
 import {ref} from "vue";
 import {Button, FileUpload} from "primevue";
+import {useLocaleStore} from "@/stores/localeStore";
 
+const localeStore = useLocaleStore();
 const fileInput = ref(null);
 
 const emit = defineEmits(["select"]);
@@ -34,7 +36,7 @@ function openFilePicker() {
         :accept="accept"
     />
   </div>
-  <Button :label="$t(label)" icon="pi pi-upload" severity="primary" @click="openFilePicker" class="action" raised/>
+  <Button :label="localeStore.getAppMessage(label)" icon="pi pi-upload" severity="primary" @click="openFilePicker" class="action" raised/>
 </template>
 
 <style scoped lang="sass">

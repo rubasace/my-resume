@@ -2,9 +2,10 @@
 import Resume from "./resume/Resume.vue";
 import Editor from "@/components/editor/Editor.vue";
 import Visor from "@/components/Visor.vue";
-import { computed, ref } from "vue";
-import { useWindowSize } from "@vueuse/core";
+import {computed, ref} from "vue";
+import {useWindowSize} from "@vueuse/core";
 import Dialog from 'primevue/dialog';
+import LanguageSelector from "@/components/LanguageSelector.vue";
 
 const { width } = useWindowSize();
 
@@ -18,6 +19,9 @@ function toggleEditor() {
 </script>
 
 <template>
+  <div class="language-selector">
+    <LanguageSelector/>
+  </div>
   <div class="edit-toggle" v-if="isMobile && !showEditor">
     <button @click="toggleEditor" aria-label="Edit">
       <i class="fas fa-pencil"></i>
@@ -48,6 +52,13 @@ function toggleEditor() {
   </div>
 </template>
 <style scoped lang="sass">
+.language-selector
+  position: absolute
+  display: block
+  top: 0
+  right: 3em
+  margin: 0.5em
+  z-index: 20
 .main-page
   display: flex
   position: relative
@@ -55,7 +66,6 @@ function toggleEditor() {
   height: calc(100vh - var(--vh-offset, 0px))
   width: 100vw
   overflow: hidden
-
   .view, .editor
     flex: 1
     position: relative

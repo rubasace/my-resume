@@ -6,16 +6,14 @@ import {Button, useToast} from "primevue";
 import yaml from "js-yaml";
 import {useStyleStore} from "@/stores/styleStore";
 import {useThemeStore} from "@/stores/themeStore";
-import {useI18n} from "vue-i18n";
+import {useLocaleStore} from "@/stores/localeStore";
 
 const dataStore = useDataStore();
 const styleStore = useStyleStore();
 const themeStore = useThemeStore();
+const localeStore = useLocaleStore();
 
 const toast = useToast();
-
-const {t} = useI18n()
-
 
 function importData(event) {
   const parseFileContent = (fileContent, fileName) => {
@@ -32,7 +30,7 @@ function importData(event) {
       try {
         const fileContent = e.target.result;
         const fileName = file.name;
-        const { _builderData, ...data } = parseFileContent(fileContent, fileName);
+        const {_builderData, ...data} = parseFileContent(fileContent, fileName);
 
         dataStore.importData(data);
         dataStore.setPicture(data.basics.picture, _builderData?.pictureData);
@@ -42,15 +40,15 @@ function importData(event) {
 
         toast.add({
           severity: 'success',
-          summary: t('editor.import.success'),
-          detail: t('editor.import.successDetail', { name: file.name }),
+          summary: localeStore.getAppMessage('editor.import.success'),
+          detail: localeStore.getAppMessage('editor.import.successDetail', {name: file.name}),
           life: 5000
         });
       } catch (error) {
         toast.add({
           severity: 'error',
-          summary: t('editor.import.error'),
-          detail: t('editor.import.errorDetail', { name: file.name, message: error.message }),
+          summary: localeStore.getAppMessage('editor.import.error'),
+          detail: localeStore.getAppMessage('editor.import.errorDetail', {name: file.name, message: error.message}),
           life: 5000
         });
         console.error(error);
@@ -60,8 +58,8 @@ function importData(event) {
     reader.onerror = (error) => {
       toast.add({
         severity: 'error',
-        summary: t('editor.import.error'),
-        detail: t('editor.import.errorDetail', { name: file.name, message: error.message }),
+        summary: localeStore.getAppMessage('editor.import.error'),
+        detail: localeStore.getAppMessage('editor.import.errorDetail', {name: file.name, message: error.message}),
         life: 5000
       });
     };
@@ -93,17 +91,18 @@ function exportFile(format) {
 
   toast.add({
     severity: 'success',
-    summary: t('editor.export.success'),
-    detail: t('editor.export.successDetail', { name: a.download }),
+    summary: localeStore.getAppMessage('editor.export.success'),
+    detail: localeStore.getAppMessage('editor.export.successDetail', {name: a.download}),
     life: 5000
-  });}
+  });
+}
 </script>
 
 <template>
   <div class="grid-3">
     <FilePicker @select="importData"/>
-    <Button :label="$t('editor.export.export-json')" icon="pi pi-download" severity="info" @click="exportFile('json')" class="action" raised/>
-    <Button :label="$t('editor.export.export-yaml')" icon="pi pi-download" severity="warn" @click="exportFile('yaml')" class="action" raised/>
+    <Button :label="localeStore.getAppMessage('editor.export.export-json')" icon="pi pi-download" severity="info" @click="exportFile('json')" class="action" raised/>
+    <Button :label="localeStore.getAppMessage('editor.export.export-yaml')" icon="pi pi-download" severity="warn" @click="exportFile('yaml')" class="action" raised/>
   </div>
 </template>
 

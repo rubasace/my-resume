@@ -21,6 +21,7 @@ export const useLocaleStore = defineStore('localeStore', () => {
     const appI18n = ref(null)
     const resumeI18n = ref(null)
 
+    setupI18n(appLocale.value).then(e => appI18n.value = e)
     setupI18n(resumeLocale.value, '.resume').then(e => resumeI18n.value = e)
 
     watch(appLocale, async (newLocale) => {
@@ -31,15 +32,16 @@ export const useLocaleStore = defineStore('localeStore', () => {
         resumeI18n.value = await setupI18n(newLocale, '.resume')
     })
 
-    function getResumeMessage(key) {
+    function getAppMessage(key, ...args) {
         return computed(() => {
-            return resumeI18n.value?.global?.t(key) ?? key
+            return appI18n.value?.global?.t(key, args) ?? key
         })
     }
 
-    async function initAppI18n(){
-        appI18n.value = setupI18n(appLocale.value)
-        return appI18n.value
+    function getResumeMessage(key, ...args) {
+        return computed(() => {
+            return resumeI18n.value?.global?.t(key, args) ?? key
+        })
     }
 
     async function setupI18n(locale, htmlSelector = 'html') {
@@ -93,8 +95,9 @@ export const useLocaleStore = defineStore('localeStore', () => {
     }
 
     return {
-        initAppI18n,
+        appI18n,
         appLocale,
+        getAppMessage,
         getResumeMessage,
         supportedLocales
     }

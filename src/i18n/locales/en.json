@@ -49,8 +49,10 @@
         "scale": "Scale",
         "url": "URL",
         "urlType": "URL",
+        "placeholder": "Picture URL",
         "fileType": "File",
         "upload": "Upload file",
+        "clear": "Remove image",
         "success": "Picture uploaded",
         "successDetail": "{name} was uploaded successfully",
         "error": "Error setting picture"
@@ -178,14 +180,14 @@
     },
     "import": {
       "import": "Import",
-      "export-json": "Export to JSON",
-      "export-yaml": "Export to YAML",
       "success": "File imported successfully",
       "successDetail": "Loaded content from {name}",
       "error": "Error loading file",
       "errorDetail": "File {name} was not loaded successfully. Error received: {message}"
     },
     "export": {
+      "export-json": "Export to JSON",
+      "export-yaml": "Export to YAML",
       "success": "Configuration exported successfully",
       "successDetail": "Downloaded file {name}"
     },

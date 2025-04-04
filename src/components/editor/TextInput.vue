@@ -1,19 +1,19 @@
 <script setup>
-import {computed, ref, useId} from 'vue'; // VueUse for unique ID generation
+import {computed, ref, unref, useId} from 'vue'; // VueUse for unique ID generation
 import InputText from 'primevue/inputtext';
 import FloatLabel from 'primevue/floatlabel';
 import AutoComplete from 'primevue/autocomplete';
 
 const props = defineProps({
   modelValue: [String, Number],
-  label: String,
+  label: [String, Object],
   options: Array
 });
 
 const emit = defineEmits(['update:modelValue']);
 const uniqueId = useId();
-const inputId = `${props.label.toLowerCase()}-${uniqueId}`;
-
+const labelText = computed(() => unref(props.label)) // reactive even if it's a ref or string
+const inputId = computed(() => `${labelText.value.toLowerCase()}-${uniqueId}`);
 const model = computed({
   get: () => props.modelValue,
   set: (value) => emit('update:modelValue', value),
@@ -55,7 +55,7 @@ function handleSelection(val) {
 
 <template>
   <FloatLabel variant="on">
-    <label :for="inputId" class="font-bold block mb-2">{{ props.label }}</label>
+    <label :for="inputId" class="font-bold block mb-2">{{ labelText }}</label>
     <AutoComplete
         v-if="options?.length"
         :modelValue="modelValue"

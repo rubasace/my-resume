@@ -2,11 +2,10 @@
 
 import {computed, ref} from "vue";
 import {useConfirm} from "primevue/useconfirm";
-import {useI18n} from "vue-i18n";
+import {useLocaleStore} from "@/stores/localeStore";
 
 const confirm = useConfirm();
-
-const {t} = useI18n()
+const localeStore = useLocaleStore()
 
 const model = defineModel({
   required: false
@@ -61,11 +60,11 @@ const expanded = ref(!summaryTitle.value || summaryTitle.value === "")
 
 function deleteItem() {
   confirm.require({
-    message: t('editor.delete.message'),
-    header: t('editor.delete.header'),
+    message: localeStore.getAppMessage('editor.delete.message'),
+    header: localeStore.getAppMessage('editor.delete.header'),
     icon: 'fas fa-exclamation-triangle',
-    acceptLabel: t('editor.delete.accept'),
-    rejectLabel: t('editor.delete.reject'),
+    acceptLabel: localeStore.getAppMessage('editor.delete.accept'),
+    rejectLabel: localeStore.getAppMessage('editor.delete.reject'),
     acceptClass: 'p-button-danger',
     rejectClass: 'p-button-secondary',
     accept: () => emit('delete'),

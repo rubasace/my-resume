@@ -3,9 +3,11 @@ import {onMounted, ref, useTemplateRef} from "vue";
 import {useDraggable} from "@/composables/useDraggable";
 import {useThemeStore} from "@/stores/themeStore";
 import {usePinch} from "@vueuse/gesture";
+import {useLocaleStore} from "@/stores/localeStore";
 
 //Done so theme is initialized before visor
 useThemeStore()
+const localeStore = useLocaleStore()
 
 const MAX_ZOOM_IN = 4;
 const MIN_ZOOM_OUT = 0.25;
@@ -101,21 +103,21 @@ onMounted(() => {
       </div>
     </div>
     <div class="menu">
-      <button @click="zoomIn()" :title="$t('visor.menu.zoomIn')">
+      <button @click="zoomIn()" :title="localeStore.getAppMessage('visor.menu.zoomIn')">
         <i class="fas fa-magnifying-glass-plus" />
       </button>
-      <button @click="zoomOut()" :title="$t('visor.menu.zoomOut')">
+      <button @click="zoomOut()" :title="localeStore.getAppMessage('visor.menu.zoomOut')">
         <i class="fas fa-magnifying-glass-minus" />
       </button>
-      <button @click="resetZoom" :title="$t('visor.menu.fitToScreen')">
+      <button @click="resetZoom" :title="localeStore.getAppMessage('visor.menu.fitToScreen')">
         <i class="fas fa-expand" />
       </button>
       <button
           @click="toggleMargins"
-          :title="showMargins ? $t('visor.menu.hideMargins') : $t('visor.menu.showMargins')">
+          :title="showMargins ? localeStore.getAppMessage('visor.menu.hideMargins') : localeStore.getAppMessage('visor.menu.showMargins')">
         <i :class="showMargins ? 'fas fa-border-all' : 'fas fa-border-none'" />
       </button>
-      <button @click="downloadPDF" :title="$t('visor.menu.downloadPDF')">
+      <button @click="downloadPDF" :title="localeStore.getAppMessage('visor.menu.downloadPDF')">
         <i class="fas fa-file-pdf" />
       </button>
     </div>
