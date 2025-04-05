@@ -28,7 +28,9 @@ function getLabel(code) {
     de: 'Deutsch',
     it: 'Italiano',
     pt: 'Português',
-    // Extend as eeded
+    nl: 'Nederlands',
+    pl: 'Polski'
+
   }
   return labels[code] || code.toUpperCase()
 }
