@@ -1,4 +1,4 @@
-FROM nginxinc/nginx-unprivileged:1.29.0@sha256:5957d8d004517de8a53af6812bdb1b779d7c6746a611569af59b22660925f47b
+FROM nginxinc/nginx-unprivileged:1.29.0@sha256:a7ad9ceb637fcc892a3a8a1724ab119d5d9bd41ec451ce10c02e04c47bc6ed60
 
 COPY dist /usr/share/nginx/html
 
