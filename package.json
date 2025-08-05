@@ -15,7 +15,7 @@
     "@fortawesome/vue-fontawesome": "3.1.1",
     "js-yaml": "^4.1.0",
     "pug": "^3.0.2",
-    "sass": "1.89.2",
+    "sass": "1.90.0",
     "vue": "^3.2.47",
     "vue-i18n": "11.1.11",
     "webfontloader": "^1.6.28"
