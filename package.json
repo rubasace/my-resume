@@ -13,7 +13,7 @@
     "@fortawesome/free-brands-svg-icons": "6.7.2",
     "@fortawesome/free-solid-svg-icons": "6.7.2",
     "@fortawesome/vue-fontawesome": "3.3.3",
-    "js-yaml": "^4.1.0",
+    "js-yaml": "^5.0.0",
     "pug": "^3.0.2",
     "sass": "1.104.1",
     "vue": "^3.2.47",
